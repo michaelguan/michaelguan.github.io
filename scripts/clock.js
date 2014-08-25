@@ -55,7 +55,7 @@ function drawClock(canvas,context){
       context.beginPath();
       for(var i=0;i<60;i++){
         if(i%5!=0){
-          context.moveTo(radius-15,0);
+          context.moveTo(radius-18,0);
           context.lineTo(radius-10,0);
         }
         context.rotate(Math.PI/30);
