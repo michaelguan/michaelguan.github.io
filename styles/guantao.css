@@ -1,6 +1,7 @@
 body 
 {
+font-family:微软雅黑;
 color:#839496;
 background-color:#002B36;
 }
-marquee {color:#FFFFFF;font-family:微软雅黑;font-size:50px;}
+marquee {color:#FFFFFF;font-size:50px;}
