@@ -1,5 +1,5 @@
 function drawClock(canvas,context){
-     ///µÃµ½µ±Ç°ÏµÍ³Ê±¼äµÄ£ºÊ±¡¢·Ö¡¢Ãë
+     ///å¾—åˆ°å½“å‰ç³»ç»Ÿæ—¶é—´çš„ï¼šæ—¶ã€åˆ†ã€ç§’
       var now_date=new Date();
       var radius = Math.min(canvas.width/2,canvas.height/2),
            sec=now_date.getSeconds(),
@@ -7,7 +7,7 @@ function drawClock(canvas,context){
            hour=now_date.getHours();
            hour=hour>=12?hour-12:hour;
      
-      //³õÊ¼»¯»­²¼
+      //åˆå§‹åŒ–ç”»å¸ƒ
       context.save();
       context.clearRect(0,0,canvas.width,canvas.height);    
       context.translate(canvas.width/2,canvas.height/2);        
@@ -34,7 +34,7 @@ function drawClock(canvas,context){
       context.rotate(-Math.PI/2);
       context.save();
 
-      //Ğ¡Ê±¿Ì¶È
+      //å°æ—¶åˆ»åº¦
       context.strokeStyle="white";
       context.fillStyle="white";
       context.lineWidth=3;
@@ -49,7 +49,7 @@ function drawClock(canvas,context){
       context.restore();
       context.save();
      
-      //·ÖÖÓ¿Ì¶È
+      //åˆ†é’Ÿåˆ»åº¦
 	  context.strokeStyle="white";
       context.lineWidth=2;
       context.beginPath();
@@ -64,7 +64,7 @@ function drawClock(canvas,context){
       context.restore();
       context.save();
      
-      //»­ÉÏÊ±Õë
+      //ç”»ä¸Šæ—¶é’ˆ
       context.rotate((Math.PI/6)*hour+(Math.PI/360)*min+(Math.PI/21600)*sec);
 	  context.strokeStyle="green";
       context.lineWidth=6;
@@ -76,7 +76,7 @@ function drawClock(canvas,context){
       context.restore();
       context.save();
      
-      //·ÖÕë
+      //åˆ†é’ˆ
       context.rotate((Math.PI/30)*min+(Math.PI/1800)*sec);
       context.strokeStyle="#29A8DE";
       context.lineWidth=4;
@@ -88,7 +88,7 @@ function drawClock(canvas,context){
       context.restore();
       context.save();
      
-      //ÃëÕë
+      //ç§’é’ˆ
       context.rotate(sec*Math.PI/30);
       context.strokeStyle="yellow";
       context.lineWidth=2;
@@ -100,7 +100,7 @@ function drawClock(canvas,context){
       context.restore();
       context.save();
      
-      ///±í¿ò      
+      ///è¡¨æ¡†      
       context.lineWidth=4;
       context.strokeStyle="#882341";
       context.beginPath();
