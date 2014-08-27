@@ -7,7 +7,7 @@ function drawClock(canvas,context){
            hour=now_date.getHours();
            hour=hour>=12?hour-12:hour;
      
-      //初始化画布
+      //初始化画布并画数字
       context.save();
       context.clearRect(0,0,canvas.width,canvas.height);    
       context.translate(canvas.width/2,canvas.height/2);        
