@@ -5,18 +5,25 @@
 <title>生命沙漏</title>
 <script src="scripts/jquery.js"></script>
 <script src="scripts/clock.js"></script>
+<script src="scripts/lifematrix.js"></script>
 <link href="styles/guantao.css" rel="stylesheet" type="text/css" />
 <script>
 $(document).ready(function() {
     var canvas = document.getElementById("myCanvas");
-    var context = canvas.getContext("2d");
+    var context = canvas.getContext("2d");    
     setInterval(function(){drawClock(canvas,context)},1000);
+	var canvas1 = document.getElementById("lifeCanvas");
+    var context1 = canvas1.getContext("2d");
+	drawLifeMatrix(canvas1,context1);
 });
 </script>
 </head>
 
 <body>
-<canvas width="350" height="350" id="myCanvas"></canvas>
+<canvas width="250" height="250" id="myCanvas"></canvas>
+</br>
+<canvas width="1000" height="480" id="lifeCanvas"></canvas>
+</br>
 <audio src="music/浮夸.mp3" controls></audio>
 </body>
 </html>
