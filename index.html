@@ -14,7 +14,7 @@ $(document).ready(function() {
     setInterval(function(){drawClock(canvas,context)},1000);
 	var canvas1 = document.getElementById("lifeCanvas");
     var context1 = canvas1.getContext("2d");
-	drawLifeMatrix(canvas1,context1);
+    setInterval(function(){drawLifeMatrix(canvas1,context1)},1000);
 });
 </script>
 </head>
