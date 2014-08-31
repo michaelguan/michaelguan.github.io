@@ -1,7 +1,7 @@
 function drawLifeMatrix(canvas,context)
 {
     context.clearRect(0,0,canvas.width,canvas.height); 
-	context.strokeStyle="white";
+	context.strokeStyle="#2288AC";
 	context.fillStyle="red";
     context.lineWidth=0.8;
      var i,j;
@@ -12,6 +12,8 @@ function drawLifeMatrix(canvas,context)
 	   context.lineTo(i,canvas.height);
 	   context.stroke();
 	}
+	
+	context.strokeStyle="#C7B422";
 	
 	for(i=0;i<=canvas.height;i+=20)
 	{
