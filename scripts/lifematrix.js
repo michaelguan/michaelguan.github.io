@@ -7,6 +7,10 @@ function drawLifeMatrix(canvas,context)
      var i,j;
     for(i=0;i<=canvas.width;i+=20)
 	{
+	   if(i==canvas.width/2)
+	   {
+	      context.strokeStyle="white";	
+	   }
 	   context.beginPath();
 	   context.moveTo(i,0);
 	   context.lineTo(i,canvas.height);
@@ -17,6 +21,10 @@ function drawLifeMatrix(canvas,context)
 	
 	for(i=0;i<=canvas.height;i+=20)
 	{
+           if(i==canvas.height/2)
+	   {
+	      context.strokeStyle="white";	
+	   }
 	   context.beginPath();
 	   context.moveTo(0,i);
 	   context.lineTo(canvas.width,i);
