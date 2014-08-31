@@ -5,6 +5,7 @@ function drawLifeMatrix(canvas,context)
 	context.fillStyle="red";
     context.lineWidth=0.8;
      var i,j;
+     context.save();
     for(i=0;i<=canvas.width;i+=20)
 	{
 	   if(i==canvas.width/2)
@@ -15,10 +16,11 @@ function drawLifeMatrix(canvas,context)
 	   context.moveTo(i,0);
 	   context.lineTo(i,canvas.height);
 	   context.stroke();
+	   context.restore();
 	}
 	
 	context.strokeStyle="#C7B422";
-	
+	context.save();
 	for(i=0;i<=canvas.height;i+=20)
 	{
            if(i==canvas.height/2)
@@ -28,7 +30,8 @@ function drawLifeMatrix(canvas,context)
 	   context.beginPath();
 	   context.moveTo(0,i);
 	   context.lineTo(canvas.width,i);
-	   context.stroke();		
+	   context.stroke();
+	    context.restore();
 	}
 	
 	context.fillRect(2,2,18,18);
