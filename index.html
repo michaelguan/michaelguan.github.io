@@ -3,24 +3,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>生命矩阵</title>
-<script src="scripts/jquery.js"></script>
-<script src="scripts/clock.js"></script>
-<script src="scripts/lifematrix.js"></script>
+<script src="scripts/require.js" data-main="scripts/main"></script>
 <link href="styles/guantao.css" rel="stylesheet" type="text/css" />
-<script>
-$(document).ready(function() {
-    var canvas = document.getElementById("myCanvas");
-    var context = canvas.getContext("2d");    
-    setInterval(function(){drawClock(canvas,context)},1000);
-	var canvas1 = document.getElementById("lifeCanvas");
-    var context1 = canvas1.getContext("2d");
-    setInterval(function(){drawLifeMatrix(canvas1,context1)},1000);
-});
-</script>
 </head>
 
 <body>
 <canvas width="250" height="250" id="myCanvas"></canvas>
+</br>
+<input id='x' type='text'/>
+<input id='y' type='text'/>
 </br>
 <canvas width="1000" height="480" id="lifeCanvas"></canvas>
 </br>

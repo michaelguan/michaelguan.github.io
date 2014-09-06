@@ -1,5 +1,6 @@
-function drawLifeMatrix(canvas,context)
-{
+define(function() {
+return {
+"drawLifeMatrix":function(canvas,context){
     context.clearRect(0,0,canvas.width,canvas.height); 
 	context.strokeStyle="#2288AC";
 	context.fillStyle="red";
@@ -50,4 +51,7 @@ function drawLifeMatrix(canvas,context)
 		  }
 		  context.fillRect(20*parseInt(((i-1)/24))+2,20*((i-1)%24)+2,18,18);
 	}
+
 }
+};
+});

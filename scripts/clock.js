@@ -1,4 +1,6 @@
-function drawClock(canvas,context){
+define(function() {
+return {
+"drawClock":function(canvas,context) {
      ///得到当前系统时间的：时、分、秒
       var now_date=new Date();
       var radius = Math.min(canvas.width/2,canvas.height/2),
@@ -109,3 +111,5 @@ function drawClock(canvas,context){
       context.restore();
       context.restore();
 }
+};
+});
