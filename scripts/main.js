@@ -19,5 +19,9 @@ $(document).ready(function() {
 	   $("#x").val(e.clientX-canvas.getBoundingClientRect().left*(canvas.width/canvas.getBoundingClientRect().width));
 	   $("#y").val(e.clientY-canvas.getBoundingClientRect().top*(canvas.width/canvas.getBoundingClientRect().height));
 	});
+	canvas.addEventListener('touchstart',function (e) {
+	   $("#x").val(e.clientX-canvas.getBoundingClientRect().left*(canvas.width/canvas.getBoundingClientRect().width));
+	   $("#y").val(e.clientY-canvas.getBoundingClientRect().top*(canvas.width/canvas.getBoundingClientRect().height));
+	});
 	});
 });

@@ -5,13 +5,22 @@
 <title>生命矩阵</title>
 <script src="scripts/require.js" data-main="scripts/main"></script>
 <link href="styles/guantao.css" rel="stylesheet" type="text/css" />
+
+<script>
+var jquery=require('jquery');
+var math=require('math');
+jquery('document').ready(function() {
+alert(math.sqrt(4));
+});
+</script>
 </head>
 
 <body>
 <canvas width="250" height="250" id="myCanvas"></canvas>
-</br>
+<br/>
 <input id='x' type='text'/>
 <input id='y' type='text'/>
+<hr/>
 </br>
 <canvas width="1000" height="480" id="lifeCanvas"></canvas>
 </br>
