@@ -43,9 +43,9 @@ return {
 	var sec=now_date.getSeconds();
 	var month=now_date.getMonth()+1;
 	
-	for(i=1;i<=(year-1986)*12+month;i++)
+	for(i=1;i<=(year-1987)*12+month;i++)
 	{
-	      if(i==(year-1986)*12+month)
+	      if(i==(year-1987)*12+month)
 		  {
 				context.fillStyle=sec%2?"yellow":"green";
 		  }
