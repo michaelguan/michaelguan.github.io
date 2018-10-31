@@ -3,7 +3,8 @@ paths: {
 "jquery":"jquery",
 "clock":"clock",
 "lifematrix":"lifematrix",
-"math":"math.min"
+"math":"math.min",
+"echarts":"echarts"
 }
 });
 

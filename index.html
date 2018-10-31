@@ -4,11 +4,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>生命矩阵</title>
 <script src="scripts/require.js" data-main="scripts/main"></script>
+
 <link href="styles/guantao.css" rel="stylesheet" type="text/css" />
 
 <script>
 var jquery=require('jquery');
 var math=require('math');
+var echarts=require('echarts');
 jquery('document').ready(function() {
 alert(math.sqrt(4));
 });
@@ -26,6 +28,39 @@ alert(math.sqrt(4));
 <br>
 <br>
 <br>
+<div id="mycharts" style="width: 600px;height:400px;"></div>
+
+<script type="text/javascript">
+var myChart = echarts.init(document.getElementById('mycharts'));
+       var option = {
+            title: {
+                text: 'ECharts 入门示例'
+            },
+            tooltip: {},
+            legend: {
+                data:['销量']
+            },
+            xAxis: {
+                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+</script>
+
+
+
+
+
+
+
 <audio src="music/浮夸.mp3" controls></audio>
 </body>
 </html>
