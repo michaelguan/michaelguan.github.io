@@ -28,7 +28,7 @@ background: #f5f7ff;
 <body>
 <h1 align='center'>双汇发展全景信息</h1>
 <h2 align='center'>报表日期：20180930</h2>
-<h2 align='center'>生成日期：20190127</h2>
+<h2 align='center'>生成日期：20190211</h2>
  <table border='1' class="t1">
 <tr>
 <td>股票名称：</td>
@@ -40,31 +40,31 @@ background: #f5f7ff;
 <td>公司所在地区：</td>
 <td>河南</td>
 <td> 最新价格：</td>
-<td>24.5元</td>
+<td>25.63元</td>
 </tr>
 <tr>
 <td>总市值：</td>
-<td>808.5亿</td>
+<td>845.79亿</td>
 <td>流通市值：</td>
-<td>808.26亿</td>
+<td>845.53亿</td>
 <td>总股本：</td>
 <td>33.0亿</td>
 <td>流通股本：</td>
 <td>32.99亿</td>
 <td>本年涨幅：</td>
-<td>2.73%</td>
+<td>7.46%</td>
 </tr>
 <tr>
 <td> 市盈率：</td>
-<td>16.6</td>
+<td>17.37</td>
 <td>市净率：</td>
-<td>5.51</td>
+<td>5.76</td>
 <td>股东人数：</td>
 <td>47794.0人</td>
 <td>营业收入同比：</td>
 <td>-2.02%</td>
 <td>本月涨幅：</td>
-<td>2.73%</td>
+<td>4.19%</td>
 </tr>
 <tr>
 <td> 毛利率：</td>
@@ -100,17 +100,17 @@ background: #f5f7ff;
 </table>
  
 <div>
-    <div id="f5d6595deca64522867380e7cb9e6baa" style="width:100%;height:500px;"></div>
+    <div id="64e44ea4607a4679a1f6db54e621079b" style="width:100%;height:500px;"></div>
     <script type="text/javascript">
 
-var myChart_f5d6595deca64522867380e7cb9e6baa = echarts.init(document.getElementById('f5d6595deca64522867380e7cb9e6baa'), 'light', {renderer: 'canvas'});
+var myChart_64e44ea4607a4679a1f6db54e621079b = echarts.init(document.getElementById('64e44ea4607a4679a1f6db54e621079b'), 'light', {renderer: 'canvas'});
 function kline_tooltip_formatter(params) {
     var text;
     text = ((((((((((((params[0].seriesName + "<br/>") + "- open:") + params[0].data[1]) + "<br/>") + "- close:") + params[0].data[2]) + "<br/>") + "- lowest:") + params[0].data[3]) + "<br/>") + "- highest:") + params[0].data[4]);
     return text;
 }
 
-var option_f5d6595deca64522867380e7cb9e6baa = {
+var option_64e44ea4607a4679a1f6db54e621079b = {
     "title": [
         {
             "text": "\u8fd13\u5e74\u5468K\u7ebf\u56fe",
@@ -154,7 +154,7 @@ var option_f5d6595deca64522867380e7cb9e6baa = {
             }
         }
     },
-    "series_id": 491060,
+    "series_id": 1700098,
     "tooltip": {
         "trigger": "axis",
         "triggerOn": "mousemove|click",
@@ -173,18 +173,6 @@ var option_f5d6595deca64522867380e7cb9e6baa = {
         {
             "type": "candlestick",
             "data": [
-                [
-                    16.785,
-                    16.48,
-                    16.429,
-                    17.263
-                ],
-                [
-                    16.353,
-                    16.032,
-                    15.819,
-                    16.663
-                ],
                 [
                     16.099,
                     16.607,
@@ -1396,6 +1384,18 @@ var option_f5d6595deca64522867380e7cb9e6baa = {
                     24.5,
                     24.11,
                     25.12
+                ],
+                [
+                    24.6,
+                    25.11,
+                    23.04,
+                    25.35
+                ],
+                [
+                    25.07,
+                    25.63,
+                    24.85,
+                    25.65
                 ]
             ],
             "markPoint": {
@@ -1431,15 +1431,13 @@ var option_f5d6595deca64522867380e7cb9e6baa = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 491060,
+            "seriesId": 1700098,
             "xAxisIndex": 0,
             "yAxisIndex": 0
         },
         {
             "type": "bar",
             "data": [
-                679866.0,
-                535404.0,
                 504499.0,
                 195376.0,
                 256675.0,
@@ -1641,9 +1639,11 @@ var option_f5d6595deca64522867380e7cb9e6baa = {
                 393748.0,
                 321950.0,
                 350978.0,
-                441277.0
+                441277.0,
+                715073.0,
+                149835.0
             ],
-            "stack": "stack_7357306",
+            "stack": "stack_1288431",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -1666,7 +1666,7 @@ var option_f5d6595deca64522867380e7cb9e6baa = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 7357306,
+            "seriesId": 1288431,
             "xAxisIndex": 1,
             "yAxisIndex": 1
         }
@@ -1731,8 +1731,6 @@ var option_f5d6595deca64522867380e7cb9e6baa = {
                 }
             },
             "data": [
-                "2015-01-30",
-                "2015-02-06",
                 "2015-02-13",
                 "2015-02-17",
                 "2015-02-27",
@@ -1934,7 +1932,9 @@ var option_f5d6595deca64522867380e7cb9e6baa = {
                 "2018-12-28",
                 "2019-01-04",
                 "2019-01-11",
-                "2019-01-18"
+                "2019-01-18",
+                "2019-02-01",
+                "2019-02-11"
             ],
             "scale": true
         },
@@ -1968,8 +1968,6 @@ var option_f5d6595deca64522867380e7cb9e6baa = {
                 }
             },
             "data": [
-                "2015-01-30",
-                "2015-02-06",
                 "2015-02-13",
                 "2015-02-17",
                 "2015-02-27",
@@ -2171,7 +2169,9 @@ var option_f5d6595deca64522867380e7cb9e6baa = {
                 "2018-12-28",
                 "2019-01-04",
                 "2019-01-11",
-                "2019-01-18"
+                "2019-01-18",
+                "2019-02-01",
+                "2019-02-11"
             ],
             "gridIndex": 1
         }
@@ -2282,18 +2282,18 @@ var option_f5d6595deca64522867380e7cb9e6baa = {
         }
     ]
 };
-myChart_f5d6595deca64522867380e7cb9e6baa.setOption(option_f5d6595deca64522867380e7cb9e6baa);
+myChart_64e44ea4607a4679a1f6db54e621079b.setOption(option_64e44ea4607a4679a1f6db54e621079b);
 
 </script>
 </div>
 
 <div>
-    <div id="45262ffa7ffa4c2b83c6e506f90cbadc" style="width:100%;height:400px;"></div>
+    <div id="d5ef6adc34324c7ba61dd4303a3e9de6" style="width:100%;height:400px;"></div>
     <script type="text/javascript">
 
-var myChart_45262ffa7ffa4c2b83c6e506f90cbadc = echarts.init(document.getElementById('45262ffa7ffa4c2b83c6e506f90cbadc'), 'light', {renderer: 'svg'});
+var myChart_d5ef6adc34324c7ba61dd4303a3e9de6 = echarts.init(document.getElementById('d5ef6adc34324c7ba61dd4303a3e9de6'), 'light', {renderer: 'svg'});
 
-var option_45262ffa7ffa4c2b83c6e506f90cbadc = {
+var option_d5ef6adc34324c7ba61dd4303a3e9de6 = {
     "title": [
         {
             "text": "\u8d44\u4ea7\u8d1f\u503a\u5206\u5e03\u56fe",
@@ -2327,7 +2327,7 @@ var option_45262ffa7ffa4c2b83c6e506f90cbadc = {
             }
         }
     },
-    "series_id": 5076031,
+    "series_id": 1976101,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -2451,7 +2451,7 @@ var option_45262ffa7ffa4c2b83c6e506f90cbadc = {
                     "formatter": "{b}: {d}%"
                 }
             },
-            "seriesId": 5076031
+            "seriesId": 1976101
         },
         {
             "type": "pie",
@@ -2490,7 +2490,7 @@ var option_45262ffa7ffa4c2b83c6e506f90cbadc = {
                     "formatter": "{b}: {d}%"
                 }
             },
-            "seriesId": 5076031
+            "seriesId": 1976101
         },
         {
             "type": "pie",
@@ -2529,7 +2529,7 @@ var option_45262ffa7ffa4c2b83c6e506f90cbadc = {
                     "formatter": "{b}: {d}%"
                 }
             },
-            "seriesId": 5076031
+            "seriesId": 1976101
         },
         {
             "type": "pie",
@@ -2564,7 +2564,7 @@ var option_45262ffa7ffa4c2b83c6e506f90cbadc = {
                     "formatter": "{b}: {d}%"
                 }
             },
-            "seriesId": 5076031
+            "seriesId": 1976101
         },
         {
             "type": "pie",
@@ -2635,7 +2635,7 @@ var option_45262ffa7ffa4c2b83c6e506f90cbadc = {
                     "formatter": "{b}: {d}%"
                 }
             },
-            "seriesId": 5076031
+            "seriesId": 1976101
         },
         {
             "type": "pie",
@@ -2674,7 +2674,7 @@ var option_45262ffa7ffa4c2b83c6e506f90cbadc = {
                     "formatter": "{b}: {d}%"
                 }
             },
-            "seriesId": 5076031
+            "seriesId": 1976101
         }
     ],
     "legend": [
@@ -2730,45 +2730,45 @@ var option_45262ffa7ffa4c2b83c6e506f90cbadc = {
     ],
     "animation": true,
     "color": [
-        "#c23531",
+        "#726930",
         "#2f4554",
         "#fab27b",
-        "#918597",
-        "#726930",
         "#444693",
-        "#546570",
-        "#ac6767",
-        "#ef5b9c",
-        "#749f83",
-        "#6950a1",
-        "#f47920",
-        "#905a3d",
-        "#b2d235",
-        "#bda29a",
-        "#ca8622",
-        "#d48265",
-        "#61a0a8",
-        "#2a5caa",
-        "#f05b72",
-        "#c4ccd3",
         "#f6f5ec",
-        "#6d8346",
+        "#bda29a",
+        "#d48265",
+        "#c4ccd3",
+        "#749f83",
         "#1d953f",
-        "#6e7074"
+        "#6950a1",
+        "#6d8346",
+        "#ef5b9c",
+        "#ca8622",
+        "#6e7074",
+        "#61a0a8",
+        "#c23531",
+        "#f47920",
+        "#546570",
+        "#b2d235",
+        "#ac6767",
+        "#905a3d",
+        "#f05b72",
+        "#2a5caa",
+        "#918597"
     ]
 };
-myChart_45262ffa7ffa4c2b83c6e506f90cbadc.setOption(option_45262ffa7ffa4c2b83c6e506f90cbadc);
+myChart_d5ef6adc34324c7ba61dd4303a3e9de6.setOption(option_d5ef6adc34324c7ba61dd4303a3e9de6);
 
 </script>
 </div>
 
 <div>
-    <div id="03a9d846024448aebce90d6492f6eb22" style="width:100%;height:400px;"></div>
+    <div id="d37d49d965ae4003ac21f1553eeb7c4b" style="width:100%;height:400px;"></div>
     <script type="text/javascript">
 
-var myChart_03a9d846024448aebce90d6492f6eb22 = echarts.init(document.getElementById('03a9d846024448aebce90d6492f6eb22'), 'light', {renderer: 'svg'});
+var myChart_d37d49d965ae4003ac21f1553eeb7c4b = echarts.init(document.getElementById('d37d49d965ae4003ac21f1553eeb7c4b'), 'light', {renderer: 'svg'});
 
-var option_03a9d846024448aebce90d6492f6eb22 = {
+var option_d37d49d965ae4003ac21f1553eeb7c4b = {
     "title": [
         {
             "text": "\u5229\u6da6\u6210\u672c\u5206\u5e03\u56fe",
@@ -2802,7 +2802,7 @@ var option_03a9d846024448aebce90d6492f6eb22 = {
             }
         }
     },
-    "series_id": 3645948,
+    "series_id": 3227862,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -2886,7 +2886,7 @@ var option_03a9d846024448aebce90d6492f6eb22 = {
                     "formatter": "{b}: {d}%"
                 }
             },
-            "seriesId": 3645948
+            "seriesId": 3227862
         },
         {
             "type": "pie",
@@ -2925,7 +2925,7 @@ var option_03a9d846024448aebce90d6492f6eb22 = {
                     "formatter": "{b}: {d}%"
                 }
             },
-            "seriesId": 3645948
+            "seriesId": 3227862
         }
     ],
     "legend": [
@@ -2956,45 +2956,45 @@ var option_03a9d846024448aebce90d6492f6eb22 = {
     ],
     "animation": true,
     "color": [
-        "#918597",
-        "#6d8346",
-        "#6950a1",
         "#444693",
-        "#749f83",
-        "#546570",
-        "#2a5caa",
-        "#726930",
-        "#f47920",
-        "#ca8622",
-        "#c4ccd3",
-        "#f6f5ec",
-        "#1d953f",
-        "#61a0a8",
-        "#6e7074",
-        "#ac6767",
-        "#2f4554",
-        "#bda29a",
-        "#b2d235",
         "#d48265",
+        "#2f4554",
         "#fab27b",
-        "#f05b72",
         "#905a3d",
+        "#bda29a",
+        "#2a5caa",
+        "#c4ccd3",
+        "#ca8622",
+        "#f05b72",
+        "#546570",
+        "#ac6767",
+        "#749f83",
+        "#f47920",
+        "#918597",
+        "#f6f5ec",
+        "#b2d235",
+        "#61a0a8",
+        "#726930",
+        "#6e7074",
+        "#ef5b9c",
         "#c23531",
-        "#ef5b9c"
+        "#6950a1",
+        "#6d8346",
+        "#1d953f"
     ]
 };
-myChart_03a9d846024448aebce90d6492f6eb22.setOption(option_03a9d846024448aebce90d6492f6eb22);
+myChart_d37d49d965ae4003ac21f1553eeb7c4b.setOption(option_d37d49d965ae4003ac21f1553eeb7c4b);
 
 </script>
 </div>
 
 <div>
-    <div id="91ad40e9b3d044a7b4b6b8ac808971b0" style="width:100%;height:400px;"></div>
+    <div id="08401151b324476495b7edf6072a0fe2" style="width:100%;height:400px;"></div>
     <script type="text/javascript">
 
-var myChart_91ad40e9b3d044a7b4b6b8ac808971b0 = echarts.init(document.getElementById('91ad40e9b3d044a7b4b6b8ac808971b0'), 'light', {renderer: 'svg'});
+var myChart_08401151b324476495b7edf6072a0fe2 = echarts.init(document.getElementById('08401151b324476495b7edf6072a0fe2'), 'light', {renderer: 'svg'});
 
-var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
+var option_08401151b324476495b7edf6072a0fe2 = {
     "title": [
         {
             "text": "\u5386\u5e74\u8d44\u4ea7\u6307\u6807\u8d8b\u52bf",
@@ -3051,7 +3051,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
             }
         }
     },
-    "series_id": 5778253,
+    "series_id": 647004,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -3088,7 +3088,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
                 50.68,
                 38.33
             ],
-            "stack": "stack_5778253",
+            "stack": "stack_647004",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -3111,7 +3111,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5778253
+            "seriesId": 647004
         },
         {
             "type": "bar",
@@ -3135,7 +3135,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
                 3.72,
                 4.79
             ],
-            "stack": "stack_5778253",
+            "stack": "stack_647004",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -3158,7 +3158,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5778253
+            "seriesId": 647004
         },
         {
             "type": "bar",
@@ -3182,7 +3182,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
                 1.1,
                 1.1
             ],
-            "stack": "stack_5778253",
+            "stack": "stack_647004",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -3205,7 +3205,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5778253
+            "seriesId": 647004
         },
         {
             "type": "bar",
@@ -3229,7 +3229,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
                 0.26,
                 0.38
             ],
-            "stack": "stack_5778253",
+            "stack": "stack_647004",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -3252,7 +3252,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5778253
+            "seriesId": 647004
         },
         {
             "type": "bar",
@@ -3276,7 +3276,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
                 27.85,
                 38.19
             ],
-            "stack": "stack_5778253",
+            "stack": "stack_647004",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -3299,7 +3299,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5778253
+            "seriesId": 647004
         },
         {
             "type": "bar",
@@ -3323,7 +3323,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
                 116.25,
                 108.92
             ],
-            "stack": "stack_5778253",
+            "stack": "stack_647004",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -3346,7 +3346,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5778253
+            "seriesId": 647004
         },
         {
             "type": "bar",
@@ -3370,7 +3370,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
                 1.62,
                 3.76
             ],
-            "stack": "stack_5778253",
+            "stack": "stack_647004",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -3393,7 +3393,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5778253
+            "seriesId": 647004
         },
         {
             "type": "bar",
@@ -3417,7 +3417,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
                 10.53,
                 9.51
             ],
-            "stack": "stack_5778253",
+            "stack": "stack_647004",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -3440,7 +3440,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5778253
+            "seriesId": 647004
         },
         {
             "type": "bar",
@@ -3464,7 +3464,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
                 0.0,
                 0.0
             ],
-            "stack": "stack_5778253",
+            "stack": "stack_647004",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -3487,7 +3487,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5778253
+            "seriesId": 647004
         },
         {
             "type": "bar",
@@ -3511,7 +3511,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
                 0.0,
                 0.0
             ],
-            "stack": "stack_5778253",
+            "stack": "stack_647004",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -3534,7 +3534,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5778253
+            "seriesId": 647004
         },
         {
             "type": "bar",
@@ -3558,7 +3558,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
                 1.75,
                 1.73
             ],
-            "stack": "stack_5778253",
+            "stack": "stack_647004",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -3581,7 +3581,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5778253
+            "seriesId": 647004
         },
         {
             "type": "bar",
@@ -3605,7 +3605,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
                 0.38,
                 0.33
             ],
-            "stack": "stack_5778253",
+            "stack": "stack_647004",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -3628,7 +3628,7 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5778253
+            "seriesId": 647004
         }
     ],
     "legend": [
@@ -3779,18 +3779,18 @@ var option_91ad40e9b3d044a7b4b6b8ac808971b0 = {
         }
     ]
 };
-myChart_91ad40e9b3d044a7b4b6b8ac808971b0.setOption(option_91ad40e9b3d044a7b4b6b8ac808971b0);
+myChart_08401151b324476495b7edf6072a0fe2.setOption(option_08401151b324476495b7edf6072a0fe2);
 
 </script>
 </div>
 
 <div>
-    <div id="8c58323a7e8a463a905b002560950089" style="width:100%;height:400px;"></div>
+    <div id="9387bf73be83484ebb7c6aac3f7d3d64" style="width:100%;height:400px;"></div>
     <script type="text/javascript">
 
-var myChart_8c58323a7e8a463a905b002560950089 = echarts.init(document.getElementById('8c58323a7e8a463a905b002560950089'), 'light', {renderer: 'svg'});
+var myChart_9387bf73be83484ebb7c6aac3f7d3d64 = echarts.init(document.getElementById('9387bf73be83484ebb7c6aac3f7d3d64'), 'light', {renderer: 'svg'});
 
-var option_8c58323a7e8a463a905b002560950089 = {
+var option_9387bf73be83484ebb7c6aac3f7d3d64 = {
     "title": [
         {
             "text": "\u5386\u5e74\u8d1f\u503a\u6307\u6807\u8d8b\u52bf",
@@ -3847,7 +3847,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
             }
         }
     },
-    "series_id": 8981467,
+    "series_id": 959126,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -3884,7 +3884,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
                 22.57,
                 24.84
             ],
-            "stack": "stack_8981467",
+            "stack": "stack_959126",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -3907,7 +3907,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 8981467
+            "seriesId": 959126
         },
         {
             "type": "bar",
@@ -3931,7 +3931,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
                 0.05,
                 0.05
             ],
-            "stack": "stack_8981467",
+            "stack": "stack_959126",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -3954,7 +3954,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 8981467
+            "seriesId": 959126
         },
         {
             "type": "bar",
@@ -3978,7 +3978,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
                 0.0,
                 0.0
             ],
-            "stack": "stack_8981467",
+            "stack": "stack_959126",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -4001,7 +4001,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 8981467
+            "seriesId": 959126
         },
         {
             "type": "bar",
@@ -4025,7 +4025,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
                 18.71,
                 0.0
             ],
-            "stack": "stack_8981467",
+            "stack": "stack_959126",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -4048,7 +4048,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 8981467
+            "seriesId": 959126
         },
         {
             "type": "bar",
@@ -4072,7 +4072,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
                 7.03,
                 8.35
             ],
-            "stack": "stack_8981467",
+            "stack": "stack_959126",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -4095,7 +4095,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 8981467
+            "seriesId": 959126
         },
         {
             "type": "bar",
@@ -4119,7 +4119,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
                 0.0,
                 0.0
             ],
-            "stack": "stack_8981467",
+            "stack": "stack_959126",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -4142,7 +4142,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 8981467
+            "seriesId": 959126
         },
         {
             "type": "bar",
@@ -4166,7 +4166,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
                 5.27,
                 5.4
             ],
-            "stack": "stack_8981467",
+            "stack": "stack_959126",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -4189,7 +4189,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 8981467
+            "seriesId": 959126
         },
         {
             "type": "bar",
@@ -4213,7 +4213,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
                 3.82,
                 4.12
             ],
-            "stack": "stack_8981467",
+            "stack": "stack_959126",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -4236,7 +4236,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 8981467
+            "seriesId": 959126
         },
         {
             "type": "bar",
@@ -4260,7 +4260,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
                 0.04,
                 0.0
             ],
-            "stack": "stack_8981467",
+            "stack": "stack_959126",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -4283,7 +4283,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 8981467
+            "seriesId": 959126
         },
         {
             "type": "bar",
@@ -4307,7 +4307,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
                 7.24,
                 6.29
             ],
-            "stack": "stack_8981467",
+            "stack": "stack_959126",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -4330,7 +4330,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 8981467
+            "seriesId": 959126
         },
         {
             "type": "bar",
@@ -4354,7 +4354,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
                 0.07,
                 0.0
             ],
-            "stack": "stack_8981467",
+            "stack": "stack_959126",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -4377,7 +4377,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 8981467
+            "seriesId": 959126
         },
         {
             "type": "bar",
@@ -4401,7 +4401,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
                 0.0,
                 0.0
             ],
-            "stack": "stack_8981467",
+            "stack": "stack_959126",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -4424,7 +4424,7 @@ var option_8c58323a7e8a463a905b002560950089 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 8981467
+            "seriesId": 959126
         }
     ],
     "legend": [
@@ -4575,18 +4575,18 @@ var option_8c58323a7e8a463a905b002560950089 = {
         }
     ]
 };
-myChart_8c58323a7e8a463a905b002560950089.setOption(option_8c58323a7e8a463a905b002560950089);
+myChart_9387bf73be83484ebb7c6aac3f7d3d64.setOption(option_9387bf73be83484ebb7c6aac3f7d3d64);
 
 </script>
 </div>
 
 <div>
-    <div id="cc7174399aa6488395cd1ce166d3e220" style="width:100%;height:400px;"></div>
+    <div id="6cd370f16d9740fcbe56c0d8beaeb5eb" style="width:100%;height:400px;"></div>
     <script type="text/javascript">
 
-var myChart_cc7174399aa6488395cd1ce166d3e220 = echarts.init(document.getElementById('cc7174399aa6488395cd1ce166d3e220'), 'light', {renderer: 'svg'});
+var myChart_6cd370f16d9740fcbe56c0d8beaeb5eb = echarts.init(document.getElementById('6cd370f16d9740fcbe56c0d8beaeb5eb'), 'light', {renderer: 'svg'});
 
-var option_cc7174399aa6488395cd1ce166d3e220 = {
+var option_6cd370f16d9740fcbe56c0d8beaeb5eb = {
     "title": [
         {
             "text": "\u5386\u5e74\u6240\u6709\u8005\u6743\u76ca\u6307\u6807\u8d8b\u52bf",
@@ -4643,7 +4643,7 @@ var option_cc7174399aa6488395cd1ce166d3e220 = {
             }
         }
     },
-    "series_id": 4456103,
+    "series_id": 5073933,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -4680,7 +4680,7 @@ var option_cc7174399aa6488395cd1ce166d3e220 = {
                 33.0,
                 33.0
             ],
-            "stack": "stack_4456103",
+            "stack": "stack_5073933",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -4703,7 +4703,7 @@ var option_cc7174399aa6488395cd1ce166d3e220 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 4456103
+            "seriesId": 5073933
         },
         {
             "type": "bar",
@@ -4727,7 +4727,7 @@ var option_cc7174399aa6488395cd1ce166d3e220 = {
                 18.75,
                 19.18
             ],
-            "stack": "stack_4456103",
+            "stack": "stack_5073933",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -4750,7 +4750,7 @@ var option_cc7174399aa6488395cd1ce166d3e220 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 4456103
+            "seriesId": 5073933
         },
         {
             "type": "bar",
@@ -4774,7 +4774,7 @@ var option_cc7174399aa6488395cd1ce166d3e220 = {
                 18.32,
                 18.32
             ],
-            "stack": "stack_4456103",
+            "stack": "stack_5073933",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -4797,7 +4797,7 @@ var option_cc7174399aa6488395cd1ce166d3e220 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 4456103
+            "seriesId": 5073933
         },
         {
             "type": "bar",
@@ -4821,7 +4821,7 @@ var option_cc7174399aa6488395cd1ce166d3e220 = {
                 64.34,
                 76.25
             ],
-            "stack": "stack_4456103",
+            "stack": "stack_5073933",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -4844,7 +4844,7 @@ var option_cc7174399aa6488395cd1ce166d3e220 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 4456103
+            "seriesId": 5073933
         }
     ],
     "legend": [
@@ -4987,18 +4987,18 @@ var option_cc7174399aa6488395cd1ce166d3e220 = {
         }
     ]
 };
-myChart_cc7174399aa6488395cd1ce166d3e220.setOption(option_cc7174399aa6488395cd1ce166d3e220);
+myChart_6cd370f16d9740fcbe56c0d8beaeb5eb.setOption(option_6cd370f16d9740fcbe56c0d8beaeb5eb);
 
 </script>
 </div>
 
 <div>
-    <div id="de7cf24fe52f4dc590e5a94185d24595" style="width:100%;height:400px;"></div>
+    <div id="3281409c1eb544ebbcd03acb7d5c07c7" style="width:100%;height:400px;"></div>
     <script type="text/javascript">
 
-var myChart_de7cf24fe52f4dc590e5a94185d24595 = echarts.init(document.getElementById('de7cf24fe52f4dc590e5a94185d24595'), 'light', {renderer: 'canvas'});
+var myChart_3281409c1eb544ebbcd03acb7d5c07c7 = echarts.init(document.getElementById('3281409c1eb544ebbcd03acb7d5c07c7'), 'light', {renderer: 'canvas'});
 
-var option_de7cf24fe52f4dc590e5a94185d24595 = {
+var option_3281409c1eb544ebbcd03acb7d5c07c7 = {
     "title": [
         {
             "text": "\u5386\u5e74\u5229\u6da6\u8868\u6307\u6807\u8d8b\u52bf",
@@ -5055,7 +5055,7 @@ var option_de7cf24fe52f4dc590e5a94185d24595 = {
             }
         }
     },
-    "series_id": 7590259,
+    "series_id": 3865863,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -5092,7 +5092,7 @@ var option_de7cf24fe52f4dc590e5a94185d24595 = {
                 300.32,
                 287.45
             ],
-            "stack": "stack_7590259",
+            "stack": "stack_3865863",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -5115,7 +5115,7 @@ var option_de7cf24fe52f4dc590e5a94185d24595 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 7590259
+            "seriesId": 3865863
         },
         {
             "type": "bar",
@@ -5139,7 +5139,7 @@ var option_de7cf24fe52f4dc590e5a94185d24595 = {
                 31.51,
                 36.52
             ],
-            "stack": "stack_7590259",
+            "stack": "stack_3865863",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -5162,7 +5162,7 @@ var option_de7cf24fe52f4dc590e5a94185d24595 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 7590259
+            "seriesId": 3865863
         },
         {
             "type": "bar",
@@ -5186,7 +5186,7 @@ var option_de7cf24fe52f4dc590e5a94185d24595 = {
                 18.32,
                 19.51
             ],
-            "stack": "stack_7590259",
+            "stack": "stack_3865863",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -5209,7 +5209,7 @@ var option_de7cf24fe52f4dc590e5a94185d24595 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 7590259
+            "seriesId": 3865863
         },
         {
             "type": "bar",
@@ -5233,7 +5233,7 @@ var option_de7cf24fe52f4dc590e5a94185d24595 = {
                 0.63,
                 0.5
             ],
-            "stack": "stack_7590259",
+            "stack": "stack_3865863",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -5256,7 +5256,7 @@ var option_de7cf24fe52f4dc590e5a94185d24595 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 7590259
+            "seriesId": 3865863
         },
         {
             "type": "bar",
@@ -5280,7 +5280,7 @@ var option_de7cf24fe52f4dc590e5a94185d24595 = {
                 8.39,
                 7.94
             ],
-            "stack": "stack_7590259",
+            "stack": "stack_3865863",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -5303,7 +5303,7 @@ var option_de7cf24fe52f4dc590e5a94185d24595 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 7590259
+            "seriesId": 3865863
         },
         {
             "type": "line",
@@ -5415,7 +5415,7 @@ var option_de7cf24fe52f4dc590e5a94185d24595 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 7590259,
+            "seriesId": 3865863,
             "xAxisIndex": 0,
             "yAxisIndex": 1
         },
@@ -5529,7 +5529,7 @@ var option_de7cf24fe52f4dc590e5a94185d24595 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 7590259,
+            "seriesId": 3865863,
             "xAxisIndex": 0,
             "yAxisIndex": 1
         }
@@ -5731,18 +5731,18 @@ var option_de7cf24fe52f4dc590e5a94185d24595 = {
         }
     ]
 };
-myChart_de7cf24fe52f4dc590e5a94185d24595.setOption(option_de7cf24fe52f4dc590e5a94185d24595);
+myChart_3281409c1eb544ebbcd03acb7d5c07c7.setOption(option_3281409c1eb544ebbcd03acb7d5c07c7);
 
 </script>
 </div>
 
 <div>
-    <div id="ef261f4331074b66bfda7b669ad2993f" style="width:100%;height:400px;"></div>
+    <div id="cd017e3a0b30446b8235e5832ad6b686" style="width:100%;height:400px;"></div>
     <script type="text/javascript">
 
-var myChart_ef261f4331074b66bfda7b669ad2993f = echarts.init(document.getElementById('ef261f4331074b66bfda7b669ad2993f'), 'light', {renderer: 'svg'});
+var myChart_cd017e3a0b30446b8235e5832ad6b686 = echarts.init(document.getElementById('cd017e3a0b30446b8235e5832ad6b686'), 'light', {renderer: 'svg'});
 
-var option_ef261f4331074b66bfda7b669ad2993f = {
+var option_cd017e3a0b30446b8235e5832ad6b686 = {
     "title": [
         {
             "text": "\u5386\u5e74\u76c8\u5229\u80fd\u529b",
@@ -5799,7 +5799,7 @@ var option_ef261f4331074b66bfda7b669ad2993f = {
             }
         }
     },
-    "series_id": 8475404,
+    "series_id": 1894756,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -5924,7 +5924,7 @@ var option_ef261f4331074b66bfda7b669ad2993f = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 8475404
+            "seriesId": 1894756
         },
         {
             "type": "line",
@@ -6036,7 +6036,7 @@ var option_ef261f4331074b66bfda7b669ad2993f = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 8475404
+            "seriesId": 1894756
         },
         {
             "type": "line",
@@ -6148,7 +6148,7 @@ var option_ef261f4331074b66bfda7b669ad2993f = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 8475404
+            "seriesId": 1894756
         }
     ],
     "legend": [
@@ -6290,18 +6290,18 @@ var option_ef261f4331074b66bfda7b669ad2993f = {
         }
     ]
 };
-myChart_ef261f4331074b66bfda7b669ad2993f.setOption(option_ef261f4331074b66bfda7b669ad2993f);
+myChart_cd017e3a0b30446b8235e5832ad6b686.setOption(option_cd017e3a0b30446b8235e5832ad6b686);
 
 </script>
 </div>
 
 <div>
-    <div id="23c6cb7720af493ebda57e7bdc925783" style="width:100%;height:400px;"></div>
+    <div id="212a4cd1a46249adb9d3486aaf18d2c8" style="width:100%;height:400px;"></div>
     <script type="text/javascript">
 
-var myChart_23c6cb7720af493ebda57e7bdc925783 = echarts.init(document.getElementById('23c6cb7720af493ebda57e7bdc925783'), 'light', {renderer: 'svg'});
+var myChart_212a4cd1a46249adb9d3486aaf18d2c8 = echarts.init(document.getElementById('212a4cd1a46249adb9d3486aaf18d2c8'), 'light', {renderer: 'svg'});
 
-var option_23c6cb7720af493ebda57e7bdc925783 = {
+var option_212a4cd1a46249adb9d3486aaf18d2c8 = {
     "title": [
         {
             "text": "\u5386\u5e74\u73b0\u91d1\u6d41\u548c\u51c0\u5229\u6da6",
@@ -6358,7 +6358,7 @@ var option_23c6cb7720af493ebda57e7bdc925783 = {
             }
         }
     },
-    "series_id": 5975667,
+    "series_id": 4295639,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -6380,7 +6380,7 @@ var option_23c6cb7720af493ebda57e7bdc925783 = {
             "symbolSize": 4,
             "smooth": false,
             "step": false,
-            "stack": "stack_5975667",
+            "stack": "stack_4295639",
             "showSymbol": true,
             "data": [
                 [
@@ -6484,7 +6484,7 @@ var option_23c6cb7720af493ebda57e7bdc925783 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5975667
+            "seriesId": 4295639
         },
         {
             "type": "line",
@@ -6592,7 +6592,7 @@ var option_23c6cb7720af493ebda57e7bdc925783 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5975667
+            "seriesId": 4295639
         },
         {
             "type": "line",
@@ -6700,7 +6700,7 @@ var option_23c6cb7720af493ebda57e7bdc925783 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5975667
+            "seriesId": 4295639
         },
         {
             "type": "line",
@@ -6808,7 +6808,7 @@ var option_23c6cb7720af493ebda57e7bdc925783 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5975667
+            "seriesId": 4295639
         },
         {
             "type": "line",
@@ -6916,7 +6916,7 @@ var option_23c6cb7720af493ebda57e7bdc925783 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5975667
+            "seriesId": 4295639
         }
     ],
     "legend": [
@@ -7059,21 +7059,21 @@ var option_23c6cb7720af493ebda57e7bdc925783 = {
         }
     ]
 };
-myChart_23c6cb7720af493ebda57e7bdc925783.setOption(option_23c6cb7720af493ebda57e7bdc925783);
+myChart_212a4cd1a46249adb9d3486aaf18d2c8.setOption(option_212a4cd1a46249adb9d3486aaf18d2c8);
 
 </script>
 </div>
 
 <div>
-    <div id="100d8dd9fd7f4757bb2ee5bdc7e63131" style="width:100%;height:400px;"></div>
+    <div id="8149fe751a9d4ed88264c45c0bc618ed" style="width:100%;height:400px;"></div>
     <script type="text/javascript">
 
-var myChart_100d8dd9fd7f4757bb2ee5bdc7e63131 = echarts.init(document.getElementById('100d8dd9fd7f4757bb2ee5bdc7e63131'), 'light', {renderer: 'svg'});
+var myChart_8149fe751a9d4ed88264c45c0bc618ed = echarts.init(document.getElementById('8149fe751a9d4ed88264c45c0bc618ed'), 'light', {renderer: 'svg'});
 
-var option_100d8dd9fd7f4757bb2ee5bdc7e63131 = {
+var option_8149fe751a9d4ed88264c45c0bc618ed = {
     "title": [
         {
-            "text": "\u524d\u5341\u5927\u80a1\u4e1c%\u524d\u5341\u5927\u6d41\u901a\u80a1\u4e1c",
+            "text": "\u524d\u5341\u5927\u80a1\u4e1c&\u524d\u5341\u5927\u6d41\u901a\u80a1\u4e1c",
             "left": "center",
             "top": "auto",
             "textStyle": {
@@ -7104,7 +7104,7 @@ var option_100d8dd9fd7f4757bb2ee5bdc7e63131 = {
             }
         }
     },
-    "series_id": 1604442,
+    "series_id": 8095772,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -7193,7 +7193,7 @@ var option_100d8dd9fd7f4757bb2ee5bdc7e63131 = {
                     "formatter": "{b}: {d}%"
                 }
             },
-            "seriesId": 1604442
+            "seriesId": 8095772
         },
         {
             "type": "pie",
@@ -7268,7 +7268,7 @@ var option_100d8dd9fd7f4757bb2ee5bdc7e63131 = {
                     "formatter": "{b}: {d}%"
                 }
             },
-            "seriesId": 1604442
+            "seriesId": 8095772
         }
     ],
     "legend": [
@@ -7298,34 +7298,34 @@ var option_100d8dd9fd7f4757bb2ee5bdc7e63131 = {
     ],
     "animation": true,
     "color": [
-        "#1d953f",
-        "#bda29a",
-        "#ef5b9c",
-        "#918597",
-        "#6d8346",
-        "#6950a1",
-        "#6e7074",
-        "#ca8622",
-        "#749f83",
         "#ac6767",
-        "#546570",
-        "#905a3d",
-        "#f47920",
-        "#2f4554",
-        "#fab27b",
-        "#444693",
-        "#d48265",
         "#2a5caa",
-        "#c4ccd3",
+        "#546570",
         "#726930",
+        "#749f83",
+        "#f47920",
+        "#6e7074",
+        "#fab27b",
+        "#bda29a",
         "#b2d235",
-        "#61a0a8",
-        "#c23531",
+        "#6d8346",
+        "#c4ccd3",
         "#f6f5ec",
-        "#f05b72"
+        "#f05b72",
+        "#ef5b9c",
+        "#d48265",
+        "#905a3d",
+        "#1d953f",
+        "#444693",
+        "#ca8622",
+        "#6950a1",
+        "#2f4554",
+        "#c23531",
+        "#918597",
+        "#61a0a8"
     ]
 };
-myChart_100d8dd9fd7f4757bb2ee5bdc7e63131.setOption(option_100d8dd9fd7f4757bb2ee5bdc7e63131);
+myChart_8149fe751a9d4ed88264c45c0bc618ed.setOption(option_8149fe751a9d4ed88264c45c0bc618ed);
 
 </script>
 </div>
@@ -7365,16 +7365,16 @@ myChart_100d8dd9fd7f4757bb2ee5bdc7e63131.setOption(option_100d8dd9fd7f4757bb2ee5
 </script>
 </head>
 <body>
-    <div id="856985b44981415f8486ee572605a6b8" style="width:100%;height:600px;"></div>
+    <div id="c07b6aea55a249e3ba44f4f8b9941801" style="width:100%;height:600px;"></div>
     <script type="text/javascript">
 
-var myChart_856985b44981415f8486ee572605a6b8 = echarts.init(document.getElementById('856985b44981415f8486ee572605a6b8'), 'light', {renderer: 'canvas'});
+var myChart_c07b6aea55a249e3ba44f4f8b9941801 = echarts.init(document.getElementById('c07b6aea55a249e3ba44f4f8b9941801'), 'light', {renderer: 'canvas'});
 
-var option_856985b44981415f8486ee572605a6b8 = {
+var option_c07b6aea55a249e3ba44f4f8b9941801 = {
     "title": [
         {
             "text": "\u5404\u7701\u4e0a\u5e02\u516c\u53f8\u6570\u91cf",
-            "subtext": "@GuanTao",
+            "subtext": "by GuanTao",
             "left": "auto",
             "top": "auto",
             "textStyle": {
@@ -7405,7 +7405,7 @@ var option_856985b44981415f8486ee572605a6b8 = {
             }
         }
     },
-    "series_id": 8524510,
+    "series_id": 7474357,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -7443,7 +7443,7 @@ var option_856985b44981415f8486ee572605a6b8 = {
             "data": [
                 {
                     "name": "\u4e0a\u6d77",
-                    "value": 295.0
+                    "value": 296.0
                 },
                 {
                     "name": "\u4e91\u5357",
@@ -7463,7 +7463,7 @@ var option_856985b44981415f8486ee572605a6b8 = {
                 },
                 {
                     "name": "\u56db\u5ddd",
-                    "value": 128.0
+                    "value": 129.0
                 },
                 {
                     "name": "\u5929\u6d25",
@@ -7483,11 +7483,11 @@ var option_856985b44981415f8486ee572605a6b8 = {
                 },
                 {
                     "name": "\u5c71\u897f",
-                    "value": 38.0
+                    "value": 37.0
                 },
                 {
                     "name": "\u5e7f\u4e1c",
-                    "value": 605.0
+                    "value": 606.0
                 },
                 {
                     "name": "\u5e7f\u897f",
@@ -7566,7 +7566,7 @@ var option_856985b44981415f8486ee572605a6b8 = {
                     "value": 41.0
                 }
             ],
-            "roam": false,
+            "roam": true,
             "showLegendSymbol": true
         }
     ],
@@ -7616,7 +7616,7 @@ var option_856985b44981415f8486ee572605a6b8 = {
     "visualMap": {
         "type": "continuous",
         "min": 0,
-        "max": 100,
+        "max": 150,
         "text": [
             "high",
             "low"
@@ -7639,7 +7639,7 @@ var option_856985b44981415f8486ee572605a6b8 = {
         "showLabel": true
     }
 };
-myChart_856985b44981415f8486ee572605a6b8.setOption(option_856985b44981415f8486ee572605a6b8);
+myChart_c07b6aea55a249e3ba44f4f8b9941801.setOption(option_c07b6aea55a249e3ba44f4f8b9941801);
 
 </script>
 </body>
