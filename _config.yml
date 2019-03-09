@@ -13,4 +13,5 @@ links:
     url: https://michaelguan.github.io/
   - title: Articles
     url: https://michaelguan.github.io/
-baseurl:   https://michaelguan.github.io/
+baseurl:  /michaelguan.github.io/
+url:   https://michaelguan.github.io/
