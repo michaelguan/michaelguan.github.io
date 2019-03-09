@@ -6,4 +6,11 @@ rdiscount:
     - smart
     - generate_toc
 theme: jekyll-theme-cayman
+links:
+  - title: About
+    url: https://michaelguan.github.io/
+  - title: tags
+    url: https://michaelguan.github.io/
+  - title: Articles
+    url: https://michaelguan.github.io/
 baseurl:   https://michaelguan.github.io/
