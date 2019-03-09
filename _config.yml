@@ -1,4 +1,4 @@
-permalink: :year-:month-:date-:title
+permalink:  :year-:month-:date-:title
 markdown: rdiscount
 rdiscount:
   toc_token: "[TOC]"
@@ -14,3 +14,4 @@ links:
   - title: Articles
     url: https://michaelguan.github.io/
 baseurl:   https://michaelguan.github.io/
+highlighter: pygments
