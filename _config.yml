@@ -1,4 +1,4 @@
-permalink: /:categories/:year/:month/:title
+permalink: :year-:month-:date-:title
 markdown: rdiscount
 rdiscount:
   toc_token: "[TOC]"
