@@ -1,9 +1,20 @@
+---
+title:先生而后求战
+---
+{{ page.title }}
+
+{% for post in site.posts %}
+
+{{ post.date|date_to_string }} <a href='{{ site.baseurl }}{{ post.url }}'>{{ post.title }}</a>
+
+{% endfor %}
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script type="text/javascript" src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
-<title>看清她的颜值</title>
+<title></title>
 <style type="text/css">
 table{
     table-layout:fixed;

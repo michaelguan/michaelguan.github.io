@@ -6,3 +6,4 @@ rdiscount:
     - smart
     - generate_toc
 theme: jekyll-theme-cayman
+baseurl:/michaelguan.github.io
