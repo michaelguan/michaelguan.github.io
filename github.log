@@ -82,3 +82,10 @@
 20190309 14:10:59.94 push to github complete 
  
 20190309 14:23:14.47 start push to github 
+[master e07ef12] update 20190309 14:23:15.14
+ 3 files changed, 5 insertions(+), 18 deletions(-)
+ delete mode 100644 _config.yml
+ delete mode 100644 _posts/2019-03-09-fkdq.md
+20190309 14:23:23.56 push to github complete 
+ 
+20190309 14:40:21.21 start push to github 
