@@ -5,3 +5,4 @@ rdiscount:
   extensions:
     - smart
     - generate_toc
+theme: jekyll-theme-cayman
