@@ -73,7 +73,7 @@ kramdown:
 gitment:
   enable: true
   githubID: michaelguan
-  repo: https://michaelguan.github.io/
+  repo: michaelguan.github.io
   ClientID: e793a55c9db4a48da4a6
   ClientSecret: 8fa4d502f60cb7c678256cb44f904eb066864385
   lazy: true
