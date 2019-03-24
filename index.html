@@ -13449,5 +13449,20 @@ layui.use('carousel', function(){
 });
 </script>
 
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: 'guantao', // 可选。默认为 location.href
+  owner: 'MichaelGuan',
+  repo: 'https://michaelguan.github.io',
+  oauth: {
+    client_id: 'e793a55c9db4a48da4a6',
+    client_secret: '8fa4d502f60cb7c678256cb44f904eb066864385',
+  },
+})
+gitment.render('container')
+</script>
 </body>
 </html>
