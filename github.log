@@ -9268,3 +9268,19 @@
 20190913 17:20:02.27 push to github complete 
  
 20190913 17:27:52.00 start push to github 
+[master d88ed3b] update 20190913 17:27:53.72
+ 33 files changed, 58 insertions(+), 39 deletions(-)
+ rewrite scripts/layui/css/layui.css (99%)
+ rewrite scripts/layui/font/iconfont.woff (97%)
+ create mode 100644 scripts/layui/font/iconfont.woff2
+ rewrite scripts/layui/lay/modules/form.js (88%)
+ rewrite scripts/layui/lay/modules/table.js (97%)
+ create mode 100644 scripts/layui/lay/modules/transfer.js
+ rewrite scripts/layui/lay/modules/tree.js (100%)
+ rewrite scripts/layui/lay/modules/upload.js (100%)
+ rewrite scripts/layui/lay/modules/util.js (79%)
+ rewrite scripts/layui/layui.all.js (61%)
+ rewrite scripts/layui/layui.js (91%)
+20190913 17:28:06.72 push to github complete 
+ 
+20190913 17:34:37.86 start push to github 
