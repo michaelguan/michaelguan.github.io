@@ -9662,3 +9662,21 @@
 [master ac58ef2] update 20191016 21:53:08.77
  1 file changed, 16 insertions(+)
 20191016 22:04:58.58 start push to github 
+[master cfca284] update 20191016 22:05:10.03
+ 153 files changed, 1564748 insertions(+), 848211 deletions(-)
+ create mode 100644 "stockreport/\344\270\255\345\205\254\346\225\231\350\202\262.html"
+ create mode 100644 "stockreport/\344\270\255\345\233\275\344\272\244\345\273\272.html"
+ create mode 100644 "stockreport/\344\270\255\346\226\260\350\265\233\345\205\213.html"
+ create mode 100644 "stockreport/\344\273\212\344\270\226\347\274\230.html"
+ create mode 100644 "stockreport/\345\215\216\345\244\217\345\271\270\347\246\217.html"
+ create mode 100644 "stockreport/\345\215\216\346\226\260\346\260\264\346\263\245.html"
+ create mode 100644 "stockreport/\346\201\222\347\253\213\346\266\262\345\216\213.html"
+ create mode 100644 "stockreport/\346\226\260\345\222\214\346\210\220.html"
+ create mode 100644 "stockreport/\346\226\271\345\244\247\347\202\255\347\264\240.html"
+ create mode 100644 "stockreport/\346\231\272\351\243\236\347\224\237\347\211\251.html"
+ create mode 100644 "stockreport/\347\211\207\344\273\224\347\231\200.html"
+ create mode 100644 "stockreport/\350\264\265\351\230\263\351\223\266\350\241\214.html"
+ create mode 100644 "stockreport/\350\277\210\347\221\236\345\214\273\347\226\227.html"
+20191016 22:06:05.06 push to github complete 
+ 
+20191019 17:18:04.01 start push to github 
