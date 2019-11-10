@@ -10015,3 +10015,19 @@
 20191109 16:06:29.29 push to github complete 
  
 20191109 17:59:39.71 start push to github 
+[master d1dc4ae] update 20191109 17:59:55.98
+ 181 files changed, 1574192 insertions(+), 1032729 deletions(-)
+ create mode 100644 "stockreport/\344\270\255\345\233\275\347\224\265\345\273\272.html"
+ create mode 100644 "stockreport/\345\212\233\347\224\237\345\210\266\350\215\257.html"
+ create mode 100644 "stockreport/\345\223\210\344\270\211\350\201\224.html"
+ create mode 100644 "stockreport/\345\244\247\345\217\202\346\236\227.html"
+ create mode 100644 "stockreport/\345\244\251\347\233\256\346\271\226.html"
+ create mode 100644 "stockreport/\345\244\252\345\271\263\351\270\237.html"
+ create mode 100644 "stockreport/\345\261\261\344\270\234\345\207\272\347\211\210.html"
+ create mode 100644 "stockreport/\346\230\237\345\256\207\350\202\241\344\273\275.html"
+ create mode 100644 "stockreport/\346\265\267\345\210\251\345\260\224.html"
+ create mode 100644 "stockreport/\350\215\257\347\237\263\347\247\221\346\212\200.html"
+ create mode 100644 "stockreport/\350\221\265\350\212\261\350\215\257\344\270\232.html"
+20191109 18:00:29.35 push to github complete 
+ 
+20191110 19:04:15.53 start push to github 
