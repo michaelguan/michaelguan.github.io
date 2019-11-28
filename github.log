@@ -10233,3 +10233,11 @@
 20191122 18:37:10.15 push to github complete 
  
 20191123 11:33:27.51 start push to github 
+[master 245271a] update 20191123 11:33:42.86
+ 153 files changed, 1085243 insertions(+), 910810 deletions(-)
+ create mode 100644 "stockreport/\344\270\211\344\270\200\351\207\215\345\267\245.html"
+ create mode 100644 "stockreport/\346\270\251\346\260\217\350\202\241\344\273\275.html"
+ create mode 100644 "stockreport/\350\215\243\347\233\233\345\217\221\345\261\225.html"
+20191123 11:35:13.95 push to github complete 
+ 
+20191128 19:22:59.43 start push to github 
