@@ -10257,3 +10257,10 @@
 20191128 19:47:07.42 push to github complete 
  
 20191202 16:30:23.98 start push to github 
+[master 6cd8811] update 20191202 16:30:37.15
+ 140 files changed, 949143 insertions(+), 837101 deletions(-)
+ create mode 100644 "stockreport/\346\231\257\346\227\272\347\224\265\345\255\220.html"
+ create mode 100644 "stockreport/\347\224\263\344\270\207\345\256\217\346\272\220.html"
+20191202 16:31:36.80 push to github complete 
+ 
+20191207 11:57:32.45 start push to github 
