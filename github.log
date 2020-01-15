@@ -10591,3 +10591,10 @@
 20200111 19:38:53.54 push to github complete 
  
 20200111 19:49:22.39 start push to github 
+[master ca80c2a] update 20200111 19:50:08.77
+ 136 files changed, 1143777 insertions(+), 878319 deletions(-)
+ create mode 100644 "stockreport/\346\211\254\345\206\234\345\214\226\345\267\245.html"
+ create mode 100644 "stockreport/\346\265\246\345\217\221\351\223\266\350\241\214.html"
+20200111 19:50:34.14 push to github complete 
+ 
+20200115 19:45:26.58 start push to github 
