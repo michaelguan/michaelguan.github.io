@@ -10637,3 +10637,13 @@
 20200126 11:59:45.40 push to github complete 
  
 20200129 15:03:25.64 start push to github 
+[master 47d0115] update 20200129 15:04:38.32
+ 145 files changed, 1154521 insertions(+), 866558 deletions(-)
+ create mode 100644 "stockreport/\345\201\245\345\270\206\347\224\237\347\211\251.html"
+ create mode 100644 "stockreport/\345\214\227\345\244\247\350\215\222.html"
+ create mode 100644 "stockreport/\345\256\235\351\222\242\350\202\241\344\273\275.html"
+ create mode 100644 "stockreport/\345\271\277\350\201\224\350\276\276.html"
+ create mode 100644 "stockreport/\350\247\206\346\272\220\350\202\241\344\273\275.html"
+20200129 15:05:19.59 push to github complete 
+ 
+20200129 17:14:35.79 start push to github 
