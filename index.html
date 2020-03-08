@@ -18,17 +18,19 @@ var _hmt = _hmt || [];
 </script>
 
 <script type="text/javascript">
-function allowDrop(ev)
+function dragover_handler(ev)
 {
 ev.preventDefault();
+ev.dataTransfer.dropEffect = "move";
 }
 
-function drag(ev)
+function dragstart_handler(ev)
 {
 ev.dataTransfer.setData("text/plain",ev.target.id);
+ev.dataTransfer.dropEffect = "move";
 }
 
-function drop(ev)
+function drop_handler(ev)
 {
 ev.preventDefault();
 var data=ev.dataTransfer.getData("text/plain");
@@ -39,16 +41,16 @@ ev.target.appendChild(document.getElementById(data));
 
 <body>
 <h1 align='center'><i class="layui-icon layui-icon-home"></i> 提高自己的认知并将其转化为财富</h1>
-<h2 align='center'>生成时间：2020-03-08 17:20:31</h2>
+<h2 align='center'>生成时间：2020-03-08 19:08:13</h2>
 
-<div id="chart_div_1" ondrop="drop(event)" ondragover="allowDrop(event)">
-<div draggable="true" ondragstart="drag(event)" id="index_value_div">
-    <div id="8f1f77a64eb24b94ac718f725b241be3" style="width:100%;height:400px;"></div>
-    <script type="text/javascript">
+<div id="chart_div_1" ondrop="drop_handler(event)" ondragover="dragover_handler(event)" draggable="false">
+	<div draggable="true" ondragstart="dragstart_handler(event)" id="index_value_div">
+		<div id="b83c3a43893940b8bdf361c6a8291fe7" style="width:100%;height:400px;"></div>
+		<script type="text/javascript">
 
-var myChart_8f1f77a64eb24b94ac718f725b241be3 = echarts.init(document.getElementById('8f1f77a64eb24b94ac718f725b241be3'), 'light', {renderer: 'canvas'});
+var myChart_b83c3a43893940b8bdf361c6a8291fe7 = echarts.init(document.getElementById('b83c3a43893940b8bdf361c6a8291fe7'), 'light', {renderer: 'canvas'});
 
-var option_8f1f77a64eb24b94ac718f725b241be3 = {
+var option_b83c3a43893940b8bdf361c6a8291fe7 = {
     "title": [
         {
             "text": "\u6307\u6570PE\u4f30\u503c\u66f2\u7ebf",
@@ -83,7 +85,7 @@ var option_8f1f77a64eb24b94ac718f725b241be3 = {
             }
         }
     },
-    "series_id": 941306,
+    "series_id": 2043573,
     "tooltip": {
         "trigger": "axis",
         "triggerOn": "mousemove|click",
@@ -8085,7 +8087,7 @@ var option_8f1f77a64eb24b94ac718f725b241be3 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 941306
+            "seriesId": 2043573
         },
         {
             "type": "line",
@@ -16074,7 +16076,7 @@ var option_8f1f77a64eb24b94ac718f725b241be3 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 941306
+            "seriesId": 2043573
         },
         {
             "type": "line",
@@ -24063,7 +24065,7 @@ var option_8f1f77a64eb24b94ac718f725b241be3 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 941306
+            "seriesId": 2043573
         },
         {
             "type": "line",
@@ -32052,7 +32054,7 @@ var option_8f1f77a64eb24b94ac718f725b241be3 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 941306
+            "seriesId": 2043573
         },
         {
             "type": "line",
@@ -40041,7 +40043,7 @@ var option_8f1f77a64eb24b94ac718f725b241be3 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 941306
+            "seriesId": 2043573
         }
     ],
     "legend": [
@@ -42154,20 +42156,20 @@ var option_8f1f77a64eb24b94ac718f725b241be3 = {
         }
     ]
 };
-myChart_8f1f77a64eb24b94ac718f725b241be3.setOption(option_8f1f77a64eb24b94ac718f725b241be3);
+myChart_b83c3a43893940b8bdf361c6a8291fe7.setOption(option_b83c3a43893940b8bdf361c6a8291fe7);
 
 </script>
-</div>
+	</div>
 </div>
 
-<div id="chart_div_2" ondrop="drop(event)" ondragover="allowDrop(event)">
-<div draggable="true" ondragstart="drag(event)" id="change_pct_div">
-    <div id="1ad4153b6ad7478ab4bb5f404c0be8a1" style="width:100%;height:400px;"></div>
+<div id="chart_div_2" ondrop="drop_handler(event)" ondragover="dragover_handler(event)" draggable="false">
+<div draggable="true" ondragstart="dragstart_handler(event)" id="change_pct_div">
+    <div id="62825a1f35ab4732988739e3ae3d8603" style="width:100%;height:400px;"></div>
     <script type="text/javascript">
 
-var myChart_1ad4153b6ad7478ab4bb5f404c0be8a1 = echarts.init(document.getElementById('1ad4153b6ad7478ab4bb5f404c0be8a1'), 'light', {renderer: 'svg'});
+var myChart_62825a1f35ab4732988739e3ae3d8603 = echarts.init(document.getElementById('62825a1f35ab4732988739e3ae3d8603'), 'light', {renderer: 'svg'});
 
-var option_1ad4153b6ad7478ab4bb5f404c0be8a1 = {
+var option_62825a1f35ab4732988739e3ae3d8603 = {
     "title": [
         {
             "text": "20200306\u65e5\u6da8\u8dcc\u5e45\u5206\u5e03",
@@ -42224,7 +42226,7 @@ var option_1ad4153b6ad7478ab4bb5f404c0be8a1 = {
             }
         }
     },
-    "series_id": 6799028,
+    "series_id": 5326827,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -42278,7 +42280,7 @@ var option_1ad4153b6ad7478ab4bb5f404c0be8a1 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 6799028
+            "seriesId": 5326827
         }
     ],
     "legend": [
@@ -42405,19 +42407,19 @@ var option_1ad4153b6ad7478ab4bb5f404c0be8a1 = {
         "#f6f5ec"
     ]
 };
-myChart_1ad4153b6ad7478ab4bb5f404c0be8a1.setOption(option_1ad4153b6ad7478ab4bb5f404c0be8a1);
+myChart_62825a1f35ab4732988739e3ae3d8603.setOption(option_62825a1f35ab4732988739e3ae3d8603);
 
 </script>
 </div>
 </div>
 
 <div>
-    <div id="c287691a4d9142caa8ea9f012ea66f61" style="width:100%;height:400px;"></div>
+    <div id="9a237e5a2776417f9001df9b34037c9f" style="width:100%;height:400px;"></div>
     <script type="text/javascript">
 
-var myChart_c287691a4d9142caa8ea9f012ea66f61 = echarts.init(document.getElementById('c287691a4d9142caa8ea9f012ea66f61'), 'light', {renderer: 'canvas'});
+var myChart_9a237e5a2776417f9001df9b34037c9f = echarts.init(document.getElementById('9a237e5a2776417f9001df9b34037c9f'), 'light', {renderer: 'canvas'});
 
-var option_c287691a4d9142caa8ea9f012ea66f61 = {
+var option_9a237e5a2776417f9001df9b34037c9f = {
     "title": [
         {
             "text": "\u6bcf\u65e5\u6210\u4ea4\u91d1\u989d\u548c\u6210\u4ea4\u91cf",
@@ -42452,7 +42454,7 @@ var option_c287691a4d9142caa8ea9f012ea66f61 = {
             }
         }
     },
-    "series_id": 2899281,
+    "series_id": 5015992,
     "tooltip": {
         "trigger": "axis",
         "triggerOn": "mousemove|click",
@@ -47330,7 +47332,7 @@ var option_c287691a4d9142caa8ea9f012ea66f61 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 2899281
+            "seriesId": 5015992
         },
         {
             "type": "line",
@@ -52195,7 +52197,7 @@ var option_c287691a4d9142caa8ea9f012ea66f61 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 2899281
+            "seriesId": 5015992
         }
     ],
     "legend": [
@@ -53524,18 +53526,18 @@ var option_c287691a4d9142caa8ea9f012ea66f61 = {
         }
     ]
 };
-myChart_c287691a4d9142caa8ea9f012ea66f61.setOption(option_c287691a4d9142caa8ea9f012ea66f61);
+myChart_9a237e5a2776417f9001df9b34037c9f.setOption(option_9a237e5a2776417f9001df9b34037c9f);
 
 </script>
 </div>
 
 <div>
-    <div id="54ea57a2ad3f4665a5e9b1e200c62485" style="width:100%;height:600px;"></div>
+    <div id="fe78a5a742f343f18b07d939da9baaa9" style="width:100%;height:600px;"></div>
     <script type="text/javascript">
 
-var myChart_54ea57a2ad3f4665a5e9b1e200c62485 = echarts.init(document.getElementById('54ea57a2ad3f4665a5e9b1e200c62485'), 'light', {renderer: 'svg'});
+var myChart_fe78a5a742f343f18b07d939da9baaa9 = echarts.init(document.getElementById('fe78a5a742f343f18b07d939da9baaa9'), 'light', {renderer: 'svg'});
 
-var option_54ea57a2ad3f4665a5e9b1e200c62485 = {
+var option_fe78a5a742f343f18b07d939da9baaa9 = {
     "title": [
         {
             "text": "\u884c\u4e1a\u5229\u6da6>100\u4ebf\u6392\u540d",
@@ -53570,7 +53572,7 @@ var option_54ea57a2ad3f4665a5e9b1e200c62485 = {
             }
         }
     },
-    "series_id": 1777840,
+    "series_id": 563245,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -53640,7 +53642,7 @@ var option_54ea57a2ad3f4665a5e9b1e200c62485 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 1777840
+            "seriesId": 563245
         }
     ],
     "legend": [
@@ -53783,18 +53785,18 @@ var option_54ea57a2ad3f4665a5e9b1e200c62485 = {
         "#f6f5ec"
     ]
 };
-myChart_54ea57a2ad3f4665a5e9b1e200c62485.setOption(option_54ea57a2ad3f4665a5e9b1e200c62485);
+myChart_fe78a5a742f343f18b07d939da9baaa9.setOption(option_fe78a5a742f343f18b07d939da9baaa9);
 
 </script>
 </div>
 
 <div>
-    <div id="44d283a658f743be8dd48804d1d6553b" style="width:100%;height:400px;"></div>
+    <div id="bf97cf9240e44e9fa203a6c6f95eb24a" style="width:100%;height:400px;"></div>
     <script type="text/javascript">
 
-var myChart_44d283a658f743be8dd48804d1d6553b = echarts.init(document.getElementById('44d283a658f743be8dd48804d1d6553b'), 'light', {renderer: 'canvas'});
+var myChart_bf97cf9240e44e9fa203a6c6f95eb24a = echarts.init(document.getElementById('bf97cf9240e44e9fa203a6c6f95eb24a'), 'light', {renderer: 'canvas'});
 
-var option_44d283a658f743be8dd48804d1d6553b = {
+var option_bf97cf9240e44e9fa203a6c6f95eb24a = {
     "title": [
         {
             "text": "\u603b\u5229\u6da6\u8d8b\u52bf-\u7ecf\u6d4e\u60c5\u51b5",
@@ -53851,7 +53853,7 @@ var option_44d283a658f743be8dd48804d1d6553b = {
             }
         }
     },
-    "series_id": 5149332,
+    "series_id": 1743726,
     "tooltip": {
         "trigger": "axis",
         "triggerOn": "mousemove|click",
@@ -53976,7 +53978,7 @@ var option_44d283a658f743be8dd48804d1d6553b = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5149332
+            "seriesId": 1743726
         },
         {
             "type": "line",
@@ -54088,7 +54090,7 @@ var option_44d283a658f743be8dd48804d1d6553b = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5149332
+            "seriesId": 1743726
         },
         {
             "type": "line",
@@ -54200,7 +54202,7 @@ var option_44d283a658f743be8dd48804d1d6553b = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5149332
+            "seriesId": 1743726
         },
         {
             "type": "line",
@@ -54312,7 +54314,7 @@ var option_44d283a658f743be8dd48804d1d6553b = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 5149332
+            "seriesId": 1743726
         }
     ],
     "legend": [
@@ -54455,18 +54457,18 @@ var option_44d283a658f743be8dd48804d1d6553b = {
         }
     ]
 };
-myChart_44d283a658f743be8dd48804d1d6553b.setOption(option_44d283a658f743be8dd48804d1d6553b);
+myChart_bf97cf9240e44e9fa203a6c6f95eb24a.setOption(option_bf97cf9240e44e9fa203a6c6f95eb24a);
 
 </script>
 </div>
 
 <div>
-    <div id="6a4ed0a508a049488c8d5a277884dd19" style="width:100%;height:400px;"></div>
+    <div id="bedfb81521cb4626a650bde45d447747" style="width:100%;height:400px;"></div>
     <script type="text/javascript">
 
-var myChart_6a4ed0a508a049488c8d5a277884dd19 = echarts.init(document.getElementById('6a4ed0a508a049488c8d5a277884dd19'), 'light', {renderer: 'canvas'});
+var myChart_bedfb81521cb4626a650bde45d447747 = echarts.init(document.getElementById('bedfb81521cb4626a650bde45d447747'), 'light', {renderer: 'canvas'});
 
-var option_6a4ed0a508a049488c8d5a277884dd19 = {
+var option_bedfb81521cb4626a650bde45d447747 = {
     "title": [
         {
             "text": "\u5468\u65b0\u5f00\u6237\u7528\u6237\u6570\u56fe",
@@ -54501,7 +54503,7 @@ var option_6a4ed0a508a049488c8d5a277884dd19 = {
             }
         }
     },
-    "series_id": 27140,
+    "series_id": 3634128,
     "tooltip": {
         "trigger": "axis",
         "triggerOn": "mousemove|click",
@@ -55328,7 +55330,7 @@ var option_6a4ed0a508a049488c8d5a277884dd19 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 27140
+            "seriesId": 3634128
         }
     ],
     "legend": [
@@ -55643,18 +55645,18 @@ var option_6a4ed0a508a049488c8d5a277884dd19 = {
         }
     ]
 };
-myChart_6a4ed0a508a049488c8d5a277884dd19.setOption(option_6a4ed0a508a049488c8d5a277884dd19);
+myChart_bedfb81521cb4626a650bde45d447747.setOption(option_bedfb81521cb4626a650bde45d447747);
 
 </script>
 </div>
 
 <div>
-    <div id="57a9c53d2c8e40ad850ba0f557bff87b" style="width:100%;height:400px;"></div>
+    <div id="b90a202109b64025aabf51e83df1c4e2" style="width:100%;height:400px;"></div>
     <script type="text/javascript">
 
-var myChart_57a9c53d2c8e40ad850ba0f557bff87b = echarts.init(document.getElementById('57a9c53d2c8e40ad850ba0f557bff87b'), 'light', {renderer: 'canvas'});
+var myChart_b90a202109b64025aabf51e83df1c4e2 = echarts.init(document.getElementById('b90a202109b64025aabf51e83df1c4e2'), 'light', {renderer: 'canvas'});
 
-var option_57a9c53d2c8e40ad850ba0f557bff87b = {
+var option_b90a202109b64025aabf51e83df1c4e2 = {
     "title": [
         {
             "text": "LPR\u5229\u7387\u66f2\u7ebf",
@@ -55689,7 +55691,7 @@ var option_57a9c53d2c8e40ad850ba0f557bff87b = {
             }
         }
     },
-    "series_id": 7176519,
+    "series_id": 2970916,
     "tooltip": {
         "trigger": "axis",
         "triggerOn": "mousemove|click",
@@ -56376,7 +56378,7 @@ var option_57a9c53d2c8e40ad850ba0f557bff87b = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 7176519
+            "seriesId": 2970916
         }
     ],
     "legend": [
@@ -56656,18 +56658,18 @@ var option_57a9c53d2c8e40ad850ba0f557bff87b = {
         }
     ]
 };
-myChart_57a9c53d2c8e40ad850ba0f557bff87b.setOption(option_57a9c53d2c8e40ad850ba0f557bff87b);
+myChart_b90a202109b64025aabf51e83df1c4e2.setOption(option_b90a202109b64025aabf51e83df1c4e2);
 
 </script>
 </div>
 
 <div>
-    <div id="bdb8b86b76fb4d7c88eec5c8b96e8cb1" style="width:100%;height:400px;"></div>
+    <div id="2a2f4ce7edf9436691336be4398dc944" style="width:100%;height:400px;"></div>
     <script type="text/javascript">
 
-var myChart_bdb8b86b76fb4d7c88eec5c8b96e8cb1 = echarts.init(document.getElementById('bdb8b86b76fb4d7c88eec5c8b96e8cb1'), 'light', {renderer: 'svg'});
+var myChart_2a2f4ce7edf9436691336be4398dc944 = echarts.init(document.getElementById('2a2f4ce7edf9436691336be4398dc944'), 'light', {renderer: 'svg'});
 
-var option_bdb8b86b76fb4d7c88eec5c8b96e8cb1 = {
+var option_2a2f4ce7edf9436691336be4398dc944 = {
     "title": [
         {
             "text": "\u6307\u6807\u533a\u95f4\u5206\u5e03",
@@ -56723,7 +56725,7 @@ var option_bdb8b86b76fb4d7c88eec5c8b96e8cb1 = {
             }
         }
     },
-    "series_id": 6906730,
+    "series_id": 952155,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -56780,7 +56782,7 @@ var option_bdb8b86b76fb4d7c88eec5c8b96e8cb1 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 6906730
+            "seriesId": 952155
         },
         {
             "type": "bar",
@@ -56824,7 +56826,7 @@ var option_bdb8b86b76fb4d7c88eec5c8b96e8cb1 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 6906730
+            "seriesId": 952155
         },
         {
             "type": "bar",
@@ -56868,7 +56870,7 @@ var option_bdb8b86b76fb4d7c88eec5c8b96e8cb1 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 6906730
+            "seriesId": 952155
         },
         {
             "type": "bar",
@@ -56912,7 +56914,7 @@ var option_bdb8b86b76fb4d7c88eec5c8b96e8cb1 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 6906730
+            "seriesId": 952155
         }
     ],
     "legend": [
@@ -57017,146 +57019,146 @@ var option_bdb8b86b76fb4d7c88eec5c8b96e8cb1 = {
         }
     ],
     "color": [
-        "#ef5b9c",
-        "#fab27b",
-        "#0099FF",
-        "#ac6767",
-        "#f47920",
-        "#6950a1",
-        "#905a3d",
-        "#1d953f",
-        "#726930",
-        "#CC3399",
-        "#FF3366",
-        "#006699",
-        "#ca8622",
-        "#FF99CC",
-        "#CC99CC",
-        "#918597",
-        "#749f83",
         "#6e7074",
-        "#FF6666",
-        "#f05b72",
-        "#9966CC",
-        "#CC6699",
-        "#d48265",
-        "#444693",
-        "#c23531",
-        "#6666CC",
-        "#546570",
-        "#6d8346",
-        "#339999",
-        "#669999",
-        "#FF0033",
-        "#61a0a8",
-        "#FF9966",
-        "#0099CC",
+        "#FF99CC",
+        "#CC3399",
         "#2f4554",
         "#339999",
-        "#726930",
-        "#0099CC",
-        "#905a3d",
-        "#444693",
-        "#f05b72",
-        "#CC6699",
-        "#749f83",
-        "#61a0a8",
-        "#ac6767",
-        "#6d8346",
         "#f47920",
-        "#FF6666",
-        "#6e7074",
-        "#CC99CC",
-        "#669999",
-        "#ca8622",
-        "#1d953f",
-        "#d48265",
-        "#2f4554",
-        "#CC3399",
-        "#546570",
-        "#fab27b",
-        "#FF9966",
-        "#c23531",
-        "#FF3366",
-        "#FF99CC",
-        "#918597",
-        "#6950a1",
-        "#ef5b9c",
-        "#6666CC",
-        "#FF0033",
+        "#CC6699",
         "#9966CC",
-        "#0099FF",
-        "#006699",
-        "#CC3399",
-        "#6e7074",
+        "#0099CC",
+        "#918597",
+        "#ac6767",
+        "#ca8622",
+        "#FF6666",
         "#749f83",
         "#669999",
+        "#6950a1",
+        "#d48265",
+        "#FF9966",
         "#FF0033",
+        "#6d8346",
+        "#6666CC",
+        "#726930",
+        "#fab27b",
+        "#f05b72",
+        "#CC99CC",
+        "#c23531",
+        "#ef5b9c",
+        "#444693",
+        "#0099FF",
+        "#FF3366",
+        "#006699",
+        "#546570",
+        "#905a3d",
+        "#1d953f",
+        "#61a0a8",
+        "#2f4554",
+        "#0099CC",
+        "#ef5b9c",
+        "#444693",
+        "#61a0a8",
+        "#918597",
+        "#546570",
+        "#9966CC",
+        "#f05b72",
+        "#1d953f",
+        "#FF99CC",
+        "#CC99CC",
         "#339999",
-        "#FF3366",
-        "#726930",
-        "#6950a1",
-        "#c23531",
-        "#f05b72",
-        "#ca8622",
-        "#ac6767",
-        "#fab27b",
-        "#CC6699",
-        "#918597",
-        "#0099CC",
-        "#d48265",
-        "#FF99CC",
-        "#1d953f",
-        "#006699",
         "#6666CC",
-        "#9966CC",
-        "#ef5b9c",
-        "#905a3d",
-        "#FF6666",
-        "#FF9966",
-        "#444693",
-        "#f47920",
-        "#6d8346",
-        "#546570",
-        "#61a0a8",
-        "#2f4554",
-        "#CC99CC",
-        "#0099FF",
-        "#1d953f",
-        "#c23531",
         "#669999",
-        "#6950a1",
-        "#FF0033",
-        "#FF99CC",
-        "#2f4554",
-        "#726930",
-        "#d48265",
         "#ac6767",
-        "#CC99CC",
-        "#6666CC",
-        "#905a3d",
-        "#006699",
         "#fab27b",
+        "#726930",
+        "#FF0033",
         "#CC6699",
-        "#FF9966",
-        "#444693",
-        "#546570",
-        "#6e7074",
-        "#6d8346",
-        "#0099CC",
-        "#ef5b9c",
-        "#9966CC",
-        "#61a0a8",
+        "#0099FF",
         "#f47920",
         "#749f83",
-        "#339999",
+        "#006699",
+        "#6d8346",
+        "#FF6666",
+        "#FF3366",
+        "#FF9966",
+        "#6950a1",
+        "#c23531",
+        "#d48265",
         "#CC3399",
         "#ca8622",
-        "#918597",
-        "#FF3366",
-        "#FF6666",
-        "#f05b72",
+        "#905a3d",
+        "#6e7074",
+        "#0099CC",
+        "#FF0033",
         "#0099FF",
+        "#918597",
+        "#669999",
+        "#CC99CC",
+        "#ca8622",
+        "#444693",
+        "#61a0a8",
+        "#546570",
+        "#FF99CC",
+        "#FF9966",
+        "#905a3d",
+        "#1d953f",
+        "#CC3399",
+        "#f05b72",
+        "#FF6666",
+        "#6950a1",
+        "#749f83",
+        "#c23531",
+        "#726930",
+        "#CC6699",
+        "#fab27b",
+        "#9966CC",
+        "#339999",
+        "#6d8346",
+        "#d48265",
+        "#6e7074",
+        "#f47920",
+        "#006699",
+        "#FF3366",
+        "#ef5b9c",
+        "#2f4554",
+        "#ac6767",
+        "#6666CC",
+        "#546570",
+        "#ca8622",
+        "#6950a1",
+        "#CC99CC",
+        "#726930",
+        "#6d8346",
+        "#ac6767",
+        "#339999",
+        "#fab27b",
+        "#0099FF",
+        "#FF9966",
+        "#FF3366",
+        "#918597",
+        "#FF99CC",
+        "#FF6666",
+        "#f47920",
+        "#6666CC",
+        "#CC3399",
+        "#6e7074",
+        "#9966CC",
+        "#c23531",
+        "#ef5b9c",
+        "#FF0033",
+        "#669999",
+        "#CC6699",
+        "#0099CC",
+        "#1d953f",
+        "#006699",
+        "#749f83",
+        "#f05b72",
+        "#444693",
+        "#61a0a8",
+        "#d48265",
+        "#2f4554",
+        "#905a3d",
         "#c23531",
         "#2f4554",
         "#61a0a8",
@@ -57184,23 +57186,23 @@ var option_bdb8b86b76fb4d7c88eec5c8b96e8cb1 = {
         "#f6f5ec"
     ]
 };
-myChart_bdb8b86b76fb4d7c88eec5c8b96e8cb1.setOption(option_bdb8b86b76fb4d7c88eec5c8b96e8cb1);
+myChart_2a2f4ce7edf9436691336be4398dc944.setOption(option_2a2f4ce7edf9436691336be4398dc944);
 
 </script>
 </div>
 
 <div>
-    <div id="c11fb092987b433fa8c5d9f559d46398" style="width:100%;height:500px;"></div>
+    <div id="b42fa26e1a3b4649b7db7b9fb66b8d1a" style="width:100%;height:500px;"></div>
     <script type="text/javascript">
 
-var myChart_c11fb092987b433fa8c5d9f559d46398 = echarts.init(document.getElementById('c11fb092987b433fa8c5d9f559d46398'), 'light', {renderer: 'canvas'});
+var myChart_b42fa26e1a3b4649b7db7b9fb66b8d1a = echarts.init(document.getElementById('b42fa26e1a3b4649b7db7b9fb66b8d1a'), 'light', {renderer: 'canvas'});
 function kline_tooltip_formatter(params) {
     var text;
     text = ((((((((((((params[0].seriesName + "<br/>") + "- open:") + params[0].data[1]) + "<br/>") + "- close:") + params[0].data[2]) + "<br/>") + "- lowest:") + params[0].data[3]) + "<br/>") + "- highest:") + params[0].data[4]);
     return text;
 }
 
-var option_c11fb092987b433fa8c5d9f559d46398 = {
+var option_b42fa26e1a3b4649b7db7b9fb66b8d1a = {
     "title": [
         {
             "text": "000001.SH\u8fd14\u5e74\u5468K\u7ebf\u56fe",
@@ -57244,7 +57246,7 @@ var option_c11fb092987b433fa8c5d9f559d46398 = {
             }
         }
     },
-    "series_id": 1995521,
+    "series_id": 4170805,
     "tooltip": {
         "trigger": "axis",
         "triggerOn": "mousemove|click",
@@ -58455,7 +58457,7 @@ var option_c11fb092987b433fa8c5d9f559d46398 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 1995521,
+            "seriesId": 4170805,
             "xAxisIndex": 0,
             "yAxisIndex": 0
         },
@@ -58656,7 +58658,7 @@ var option_c11fb092987b433fa8c5d9f559d46398 = {
                 2288.68,
                 2094.35
             ],
-            "stack": "stack_6782625",
+            "stack": "stack_2448682",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -58679,7 +58681,7 @@ var option_c11fb092987b433fa8c5d9f559d46398 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 6782625,
+            "seriesId": 2448682,
             "xAxisIndex": 1,
             "yAxisIndex": 1
         }
@@ -59273,23 +59275,23 @@ var option_c11fb092987b433fa8c5d9f559d46398 = {
         }
     ]
 };
-myChart_c11fb092987b433fa8c5d9f559d46398.setOption(option_c11fb092987b433fa8c5d9f559d46398);
+myChart_b42fa26e1a3b4649b7db7b9fb66b8d1a.setOption(option_b42fa26e1a3b4649b7db7b9fb66b8d1a);
 
 </script>
 </div>
 
 <div>
-    <div id="ff6af493387a401dbbdfdc58203fa90b" style="width:100%;height:500px;"></div>
+    <div id="05a6e47457f5453c8137c24237164c0e" style="width:100%;height:500px;"></div>
     <script type="text/javascript">
 
-var myChart_ff6af493387a401dbbdfdc58203fa90b = echarts.init(document.getElementById('ff6af493387a401dbbdfdc58203fa90b'), 'light', {renderer: 'canvas'});
+var myChart_05a6e47457f5453c8137c24237164c0e = echarts.init(document.getElementById('05a6e47457f5453c8137c24237164c0e'), 'light', {renderer: 'canvas'});
 function kline_tooltip_formatter(params) {
     var text;
     text = ((((((((((((params[0].seriesName + "<br/>") + "- open:") + params[0].data[1]) + "<br/>") + "- close:") + params[0].data[2]) + "<br/>") + "- lowest:") + params[0].data[3]) + "<br/>") + "- highest:") + params[0].data[4]);
     return text;
 }
 
-var option_ff6af493387a401dbbdfdc58203fa90b = {
+var option_05a6e47457f5453c8137c24237164c0e = {
     "title": [
         {
             "text": "399006.SZ\u8fd14\u5e74\u5468K\u7ebf\u56fe",
@@ -59333,7 +59335,7 @@ var option_ff6af493387a401dbbdfdc58203fa90b = {
             }
         }
     },
-    "series_id": 3298021,
+    "series_id": 8097162,
     "tooltip": {
         "trigger": "axis",
         "triggerOn": "mousemove|click",
@@ -60544,7 +60546,7 @@ var option_ff6af493387a401dbbdfdc58203fa90b = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 3298021,
+            "seriesId": 8097162,
             "xAxisIndex": 0,
             "yAxisIndex": 0
         },
@@ -60745,7 +60747,7 @@ var option_ff6af493387a401dbbdfdc58203fa90b = {
                 509.67,
                 394.95
             ],
-            "stack": "stack_1921789",
+            "stack": "stack_7488685",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -60768,7 +60770,7 @@ var option_ff6af493387a401dbbdfdc58203fa90b = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 1921789,
+            "seriesId": 7488685,
             "xAxisIndex": 1,
             "yAxisIndex": 1
         }
@@ -61362,23 +61364,23 @@ var option_ff6af493387a401dbbdfdc58203fa90b = {
         }
     ]
 };
-myChart_ff6af493387a401dbbdfdc58203fa90b.setOption(option_ff6af493387a401dbbdfdc58203fa90b);
+myChart_05a6e47457f5453c8137c24237164c0e.setOption(option_05a6e47457f5453c8137c24237164c0e);
 
 </script>
 </div>
 
 <div>
-    <div id="39ddbacb2e794c4c8a3bc05280e0f771" style="width:100%;height:500px;"></div>
+    <div id="668be9d5d4c448c6910ad53004e537b5" style="width:100%;height:500px;"></div>
     <script type="text/javascript">
 
-var myChart_39ddbacb2e794c4c8a3bc05280e0f771 = echarts.init(document.getElementById('39ddbacb2e794c4c8a3bc05280e0f771'), 'light', {renderer: 'canvas'});
+var myChart_668be9d5d4c448c6910ad53004e537b5 = echarts.init(document.getElementById('668be9d5d4c448c6910ad53004e537b5'), 'light', {renderer: 'canvas'});
 function kline_tooltip_formatter(params) {
     var text;
     text = ((((((((((((params[0].seriesName + "<br/>") + "- open:") + params[0].data[1]) + "<br/>") + "- close:") + params[0].data[2]) + "<br/>") + "- lowest:") + params[0].data[3]) + "<br/>") + "- highest:") + params[0].data[4]);
     return text;
 }
 
-var option_39ddbacb2e794c4c8a3bc05280e0f771 = {
+var option_668be9d5d4c448c6910ad53004e537b5 = {
     "title": [
         {
             "text": "000300.SH\u8fd14\u5e74\u5468K\u7ebf\u56fe",
@@ -61422,7 +61424,7 @@ var option_39ddbacb2e794c4c8a3bc05280e0f771 = {
             }
         }
     },
-    "series_id": 7838795,
+    "series_id": 5878040,
     "tooltip": {
         "trigger": "axis",
         "triggerOn": "mousemove|click",
@@ -62633,7 +62635,7 @@ var option_39ddbacb2e794c4c8a3bc05280e0f771 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 7838795,
+            "seriesId": 5878040,
             "xAxisIndex": 0,
             "yAxisIndex": 0
         },
@@ -62834,7 +62836,7 @@ var option_39ddbacb2e794c4c8a3bc05280e0f771 = {
                 1677.03,
                 1546.02
             ],
-            "stack": "stack_8805488",
+            "stack": "stack_6003987",
             "barCategoryGap": "20%",
             "label": {
                 "normal": {
@@ -62857,7 +62859,7 @@ var option_39ddbacb2e794c4c8a3bc05280e0f771 = {
             "markLine": {
                 "data": []
             },
-            "seriesId": 8805488,
+            "seriesId": 6003987,
             "xAxisIndex": 1,
             "yAxisIndex": 1
         }
@@ -63451,7 +63453,7 @@ var option_39ddbacb2e794c4c8a3bc05280e0f771 = {
         }
     ]
 };
-myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc05280e0f771);
+myChart_668be9d5d4c448c6910ad53004e537b5.setOption(option_668be9d5d4c448c6910ad53004e537b5);
 
 </script>
 </div>
@@ -63665,7 +63667,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#美的集团' , //绑定元素
 	  length:5,  //星星的个数
-	  value:4,//初始评分
+	  value:5,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -63781,7 +63783,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#云南白药' , //绑定元素
 	  length:5,  //星星的个数
-	  value:3,//初始评分
+	  value:5,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -63926,7 +63928,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#海天味业' , //绑定元素
 	  length:5,  //星星的个数
-	  value:4,//初始评分
+	  value:3,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -63955,7 +63957,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#恒瑞医药' , //绑定元素
 	  length:5,  //星星的个数
-	  value:3,//初始评分
+	  value:5,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -63984,7 +63986,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#爱尔眼科' , //绑定元素
 	  length:5,  //星星的个数
-	  value:1,//初始评分
+	  value:2,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -64100,7 +64102,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#金地集团' , //绑定元素
 	  length:5,  //星星的个数
-	  value:4,//初始评分
+	  value:5,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -64129,7 +64131,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#宁波银行' , //绑定元素
 	  length:5,  //星星的个数
-	  value:3,//初始评分
+	  value:4,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -64274,7 +64276,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#双汇发展' , //绑定元素
 	  length:5,  //星星的个数
-	  value:3,//初始评分
+	  value:5,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -64332,7 +64334,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#伊利股份' , //绑定元素
 	  length:5,  //星星的个数
-	  value:3,//初始评分
+	  value:5,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -64361,7 +64363,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#传音控股' , //绑定元素
 	  length:5,  //星星的个数
-	  value:0,//初始评分
+	  value:3,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -64477,7 +64479,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#京沪高铁' , //绑定元素
 	  length:5,  //星星的个数
-	  value:4,//初始评分
+	  value:1,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -64912,7 +64914,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#通策医疗' , //绑定元素
 	  length:5,  //星星的个数
-	  value:1,//初始评分
+	  value:2,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -65202,7 +65204,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#中国神华' , //绑定元素
 	  length:5,  //星星的个数
-	  value:3,//初始评分
+	  value:5,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -65637,7 +65639,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#东阿阿胶' , //绑定元素
 	  length:5,  //星星的个数
-	  value:3,//初始评分
+	  value:5,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -65869,7 +65871,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#韵达股份' , //绑定元素
 	  length:5,  //星星的个数
-	  value:2,//初始评分
+	  value:3,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -65898,7 +65900,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#隆基股份' , //绑定元素
 	  length:5,  //星星的个数
-	  value:3,//初始评分
+	  value:2,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -66072,7 +66074,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#绝味食品' , //绑定元素
 	  length:5,  //星星的个数
-	  value:3,//初始评分
+	  value:2,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -66275,7 +66277,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#华兰生物' , //绑定元素
 	  length:5,  //星星的个数
-	  value:3,//初始评分
+	  value:4,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -66449,7 +66451,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#浪潮信息' , //绑定元素
 	  length:5,  //星星的个数
-	  value:2,//初始评分
+	  value:1,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -66507,7 +66509,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#瀚川智能' , //绑定元素
 	  length:5,  //星星的个数
-	  value:3,//初始评分
+	  value:2,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -66681,7 +66683,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#睿创微纳' , //绑定元素
 	  length:5,  //星星的个数
-	  value:1,//初始评分
+	  value:3,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -66826,7 +66828,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#容百科技' , //绑定元素
 	  length:5,  //星星的个数
-	  value:3,//初始评分
+	  value:1,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -66855,7 +66857,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#闻泰科技' , //绑定元素
 	  length:5,  //星星的个数
-	  value:1,//初始评分
+	  value:2,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -66942,7 +66944,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#芯源微' , //绑定元素
 	  length:5,  //星星的个数
-	  value:3,//初始评分
+	  value:1,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -66954,6 +66956,35 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
 </tr>
 <tr>
 <td ><span class="layui-badge">121</span></td>
+<td ><a href="stockreport\\新城控股.html" class="layui-btn layui-btn-normal">新城控股<span class="layui-badge-dot layui-bg-orange"></span></a></td>
+<td ><a href="stockreport\\新城控股.html" class="layui-btn layui-btn-danger">34.31</a></td>
+<td ><a href="stockreport\\新城控股.html" class="layui-btn layui-btn-danger">6.32%</a></td>
+<td ><a href="stockreport\\新城控股.html" class="layui-btn layui-btn-danger">-12.61%</a></td>
+<td ><a href="stockreport\\新城控股.html" class="layui-btn layui-btn-warm">6.97</a></td>
+<td ><a href="stockreport\\新城控股.html" class="layui-btn layui-btn-warm">2.64</a></td>
+<td ><a href="stockreport\\新城控股.html" class="layui-btn">774.3亿</a></td>
+<td >
+<div id="新城控股"></div>
+<script>
+  layui.use('rate', function(){
+    var rate = layui.rate;
+   
+    //渲染
+    var ins1 = rate.render({
+      elem: '#新城控股' , //绑定元素
+	  length:5,  //星星的个数
+	  value:4,//初始评分
+	  theme:"#FF3366", //颜色 ,默认值#FFB800
+	  half:true,//是否支持半分
+	  text:false,//是否显示文字
+	  readonly:true //是否只读
+    });
+  });
+</script>
+</td>
+</tr>
+<tr>
+<td ><span class="layui-badge">122</span></td>
 <td ><a href="stockreport\\荣盛发展.html" class="layui-btn layui-btn-normal">荣盛发展<span class="layui-badge-dot layui-bg-orange"></span></a></td>
 <td ><a href="stockreport\\荣盛发展.html" class="layui-btn layui-btn-danger">8.96</a></td>
 <td ><a href="stockreport\\荣盛发展.html" class="layui-btn layui-btn-danger">4.31%</a></td>
@@ -66971,36 +67002,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#荣盛发展' , //绑定元素
 	  length:5,  //星星的个数
-	  value:4,//初始评分
-	  theme:"#FF3366", //颜色 ,默认值#FFB800
-	  half:true,//是否支持半分
-	  text:false,//是否显示文字
-	  readonly:true //是否只读
-    });
-  });
-</script>
-</td>
-</tr>
-<tr>
-<td ><span class="layui-badge">122</span></td>
-<td ><a href="stockreport\\苏宁易购.html" class="layui-btn layui-btn-normal">苏宁易购<span class="layui-badge-dot layui-bg-orange"></span></a></td>
-<td ><a href="stockreport\\苏宁易购.html" class="layui-btn layui-btn-danger">9.95</a></td>
-<td ><a href="stockreport\\苏宁易购.html" class="layui-btn layui-btn-danger">7.22%</a></td>
-<td ><a href="stockreport\\苏宁易购.html" class="layui-btn layui-btn-danger">-1.97%</a></td>
-<td ><a href="stockreport\\苏宁易购.html" class="layui-btn layui-btn-warm">4.85</a></td>
-<td ><a href="stockreport\\苏宁易购.html" class="layui-btn layui-btn-warm">1.02</a></td>
-<td ><a href="stockreport\\苏宁易购.html" class="layui-btn">926.3亿</a></td>
-<td >
-<div id="苏宁易购"></div>
-<script>
-  layui.use('rate', function(){
-    var rate = layui.rate;
-   
-    //渲染
-    var ins1 = rate.render({
-      elem: '#苏宁易购' , //绑定元素
-	  length:5,  //星星的个数
-	  value:4,//初始评分
+	  value:5,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -67029,7 +67031,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#华侨城A' , //绑定元素
 	  length:5,  //星星的个数
-	  value:4,//初始评分
+	  value:5,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -67087,7 +67089,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#华夏幸福' , //绑定元素
 	  length:5,  //星星的个数
-	  value:4,//初始评分
+	  value:5,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -67099,6 +67101,35 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
 </tr>
 <tr>
 <td ><span class="layui-badge">126</span></td>
+<td ><a href="stockreport\\中信银行.html" class="layui-btn layui-btn-normal">中信银行<span class="layui-badge-dot layui-bg-orange"></span></a></td>
+<td ><a href="stockreport\\中信银行.html" class="layui-btn layui-btn-danger">5.56</a></td>
+<td ><a href="stockreport\\中信银行.html" class="layui-btn layui-btn-danger">1.83%</a></td>
+<td ><a href="stockreport\\中信银行.html" class="layui-btn layui-btn-danger">-10.32%</a></td>
+<td ><a href="stockreport\\中信银行.html" class="layui-btn layui-btn-warm">5.67</a></td>
+<td ><a href="stockreport\\中信银行.html" class="layui-btn layui-btn-warm">0.63</a></td>
+<td ><a href="stockreport\\中信银行.html" class="layui-btn">2720.8亿</a></td>
+<td >
+<div id="中信银行"></div>
+<script>
+  layui.use('rate', function(){
+    var rate = layui.rate;
+   
+    //渲染
+    var ins1 = rate.render({
+      elem: '#中信银行' , //绑定元素
+	  length:5,  //星星的个数
+	  value:4,//初始评分
+	  theme:"#FF3366", //颜色 ,默认值#FFB800
+	  half:true,//是否支持半分
+	  text:false,//是否显示文字
+	  readonly:true //是否只读
+    });
+  });
+</script>
+</td>
+</tr>
+<tr>
+<td ><span class="layui-badge">127</span></td>
 <td ><a href="stockreport\\中国银行.html" class="layui-btn layui-btn-normal">中国银行<span class="layui-badge-dot layui-bg-orange"></span></a></td>
 <td ><a href="stockreport\\中国银行.html" class="layui-btn layui-btn-danger">3.63</a></td>
 <td ><a href="stockreport\\中国银行.html" class="layui-btn layui-btn-danger">1.97%</a></td>
@@ -67116,7 +67147,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#中国银行' , //绑定元素
 	  length:5,  //星星的个数
-	  value:4,//初始评分
+	  value:5,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -67127,7 +67158,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
 </td>
 </tr>
 <tr>
-<td ><span class="layui-badge">127</span></td>
+<td ><span class="layui-badge">128</span></td>
 <td ><a href="stockreport\\农业银行.html" class="layui-btn layui-btn-normal">农业银行<span class="layui-badge-dot layui-bg-orange"></span></a></td>
 <td ><a href="stockreport\\农业银行.html" class="layui-btn layui-btn-danger">3.5</a></td>
 <td ><a href="stockreport\\农业银行.html" class="layui-btn layui-btn-danger">2.34%</a></td>
@@ -67145,7 +67176,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#农业银行' , //绑定元素
 	  length:5,  //星星的个数
-	  value:4,//初始评分
+	  value:5,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -67156,7 +67187,36 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
 </td>
 </tr>
 <tr>
-<td ><span class="layui-badge">128</span></td>
+<td ><span class="layui-badge">129</span></td>
+<td ><a href="stockreport\\三钢闽光.html" class="layui-btn layui-btn-normal">三钢闽光<span class="layui-badge-dot layui-bg-orange"></span></a></td>
+<td ><a href="stockreport\\三钢闽光.html" class="layui-btn layui-btn-danger">8.78</a></td>
+<td ><a href="stockreport\\三钢闽光.html" class="layui-btn layui-btn-danger">10.44%</a></td>
+<td ><a href="stockreport\\三钢闽光.html" class="layui-btn layui-btn-danger">-6.89%</a></td>
+<td ><a href="stockreport\\三钢闽光.html" class="layui-btn layui-btn-warm">5.86</a></td>
+<td ><a href="stockreport\\三钢闽光.html" class="layui-btn layui-btn-warm">1.15</a></td>
+<td ><a href="stockreport\\三钢闽光.html" class="layui-btn">215.2亿</a></td>
+<td >
+<div id="三钢闽光"></div>
+<script>
+  layui.use('rate', function(){
+    var rate = layui.rate;
+   
+    //渲染
+    var ins1 = rate.render({
+      elem: '#三钢闽光' , //绑定元素
+	  length:5,  //星星的个数
+	  value:5,//初始评分
+	  theme:"#FF3366", //颜色 ,默认值#FFB800
+	  half:true,//是否支持半分
+	  text:false,//是否显示文字
+	  readonly:true //是否只读
+    });
+  });
+</script>
+</td>
+</tr>
+<tr>
+<td ><span class="layui-badge">130</span></td>
 <td ><a href="stockreport\\大商股份.html" class="layui-btn layui-btn-normal">大商股份<span class="layui-badge-dot layui-bg-orange"></span></a></td>
 <td ><a href="stockreport\\大商股份.html" class="layui-btn layui-btn-danger">25.03</a></td>
 <td ><a href="stockreport\\大商股份.html" class="layui-btn layui-btn-danger">4.47%</a></td>
@@ -67185,36 +67245,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
 </td>
 </tr>
 <tr>
-<td ><span class="layui-badge">129</span></td>
-<td ><a href="stockreport\\中国铁建.html" class="layui-btn layui-btn-normal">中国铁建<span class="layui-badge-dot layui-bg-orange"></span></a></td>
-<td ><a href="stockreport\\中国铁建.html" class="layui-btn layui-btn-danger">10.47</a></td>
-<td ><a href="stockreport\\中国铁建.html" class="layui-btn layui-btn-danger">8.16%</a></td>
-<td ><a href="stockreport\\中国铁建.html" class="layui-btn layui-btn-danger">2.45%</a></td>
-<td ><a href="stockreport\\中国铁建.html" class="layui-btn layui-btn-warm">7.12</a></td>
-<td ><a href="stockreport\\中国铁建.html" class="layui-btn layui-btn-warm">0.88</a></td>
-<td ><a href="stockreport\\中国铁建.html" class="layui-btn">1421.8亿</a></td>
-<td >
-<div id="中国铁建"></div>
-<script>
-  layui.use('rate', function(){
-    var rate = layui.rate;
-   
-    //渲染
-    var ins1 = rate.render({
-      elem: '#中国铁建' , //绑定元素
-	  length:5,  //星星的个数
-	  value:4,//初始评分
-	  theme:"#FF3366", //颜色 ,默认值#FFB800
-	  half:true,//是否支持半分
-	  text:false,//是否显示文字
-	  readonly:true //是否只读
-    });
-  });
-</script>
-</td>
-</tr>
-<tr>
-<td ><span class="layui-badge">130</span></td>
+<td ><span class="layui-badge">131</span></td>
 <td ><a href="stockreport\\保利地产.html" class="layui-btn layui-btn-normal">保利地产<span class="layui-badge-dot layui-bg-orange"></span></a></td>
 <td ><a href="stockreport\\保利地产.html" class="layui-btn layui-btn-danger">16.49</a></td>
 <td ><a href="stockreport\\保利地产.html" class="layui-btn layui-btn-danger">0.49%</a></td>
@@ -67243,7 +67274,36 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
 </td>
 </tr>
 <tr>
-<td ><span class="layui-badge">131</span></td>
+<td ><span class="layui-badge">132</span></td>
+<td ><a href="stockreport\\潞安环能.html" class="layui-btn layui-btn-normal">潞安环能<span class="layui-badge-dot layui-bg-orange"></span></a></td>
+<td ><a href="stockreport\\潞安环能.html" class="layui-btn layui-btn-danger">6.4</a></td>
+<td ><a href="stockreport\\潞安环能.html" class="layui-btn layui-btn-danger">5.09%</a></td>
+<td ><a href="stockreport\\潞安环能.html" class="layui-btn layui-btn-danger">-12.45%</a></td>
+<td ><a href="stockreport\\潞安环能.html" class="layui-btn layui-btn-warm">7.52</a></td>
+<td ><a href="stockreport\\潞安环能.html" class="layui-btn layui-btn-warm">0.73</a></td>
+<td ><a href="stockreport\\潞安环能.html" class="layui-btn">191.5亿</a></td>
+<td >
+<div id="潞安环能"></div>
+<script>
+  layui.use('rate', function(){
+    var rate = layui.rate;
+   
+    //渲染
+    var ins1 = rate.render({
+      elem: '#潞安环能' , //绑定元素
+	  length:5,  //星星的个数
+	  value:5,//初始评分
+	  theme:"#FF3366", //颜色 ,默认值#FFB800
+	  half:true,//是否支持半分
+	  text:false,//是否显示文字
+	  readonly:true //是否只读
+    });
+  });
+</script>
+</td>
+</tr>
+<tr>
+<td ><span class="layui-badge">133</span></td>
 <td ><a href="stockreport\\方大特钢.html" class="layui-btn layui-btn-normal">方大特钢<span class="layui-badge-dot layui-bg-orange"></span></a></td>
 <td ><a href="stockreport\\方大特钢.html" class="layui-btn layui-btn-danger">8.99</a></td>
 <td ><a href="stockreport\\方大特钢.html" class="layui-btn layui-btn-danger">4.53%</a></td>
@@ -67261,7 +67321,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#方大特钢' , //绑定元素
 	  length:5,  //星星的个数
-	  value:4,//初始评分
+	  value:5,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
 	  text:false,//是否显示文字
@@ -67272,7 +67332,65 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
 </td>
 </tr>
 <tr>
-<td ><span class="layui-badge">132</span></td>
+<td ><span class="layui-badge">134</span></td>
+<td ><a href="stockreport\\华新水泥.html" class="layui-btn layui-btn-normal">华新水泥<span class="layui-badge-dot layui-bg-orange"></span></a></td>
+<td ><a href="stockreport\\华新水泥.html" class="layui-btn layui-btn-danger">25.6</a></td>
+<td ><a href="stockreport\\华新水泥.html" class="layui-btn layui-btn-danger">3.48%</a></td>
+<td ><a href="stockreport\\华新水泥.html" class="layui-btn layui-btn-danger">-4.44%</a></td>
+<td ><a href="stockreport\\华新水泥.html" class="layui-btn layui-btn-warm">8.12</a></td>
+<td ><a href="stockreport\\华新水泥.html" class="layui-btn layui-btn-warm">2.7</a></td>
+<td ><a href="stockreport\\华新水泥.html" class="layui-btn">536.7亿</a></td>
+<td >
+<div id="华新水泥"></div>
+<script>
+  layui.use('rate', function(){
+    var rate = layui.rate;
+   
+    //渲染
+    var ins1 = rate.render({
+      elem: '#华新水泥' , //绑定元素
+	  length:5,  //星星的个数
+	  value:5,//初始评分
+	  theme:"#FF3366", //颜色 ,默认值#FFB800
+	  half:true,//是否支持半分
+	  text:false,//是否显示文字
+	  readonly:true //是否只读
+    });
+  });
+</script>
+</td>
+</tr>
+<tr>
+<td ><span class="layui-badge">135</span></td>
+<td ><a href="stockreport\\方大炭素.html" class="layui-btn layui-btn-normal">方大炭素<span class="layui-badge-dot layui-bg-orange"></span></a></td>
+<td ><a href="stockreport\\方大炭素.html" class="layui-btn layui-btn-danger">10.88</a></td>
+<td ><a href="stockreport\\方大炭素.html" class="layui-btn layui-btn-danger">7.72%</a></td>
+<td ><a href="stockreport\\方大炭素.html" class="layui-btn layui-btn-danger">-11.26%</a></td>
+<td ><a href="stockreport\\方大炭素.html" class="layui-btn layui-btn-warm">9.85</a></td>
+<td ><a href="stockreport\\方大炭素.html" class="layui-btn layui-btn-warm">1.99</a></td>
+<td ><a href="stockreport\\方大炭素.html" class="layui-btn">295.8亿</a></td>
+<td >
+<div id="方大炭素"></div>
+<script>
+  layui.use('rate', function(){
+    var rate = layui.rate;
+   
+    //渲染
+    var ins1 = rate.render({
+      elem: '#方大炭素' , //绑定元素
+	  length:5,  //星星的个数
+	  value:5,//初始评分
+	  theme:"#FF3366", //颜色 ,默认值#FFB800
+	  half:true,//是否支持半分
+	  text:false,//是否显示文字
+	  readonly:true //是否只读
+    });
+  });
+</script>
+</td>
+</tr>
+<tr>
+<td ><span class="layui-badge">136</span></td>
 <td ><a href="stockreport\\中国太保.html" class="layui-btn layui-btn-normal">中国太保<span class="layui-badge-dot layui-bg-orange"></span></a></td>
 <td ><a href="stockreport\\中国太保.html" class="layui-btn layui-btn-danger">32.68</a></td>
 <td ><a href="stockreport\\中国太保.html" class="layui-btn layui-btn-danger">2.25%</a></td>
@@ -67290,35 +67408,6 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     var ins1 = rate.render({
       elem: '#中国太保' , //绑定元素
 	  length:5,  //星星的个数
-	  value:4,//初始评分
-	  theme:"#FF3366", //颜色 ,默认值#FFB800
-	  half:true,//是否支持半分
-	  text:false,//是否显示文字
-	  readonly:true //是否只读
-    });
-  });
-</script>
-</td>
-</tr>
-<tr>
-<td ><span class="layui-badge">133</span></td>
-<td ><a href="stockreport\\潍柴动力.html" class="layui-btn layui-btn-normal">潍柴动力<span class="layui-badge-dot layui-bg-orange"></span></a></td>
-<td ><a href="stockreport\\潍柴动力.html" class="layui-btn layui-btn-danger">14.86</a></td>
-<td ><a href="stockreport\\潍柴动力.html" class="layui-btn layui-btn-danger">2.77%</a></td>
-<td ><a href="stockreport\\潍柴动力.html" class="layui-btn layui-btn-danger">-7.36%</a></td>
-<td ><a href="stockreport\\潍柴动力.html" class="layui-btn layui-btn-warm">12.14</a></td>
-<td ><a href="stockreport\\潍柴动力.html" class="layui-btn layui-btn-warm">2.75</a></td>
-<td ><a href="stockreport\\潍柴动力.html" class="layui-btn">1179.0亿</a></td>
-<td >
-<div id="潍柴动力"></div>
-<script>
-  layui.use('rate', function(){
-    var rate = layui.rate;
-   
-    //渲染
-    var ins1 = rate.render({
-      elem: '#潍柴动力' , //绑定元素
-	  length:5,  //星星的个数
 	  value:5,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
 	  half:true,//是否支持半分
@@ -67330,36 +67419,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
 </td>
 </tr>
 <tr>
-<td ><span class="layui-badge">134</span></td>
-<td ><a href="stockreport\\招商蛇口.html" class="layui-btn layui-btn-normal">招商蛇口<span class="layui-badge-dot layui-bg-orange"></span></a></td>
-<td ><a href="stockreport\\招商蛇口.html" class="layui-btn layui-btn-danger">18.72</a></td>
-<td ><a href="stockreport\\招商蛇口.html" class="layui-btn layui-btn-danger">8.21%</a></td>
-<td ><a href="stockreport\\招商蛇口.html" class="layui-btn layui-btn-danger">-6.35%</a></td>
-<td ><a href="stockreport\\招商蛇口.html" class="layui-btn layui-btn-warm">12.29</a></td>
-<td ><a href="stockreport\\招商蛇口.html" class="layui-btn layui-btn-warm">2.27</a></td>
-<td ><a href="stockreport\\招商蛇口.html" class="layui-btn">1481.9亿</a></td>
-<td >
-<div id="招商蛇口"></div>
-<script>
-  layui.use('rate', function(){
-    var rate = layui.rate;
-   
-    //渲染
-    var ins1 = rate.render({
-      elem: '#招商蛇口' , //绑定元素
-	  length:5,  //星星的个数
-	  value:4,//初始评分
-	  theme:"#FF3366", //颜色 ,默认值#FFB800
-	  half:true,//是否支持半分
-	  text:false,//是否显示文字
-	  readonly:true //是否只读
-    });
-  });
-</script>
-</td>
-</tr>
-<tr>
-<td ><span class="layui-badge">135</span></td>
+<td ><span class="layui-badge">137</span></td>
 <td ><a href="stockreport\\中国石化.html" class="layui-btn layui-btn-normal">中国石化<span class="layui-badge-dot layui-bg-orange"></span></a></td>
 <td ><a href="stockreport\\中国石化.html" class="layui-btn layui-btn-danger">4.79</a></td>
 <td ><a href="stockreport\\中国石化.html" class="layui-btn layui-btn-danger">3.68%</a></td>
@@ -67388,36 +67448,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
 </td>
 </tr>
 <tr>
-<td ><span class="layui-badge">136</span></td>
-<td ><a href="stockreport\\华域汽车.html" class="layui-btn layui-btn-normal">华域汽车<span class="layui-badge-dot layui-bg-orange"></span></a></td>
-<td ><a href="stockreport\\华域汽车.html" class="layui-btn layui-btn-danger">27.12</a></td>
-<td ><a href="stockreport\\华域汽车.html" class="layui-btn layui-btn-danger">-2.62%</a></td>
-<td ><a href="stockreport\\华域汽车.html" class="layui-btn layui-btn-danger">2.84%</a></td>
-<td ><a href="stockreport\\华域汽车.html" class="layui-btn layui-btn-warm">12.97</a></td>
-<td ><a href="stockreport\\华域汽车.html" class="layui-btn layui-btn-warm">1.78</a></td>
-<td ><a href="stockreport\\华域汽车.html" class="layui-btn">855.0亿</a></td>
-<td >
-<div id="华域汽车"></div>
-<script>
-  layui.use('rate', function(){
-    var rate = layui.rate;
-   
-    //渲染
-    var ins1 = rate.render({
-      elem: '#华域汽车' , //绑定元素
-	  length:5,  //星星的个数
-	  value:4,//初始评分
-	  theme:"#FF3366", //颜色 ,默认值#FFB800
-	  half:true,//是否支持半分
-	  text:false,//是否显示文字
-	  readonly:true //是否只读
-    });
-  });
-</script>
-</td>
-</tr>
-<tr>
-<td ><span class="layui-badge">137</span></td>
+<td ><span class="layui-badge">138</span></td>
 <td ><a href="stockreport\\海尔智家.html" class="layui-btn layui-btn-normal">海尔智家<span class="layui-badge-dot layui-bg-orange"></span></a></td>
 <td ><a href="stockreport\\海尔智家.html" class="layui-btn layui-btn-danger">18.03</a></td>
 <td ><a href="stockreport\\海尔智家.html" class="layui-btn layui-btn-danger">5.44%</a></td>
@@ -67446,7 +67477,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
 </td>
 </tr>
 <tr>
-<td ><span class="layui-badge">138</span></td>
+<td ><span class="layui-badge">139</span></td>
 <td ><a href="stockreport\\甬金股份.html" class="layui-btn layui-btn-normal">甬金股份<span class="layui-badge-dot layui-bg-orange"></span></a></td>
 <td ><a href="stockreport\\甬金股份.html" class="layui-btn layui-btn-danger">23.36</a></td>
 <td ><a href="stockreport\\甬金股份.html" class="layui-btn layui-btn-danger">7.4%</a></td>
@@ -67475,7 +67506,36 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
 </td>
 </tr>
 <tr>
-<td ><span class="layui-badge">139</span></td>
+<td ><span class="layui-badge">140</span></td>
+<td ><a href="stockreport\\广汽集团.html" class="layui-btn layui-btn-normal">广汽集团<span class="layui-badge-dot layui-bg-orange"></span></a></td>
+<td ><a href="stockreport\\广汽集团.html" class="layui-btn layui-btn-danger">11.65</a></td>
+<td ><a href="stockreport\\广汽集团.html" class="layui-btn layui-btn-danger">6.49%</a></td>
+<td ><a href="stockreport\\广汽集团.html" class="layui-btn layui-btn-danger">-0.85%</a></td>
+<td ><a href="stockreport\\广汽集团.html" class="layui-btn layui-btn-warm">16.17</a></td>
+<td ><a href="stockreport\\广汽集团.html" class="layui-btn layui-btn-warm">1.5</a></td>
+<td ><a href="stockreport\\广汽集团.html" class="layui-btn">1192.7亿</a></td>
+<td >
+<div id="广汽集团"></div>
+<script>
+  layui.use('rate', function(){
+    var rate = layui.rate;
+   
+    //渲染
+    var ins1 = rate.render({
+      elem: '#广汽集团' , //绑定元素
+	  length:5,  //星星的个数
+	  value:4,//初始评分
+	  theme:"#FF3366", //颜色 ,默认值#FFB800
+	  half:true,//是否支持半分
+	  text:false,//是否显示文字
+	  readonly:true //是否只读
+    });
+  });
+</script>
+</td>
+</tr>
+<tr>
+<td ><span class="layui-badge">141</span></td>
 <td ><a href="stockreport\\中国石油.html" class="layui-btn layui-btn-normal">中国石油<span class="layui-badge-dot layui-bg-orange"></span></a></td>
 <td ><a href="stockreport\\中国石油.html" class="layui-btn layui-btn-danger">5.2</a></td>
 <td ><a href="stockreport\\中国石油.html" class="layui-btn layui-btn-danger">1.76%</a></td>
@@ -67504,52 +67564,23 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
 </td>
 </tr>
 <tr>
-<td ><span class="layui-badge">140</span></td>
-<td ><a href="stockreport\\北大荒.html" class="layui-btn layui-btn-normal">北大荒<span class="layui-badge-dot layui-bg-orange"></span></a></td>
-<td ><a href="stockreport\\北大荒.html" class="layui-btn layui-btn-danger">13.36</a></td>
-<td ><a href="stockreport\\北大荒.html" class="layui-btn layui-btn-danger">6.88%</a></td>
-<td ><a href="stockreport\\北大荒.html" class="layui-btn layui-btn-danger">36.47%</a></td>
-<td ><a href="stockreport\\北大荒.html" class="layui-btn layui-btn-warm">24.35</a></td>
-<td ><a href="stockreport\\北大荒.html" class="layui-btn layui-btn-warm">3.51</a></td>
-<td ><a href="stockreport\\北大荒.html" class="layui-btn">237.5亿</a></td>
+<td ><span class="layui-badge">142</span></td>
+<td ><a href="stockreport\\新和成.html" class="layui-btn layui-btn-normal">新和成<span class="layui-badge-dot layui-bg-orange"></span></a></td>
+<td ><a href="stockreport\\新和成.html" class="layui-btn layui-btn-danger">27.4</a></td>
+<td ><a href="stockreport\\新和成.html" class="layui-btn layui-btn-danger">11.2%</a></td>
+<td ><a href="stockreport\\新和成.html" class="layui-btn layui-btn-danger">17.34%</a></td>
+<td ><a href="stockreport\\新和成.html" class="layui-btn layui-btn-warm">26.54</a></td>
+<td ><a href="stockreport\\新和成.html" class="layui-btn layui-btn-warm">3.48</a></td>
+<td ><a href="stockreport\\新和成.html" class="layui-btn">588.7亿</a></td>
 <td >
-<div id="北大荒"></div>
+<div id="新和成"></div>
 <script>
   layui.use('rate', function(){
     var rate = layui.rate;
    
     //渲染
     var ins1 = rate.render({
-      elem: '#北大荒' , //绑定元素
-	  length:5,  //星星的个数
-	  value:4,//初始评分
-	  theme:"#FF3366", //颜色 ,默认值#FFB800
-	  half:true,//是否支持半分
-	  text:false,//是否显示文字
-	  readonly:true //是否只读
-    });
-  });
-</script>
-</td>
-</tr>
-<tr>
-<td ><span class="layui-badge">141</span></td>
-<td ><a href="stockreport\\古井贡酒.html" class="layui-btn layui-btn-normal">古井贡酒<span class="layui-badge-dot layui-bg-orange"></span></a></td>
-<td ><a href="stockreport\\古井贡酒.html" class="layui-btn layui-btn-danger">129.4</a></td>
-<td ><a href="stockreport\\古井贡酒.html" class="layui-btn layui-btn-danger">5.8%</a></td>
-<td ><a href="stockreport\\古井贡酒.html" class="layui-btn layui-btn-danger">-1.45%</a></td>
-<td ><a href="stockreport\\古井贡酒.html" class="layui-btn layui-btn-warm">29.88</a></td>
-<td ><a href="stockreport\\古井贡酒.html" class="layui-btn layui-btn-warm">7.59</a></td>
-<td ><a href="stockreport\\古井贡酒.html" class="layui-btn">651.7亿</a></td>
-<td >
-<div id="古井贡酒"></div>
-<script>
-  layui.use('rate', function(){
-    var rate = layui.rate;
-   
-    //渲染
-    var ins1 = rate.render({
-      elem: '#古井贡酒' , //绑定元素
+      elem: '#新和成' , //绑定元素
 	  length:5,  //星星的个数
 	  value:5,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
@@ -67562,7 +67593,7 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
 </td>
 </tr>
 <tr>
-<td ><span class="layui-badge">142</span></td>
+<td ><span class="layui-badge">143</span></td>
 <td ><a href="stockreport\\吉比特.html" class="layui-btn layui-btn-normal">吉比特<span class="layui-badge-dot layui-bg-orange"></span></a></td>
 <td ><a href="stockreport\\吉比特.html" class="layui-btn layui-btn-danger">416.38</a></td>
 <td ><a href="stockreport\\吉比特.html" class="layui-btn layui-btn-danger">-0.42%</a></td>
@@ -67591,35 +67622,6 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
 </td>
 </tr>
 <tr>
-<td ><span class="layui-badge">143</span></td>
-<td ><a href="stockreport\\亿联网络.html" class="layui-btn layui-btn-normal">亿联网络<span class="layui-badge-dot layui-bg-orange"></span></a></td>
-<td ><a href="stockreport\\亿联网络.html" class="layui-btn layui-btn-danger">103.72</a></td>
-<td ><a href="stockreport\\亿联网络.html" class="layui-btn layui-btn-danger">-1.69%</a></td>
-<td ><a href="stockreport\\亿联网络.html" class="layui-btn layui-btn-danger">41.83%</a></td>
-<td ><a href="stockreport\\亿联网络.html" class="layui-btn layui-btn-warm">49.7</a></td>
-<td ><a href="stockreport\\亿联网络.html" class="layui-btn layui-btn-warm">14.16</a></td>
-<td ><a href="stockreport\\亿联网络.html" class="layui-btn">621.8亿</a></td>
-<td >
-<div id="亿联网络"></div>
-<script>
-  layui.use('rate', function(){
-    var rate = layui.rate;
-   
-    //渲染
-    var ins1 = rate.render({
-      elem: '#亿联网络' , //绑定元素
-	  length:5,  //星星的个数
-	  value:4,//初始评分
-	  theme:"#FF3366", //颜色 ,默认值#FFB800
-	  half:true,//是否支持半分
-	  text:false,//是否显示文字
-	  readonly:true //是否只读
-    });
-  });
-</script>
-</td>
-</tr>
-<tr>
 <td ><span class="layui-badge">144</span></td>
 <td ><a href="stockreport\\长春高新.html" class="layui-btn layui-btn-normal">长春高新<span class="layui-badge-dot layui-bg-orange"></span></a></td>
 <td ><a href="stockreport\\长春高新.html" class="layui-btn layui-btn-danger">528.0</a></td>
@@ -67637,6 +67639,35 @@ myChart_39ddbacb2e794c4c8a3bc05280e0f771.setOption(option_39ddbacb2e794c4c8a3bc0
     //渲染
     var ins1 = rate.render({
       elem: '#长春高新' , //绑定元素
+	  length:5,  //星星的个数
+	  value:5,//初始评分
+	  theme:"#FF3366", //颜色 ,默认值#FFB800
+	  half:true,//是否支持半分
+	  text:false,//是否显示文字
+	  readonly:true //是否只读
+    });
+  });
+</script>
+</td>
+</tr>
+<tr>
+<td ><span class="layui-badge">145</span></td>
+<td ><a href="stockreport\\用友网络.html" class="layui-btn layui-btn-normal">用友网络<span class="layui-badge-dot layui-bg-orange"></span></a></td>
+<td ><a href="stockreport\\用友网络.html" class="layui-btn layui-btn-danger">46.52</a></td>
+<td ><a href="stockreport\\用友网络.html" class="layui-btn layui-btn-danger">-1.86%</a></td>
+<td ><a href="stockreport\\用友网络.html" class="layui-btn layui-btn-danger">62.71%</a></td>
+<td ><a href="stockreport\\用友网络.html" class="layui-btn layui-btn-warm">128.27</a></td>
+<td ><a href="stockreport\\用友网络.html" class="layui-btn layui-btn-warm">18.19</a></td>
+<td ><a href="stockreport\\用友网络.html" class="layui-btn">1165.1亿</a></td>
+<td >
+<div id="用友网络"></div>
+<script>
+  layui.use('rate', function(){
+    var rate = layui.rate;
+   
+    //渲染
+    var ins1 = rate.render({
+      elem: '#用友网络' , //绑定元素
 	  length:5,  //星星的个数
 	  value:5,//初始评分
 	  theme:"#FF3366", //颜色 ,默认值#FFB800
@@ -67788,12 +67819,12 @@ window.setImmediate||(window.setImmediate=function(){return window.msSetImmediat
 </script>
 </head>
 <body>
-    <div id="b224f97367a6476aab2378a3fe4843ad" style="width:100%;height:600px;"></div>
+    <div id="e19508efe06d4ef3b9e82ed255bdeeb3" style="width:100%;height:600px;"></div>
     <script type="text/javascript">
 
-var myChart_b224f97367a6476aab2378a3fe4843ad = echarts.init(document.getElementById('b224f97367a6476aab2378a3fe4843ad'), 'light', {renderer: 'canvas'});
+var myChart_e19508efe06d4ef3b9e82ed255bdeeb3 = echarts.init(document.getElementById('e19508efe06d4ef3b9e82ed255bdeeb3'), 'light', {renderer: 'canvas'});
 
-var option_b224f97367a6476aab2378a3fe4843ad = {
+var option_e19508efe06d4ef3b9e82ed255bdeeb3 = {
     "title": [
         {
             "text": "20200307\u65e5\u65b0\u95fb\u8054\u64ad",
@@ -67827,7 +67858,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
             }
         }
     },
-    "series_id": 2158832,
+    "series_id": 8809673,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -67861,7 +67892,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(49,73,125)"
+                            "color": "rgb(77,134,131)"
                         }
                     }
                 },
@@ -67870,7 +67901,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(0,64,41)"
+                            "color": "rgb(38,7,22)"
                         }
                     }
                 },
@@ -67879,7 +67910,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(80,91,6)"
+                            "color": "rgb(150,100,152)"
                         }
                     }
                 },
@@ -67888,7 +67919,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(75,72,10)"
+                            "color": "rgb(63,66,9)"
                         }
                     }
                 },
@@ -67897,7 +67928,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(19,80,142)"
+                            "color": "rgb(111,70,5)"
                         }
                     }
                 },
@@ -67906,7 +67937,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(140,107,102)"
+                            "color": "rgb(151,43,112)"
                         }
                     }
                 },
@@ -67915,7 +67946,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(135,125,145)"
+                            "color": "rgb(21,31,84)"
                         }
                     }
                 },
@@ -67924,7 +67955,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(50,39,34)"
+                            "color": "rgb(25,10,159)"
                         }
                     }
                 },
@@ -67933,7 +67964,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(16,98,152)"
+                            "color": "rgb(54,84,59)"
                         }
                     }
                 },
@@ -67942,7 +67973,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(157,97,41)"
+                            "color": "rgb(88,70,156)"
                         }
                     }
                 },
@@ -67951,7 +67982,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 8,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(52,130,5)"
+                            "color": "rgb(123,54,38)"
                         }
                     }
                 },
@@ -67960,7 +67991,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(131,95,142)"
+                            "color": "rgb(61,13,81)"
                         }
                     }
                 },
@@ -67969,7 +68000,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 9,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(81,6,72)"
+                            "color": "rgb(154,135,150)"
                         }
                     }
                 },
@@ -67978,7 +68009,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(71,119,107)"
+                            "color": "rgb(38,143,17)"
                         }
                     }
                 },
@@ -67987,7 +68018,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(1,67,47)"
+                            "color": "rgb(149,66,30)"
                         }
                     }
                 },
@@ -67996,7 +68027,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(86,22,31)"
+                            "color": "rgb(71,126,25)"
                         }
                     }
                 },
@@ -68005,7 +68036,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 11,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(122,18,121)"
+                            "color": "rgb(83,22,64)"
                         }
                     }
                 },
@@ -68014,7 +68045,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(64,74,64)"
+                            "color": "rgb(22,124,144)"
                         }
                     }
                 },
@@ -68023,7 +68054,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(43,46,84)"
+                            "color": "rgb(54,92,29)"
                         }
                     }
                 },
@@ -68032,7 +68063,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(82,103,69)"
+                            "color": "rgb(32,116,34)"
                         }
                     }
                 },
@@ -68041,7 +68072,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(11,152,24)"
+                            "color": "rgb(3,151,108)"
                         }
                     }
                 },
@@ -68050,7 +68081,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 9,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(45,25,115)"
+                            "color": "rgb(4,3,61)"
                         }
                     }
                 },
@@ -68059,7 +68090,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(103,26,145)"
+                            "color": "rgb(117,59,125)"
                         }
                     }
                 },
@@ -68068,7 +68099,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(153,155,30)"
+                            "color": "rgb(132,67,130)"
                         }
                     }
                 },
@@ -68077,7 +68108,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 15,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(43,34,2)"
+                            "color": "rgb(56,81,132)"
                         }
                     }
                 },
@@ -68086,7 +68117,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 14,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(34,78,125)"
+                            "color": "rgb(105,66,154)"
                         }
                     }
                 },
@@ -68095,7 +68126,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 59,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(57,87,158)"
+                            "color": "rgb(116,27,144)"
                         }
                     }
                 },
@@ -68104,7 +68135,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 20,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(46,72,49)"
+                            "color": "rgb(19,40,46)"
                         }
                     }
                 },
@@ -68113,7 +68144,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(113,101,66)"
+                            "color": "rgb(3,40,76)"
                         }
                     }
                 },
@@ -68122,7 +68153,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 7,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(138,102,86)"
+                            "color": "rgb(76,5,36)"
                         }
                     }
                 },
@@ -68131,7 +68162,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(111,154,99)"
+                            "color": "rgb(129,129,106)"
                         }
                     }
                 },
@@ -68140,7 +68171,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(69,24,82)"
+                            "color": "rgb(109,51,123)"
                         }
                     }
                 },
@@ -68149,7 +68180,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(39,86,26)"
+                            "color": "rgb(72,41,24)"
                         }
                     }
                 },
@@ -68158,7 +68189,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(2,18,1)"
+                            "color": "rgb(150,101,139)"
                         }
                     }
                 },
@@ -68167,7 +68198,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 23,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(98,108,135)"
+                            "color": "rgb(32,118,152)"
                         }
                     }
                 },
@@ -68176,7 +68207,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 13,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(137,39,60)"
+                            "color": "rgb(46,90,158)"
                         }
                     }
                 },
@@ -68185,7 +68216,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(69,88,22)"
+                            "color": "rgb(89,108,53)"
                         }
                     }
                 },
@@ -68194,7 +68225,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(158,55,99)"
+                            "color": "rgb(133,61,47)"
                         }
                     }
                 },
@@ -68203,7 +68234,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(89,74,69)"
+                            "color": "rgb(70,87,21)"
                         }
                     }
                 },
@@ -68212,7 +68243,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(157,64,4)"
+                            "color": "rgb(49,38,29)"
                         }
                     }
                 },
@@ -68221,7 +68252,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 7,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(8,70,151)"
+                            "color": "rgb(42,102,128)"
                         }
                     }
                 },
@@ -68230,7 +68261,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 8,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(134,5,23)"
+                            "color": "rgb(25,35,29)"
                         }
                     }
                 },
@@ -68239,7 +68270,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 7,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(36,124,73)"
+                            "color": "rgb(90,89,79)"
                         }
                     }
                 },
@@ -68248,7 +68279,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(106,114,120)"
+                            "color": "rgb(132,155,64)"
                         }
                     }
                 },
@@ -68257,7 +68288,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(122,80,20)"
+                            "color": "rgb(54,54,18)"
                         }
                     }
                 },
@@ -68266,7 +68297,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 10,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(38,8,125)"
+                            "color": "rgb(94,100,136)"
                         }
                     }
                 },
@@ -68275,7 +68306,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(7,127,46)"
+                            "color": "rgb(41,142,105)"
                         }
                     }
                 },
@@ -68284,7 +68315,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 9,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(43,82,90)"
+                            "color": "rgb(78,11,147)"
                         }
                     }
                 },
@@ -68293,7 +68324,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 19,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(67,78,65)"
+                            "color": "rgb(111,35,139)"
                         }
                     }
                 },
@@ -68302,7 +68333,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(76,93,144)"
+                            "color": "rgb(34,135,67)"
                         }
                     }
                 },
@@ -68311,7 +68342,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(88,92,134)"
+                            "color": "rgb(87,56,54)"
                         }
                     }
                 },
@@ -68320,7 +68351,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 8,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(154,116,81)"
+                            "color": "rgb(83,58,159)"
                         }
                     }
                 },
@@ -68329,7 +68360,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(104,1,28)"
+                            "color": "rgb(74,0,128)"
                         }
                     }
                 },
@@ -68338,7 +68369,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(152,109,101)"
+                            "color": "rgb(41,97,70)"
                         }
                     }
                 },
@@ -68347,7 +68378,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 7,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(148,65,128)"
+                            "color": "rgb(138,121,39)"
                         }
                     }
                 },
@@ -68356,7 +68387,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 7,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(29,10,37)"
+                            "color": "rgb(74,132,56)"
                         }
                     }
                 },
@@ -68365,7 +68396,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(42,33,21)"
+                            "color": "rgb(126,42,24)"
                         }
                     }
                 },
@@ -68374,7 +68405,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(13,43,100)"
+                            "color": "rgb(72,74,54)"
                         }
                     }
                 },
@@ -68383,7 +68414,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(4,88,26)"
+                            "color": "rgb(127,68,63)"
                         }
                     }
                 },
@@ -68392,7 +68423,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(102,147,29)"
+                            "color": "rgb(127,135,106)"
                         }
                     }
                 },
@@ -68401,7 +68432,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(1,93,114)"
+                            "color": "rgb(68,55,155)"
                         }
                     }
                 },
@@ -68410,7 +68441,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(23,13,55)"
+                            "color": "rgb(154,55,156)"
                         }
                     }
                 },
@@ -68419,7 +68450,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(87,138,81)"
+                            "color": "rgb(114,150,97)"
                         }
                     }
                 },
@@ -68428,7 +68459,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(116,23,68)"
+                            "color": "rgb(7,43,113)"
                         }
                     }
                 },
@@ -68437,7 +68468,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 8,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(158,24,33)"
+                            "color": "rgb(45,18,25)"
                         }
                     }
                 },
@@ -68446,7 +68477,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(116,51,57)"
+                            "color": "rgb(15,98,50)"
                         }
                     }
                 },
@@ -68455,7 +68486,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 15,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(80,52,49)"
+                            "color": "rgb(124,41,17)"
                         }
                     }
                 },
@@ -68464,7 +68495,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(136,50,115)"
+                            "color": "rgb(149,115,14)"
                         }
                     }
                 },
@@ -68473,7 +68504,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(138,12,77)"
+                            "color": "rgb(42,148,152)"
                         }
                     }
                 },
@@ -68482,7 +68513,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(58,50,89)"
+                            "color": "rgb(24,63,53)"
                         }
                     }
                 },
@@ -68491,7 +68522,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(65,147,13)"
+                            "color": "rgb(116,155,38)"
                         }
                     }
                 },
@@ -68500,7 +68531,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(75,80,154)"
+                            "color": "rgb(143,35,121)"
                         }
                     }
                 },
@@ -68509,7 +68540,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(53,88,94)"
+                            "color": "rgb(145,85,88)"
                         }
                     }
                 },
@@ -68518,7 +68549,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(54,154,102)"
+                            "color": "rgb(89,94,93)"
                         }
                     }
                 },
@@ -68527,7 +68558,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(91,9,130)"
+                            "color": "rgb(93,1,15)"
                         }
                     }
                 },
@@ -68536,7 +68567,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(128,72,9)"
+                            "color": "rgb(80,113,50)"
                         }
                     }
                 },
@@ -68545,7 +68576,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(148,99,36)"
+                            "color": "rgb(109,114,38)"
                         }
                     }
                 },
@@ -68554,7 +68585,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 10,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(108,70,138)"
+                            "color": "rgb(58,1,125)"
                         }
                     }
                 },
@@ -68563,7 +68594,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(70,1,9)"
+                            "color": "rgb(20,47,33)"
                         }
                     }
                 },
@@ -68572,7 +68603,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(144,124,60)"
+                            "color": "rgb(21,41,86)"
                         }
                     }
                 },
@@ -68581,7 +68612,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(38,42,17)"
+                            "color": "rgb(38,82,37)"
                         }
                     }
                 },
@@ -68590,7 +68621,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 8,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(105,13,4)"
+                            "color": "rgb(13,73,25)"
                         }
                     }
                 },
@@ -68599,7 +68630,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(20,120,69)"
+                            "color": "rgb(82,54,8)"
                         }
                     }
                 },
@@ -68608,7 +68639,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(143,20,96)"
+                            "color": "rgb(88,52,119)"
                         }
                     }
                 },
@@ -68617,7 +68648,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(131,1,135)"
+                            "color": "rgb(100,41,68)"
                         }
                     }
                 },
@@ -68626,7 +68657,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(121,138,126)"
+                            "color": "rgb(106,36,147)"
                         }
                     }
                 },
@@ -68635,7 +68666,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(9,86,3)"
+                            "color": "rgb(30,113,137)"
                         }
                     }
                 },
@@ -68644,7 +68675,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(84,120,13)"
+                            "color": "rgb(126,62,151)"
                         }
                     }
                 },
@@ -68653,7 +68684,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 23,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(117,9,24)"
+                            "color": "rgb(154,114,70)"
                         }
                     }
                 },
@@ -68662,7 +68693,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 7,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(89,145,8)"
+                            "color": "rgb(133,5,85)"
                         }
                     }
                 },
@@ -68671,7 +68702,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 22,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(8,153,99)"
+                            "color": "rgb(75,66,69)"
                         }
                     }
                 },
@@ -68680,7 +68711,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(134,131,45)"
+                            "color": "rgb(153,89,12)"
                         }
                     }
                 },
@@ -68689,7 +68720,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 8,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(12,148,44)"
+                            "color": "rgb(87,108,3)"
                         }
                     }
                 },
@@ -68698,7 +68729,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(53,127,123)"
+                            "color": "rgb(93,92,155)"
                         }
                     }
                 },
@@ -68707,7 +68738,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(102,159,43)"
+                            "color": "rgb(77,22,71)"
                         }
                     }
                 },
@@ -68716,7 +68747,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(120,138,122)"
+                            "color": "rgb(142,149,81)"
                         }
                     }
                 },
@@ -68725,7 +68756,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 8,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(128,75,142)"
+                            "color": "rgb(2,54,102)"
                         }
                     }
                 },
@@ -68734,7 +68765,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(48,96,124)"
+                            "color": "rgb(57,6,48)"
                         }
                     }
                 },
@@ -68743,7 +68774,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 7,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(82,26,124)"
+                            "color": "rgb(50,114,127)"
                         }
                     }
                 },
@@ -68752,7 +68783,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(43,92,132)"
+                            "color": "rgb(103,92,30)"
                         }
                     }
                 },
@@ -68761,7 +68792,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(11,111,105)"
+                            "color": "rgb(83,23,140)"
                         }
                     }
                 },
@@ -68770,7 +68801,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(127,29,123)"
+                            "color": "rgb(41,0,140)"
                         }
                     }
                 },
@@ -68779,7 +68810,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 9,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(58,91,153)"
+                            "color": "rgb(82,79,150)"
                         }
                     }
                 },
@@ -68788,7 +68819,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(31,17,85)"
+                            "color": "rgb(33,106,11)"
                         }
                     }
                 },
@@ -68797,7 +68828,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(21,81,68)"
+                            "color": "rgb(147,15,25)"
                         }
                     }
                 },
@@ -68806,7 +68837,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(130,52,49)"
+                            "color": "rgb(101,144,93)"
                         }
                     }
                 },
@@ -68815,7 +68846,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(74,138,82)"
+                            "color": "rgb(51,129,35)"
                         }
                     }
                 },
@@ -68824,7 +68855,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(55,60,91)"
+                            "color": "rgb(42,38,39)"
                         }
                     }
                 },
@@ -68833,7 +68864,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 7,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(122,141,28)"
+                            "color": "rgb(32,119,135)"
                         }
                     }
                 },
@@ -68842,7 +68873,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 8,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(21,18,114)"
+                            "color": "rgb(158,95,144)"
                         }
                     }
                 },
@@ -68851,7 +68882,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(123,114,106)"
+                            "color": "rgb(146,99,13)"
                         }
                     }
                 },
@@ -68860,7 +68891,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(36,38,59)"
+                            "color": "rgb(115,23,14)"
                         }
                     }
                 },
@@ -68869,7 +68900,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(30,57,68)"
+                            "color": "rgb(39,131,150)"
                         }
                     }
                 },
@@ -68878,7 +68909,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(10,76,123)"
+                            "color": "rgb(90,109,56)"
                         }
                     }
                 },
@@ -68887,7 +68918,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(109,122,106)"
+                            "color": "rgb(139,155,94)"
                         }
                     }
                 },
@@ -68896,7 +68927,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(4,15,114)"
+                            "color": "rgb(86,134,40)"
                         }
                     }
                 },
@@ -68905,7 +68936,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 7,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(117,67,45)"
+                            "color": "rgb(68,139,63)"
                         }
                     }
                 },
@@ -68914,7 +68945,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(141,15,120)"
+                            "color": "rgb(143,97,153)"
                         }
                     }
                 },
@@ -68923,7 +68954,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(116,141,21)"
+                            "color": "rgb(24,65,99)"
                         }
                     }
                 },
@@ -68932,7 +68963,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(160,31,68)"
+                            "color": "rgb(151,145,41)"
                         }
                     }
                 },
@@ -68941,7 +68972,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 13,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(55,80,66)"
+                            "color": "rgb(57,82,88)"
                         }
                     }
                 },
@@ -68950,7 +68981,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 7,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(94,157,73)"
+                            "color": "rgb(39,47,1)"
                         }
                     }
                 },
@@ -68959,7 +68990,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(129,41,38)"
+                            "color": "rgb(51,137,109)"
                         }
                     }
                 },
@@ -68968,7 +68999,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(149,78,71)"
+                            "color": "rgb(156,69,130)"
                         }
                     }
                 },
@@ -68977,7 +69008,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(90,69,92)"
+                            "color": "rgb(96,16,97)"
                         }
                     }
                 },
@@ -68986,7 +69017,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(32,146,37)"
+                            "color": "rgb(144,89,118)"
                         }
                     }
                 },
@@ -68995,7 +69026,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(22,72,118)"
+                            "color": "rgb(82,98,36)"
                         }
                     }
                 },
@@ -69004,7 +69035,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(113,71,144)"
+                            "color": "rgb(28,54,109)"
                         }
                     }
                 },
@@ -69013,7 +69044,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(42,32,153)"
+                            "color": "rgb(115,1,158)"
                         }
                     }
                 },
@@ -69022,7 +69053,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 11,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(119,98,5)"
+                            "color": "rgb(52,121,145)"
                         }
                     }
                 },
@@ -69031,7 +69062,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(111,99,31)"
+                            "color": "rgb(93,111,143)"
                         }
                     }
                 },
@@ -69040,7 +69071,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(23,139,114)"
+                            "color": "rgb(97,12,56)"
                         }
                     }
                 },
@@ -69049,7 +69080,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(6,123,40)"
+                            "color": "rgb(49,64,39)"
                         }
                     }
                 },
@@ -69058,7 +69089,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 10,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(61,28,113)"
+                            "color": "rgb(101,28,71)"
                         }
                     }
                 },
@@ -69067,7 +69098,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(69,121,104)"
+                            "color": "rgb(63,29,62)"
                         }
                     }
                 },
@@ -69076,7 +69107,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 15,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(101,90,158)"
+                            "color": "rgb(22,44,116)"
                         }
                     }
                 },
@@ -69085,7 +69116,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(112,73,47)"
+                            "color": "rgb(125,89,156)"
                         }
                     }
                 },
@@ -69094,7 +69125,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(77,20,157)"
+                            "color": "rgb(146,39,112)"
                         }
                     }
                 },
@@ -69103,7 +69134,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(68,21,13)"
+                            "color": "rgb(81,62,23)"
                         }
                     }
                 },
@@ -69112,7 +69143,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(157,110,15)"
+                            "color": "rgb(37,6,5)"
                         }
                     }
                 },
@@ -69121,7 +69152,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(157,79,36)"
+                            "color": "rgb(93,62,82)"
                         }
                     }
                 },
@@ -69130,7 +69161,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(160,39,20)"
+                            "color": "rgb(115,73,58)"
                         }
                     }
                 },
@@ -69139,7 +69170,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(109,51,28)"
+                            "color": "rgb(59,78,124)"
                         }
                     }
                 },
@@ -69148,7 +69179,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(59,61,112)"
+                            "color": "rgb(7,141,98)"
                         }
                     }
                 },
@@ -69157,7 +69188,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(91,157,142)"
+                            "color": "rgb(79,135,15)"
                         }
                     }
                 },
@@ -69166,7 +69197,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(87,100,143)"
+                            "color": "rgb(5,70,151)"
                         }
                     }
                 },
@@ -69175,7 +69206,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(143,92,139)"
+                            "color": "rgb(0,58,63)"
                         }
                     }
                 },
@@ -69184,7 +69215,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(2,131,28)"
+                            "color": "rgb(95,117,103)"
                         }
                     }
                 },
@@ -69193,7 +69224,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(5,79,152)"
+                            "color": "rgb(148,70,63)"
                         }
                     }
                 },
@@ -69202,7 +69233,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(105,81,11)"
+                            "color": "rgb(138,112,72)"
                         }
                     }
                 },
@@ -69211,7 +69242,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 11,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(138,79,132)"
+                            "color": "rgb(52,134,33)"
                         }
                     }
                 },
@@ -69220,7 +69251,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(106,123,143)"
+                            "color": "rgb(102,32,67)"
                         }
                     }
                 },
@@ -69229,7 +69260,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 20,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(26,63,93)"
+                            "color": "rgb(49,81,63)"
                         }
                     }
                 },
@@ -69238,7 +69269,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(30,97,27)"
+                            "color": "rgb(56,157,20)"
                         }
                     }
                 },
@@ -69247,7 +69278,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(59,124,156)"
+                            "color": "rgb(80,0,110)"
                         }
                     }
                 },
@@ -69256,7 +69287,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(77,120,3)"
+                            "color": "rgb(112,17,96)"
                         }
                     }
                 },
@@ -69265,7 +69296,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 12,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(130,34,38)"
+                            "color": "rgb(44,72,25)"
                         }
                     }
                 },
@@ -69274,7 +69305,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 19,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(21,151,9)"
+                            "color": "rgb(124,112,77)"
                         }
                     }
                 },
@@ -69283,7 +69314,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 12,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(35,86,56)"
+                            "color": "rgb(39,59,87)"
                         }
                     }
                 },
@@ -69292,7 +69323,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(100,55,150)"
+                            "color": "rgb(40,68,88)"
                         }
                     }
                 },
@@ -69301,7 +69332,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(91,63,31)"
+                            "color": "rgb(33,117,41)"
                         }
                     }
                 },
@@ -69310,7 +69341,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 10,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(52,80,72)"
+                            "color": "rgb(99,120,69)"
                         }
                     }
                 },
@@ -69319,7 +69350,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 7,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(157,124,131)"
+                            "color": "rgb(107,84,14)"
                         }
                     }
                 },
@@ -69328,7 +69359,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(17,83,53)"
+                            "color": "rgb(118,156,63)"
                         }
                     }
                 },
@@ -69337,7 +69368,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(102,45,93)"
+                            "color": "rgb(19,2,99)"
                         }
                     }
                 },
@@ -69346,7 +69377,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(70,11,30)"
+                            "color": "rgb(150,63,153)"
                         }
                     }
                 },
@@ -69355,7 +69386,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(142,90,132)"
+                            "color": "rgb(114,1,4)"
                         }
                     }
                 },
@@ -69364,7 +69395,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 12,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(154,14,45)"
+                            "color": "rgb(97,3,26)"
                         }
                     }
                 },
@@ -69373,7 +69404,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 7,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(105,141,110)"
+                            "color": "rgb(8,108,153)"
                         }
                     }
                 },
@@ -69382,7 +69413,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(38,79,22)"
+                            "color": "rgb(60,61,50)"
                         }
                     }
                 },
@@ -69391,7 +69422,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 11,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(28,90,44)"
+                            "color": "rgb(46,109,160)"
                         }
                     }
                 },
@@ -69400,7 +69431,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(58,9,97)"
+                            "color": "rgb(43,114,19)"
                         }
                     }
                 },
@@ -69409,7 +69440,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(140,97,131)"
+                            "color": "rgb(45,52,109)"
                         }
                     }
                 },
@@ -69418,7 +69449,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(58,19,58)"
+                            "color": "rgb(39,16,25)"
                         }
                     }
                 },
@@ -69427,7 +69458,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(134,99,86)"
+                            "color": "rgb(93,138,13)"
                         }
                     }
                 },
@@ -69436,7 +69467,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(7,13,34)"
+                            "color": "rgb(61,160,109)"
                         }
                     }
                 },
@@ -69445,7 +69476,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(60,102,28)"
+                            "color": "rgb(88,103,145)"
                         }
                     }
                 },
@@ -69454,7 +69485,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(91,103,101)"
+                            "color": "rgb(66,85,2)"
                         }
                     }
                 },
@@ -69463,7 +69494,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(108,48,29)"
+                            "color": "rgb(85,73,46)"
                         }
                     }
                 },
@@ -69472,7 +69503,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(8,131,49)"
+                            "color": "rgb(160,27,98)"
                         }
                     }
                 },
@@ -69481,7 +69512,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(141,74,160)"
+                            "color": "rgb(151,18,86)"
                         }
                     }
                 },
@@ -69490,7 +69521,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(117,44,154)"
+                            "color": "rgb(51,79,71)"
                         }
                     }
                 },
@@ -69499,7 +69530,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(3,83,105)"
+                            "color": "rgb(7,97,7)"
                         }
                     }
                 },
@@ -69508,7 +69539,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(89,135,148)"
+                            "color": "rgb(105,143,69)"
                         }
                     }
                 },
@@ -69517,7 +69548,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(139,73,5)"
+                            "color": "rgb(115,18,93)"
                         }
                     }
                 },
@@ -69526,7 +69557,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 10,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(108,2,45)"
+                            "color": "rgb(20,138,1)"
                         }
                     }
                 },
@@ -69535,7 +69566,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 14,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(114,101,24)"
+                            "color": "rgb(151,25,89)"
                         }
                     }
                 },
@@ -69544,7 +69575,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(44,64,103)"
+                            "color": "rgb(100,40,78)"
                         }
                     }
                 },
@@ -69553,7 +69584,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(92,42,69)"
+                            "color": "rgb(94,35,16)"
                         }
                     }
                 },
@@ -69562,7 +69593,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 9,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(44,113,32)"
+                            "color": "rgb(159,154,121)"
                         }
                     }
                 },
@@ -69571,7 +69602,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(12,142,31)"
+                            "color": "rgb(83,15,1)"
                         }
                     }
                 },
@@ -69580,7 +69611,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(4,21,83)"
+                            "color": "rgb(46,113,75)"
                         }
                     }
                 },
@@ -69589,7 +69620,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(106,119,153)"
+                            "color": "rgb(23,6,36)"
                         }
                     }
                 },
@@ -69598,7 +69629,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 11,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(142,3,148)"
+                            "color": "rgb(128,92,110)"
                         }
                     }
                 },
@@ -69607,7 +69638,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(106,31,93)"
+                            "color": "rgb(144,110,57)"
                         }
                     }
                 },
@@ -69616,7 +69647,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(2,71,50)"
+                            "color": "rgb(131,16,115)"
                         }
                     }
                 },
@@ -69625,7 +69656,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 8,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(40,70,31)"
+                            "color": "rgb(156,43,14)"
                         }
                     }
                 },
@@ -69634,7 +69665,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(84,13,135)"
+                            "color": "rgb(8,84,14)"
                         }
                     }
                 },
@@ -69643,7 +69674,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(151,148,71)"
+                            "color": "rgb(70,7,14)"
                         }
                     }
                 },
@@ -69652,7 +69683,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(143,141,136)"
+                            "color": "rgb(26,67,15)"
                         }
                     }
                 },
@@ -69661,7 +69692,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(157,47,115)"
+                            "color": "rgb(57,128,95)"
                         }
                     }
                 },
@@ -69670,7 +69701,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(91,149,18)"
+                            "color": "rgb(20,52,49)"
                         }
                     }
                 },
@@ -69679,7 +69710,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 8,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(130,124,66)"
+                            "color": "rgb(127,98,17)"
                         }
                     }
                 },
@@ -69688,7 +69719,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 11,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(46,137,86)"
+                            "color": "rgb(17,13,97)"
                         }
                     }
                 },
@@ -69697,7 +69728,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(5,23,117)"
+                            "color": "rgb(34,53,79)"
                         }
                     }
                 },
@@ -69706,7 +69737,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(84,21,61)"
+                            "color": "rgb(8,0,150)"
                         }
                     }
                 },
@@ -69715,7 +69746,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(41,24,44)"
+                            "color": "rgb(25,89,29)"
                         }
                     }
                 },
@@ -69724,7 +69755,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(133,87,96)"
+                            "color": "rgb(110,58,7)"
                         }
                     }
                 },
@@ -69733,7 +69764,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(30,50,159)"
+                            "color": "rgb(90,4,151)"
                         }
                     }
                 },
@@ -69742,7 +69773,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(40,44,92)"
+                            "color": "rgb(109,59,134)"
                         }
                     }
                 },
@@ -69751,7 +69782,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(148,80,1)"
+                            "color": "rgb(14,155,15)"
                         }
                     }
                 },
@@ -69760,7 +69791,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(92,80,59)"
+                            "color": "rgb(58,19,136)"
                         }
                     }
                 },
@@ -69769,7 +69800,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(55,110,94)"
+                            "color": "rgb(42,13,29)"
                         }
                     }
                 },
@@ -69778,7 +69809,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 7,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(47,115,31)"
+                            "color": "rgb(148,139,62)"
                         }
                     }
                 },
@@ -69787,7 +69818,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 7,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(4,150,41)"
+                            "color": "rgb(56,91,130)"
                         }
                     }
                 },
@@ -69796,7 +69827,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(51,91,20)"
+                            "color": "rgb(61,21,142)"
                         }
                     }
                 },
@@ -69805,7 +69836,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(52,22,48)"
+                            "color": "rgb(55,129,91)"
                         }
                     }
                 },
@@ -69814,7 +69845,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(105,6,60)"
+                            "color": "rgb(60,120,22)"
                         }
                     }
                 },
@@ -69823,7 +69854,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(112,147,64)"
+                            "color": "rgb(73,3,4)"
                         }
                     }
                 },
@@ -69832,7 +69863,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(4,47,146)"
+                            "color": "rgb(148,146,30)"
                         }
                     }
                 },
@@ -69841,7 +69872,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(22,136,0)"
+                            "color": "rgb(158,8,104)"
                         }
                     }
                 },
@@ -69850,7 +69881,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 7,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(124,108,89)"
+                            "color": "rgb(46,137,8)"
                         }
                     }
                 },
@@ -69859,7 +69890,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(81,107,126)"
+                            "color": "rgb(143,76,110)"
                         }
                     }
                 },
@@ -69868,7 +69899,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(48,23,75)"
+                            "color": "rgb(0,34,150)"
                         }
                     }
                 },
@@ -69877,7 +69908,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 7,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(66,103,80)"
+                            "color": "rgb(159,37,135)"
                         }
                     }
                 },
@@ -69886,7 +69917,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(141,85,7)"
+                            "color": "rgb(28,126,101)"
                         }
                     }
                 },
@@ -69895,7 +69926,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(137,33,101)"
+                            "color": "rgb(105,124,16)"
                         }
                     }
                 },
@@ -69904,7 +69935,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(88,7,98)"
+                            "color": "rgb(115,136,144)"
                         }
                     }
                 },
@@ -69913,7 +69944,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(128,25,101)"
+                            "color": "rgb(69,69,45)"
                         }
                     }
                 },
@@ -69922,7 +69953,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(99,92,12)"
+                            "color": "rgb(34,12,110)"
                         }
                     }
                 },
@@ -69931,7 +69962,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(52,140,134)"
+                            "color": "rgb(77,3,16)"
                         }
                     }
                 },
@@ -69940,7 +69971,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(17,56,32)"
+                            "color": "rgb(21,157,94)"
                         }
                     }
                 },
@@ -69949,7 +69980,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(158,58,129)"
+                            "color": "rgb(134,54,25)"
                         }
                     }
                 },
@@ -69958,7 +69989,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 8,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(7,9,32)"
+                            "color": "rgb(134,23,74)"
                         }
                     }
                 },
@@ -69967,7 +69998,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 8,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(140,134,109)"
+                            "color": "rgb(136,47,110)"
                         }
                     }
                 },
@@ -69976,7 +70007,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(63,66,139)"
+                            "color": "rgb(120,144,103)"
                         }
                     }
                 },
@@ -69985,7 +70016,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(140,96,157)"
+                            "color": "rgb(129,160,10)"
                         }
                     }
                 },
@@ -69994,7 +70025,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(99,65,116)"
+                            "color": "rgb(31,110,31)"
                         }
                     }
                 },
@@ -70003,7 +70034,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(48,25,23)"
+                            "color": "rgb(133,141,146)"
                         }
                     }
                 },
@@ -70012,7 +70043,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(143,111,145)"
+                            "color": "rgb(55,54,126)"
                         }
                     }
                 },
@@ -70021,7 +70052,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(60,137,47)"
+                            "color": "rgb(24,112,138)"
                         }
                     }
                 },
@@ -70030,7 +70061,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(1,114,126)"
+                            "color": "rgb(95,121,136)"
                         }
                     }
                 },
@@ -70039,7 +70070,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(154,26,139)"
+                            "color": "rgb(31,151,6)"
                         }
                     }
                 },
@@ -70048,7 +70079,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(116,135,24)"
+                            "color": "rgb(132,120,10)"
                         }
                     }
                 },
@@ -70057,7 +70088,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 13,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(75,44,130)"
+                            "color": "rgb(65,110,96)"
                         }
                     }
                 },
@@ -70066,7 +70097,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(21,136,93)"
+                            "color": "rgb(16,139,128)"
                         }
                     }
                 },
@@ -70075,7 +70106,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(142,3,100)"
+                            "color": "rgb(93,36,8)"
                         }
                     }
                 },
@@ -70084,7 +70115,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(39,96,118)"
+                            "color": "rgb(76,160,2)"
                         }
                     }
                 },
@@ -70093,7 +70124,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(69,72,85)"
+                            "color": "rgb(128,160,114)"
                         }
                     }
                 },
@@ -70102,7 +70133,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(99,96,77)"
+                            "color": "rgb(15,22,56)"
                         }
                     }
                 },
@@ -70111,7 +70142,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(82,92,78)"
+                            "color": "rgb(10,153,45)"
                         }
                     }
                 },
@@ -70120,7 +70151,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(151,107,73)"
+                            "color": "rgb(86,114,80)"
                         }
                     }
                 },
@@ -70129,7 +70160,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(96,14,74)"
+                            "color": "rgb(123,54,25)"
                         }
                     }
                 },
@@ -70138,7 +70169,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(69,8,5)"
+                            "color": "rgb(125,160,39)"
                         }
                     }
                 },
@@ -70147,7 +70178,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(83,141,60)"
+                            "color": "rgb(122,74,62)"
                         }
                     }
                 },
@@ -70156,7 +70187,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(56,110,133)"
+                            "color": "rgb(99,60,119)"
                         }
                     }
                 },
@@ -70165,7 +70196,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(21,141,15)"
+                            "color": "rgb(91,60,94)"
                         }
                     }
                 },
@@ -70174,7 +70205,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(82,146,54)"
+                            "color": "rgb(16,155,42)"
                         }
                     }
                 },
@@ -70183,7 +70214,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 8,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(116,138,15)"
+                            "color": "rgb(152,131,32)"
                         }
                     }
                 },
@@ -70192,7 +70223,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(52,153,0)"
+                            "color": "rgb(124,91,52)"
                         }
                     }
                 },
@@ -70201,7 +70232,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(98,127,0)"
+                            "color": "rgb(9,16,132)"
                         }
                     }
                 },
@@ -70210,7 +70241,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(128,41,146)"
+                            "color": "rgb(66,130,121)"
                         }
                     }
                 },
@@ -70219,7 +70250,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(103,25,83)"
+                            "color": "rgb(98,35,49)"
                         }
                     }
                 },
@@ -70228,7 +70259,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(145,14,76)"
+                            "color": "rgb(130,156,153)"
                         }
                     }
                 },
@@ -70237,7 +70268,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(147,35,45)"
+                            "color": "rgb(65,92,158)"
                         }
                     }
                 },
@@ -70246,7 +70277,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 7,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(74,92,12)"
+                            "color": "rgb(1,132,96)"
                         }
                     }
                 },
@@ -70255,7 +70286,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(22,87,158)"
+                            "color": "rgb(129,159,29)"
                         }
                     }
                 },
@@ -70264,7 +70295,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(58,78,30)"
+                            "color": "rgb(96,112,69)"
                         }
                     }
                 },
@@ -70273,7 +70304,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(105,28,143)"
+                            "color": "rgb(11,82,82)"
                         }
                     }
                 },
@@ -70282,7 +70313,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 10,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(88,90,118)"
+                            "color": "rgb(81,146,128)"
                         }
                     }
                 },
@@ -70291,7 +70322,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 9,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(140,94,147)"
+                            "color": "rgb(78,84,24)"
                         }
                     }
                 },
@@ -70300,7 +70331,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(132,9,117)"
+                            "color": "rgb(71,40,150)"
                         }
                     }
                 },
@@ -70309,7 +70340,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(141,93,62)"
+                            "color": "rgb(135,85,103)"
                         }
                     }
                 },
@@ -70318,7 +70349,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(108,35,25)"
+                            "color": "rgb(111,132,37)"
                         }
                     }
                 },
@@ -70327,7 +70358,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(0,65,121)"
+                            "color": "rgb(23,16,146)"
                         }
                     }
                 },
@@ -70336,7 +70367,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(43,89,92)"
+                            "color": "rgb(34,133,36)"
                         }
                     }
                 },
@@ -70345,7 +70376,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(95,68,128)"
+                            "color": "rgb(141,18,147)"
                         }
                     }
                 },
@@ -70354,7 +70385,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(129,118,47)"
+                            "color": "rgb(68,66,9)"
                         }
                     }
                 },
@@ -70363,7 +70394,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(85,40,122)"
+                            "color": "rgb(37,46,52)"
                         }
                     }
                 },
@@ -70372,7 +70403,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(62,76,51)"
+                            "color": "rgb(117,81,135)"
                         }
                     }
                 },
@@ -70381,7 +70412,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(34,25,128)"
+                            "color": "rgb(110,91,49)"
                         }
                     }
                 },
@@ -70390,7 +70421,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(154,104,16)"
+                            "color": "rgb(40,96,30)"
                         }
                     }
                 },
@@ -70399,7 +70430,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(46,44,38)"
+                            "color": "rgb(10,107,127)"
                         }
                     }
                 },
@@ -70408,7 +70439,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(1,136,140)"
+                            "color": "rgb(47,131,105)"
                         }
                     }
                 },
@@ -70417,7 +70448,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(39,56,35)"
+                            "color": "rgb(68,18,104)"
                         }
                     }
                 },
@@ -70426,7 +70457,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(128,149,90)"
+                            "color": "rgb(131,121,18)"
                         }
                     }
                 },
@@ -70435,7 +70466,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(8,114,95)"
+                            "color": "rgb(10,57,133)"
                         }
                     }
                 },
@@ -70444,7 +70475,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(77,83,45)"
+                            "color": "rgb(31,57,81)"
                         }
                     }
                 },
@@ -70453,7 +70484,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(141,125,45)"
+                            "color": "rgb(33,120,108)"
                         }
                     }
                 },
@@ -70462,7 +70493,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(12,56,75)"
+                            "color": "rgb(134,148,65)"
                         }
                     }
                 },
@@ -70471,7 +70502,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 8,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(101,51,134)"
+                            "color": "rgb(13,22,62)"
                         }
                     }
                 },
@@ -70480,7 +70511,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(39,52,146)"
+                            "color": "rgb(113,33,38)"
                         }
                     }
                 },
@@ -70489,7 +70520,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(20,124,135)"
+                            "color": "rgb(93,90,15)"
                         }
                     }
                 },
@@ -70498,7 +70529,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(81,54,37)"
+                            "color": "rgb(86,36,26)"
                         }
                     }
                 },
@@ -70507,7 +70538,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(118,32,20)"
+                            "color": "rgb(13,72,14)"
                         }
                     }
                 },
@@ -70516,7 +70547,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(84,124,75)"
+                            "color": "rgb(47,75,26)"
                         }
                     }
                 },
@@ -70525,7 +70556,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(28,67,130)"
+                            "color": "rgb(138,60,102)"
                         }
                     }
                 },
@@ -70534,7 +70565,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(56,8,95)"
+                            "color": "rgb(66,150,127)"
                         }
                     }
                 },
@@ -70543,7 +70574,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(96,62,89)"
+                            "color": "rgb(45,84,92)"
                         }
                     }
                 },
@@ -70552,7 +70583,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(146,115,95)"
+                            "color": "rgb(52,107,157)"
                         }
                     }
                 },
@@ -70561,7 +70592,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(64,59,79)"
+                            "color": "rgb(123,121,131)"
                         }
                     }
                 },
@@ -70570,7 +70601,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(131,67,129)"
+                            "color": "rgb(91,94,114)"
                         }
                     }
                 },
@@ -70579,7 +70610,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(59,9,102)"
+                            "color": "rgb(100,122,46)"
                         }
                     }
                 },
@@ -70588,7 +70619,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(47,82,13)"
+                            "color": "rgb(76,12,69)"
                         }
                     }
                 },
@@ -70597,7 +70628,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(41,67,87)"
+                            "color": "rgb(41,38,31)"
                         }
                     }
                 },
@@ -70606,7 +70637,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(106,127,58)"
+                            "color": "rgb(9,135,78)"
                         }
                     }
                 },
@@ -70615,7 +70646,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(128,103,159)"
+                            "color": "rgb(22,63,60)"
                         }
                     }
                 },
@@ -70624,7 +70655,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(45,123,78)"
+                            "color": "rgb(26,130,136)"
                         }
                     }
                 },
@@ -70633,7 +70664,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(117,89,64)"
+                            "color": "rgb(128,153,96)"
                         }
                     }
                 },
@@ -70642,7 +70673,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(113,24,29)"
+                            "color": "rgb(46,150,77)"
                         }
                     }
                 },
@@ -70651,7 +70682,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(124,134,96)"
+                            "color": "rgb(35,65,122)"
                         }
                     }
                 },
@@ -70660,7 +70691,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(147,114,101)"
+                            "color": "rgb(51,94,139)"
                         }
                     }
                 },
@@ -70669,7 +70700,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(111,108,34)"
+                            "color": "rgb(85,96,44)"
                         }
                     }
                 },
@@ -70678,7 +70709,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(16,139,147)"
+                            "color": "rgb(12,102,1)"
                         }
                     }
                 },
@@ -70687,7 +70718,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(1,68,62)"
+                            "color": "rgb(72,116,87)"
                         }
                     }
                 },
@@ -70696,7 +70727,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(138,53,59)"
+                            "color": "rgb(114,17,106)"
                         }
                     }
                 },
@@ -70705,7 +70736,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(105,61,45)"
+                            "color": "rgb(19,140,124)"
                         }
                     }
                 },
@@ -70714,7 +70745,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(146,32,135)"
+                            "color": "rgb(124,77,78)"
                         }
                     }
                 },
@@ -70723,7 +70754,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(147,32,107)"
+                            "color": "rgb(26,10,121)"
                         }
                     }
                 },
@@ -70732,7 +70763,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(34,123,96)"
+                            "color": "rgb(121,15,103)"
                         }
                     }
                 },
@@ -70741,7 +70772,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 5,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(87,82,25)"
+                            "color": "rgb(32,6,77)"
                         }
                     }
                 },
@@ -70750,7 +70781,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(37,46,113)"
+                            "color": "rgb(68,4,56)"
                         }
                     }
                 },
@@ -70759,7 +70790,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 6,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(78,17,7)"
+                            "color": "rgb(115,98,93)"
                         }
                     }
                 },
@@ -70768,7 +70799,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 4,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(38,47,75)"
+                            "color": "rgb(124,159,102)"
                         }
                     }
                 },
@@ -70777,7 +70808,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(138,51,128)"
+                            "color": "rgb(41,48,6)"
                         }
                     }
                 },
@@ -70786,7 +70817,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(62,10,2)"
+                            "color": "rgb(47,131,98)"
                         }
                     }
                 },
@@ -70795,7 +70826,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
                     "value": 3,
                     "textStyle": {
                         "normal": {
-                            "color": "rgb(145,95,131)"
+                            "color": "rgb(18,38,105)"
                         }
                     }
                 }
@@ -70844,7 +70875,7 @@ var option_b224f97367a6476aab2378a3fe4843ad = {
         "#f6f5ec"
     ]
 };
-myChart_b224f97367a6476aab2378a3fe4843ad.setOption(option_b224f97367a6476aab2378a3fe4843ad);
+myChart_e19508efe06d4ef3b9e82ed255bdeeb3.setOption(option_e19508efe06d4ef3b9e82ed255bdeeb3);
 
 </script>
 </body>
@@ -70887,12 +70918,12 @@ myChart_b224f97367a6476aab2378a3fe4843ad.setOption(option_b224f97367a6476aab2378
 </script>
 </head>
 <body>
-    <div id="4b8040a5257d4c2ca88a1e4432aa1afe" style="width:100%;height:600px;"></div>
+    <div id="897bbe2359d0438a8917ab2a9d2ddeaa" style="width:100%;height:600px;"></div>
     <script type="text/javascript">
 
-var myChart_4b8040a5257d4c2ca88a1e4432aa1afe = echarts.init(document.getElementById('4b8040a5257d4c2ca88a1e4432aa1afe'), 'light', {renderer: 'canvas'});
+var myChart_897bbe2359d0438a8917ab2a9d2ddeaa = echarts.init(document.getElementById('897bbe2359d0438a8917ab2a9d2ddeaa'), 'light', {renderer: 'canvas'});
 
-var option_4b8040a5257d4c2ca88a1e4432aa1afe = {
+var option_897bbe2359d0438a8917ab2a9d2ddeaa = {
     "title": [
         {
             "text": "\u5404\u7701\u4e0a\u5e02\u516c\u53f8\u6570\u91cf",
@@ -70927,7 +70958,7 @@ var option_4b8040a5257d4c2ca88a1e4432aa1afe = {
             }
         }
     },
-    "series_id": 8304179,
+    "series_id": 2274933,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -71161,7 +71192,7 @@ var option_4b8040a5257d4c2ca88a1e4432aa1afe = {
         "showLabel": true
     }
 };
-myChart_4b8040a5257d4c2ca88a1e4432aa1afe.setOption(option_4b8040a5257d4c2ca88a1e4432aa1afe);
+myChart_897bbe2359d0438a8917ab2a9d2ddeaa.setOption(option_897bbe2359d0438a8917ab2a9d2ddeaa);
 
 </script>
 </body>
