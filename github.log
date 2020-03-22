@@ -11274,3 +11274,11 @@
 20200322 11:53:32.98 push to github complete 
  
 20200322 12:58:13.43 start push to github 
+[master 0320518] update 20200322 12:58:14.28
+ 4 files changed, 7 insertions(+)
+ create mode 100644 my_model/metadata.json
+ create mode 100644 my_model/model.json
+ create mode 100644 my_model/weights.bin
+20200322 12:58:33.74 push to github complete 
+ 
+20200322 13:03:48.06 start push to github 
