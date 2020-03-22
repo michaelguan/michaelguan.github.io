@@ -1,7 +1,6 @@
 <html>
 <body>
 <div>Teachable Machine Pose Model</div>
-<button type="button" onclick="init()">Start</button>
 <div><canvas id="canvas"></canvas></div>
 <div id="label-container"></div>
 <script src="tf.min.js"></script>
@@ -14,7 +13,7 @@
     const URL = "./";
     let model, webcam, ctx, labelContainer, maxPredictions;
 
-     function init() {
+    async function init() {
         const modelURL = URL + "model.json";
         const metadataURL = URL + "metadata.json";
 
@@ -42,13 +41,13 @@
         }
     }
 
-     function loop(timestamp) {
+    async function loop(timestamp) {
         webcam.update(); // update the webcam frame
         await predict();
         window.requestAnimationFrame(loop);
     }
 
-     function predict() {
+    async function predict() {
         // Prediction #1: run input through posenet
         // estimatePose can take in an image, video or canvas html element
         const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
@@ -77,5 +76,6 @@
         }
     }
 </script>
+<button type="button" onclick="init()">Start</button>
 </body>
 </html>
