@@ -11294,3 +11294,10 @@
 20200322 13:38:35.78 push to github complete 
  
 20200322 13:46:59.29 start push to github 
+[master ffdb54e] update 20200322 13:47:00.31
+ 4 files changed, 150 insertions(+), 2 deletions(-)
+ create mode 100644 my_model/teachablemachine-pose.min.js
+ create mode 100644 my_model/tf.min.js
+20200322 13:47:36.16 push to github complete 
+ 
+20200322 13:51:41.55 start push to github 

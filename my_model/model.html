@@ -14,7 +14,7 @@
     const URL = "./";
     let model, webcam, ctx, labelContainer, maxPredictions;
 
-    async function init() {
+     function init() {
         const modelURL = URL + "model.json";
         const metadataURL = URL + "metadata.json";
 
@@ -42,13 +42,13 @@
         }
     }
 
-    async function loop(timestamp) {
+     function loop(timestamp) {
         webcam.update(); // update the webcam frame
         await predict();
         window.requestAnimationFrame(loop);
     }
 
-    async function predict() {
+     function predict() {
         // Prediction #1: run input through posenet
         // estimatePose can take in an image, video or canvas html element
         const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
