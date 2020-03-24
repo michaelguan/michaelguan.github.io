@@ -11327,3 +11327,15 @@
 20200322 14:16:29.10 push to github complete 
  
 20200323 18:59:45.47 start push to github 
+[master c867592] update 20200323 19:01:41.44
+ 139 files changed, 809179 insertions(+), 806743 deletions(-)
+ delete mode 100644 my_model/metadata.json
+ delete mode 100644 my_model/model.html
+ delete mode 100644 my_model/model.json
+ delete mode 100644 my_model/teachablemachine-pose.min.js
+ delete mode 100644 my_model/tf.min.js
+ delete mode 100644 my_model/weights.bin
+ delete mode 100644 weights.bin
+20200323 19:02:11.52 push to github complete 
+ 
+20200324 19:27:29.74 start push to github 
