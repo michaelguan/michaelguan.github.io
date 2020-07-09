@@ -11832,3 +11832,21 @@
 20200707 20:05:26.95 start push to github 
 20200707 20:07:49.26 start push to github 
 20200708  8:15:19.67 start push to github 
+[master 3e4c47e] update 20200708  8:18:29.69
+ 216 files changed, 2021403 insertions(+), 1261121 deletions(-)
+ create mode 100644 "stockreport/TCL\347\247\221\346\212\200.html"
+ create mode 100644 "stockreport/\344\270\255\344\277\241\345\273\272\346\212\225.html"
+ create mode 100644 "stockreport/\344\270\255\345\233\275\345\271\277\346\240\270.html"
+ create mode 100644 "stockreport/\344\270\255\345\233\275\351\223\266\346\262\263.html"
+ create mode 100644 "stockreport/\344\270\255\346\265\267\346\262\271\346\234\215.html"
+ create mode 100644 "stockreport/\344\270\255\347\216\257\350\202\241\344\273\275.html"
+ create mode 100644 "stockreport/\344\270\255\350\277\234\346\265\267\350\203\275.html"
+ create mode 100644 "stockreport/\345\233\275\344\277\241\350\257\201\345\210\270.html"
+ create mode 100644 "stockreport/\346\241\202\345\206\240\347\224\265\345\212\233.html"
+ create mode 100644 "stockreport/\346\260\270\350\276\211\350\266\205\345\270\202.html"
+ create mode 100644 "stockreport/\347\224\263\344\270\207\345\256\217\346\272\220.html"
+ create mode 100644 "stockreport/\347\231\276\345\202\262\345\214\226\345\255\246.html"
+ create mode 100644 "stockreport/\350\211\276\350\277\252\347\262\276\345\257\206.html"
+20200708  8:19:30.93 push to github complete 
+ 
+20200709 18:41:26.86 start push to github 
