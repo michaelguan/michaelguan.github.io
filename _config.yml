@@ -17,9 +17,7 @@ kramdown:
 
 # 静态文件
 exclude:
-  - libs/
-  - pages/
-  - deploy.sh
+      - deploy.sh
   - run.bat
   - CLAUDE.md
   - README.md
