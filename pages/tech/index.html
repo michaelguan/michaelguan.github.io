@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>技术 · Michael's Blog</title>
+  <link rel="stylesheet" href="/libs/css/reset.css">
+  <link rel="stylesheet" href="/libs/css/theme.css">
+  <link rel="stylesheet" href="/libs/css/category.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">跳转到主要内容</a>
+
+  <main id="main" role="main" class="category-page" data-category="tech">
+
+    <!-- Cover -->
+    <header class="category-cover">
+      <div class="container">
+        <span class="category-eyebrow">分类 / #tech</span>
+        <h1 class="category-title">技术笔记</h1>
+        <p class="category-deck">后端、前端、架构、工具链、最佳实践</p>
+      </div>
+    </header>
+
+    <!-- Featured (first article highlighted) -->
+    <section class="container featured-section">
+      <article class="article-feature">
+        <a href="/pages/tech/hello-world.html" data-frame-link target="content-frame" class="article-link feature-link">
+          <div class="feature-meta">
+            <span class="article-category-tag" data-variation="tech">技术</span>
+            <time class="article-date" datetime="2025-01-15">01月15日 · 6 分钟</time>
+          </div>
+          <h2 class="feature-title">Hello World — 博客上线</h2>
+          <p class="feature-excerpt">
+            新博客框架搭建完成：纯静态 HTML/CSS/JS + iframe 路由。
+            阅读从零开始的技术选型、目录结构与实现细节，
+            包含了三栏布局、CSS 变量主题、Hash + iframe 路由。
+          </p>
+          <span class="feature-read">阅读全文 →</span>
+        </a>
+      </article>
+    </section>
+
+    <!-- Article List -->
+    <section class="container article-listing-section">
+      <h2 class="listing-title">全部文章 · 3</h2>
+      <ul class="article-list">
+        <li class="article-item">
+          <article>
+            <a href="/pages/tech/hello-world.html" data-frame-link target="content-frame" class="article-link">
+              <div class="article-item-meta">
+                <time datetime="2025-01-15">01-15</time>
+                <span class="meta-sep">·</span>
+                <span>6 分钟</span>
+              </div>
+              <h3 class="article-item-title">Hello World — 博客上线</h3>
+              <p class="article-item-excerpt">
+                新博客框架搭建完成：纯静态 HTML/CSS/JS + iframe 路由。记录从零开始的技术选型与实现细节。
+              </p>
+              <ul class="tag-row">
+                <li>css</li>
+                <li>theming</li>
+                <li>router</li>
+              </ul>
+            </a>
+          </article>
+        </li>
+        <li class="article-item">
+          <article>
+            <a href="/pages/tech/css-variables-theme.html" data-frame-link target="content-frame" class="article-link">
+              <div class="article-item-meta">
+                <time datetime="2025-01-20">01-20</time>
+                <span class="meta-sep">·</span>
+                <span>8 分钟</span>
+              </div>
+              <h3 class="article-item-title">CSS 变量驱动的主题系统实战</h3>
+              <p class="article-item-excerpt">
+                从设计令牌到自动暗色模式，用原生 CSS Custom Properties 构建可维护、零运行时的主题切换方案。
+              </p>
+              <ul class="tag-row">
+                <li>css</li>
+                <li>theming</li>
+              </ul>
+            </a>
+          </article>
+        </li>
+        <li class="article-item">
+          <article>
+            <a href="/pages/tech/vanilla-js-router.html" data-frame-link target="content-frame" class="article-link">
+              <div class="article-item-meta">
+                <time datetime="2025-01-25">01-25</time>
+                <span class="meta-sep">·</span>
+                <span>10 分钟</span>
+              </div>
+              <h3 class="article-item-title">100 行实现 SPA 路由：History API + iframe 方案</h3>
+              <p class="article-item-excerpt">
+                不依赖 React/Vue，原生 JS 实现浏览器前进/后退、iframe 通信、滚动恢复、懒加载的完整路由方案。
+              </p>
+              <ul class="tag-row">
+                <li>javascript</li>
+                <li>spa</li>
+              </ul>
+            </a>
+          </article>
+        </li>
+      </ul>
+
+      <nav class="pagination" aria-label="分页">
+        <button type="button" disabled aria-label="上一页">← 新</button>
+        <span class="pagination-status">第 1 / 1 页</span>
+        <button type="button" disabled aria-label="下一页">旧 →</button>
+      </nav>
+    </section>
+  </main>
+
+  <script src="/libs/js/router.js"></script>
+</body>
+</html>

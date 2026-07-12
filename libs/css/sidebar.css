@@ -1,0 +1,187 @@
+/* ==========================================================================
+   sidebar.css — 右栏 widgets
+   ========================================================================= */
+
+/* --------------------------------------------------------------------------
+   Card basic
+   -------------------------------------------------------------------------- */
+.card {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  box-shadow: var(--shadow-xs);
+  transition: box-shadow var(--transition-base);
+}
+.card:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.card-title {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-subtle);
+  margin: 0;
+}
+.card-more {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+.card-more:hover { color: var(--accent); }
+.card-more svg { width: 12px; height: 12px; stroke-width: 2.2; }
+
+/* --------------------------------------------------------------------------
+   Recent list
+   -------------------------------------------------------------------------- */
+.recent-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.recent-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border-base);
+  margin: 0;
+}
+.recent-list li:last-child { border-bottom: none; }
+
+.recent-marker {
+  width: 8px;
+  height: 8px;
+  margin-top: 8px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px var(--accent-faint);
+}
+.recent-marker[data-category="game"] { background: var(--accent-success); box-shadow: 0 0 0 3px var(--accent-success-soft); }
+.recent-marker[data-category="life"] { background: var(--accent-warm); box-shadow: 0 0 0 3px var(--accent-warm-soft); }
+
+.recent-meta { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.recent-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.recent-title:hover { color: var(--accent); }
+.recent-date {
+  font-size: var(--text-xs);
+  color: var(--text-subtle);
+}
+
+/* --------------------------------------------------------------------------
+   Stats card
+   -------------------------------------------------------------------------- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+.stat-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--surface-soft);
+  transition: background var(--transition-fast);
+}
+.stat-cell:hover { background: var(--accent-faint); }
+.stat-value {
+  font-family: var(--font-sans);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.stat-label {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* --------------------------------------------------------------------------
+   Quote / motto card
+   -------------------------------------------------------------------------- */
+.motto-card {
+  position: relative;
+  background: linear-gradient(140deg, var(--accent-faint) 0%, var(--surface-elevated) 100%);
+  border-color: var(--accent-soft);
+  padding: var(--space-5);
+  gap: var(--space-3);
+}
+@media (prefers-color-scheme: dark) {
+  .motto-card {
+    background: linear-gradient(140deg, rgba(99, 102, 241, 0.08) 0%, var(--surface-elevated) 100%);
+  }
+}
+.motto-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: var(--text-inverse);
+}
+.motto-mark svg { width: 16px; height: 16px; }
+.motto-text {
+  font-family: var(--font-serif);
+  font-size: var(--text-md);
+  line-height: var(--leading-snug);
+  color: var(--text-primary);
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.motto-author {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   右栏收起态
+   -------------------------------------------------------------------------- */
+.app-layout[data-right-collapsed="true"] .right-rail > * {
+  display: none;
+}
+.app-layout[data-right-collapsed="true"] .right-rail {
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  pointer-events: none;
+  overflow: hidden;
+}

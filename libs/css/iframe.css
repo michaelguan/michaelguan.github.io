@@ -1,0 +1,98 @@
+/* ==========================================================================
+   iframe.css — iframe 加载、过渡、错误态（单一职责：所有 .content-frame* 样式）
+   ========================================================================= */
+
+.content-frame-container {
+  position: relative;
+  flex: 1;
+  min-height: 70vh;
+  background: var(--surface-base);
+  /* 高度跟随 iframe inline style.height（由 router.js 按内容自适应），
+     仅保留 min-height 作首次测量前的兜底，不裁剪溢出 */
+}
+
+/* iframe 本体 */
+.content-frame-container iframe {
+  display: block;
+  width: 100%;
+  min-height: 70vh;
+  border: none;
+  background: var(--surface-base);
+  transition: opacity var(--transition-base);
+}
+.content-frame-container iframe.is-loading { opacity: 0; }
+
+/* Loading overlay — 全屏覆盖加载层 */
+.content-frame-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--surface-base);
+  z-index: 2;
+  opacity: 1;
+  transition: opacity var(--transition-base);
+  pointer-events: none;
+}
+.content-frame-container.is-loaded::before { opacity: 0; pointer-events: none; }
+
+/* 加载完成时 iframe 入场 */
+.content-frame-container.is-loaded iframe {
+  animation: iframe-fade-in 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@keyframes iframe-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Skeleton pulse — 加载条 */
+.content-frame-container::after {
+  content: "";
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 6px;
+  background: var(--surface-strong);
+  border-radius: var(--radius-full);
+  z-index: 3;
+  opacity: 1;
+  animation: iframe-pulse 1.4s ease-in-out infinite;
+  transition: opacity var(--transition-base);
+  box-shadow:
+    -80px 0 0 var(--accent-faint),
+    80px 0 0 var(--accent-warm-faint);
+}
+.content-frame-container.is-loaded::after {
+  opacity: 0;
+  pointer-events: none;
+}
+@keyframes iframe-pulse {
+  0%, 100% { transform: translateX(-50%) scaleX(0.85); opacity: 0.7; }
+  50% { transform: translateX(-50%) scaleX(1); opacity: 1; }
+}
+
+/* Error — 通过 data-error 属性显示错误文案 */
+.content-frame-container.has-error iframe { display: none; }
+.content-frame-container.has-error::after { display: none; }
+.content-frame-container.has-error::before {
+  content: attr(data-error);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  text-align: center;
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  min-height: 280px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .content-frame-container.is-loaded iframe,
+  .content-frame-container::after {
+    animation: none !important;
+  }
+}

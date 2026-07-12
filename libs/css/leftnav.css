@@ -1,0 +1,361 @@
+/* ==========================================================================
+   leftnav.css — 左栏分类索引（书签式卡片，支持二级菜单展开）
+   ========================================================================= */
+
+/* --------------------------------------------------------------------------
+   Section container
+   -------------------------------------------------------------------------- */
+.rail-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.left-section-title {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: var(--text-subtle);
+  padding: 0 var(--space-3);
+  margin-bottom: var(--space-1);
+}
+
+/* --------------------------------------------------------------------------
+   Primary navigation items
+   -------------------------------------------------------------------------- */
+.left-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/* "全部" 入口 */
+.nav-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 10px var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+  text-align: left;
+}
+
+/* 左侧色条书签（仅一级分类） */
+.nav-item[data-category]:not([data-category="home"])::before {
+  content: "";
+  position: absolute;
+  left: -1px; top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0%;
+  background: currentColor;
+  border-radius: var(--radius-xs);
+  transition: height var(--transition-base);
+}
+
+.nav-item:hover,
+.nav-item:focus-visible {
+  background: var(--surface-soft);
+  color: var(--text-primary);
+  outline: none;
+}
+
+.nav-item[aria-current="page"],
+.nav-item.is-active {
+  background: var(--accent-faint);
+  color: var(--accent);
+  font-weight: 600;
+}
+.nav-item[aria-current="page"]::before,
+.nav-item.is-active::before {
+  height: 60%;
+}
+.nav-item[aria-current="page"]:hover,
+.nav-item.is-active:hover {
+  background: var(--accent-soft);
+  color: var(--accent-hover);
+}
+
+/* Per-category colors */
+.nav-item[data-category="home"] { --cat-color: var(--text-secondary); }
+.nav-item[data-category="tech"] { --cat-color: var(--accent); }
+.nav-item[data-category="game"] { --cat-color: var(--accent-success); }
+.nav-item[data-category="life"] { --cat-color: var(--accent-warm); }
+
+.nav-item[aria-current="page"][data-category="game"],
+.nav-item.is-active[data-category="game"],
+.nav-item[aria-current="page"][data-category="game"]:hover,
+.nav-item.is-active[data-category="game"]:hover {
+  color: var(--accent-success);
+  background: var(--accent-success-soft);
+}
+.nav-item[aria-current="page"][data-category="life"],
+.nav-item.is-active[data-category="life"],
+.nav-item[aria-current="page"][data-category="life"]:hover,
+.nav-item.is-active[data-category="life"]:hover {
+  color: var(--accent-warm);
+  background: var(--accent-warm-faint);
+}
+.nav-item[aria-current="page"][data-category="life"]:hover,
+.nav-item.is-active[data-category="life"]:hover {
+  background: var(--accent-warm-soft);
+}
+
+.nav-item-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px; height: 22px;
+  flex-shrink: 0;
+}
+.nav-item-icon svg { width: 18px; height: 18px; stroke-width: 2; }
+
+.nav-item-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-item-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--text-secondary);
+  background: var(--surface-soft);
+  border-radius: var(--radius-full);
+}
+.nav-item[aria-current="page"] .nav-item-badge,
+.nav-item.is-active .nav-item-badge {
+  background: var(--surface-elevated);
+  color: currentColor;
+  box-shadow: var(--shadow-xs);
+}
+
+/* --------------------------------------------------------------------------
+   Expand chevron + 展开按钮
+   -------------------------------------------------------------------------- */
+.nav-item-expand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-left: auto;
+  border: none;
+  background: transparent;
+  color: var(--text-subtle);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-base);
+  position: relative;
+  z-index: 1;  /* 拦截点击，不能冒泡到 nav-item */
+  flex-shrink: 0;
+}
+.nav-item-expand:hover,
+.nav-item-expand:focus-visible {
+  background: var(--surface-elevated);
+  color: var(--text-primary);
+}
+.nav-item-expand svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2.2;
+}
+.nav-item.is-expanded .nav-item-expand svg {
+  transform: rotate(90deg);
+}
+
+/* --------------------------------------------------------------------------
+   Sub-navigation (二级菜单)
+   -------------------------------------------------------------------------- */
+.subnav {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--transition-base);
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--space-2);
+}
+.subnav.is-open {
+  grid-template-rows: 1fr;
+}
+.subnav-inner {
+  overflow: hidden;
+}
+
+.subnav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-1) 0 var(--space-2) var(--space-7);
+  margin: 0;
+  border-left: 1px dashed var(--border-base);
+  margin-left: var(--space-5);
+}
+.subnav-list li {
+  margin: 0;
+}
+
+.subnav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 10px;
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.subnav-item:hover,
+.subnav-item:focus-visible {
+  background: var(--accent-faint);
+  color: var(--text-primary);
+}
+.subnav-item:hover,
+.subnav-item:focus-visible {
+  color: var(--accent);
+}
+.subnav-item.is-current {
+  color: var(--text-primary);
+  font-weight: 600;
+  background: var(--surface-soft);
+}
+
+.subnav-marker {
+  display: inline-block;
+  width: 4px; height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--text-subtle);
+  flex-shrink: 0;
+}
+.subnav-item:hover .subnav-marker,
+.subnav-item.is-current .subnav-marker {
+  background: var(--accent);
+}
+.subnav-item[data-category="game"]:hover ~ * .subnav-marker,
+.subnav-item[data-var="game"] .subnav-marker { background: var(--accent-success); }
+.subnav-item[data-var="life"] .subnav-marker { background: var(--accent-warm); }
+
+/* --------------------------------------------------------------------------
+   "全部" / all 按钮
+   -------------------------------------------------------------------------- */
+.nav-item.is-active[data-category="all"],
+.nav-item[aria-current="page"][data-category="all"] {
+  background: var(--surface-soft);
+  color: var(--text-primary);
+}
+.nav-item.is-active[data-category="all"]:hover,
+.nav-item[aria-current="page"][data-category="all"]:hover {
+  background: var(--surface-strong);
+}
+
+/* --------------------------------------------------------------------------
+   Section divider
+   -------------------------------------------------------------------------- */
+.left-section-divider {
+  height: 1px;
+  background: var(--border-base);
+  margin: var(--space-3) 0;
+}
+
+/* --------------------------------------------------------------------------
+   Quick links  (订阅等)
+   -------------------------------------------------------------------------- */
+.left-quick {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* --------------------------------------------------------------------------
+   Tooltip when collapsed
+   -------------------------------------------------------------------------- */
+.rail-tooltip {
+  position: absolute;
+  left: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 6px 10px;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--text-inverse);
+  background: var(--text-primary);
+  border-radius: var(--radius-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  z-index: var(--z-overlay);
+  box-shadow: var(--shadow-md);
+}
+.rail-tooltip::before {
+  content: "";
+  position: absolute;
+  right: 100%; top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-right-color: var(--text-primary);
+}
+.nav-item:hover .rail-tooltip,
+.subnav-item:hover .rail-tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(2px);
+}
+
+@media (max-width: 768px) {
+  .rail-tooltip { display: none; }
+}
+
+/* --------------------------------------------------------------------------
+   收起时的特殊样式
+   -------------------------------------------------------------------------- */
+.app-layout[data-left-collapsed="true"] .left-nav,
+.app-layout[data-left-collapsed="true"] .subnav {
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+}
+.app-layout[data-left-collapsed="true"] .nav-item {
+  padding: 0;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+}
+.app-layout[data-left-collapsed="true"] .nav-item-label,
+.app-layout[data-left-collapsed="true"] .nav-item-badge,
+.app-layout[data-left-collapsed="true"] .nav-item-expand,
+.app-layout[data-left-collapsed="true"] .left-section-title,
+.app-layout[data-left-collapsed="true"] .left-section-divider,
+.app-layout[data-left-collapsed="true"] .subnav {
+  display: none;
+}

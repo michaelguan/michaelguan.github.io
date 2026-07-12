@@ -1,0 +1,95 @@
+/* ==========================================================================
+   main.css — 中间内容区的页面级样式（仅索引页本身）
+   iframe 容器本身的样式在 iframe.css 中定义（避免职责分散）
+   ========================================================================= */
+
+.content-panel {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+  display: flex;
+  flex-direction: column;
+}
+
+/* --------------------------------------------------------------------------
+   Content Toolbar (面包屑 + 当前分类信息)
+   -------------------------------------------------------------------------- */
+.content-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--border-base);
+  background: var(--surface-elevated);
+  flex-shrink: 0;
+}
+.content-toolbar-left,
+.content-toolbar-right {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.crumb:hover { color: var(--accent); }
+.crumb svg { width: 14px; height: 14px; }
+.crumb-current {
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.crumb-divider { color: var(--text-subtle); margin: 0 4px; }
+
+.content-toolbar-count {
+  font-size: var(--text-xs);
+  color: var(--text-subtle);
+  background: var(--surface-soft);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+}
+
+/* 视图切换 */
+.view-switch {
+  display: inline-flex;
+  align-items: center;
+  background: var(--surface-soft);
+  border-radius: var(--radius-md);
+  padding: 2px;
+}
+.view-switch button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.view-switch button:hover,
+.view-switch button:focus-visible { color: var(--text-primary); }
+.view-switch button[aria-pressed="true"] {
+  background: var(--surface-elevated);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-xs);
+}
+.view-switch svg { width: 14px; height: 14px; stroke-width: 2.2; }
+
+/* --------------------------------------------------------------------------
+   Compact mode — 当两栏都收起时让中央拉伸
+   -------------------------------------------------------------------------- */
+.app-layout[data-left-collapsed="true"][data-right-collapsed="true"] .content-panel {
+  box-shadow: var(--shadow-md);
+}

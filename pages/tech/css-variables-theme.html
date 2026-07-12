@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS 变量驱动的主题系统实战 · 技术 · Michael's Blog</title>
+  <link rel="stylesheet" href="/libs/css/reset.css">
+  <link rel="stylesheet" href="/libs/css/theme.css">
+  <link rel="stylesheet" href="/libs/css/article.css">
+</head>
+<body>
+  <main role="main" class="article-page">
+    <article class="article-shell">
+      <header class="article-header">
+        <div class="article-meta-top">
+          <span class="article-category-tag" data-variation="tech">tech</span>
+          <span class="article-time">01月20日 · 8 分钟</span>
+        </div>
+
+        <h1 class="article-title">CSS 变量驱动的主题系统实战</h1>
+        <p class="article-deck">从设计令牌到自动暗色模式，用原生 CSS Custom Properties 构建可维护、零运行时的主题切换方案。</p>
+      </header>
+
+      <div class="article-body">
+        <p>对于个人博客而言，「引入构建工具」显得过于重量级。但是「现代化设计」（浅 / 深色、CSS Variables、token 系统、Typography scale）依然是可追求的目标。<strong>原生 CSS 已经足够强大</strong>。</p>
+
+        <h2>为什么不用 Tailwind / CSS-in-JS？</h2>
+        <ul>
+          <li><strong>零依赖</strong>：没有 node_modules，没有构建脚本</li>
+          <li><strong>运行时可动态修改</strong>：JS 修改 CSS Variables，立即生效（用于主题切换）</li>
+          <li><strong>原生支持</strong>：所有现代浏览器，从基础层一路兼容到 IE（如果不关心 IE 老版本）</li>
+          <li><strong>无运行时开销</strong>：浏览器原生解析</li>
+        </ul>
+
+        <h2>两层变量架构</h2>
+
+        <h3>Layer 1: 原始 Primitive</h3>
+        <p>为饱和度与色阶规划选择抽象值。Indigo 与 Amber 是台面上选择，避免 generics。</p>
+        <pre><code>:root {
+  /* Indigo brand */
+  --indigo-500: #6366F1;
+  --indigo-600: #4F46E5;
+  --indigo-700: #4338CA;
+  --indigo-800: #3730A3;
+
+  /* Amber accent */
+  --amber-500: #F59E0B;
+  --amber-600: #D97706;
+
+  /* Neutral */
+  --neutral-50:  #F7F5F0;
+  --neutral-500: #78716C;
+  --neutral-900: #1C1917;
+}</code></pre>
+
+        <h3>Layer 2: 语义化 Semantic</h3>
+        <p>组件只引用语义变量，不写原始颜色。主题切换时只需覆盖 Layer 2，原始变量保持不动。</p>
+        <pre><code>:root {
+  --surface-base:      var(--neutral-50);
+  --text-primary:      var(--neutral-900);
+  --text-secondary:    var(--neutral-500);
+  --accent:            var(--indigo-600);
+  --border-base:       var(--neutral-200);
+}</code></pre>
+
+        <h2>暗色模式：三种策略</h2>
+
+        <h3>Strategy A. 仅跟随系统</h3>
+        <p>最简单的方式是不需任何 JS，浏览器自己照顾好。</p>
+        <pre><code>@media (prefers-color-scheme: dark) {
+  :root {
+    --surface-base: var(--neutral-975);
+    --text-primary: var(--neutral-50);
+    --accent:       var(--indigo-400);
+  }
+}</code></pre>
+
+        <h3>Strategy B. 手动 + 本地存储</h3>
+        <p>对作品品质而言，最好的设计是说出「你说了算」。允许用户在「系统、浅、深」之间选择，并将偏好写入 <code>localStorage</code>。</p>
+        <pre><code>function setTheme(mode) {
+  if (mode === 'system') {
+    delete document.documentElement.dataset.theme;
+  } else {
+    document.documentElement.dataset.theme = mode;
+  }
+  localStorage.setItem('theme', mode);
+}
+
+// Initialize
+const saved = localStorage.getItem('theme') || 'system';
+setTheme(saved);</code></pre>
+
+        <h3>Strategy C. CSS-only (无 JS)</h3>
+        <p>可用 <code>@media</code> + <code>:has()</code> 或 checkbox hack，但体验不如 JS 灵活。作者会避免 C 路线。</p>
+
+        <h2>避坑指南</h2>
+        <ul>
+          <li><strong>不要滥用变量</strong>：一次性使用的值直接写硬代码</li>
+          <li><strong>变量名用语义而非值</strong>：<code>--accent</code> 好过 <code>--blue-600</code></li>
+          <li><strong>测试图片在深色模式下的可读性</strong>：透明 PNG 在深底可能不可见</li>
+          <li><strong>记得打印样式</strong>：<code>@media print</code> 里重置为浅色避免浪费墨水</li>
+        </ul>
+
+        <hr>
+
+        <blockquote>
+          一个现代博客不需要架架、一个 CSS framework 仅靠 CSS 变量就可以可信任地撑住。
+        </blockquote>
+      </div>
+
+      <footer class="article-footer">
+        <a href="/pages/tech/index.html" data-frame-link target="content-frame" class="article-back-link">← 返回技术笔记</a>
+        <a href="/" target="_top" class="article-back-home-link">回到首页</a>
+      </footer>
+    </article>
+  </main>
+
+  <script src="/libs/js/router.js"></script>
+</body>
+</html>

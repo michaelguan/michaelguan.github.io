@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello World — 博客上线 · 技术 · Michael's Blog</title>
+  <link rel="stylesheet" href="/libs/css/reset.css">
+  <link rel="stylesheet" href="/libs/css/theme.css">
+  <link rel="stylesheet" href="/libs/css/article.css">
+</head>
+<body>
+  <main role="main" class="article-page">
+    <article class="article-shell">
+      <header class="article-header">
+        <div class="article-meta-top">
+          <span class="article-category-tag" data-variation="tech">tech</span>
+          <span class="article-time">01月15日 · 6 分钟</span>
+        </div>
+
+        <h1 class="article-title">Hello World — 博客上线</h1>
+        <p class="article-deck">新博客框架搭建完成：纯静态 HTML / CSS / JS + iframe 路由。记录从零开始的技术选型与实现细节。</p>
+
+        <div class="article-meta-rows">
+          <span class="article-meta-row"><span>signature:</span> <strong>3-column layout</strong></span>
+          <span class="article-meta-row"><span>stack:</span> <strong>Vanilla JS</strong></span>
+        </div>
+      </header>
+
+      <div class="article-body">
+        <p>新的博客已经搭建完成。整个站点采用<strong>纯静态 HTML / CSS / JS</strong>，没有构建步骤、没有依赖、没有框架。这种「最简单」的选择，反而最适合作者气质——我把这种坚持叫做<em>反向最小化（Reverse Minimal）</em>。</p>
+
+        <h2>为什么重写？</h2>
+        <p>原有的 michaelguan.github.io 是一个「诗词大冒险」小游戏加杂乱的个人页面。我想要一个真正属于自己的博客，记录技术思考、游戏感想、生活碎片。要求：</p>
+        <ul>
+          <li>零依赖、零构建、零配置</li>
+          <li>GitHub Pages 原生部署</li>
+          <li>现代化视觉，支持暗色模式</li>
+          <li>分类导航，三栏阅读体验</li>
+        </ul>
+
+        <h2>技术栈</h2>
+        <p>这次重写几乎不引入任何外部依赖。所有的决策都基于「老派工程师」的偏好：能原生解决就原生解决。</p>
+        <table>
+          <thead>
+            <tr>
+              <th>层级</th>
+              <th>选择</th>
+              <th>理由</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>HTML</td>
+              <td>语义化标签</td>
+              <td>SEO、无障碍、可维护</td>
+            </tr>
+            <tr>
+              <td>CSS</td>
+              <td>CSS 变量 + 模块文件</td>
+              <td>主题系统、无运行时、原生</td>
+            </tr>
+            <tr>
+              <td>JS</td>
+              <td>Vanilla ES6+ (router.js)</td>
+              <td>History API、iframe 通信， < 3KB</td>
+            </tr>
+            <tr>
+              <td>部署</td>
+              <td>GitHub Pages</td>
+              <td>免费、自动 HTTPS、自定义域名</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>核心实现：iframe 与 SPA 的折中</h2>
+        <p>采用 <code>index.html</code> 作为框架页 + 内容 iframe。点击导航切换 iframe src + <code>history.pushState</code>。浏览器前进/后退通过 popstate 同步。</p>
+
+        <h3>CAVEAT — Iframe 通讯的限制</h3>
+        <p>每篇文章页是独立 http 请求。SEO 上无法索引（搜索引擎有时跳过 iframe content），但对于「个人展示」而言是可接受折中。如果未来流量成为目标，可以引入 11ty、VitePress 等静态生成工具。</p>
+
+        <h2>目录结构</h2>
+        <p>三栏布局：左栏分类书签、右栏 about + tags，中间内容容器（iframe）。</p>
+        <pre><code>michaelguan.github.io/
+├── index.html              # 框架页
+├── libs/
+│   ├── css/                # theme, layout, leftnav, sidebar, main, iframe, article, category
+│   └── js/                 # layout, router
+├── pages/
+│   ├── tech/               # 技术分类
+│   ├── game/               # 游戏分类
+│   └── life/               # 生活分类
+└── deploy.sh</code></pre>
+
+        <h2>后续计划</h2>
+        <ul>
+          <li>代码高亮（Prism.js / highlight.js）</li>
+          <li>RSS 订阅、Sitemap 生成</li>
+          <li>评论系统（Giscus / Utterances）</li>
+          <li>全文搜索（Pagefind）</li>
+          <li>构建脚本引入</li>
+        </ul>
+
+        <hr>
+
+        <blockquote>
+          写一个干净的 Site，需要的不是工具，是概念。
+          关于「我是谁」、「我要什么」、「我要为谁说话」。
+        </blockquote>
+      </div>
+
+      <footer class="article-footer">
+        <a href="/pages/tech/index.html" data-frame-link target="content-frame" class="article-back-link">← 返回技术笔记</a>
+        <a href="/" target="_top" class="article-back-home-link">回到首页</a>
+      </footer>
+    </article>
+  </main>
+
+  <script src="/libs/js/router.js"></script>
+</body>
+</html>

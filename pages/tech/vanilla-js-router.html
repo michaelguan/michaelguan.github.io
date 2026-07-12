@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>100 行实现 SPA 路由 · 技术 · Michael's Blog</title>
+  <link rel="stylesheet" href="/libs/css/reset.css">
+  <link rel="stylesheet" href="/libs/css/theme.css">
+  <link rel="stylesheet" href="/libs/css/article.css">
+</head>
+<body>
+  <main role="main" class="article-page">
+    <article class="article-shell">
+      <header class="article-header">
+        <div class="article-meta-top">
+          <span class="article-category-tag" data-variation="tech">tech</span>
+          <span class="article-time">01月25日 · 10 分钟</span>
+        </div>
+
+        <h1 class="article-title">100 行实现 SPA 路由：History API + iframe 方案</h1>
+        <p class="article-deck">不依赖 React / Vue，原生 JS 实现浏览器前进/后退、iframe 通信、滚动恢复、懒加载的完整路由方案。</p>
+      </header>
+
+      <div class="article-body">
+        <p>这个 100 行的路由核心能为你撑住一个中型博客的全部客户端路由需求。不是示范，是生产代码。本文详细拆解设计思路与实现路径。</p>
+
+        <h2>核心思路</h2>
+        <p>本博客采用「框架页 + iframe 内容页」双层架构：</p>
+        <ul>
+          <li><strong>index.html</strong>：外壳，包含导航栏、左栏、三栏布局、主内容容器（<code><iframe name="content-frame"></iframe></code>）、页脚</li>
+          <li><strong>内容页</strong>：嵌入分类列表 / 文章详情，于 iframe 中独立渲染</li>
+          <li><strong>点击导航链接</strong> → 修改 iframe <code>src</code> + <code>history.pushState</code></li>
+          <li><strong>浏览器前进/后退</strong> → 监听 <code>popstate</code> 同步 iframe</li>
+          <li><strong>iframe 内部链接</strong>用 <code>target="content-frame"</code>保持在框架内</li>
+        </ul>
+
+        <h2>router.js 实现</h2>
+        <p>所有逻辑集中在一个 IIFE 里，避免污染全局命名空间。</p>
+        <pre><code>(function () {
+  'use strict';
+
+  const ROUTES = {
+    home: '/index.html',
+    tech: '/pages/tech/index.html',
+    game: '/pages/game/index.html',
+    life: '/pages/life/index.html',
+    '':    '/pages/tech/index.html'
+  };
+
+  const frame = document.querySelector('.content-frame');
+  let currentRoute = '';
+
+  function getRouteFromHash() {
+    const hash = window.location.hash.slice(1);
+    return ROUTES.hasOwnProperty(hash) ? hash : 'tech';
+  }
+
+  function navigate(route, pushState) {
+    if (ROUTES[route]) frame.src = ROUTES[route];
+    currentRoute = route;
+    setActiveLink(route);
+    if (pushState !== false) {
+      const newHash = route === 'tech' ? '' : '#' + route;
+      history.pushState({ route }, '', newHash);
+    }
+  }
+
+  window.addEventListener('hashchange', () => {
+    navigate(getRouteFromHash(), false);
+  });
+
+  window.addEventListener('popstate', e => {
+    const route = e.state?.route || getRouteFromHash();
+    navigate(route, false);
+  });
+
+  document.querySelectorAll('.nav-item[data-category]').forEach(link => {
+    link.addEventListener('click', function (e) {
+      const route = this.dataset.category;
+      if (route && ROUTES[route]) {
+        e.preventDefault();
+        navigate(route);
+      }
+    });
+  });
+})();</code></pre>
+
+        <h2>iframe 加载状态管理</h2>
+        <p>主页面监听 iframe 的 <code>load</code> / <code>error</code> 事件，控制加载、错误、成功三态。</p>
+        <pre><code>frame.addEventListener('load', () => {
+  frame.classList.remove('is-loading');
+  container.classList.add('is-loaded');
+});
+
+frame.addEventListener('error', () => {
+  container.classList.add('has-error');
+});</code></pre>
+
+        <h2>优缺点权衡</h2>
+        <table>
+          <thead>
+            <tr><th>优点</th><th>缺点</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>零依赖、零构建、原生部署</td><td>iframe 隔离导致样式/脚本不共享</td></tr>
+            <tr><td>History API 原生前进后退</td><td>SEO 较弱（iframe content）</td></tr>
+            <tr><td>内容页可独立开发/预览</td><td>跨 iframe 通信需要 postMessage</td></tr>
+            <tr><td>每页独立脚本、互不干扰</td><td>首屏要多加载一个 HTML</td></tr>
+          </tbody>
+        </table>
+
+        <h2>适用场景</h2>
+        <p>个人博客、文档站、作品集、内部工具 —— 任何「内容为主、交互简单、想要零配置部署」的场景都能担当。</p>
+
+        <hr>
+
+        <blockquote>
+          代码 的灵魂不在技术先进，而在为具体问题提供精确的答案。Iframe + pushState 是「轻量 SPA」的一种素质解答。
+        </blockquote>
+      </div>
+
+      <footer class="article-footer">
+        <a href="/pages/tech/index.html" data-frame-link target="content-frame" class="article-back-link">← 返回技术笔记</a>
+        <a href="/" target="_top" class="article-back-home-link">回到首页</a>
+      </footer>
+    </article>
+  </main>
+
+  <script src="/libs/js/router.js"></script>
+</body>
+</html>

@@ -1,0 +1,414 @@
+/* ==========================================================================
+   layout.css — 三栏布局：顶栏 + 左栏 + 内容 + 右栏 + 页脚
+   ========================================================================= */
+
+/* --------------------------------------------------------------------------
+   1. Top Bar (sticky)
+   -------------------------------------------------------------------------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  height: var(--topbar-height);
+  background: rgba(247, 245, 240, 0.85);
+  backdrop-filter: saturate(150%) blur(16px);
+  -webkit-backdrop-filter: saturate(150%) blur(16px);
+  border-bottom: 1px solid var(--border-base);
+}
+@media (prefers-color-scheme: dark) {
+  .topbar { background: rgba(10, 9, 8, 0.85); }
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-5);
+  gap: var(--space-4);
+}
+
+.topbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--text-md);
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.topbar-brand .brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--color-indigo-700) 100%);
+  color: var(--text-inverse);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  box-shadow: var(--shadow-inset);
+}
+.topbar-brand:hover { color: var(--text-primary); }
+
+/* -------------------------------------------------------------------------- */
+/* Danmaku (弹幕) — topbar 右侧滚动文字                                    */
+/* -------------------------------------------------------------------------- */
+.topbar-danmaku {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  height: var(--topbar-height);
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+.danmaku-track {
+  display: inline-flex;
+  gap: 3rem;
+  white-space: nowrap;
+  animation: danmaku-scroll 30s linear infinite;
+  will-change: transform;
+}
+.danmaku-item {
+  flex-shrink: 0;
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  user-select: none;
+  opacity: 0.7;
+}
+@keyframes danmaku-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.topbar-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* Top bar 按钮（统一） */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+.icon-btn:hover, .icon-btn:focus-visible {
+  background: var(--surface-soft);
+  color: var(--text-primary);
+}
+.icon-btn svg { width: 18px; height: 18px; stroke-width: 2; }
+
+/* 桌面端隐藏移动菜单按钮（首屏展开时） */
+.mobile-menu-toggle { display: none; }
+
+/* --------------------------------------------------------------------------
+   2. Main Layout — CSS Grid 三栏
+   -------------------------------------------------------------------------- */
+.app-layout {
+  display: grid;
+  grid-template-columns:
+    var(--left-rail-width)
+    minmax(0, 1fr)
+    var(--right-rail-width);
+  gap: var(--space-6);
+  width: 100%;
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-5);
+  align-items: start;
+}
+
+/* 收起左栏 */
+.app-layout[data-left-collapsed="true"] {
+  grid-template-columns: var(--left-rail-min) minmax(0, 1fr) var(--right-rail-width);
+}
+
+/* 收起右栏 */
+.app-layout[data-right-collapsed="true"] {
+  grid-template-columns: var(--left-rail-width) minmax(0, 1fr) 0;
+}
+.app-layout[data-left-collapsed="true"][data-right-collapsed="true"] {
+  grid-template-columns: var(--left-rail-min) minmax(0, 1fr) 0;
+}
+.app-layout[data-right-collapsed="true"] .right-rail {
+  width: 0; opacity: 0; pointer-events: none;
+  padding: 0; margin: 0; border: none;
+  overflow: hidden;
+}
+
+/* 过渡 */
+.left-rail, .right-rail, .content-pane {
+  transition: width var(--transition-slow), opacity var(--transition-slow);
+}
+
+/* --------------------------------------------------------------------------
+   3. Left Rail
+   -------------------------------------------------------------------------- */
+.left-rail {
+  position: sticky;
+  top: calc(var(--topbar-height) + var(--space-6));
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  height: calc(100vh - var(--topbar-height) - var(--space-12));
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+/* --------------------------------------------------------------------------
+   4. Content Pane
+   -------------------------------------------------------------------------- */
+.content-pane {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.content-toc {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0 var(--space-2);
+}
+.content-toc-current {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.content-toc-arrow {
+  color: var(--text-subtle);
+}
+
+/* iframe 容器样式在 iframe.css 里定义（单一职责） */
+
+/* --------------------------------------------------------------------------
+   5. Right Rail
+   -------------------------------------------------------------------------- */
+.right-rail {
+  position: sticky;
+  top: calc(var(--topbar-height) + var(--space-6));
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  height: calc(100vh - var(--topbar-height) - var(--space-12));
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+/* --------------------------------------------------------------------------
+   6. 左栏收起状态 — 仅显示图标
+   -------------------------------------------------------------------------- */
+.app-layout[data-left-collapsed="true"] .left-rail {
+  align-items: center;
+}
+.app-layout[data-left-collapsed="true"] .left-rail .rail-label,
+.app-layout[data-left-collapsed="true"] .left-rail .rail-text,
+.app-layout[data-left-collapsed="true"] .left-rail .left-section-title {
+  display: none;
+}
+.app-layout[data-left-collapsed="true"] .left-rail .nav-item {
+  width: 44px;
+  height: 44px;
+  justify-content: center;
+  padding: 0;
+}
+.app-layout[data-left-collapsed="true"] .left-rail .nav-item-badge {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   7. Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  margin-top: var(--space-12);
+  border-top: 1px solid var(--border-base);
+  background: var(--surface-elevated);
+}
+.site-footer-inner {
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.footer-links {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-5);
+  list-style: none;
+  margin: 0; padding: 0;
+}
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.footer-link svg { width: 16px; height: 16px; }
+.footer-link:hover { color: var(--accent); }
+.footer-copyright {
+  font-size: var(--text-xs);
+  color: var(--text-subtle);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   8. Responsive — Tablet (≤1024)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  :root {
+    --left-rail-width: 200px;
+    --right-rail-width: 260px;
+  }
+  .app-layout { gap: var(--space-5); padding: var(--space-5) var(--space-4); }
+}
+
+/* --------------------------------------------------------------------------
+   9. Responsive — Mobile (≤768) — 单栏 + 抽屉
+   -------------------------------------------------------------------------- */
+/* 移动端隐藏弹幕 */
+@media (max-width: 768px) {
+  .topbar-danmaku { display: none; }
+  :root {
+    --left-rail-width: 280px;
+    --right-rail-width: 100%;
+  }
+  .app-layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "content";
+    padding: var(--space-4) var(--space-3);
+  }
+  .left-rail, .right-rail {
+    position: fixed;
+    top: var(--topbar-height);
+    bottom: 60px;
+    width: var(--left-rail-width);
+    max-width: 86vw;
+    background: var(--surface-elevated);
+    z-index: var(--z-overlay);
+    height: auto;
+    padding: var(--space-5);
+    box-shadow: var(--shadow-xl);
+    transition: transform var(--transition-slow), opacity var(--transition-fast);
+    align-items: stretch;
+  }
+  .left-rail {
+    left: 0;
+    border-right: 1px solid var(--border-base);
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .left-rail.is-open {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  /* 右栏在移动端是底部抽屉 */
+  .right-rail {
+    left: 0; right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    transform: translateY(100%);
+    border-top: 1px solid var(--border-base);
+    border-right: none;
+    height: 70vh;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    padding: var(--space-6) var(--space-5);
+  }
+  .right-rail.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .right-rail-grid {
+    /* 移动端单列堆叠 */
+    grid-template-columns: 1fr !important;
+  }
+  .content-pane { grid-area: content; }
+
+  /* 移动端显示汉堡按钮 */
+  .mobile-menu-toggle { display: inline-flex; }
+
+  /* 收缩时的样式不再适用 */
+  .app-layout[data-left-collapsed="true"],
+  .app-layout[data-right-collapsed="true"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* 页脚 */
+  .site-footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-3);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11. Backdrop (for mobile drawers)
+   -------------------------------------------------------------------------- */
+.backdrop {
+  position: fixed;
+  inset: var(--topbar-height) 0 0 0;
+  background: rgba(28, 25, 23, 0.42);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: calc(var(--z-overlay) - 1);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+}
+.backdrop.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  .backdrop { background: rgba(10, 9, 8, 0.55); }
+}
+
+/* --------------------------------------------------------------------------
+   12. Reduced Motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

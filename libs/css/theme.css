@@ -1,0 +1,349 @@
+/* ==========================================================================
+   theme.css — 设计令牌系统 "The Reading Room"
+   配色：Indigo + 暖白 + 琥珀点缀
+   字体：Inter (UI/导航/标题) + Source Serif 4 (正文阅读)
+   ========================================================================= */
+
+/* --------------------------------------------------------------------------
+   1. Primitive Colors — 仅给语义层引用
+   -------------------------------------------------------------------------- */
+:root {
+  /* Brand: Indigo (沉静、专业、主色) */
+  --color-indigo-50:  #F5F3FF;
+  --color-indigo-100: #EDE9FE;
+  --color-indigo-200: #DDD6FE;
+  --color-indigo-300: #C4B5FD;
+  --color-indigo-400: #A78BFA;
+  --color-indigo-500: #818CF8;
+  --color-indigo-600: #6366F1;
+  --color-indigo-700: #4F46E5;
+  --color-indigo-800: #4338CA;
+  --color-indigo-900: #3730A3;
+  --color-indigo-950: #1E1B4B;
+
+  /* Accent: Amber (温暖强调) */
+  --color-amber-50:  #FFFBEB;
+  --color-amber-100: #FEF3C7;
+  --color-amber-200: #FDE68A;
+  --color-amber-300: #FCD34D;
+  --color-amber-400: #FBBF24;
+  --color-amber-500: #F59E0B;
+  --color-amber-600: #D97706;
+  --color-amber-700: #B45309;
+  --color-amber-800: #92400E;
+  --color-amber-900: #78350F;
+
+  /* Accent: Emerald (成功 / "读取中") */
+  --color-emerald-50:  #ECFDF5;
+  --color-emerald-100: #D1FAE5;
+  --color-emerald-500: #10B981;
+  --color-emerald-600: #059669;
+  --color-emerald-700: #047857;
+
+  /* Accent: Rose (心 / 收藏) */
+  --color-rose-50:  #FFF1F2;
+  --color-rose-100: #FFE4E6;
+  --color-rose-500: #F43F5E;
+  --color-rose-600: #E11D48;
+
+  /* Neutral: 暖中性灰 */
+  --color-neutral-0:   #FFFFFF;
+  --color-neutral-25:  #FBFAF7;
+  --color-neutral-50:  #F7F5F0;   /* 页面底 — 暖白纸色 */
+  --color-neutral-100: #F0EEEA;
+  --color-neutral-200: #E7E5E0;
+  --color-neutral-300: #D6D3CC;
+  --color-neutral-400: #A8A29E;
+  --color-neutral-500: #78716C;
+  --color-neutral-600: #57534E;
+  --color-neutral-700: #44403C;
+  --color-neutral-800: #292524;
+  --color-neutral-900: #1C1917;
+  --color-neutral-950: #0F0D0C;
+  --color-neutral-975: #0A0908;
+}
+
+/* --------------------------------------------------------------------------
+   2. Semantic Tokens — 组件只用这些
+   -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces */
+  --surface-base:      var(--color-neutral-50);   /* 页面底 */
+  --surface-elevated:  var(--color-neutral-0);    /* 卡片 */
+  --surface-soft:      var(--color-neutral-100);  /* hover/二级 */
+  --surface-strong:    var(--color-neutral-200);  /* 分割 */
+
+  /* Text */
+  --text-primary:      var(--color-neutral-900);
+  --text-secondary:    var(--color-neutral-500);
+  --text-subtle:       var(--color-neutral-400);
+  --text-inverse:      var(--color-neutral-0);
+
+  /* Borders */
+  --border-base:       var(--color-neutral-200);
+  --border-strong:     var(--color-neutral-300);
+
+  /* Brand */
+  --accent:            var(--color-indigo-600);
+  --accent-hover:      var(--color-indigo-700);
+  --accent-soft:       var(--color-indigo-100);
+  --accent-faint:      var(--color-indigo-50);
+  --accent-glow:       rgba(99, 102, 241, 0.10);
+
+  --accent-warm:       var(--color-amber-600);
+  --accent-warm-soft:  var(--color-amber-100);
+  --accent-warm-faint: var(--color-amber-50);
+
+  --accent-success:    var(--color-emerald-600);
+  --accent-success-soft: var(--color-emerald-100);
+
+  --accent-rose:       var(--color-rose-600);
+  --accent-rose-soft:  var(--color-rose-100);
+
+  --color-focus:       var(--color-indigo-600);
+
+  /* ----- Typography ----- */
+  --font-sans:    'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --font-serif:   'Source Serif 4', 'Source Serif Pro', 'Noto Serif SC', Georgia, 'Times New Roman', serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* 字阶 (clamp 流体) */
+  --text-xs:   clamp(0.72rem, 0.70rem + 0.10vw, 0.78rem);   /* 11.5-12.5px */
+  --text-sm:   clamp(0.82rem, 0.79rem + 0.15vw, 0.88rem);   /* 13-14px */
+  --text-base: clamp(0.95rem, 0.92rem + 0.15vw, 1.00rem);   /* 15-16px */
+  --text-md:   clamp(1.05rem, 1.00rem + 0.25vw, 1.15rem);   /* 17-18px */
+  --text-lg:   clamp(1.20rem, 1.10rem + 0.50vw, 1.40rem);   /* 19-22px */
+  --text-xl:   clamp(1.50rem, 1.30rem + 1.00vw, 1.80rem);   /* 24-29px */
+  --text-2xl:  clamp(2.00rem, 1.60rem + 2.00vw, 2.75rem);   /* 32-44px */
+  --text-3xl:  clamp(2.80rem, 2.20rem + 3.00vw, 4.00rem);   /* 45-64px */
+
+  /* 行高 */
+  --leading-tight:  1.20;
+  --leading-snug:   1.40;
+  --leading-base:   1.65;
+  --leading-relax:  1.80;
+
+  /* ----- Spacing ----- */
+  --space-0:  0;
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-7:  1.75rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-14: 3.5rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  /* ----- Radius ----- */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+  --radius-full: 999px;
+
+  /* ----- Shadows ----- */
+  --shadow-xs: 0 1px 2px rgba(28, 25, 23, 0.04);
+  --shadow-sm: 0 2px 4px rgba(28, 25, 23, 0.05), 0 1px 2px rgba(28, 25, 23, 0.03);
+  --shadow-md: 0 4px 8px -2px rgba(28, 25, 23, 0.08), 0 2px 4px -2px rgba(28, 25, 23, 0.04);
+  --shadow-lg: 0 12px 24px -8px rgba(28, 25, 23, 0.10), 0 4px 8px -4px rgba(28, 25, 23, 0.05);
+  --shadow-xl: 0 24px 48px -12px rgba(28, 25, 23, 0.14);
+  --shadow-accent: 0 8px 24px -4px rgba(99, 102, 241, 0.18);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  /* ----- Transitions ----- */
+  --transition-fast: 120ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* ----- Layout ----- */
+  --layout-max-width: 1280px;
+  --topbar-height: 56px;
+  --left-rail-width: 240px;
+  --right-rail-width: 300px;
+  --left-rail-min: 64px;
+
+  /* ----- Z-index layers ----- */
+  --z-base:    1;
+  --z-elevated: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal:  400;
+  --z-toast:  500;
+}
+
+/* --------------------------------------------------------------------------
+   3. Dark Mode — 仅覆盖语义层
+   -------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --surface-base:      var(--color-neutral-975);
+    --surface-elevated:  var(--color-neutral-900);
+    --surface-soft:      var(--color-neutral-800);
+    --surface-strong:    var(--color-neutral-700);
+
+    --text-primary:      var(--color-neutral-50);
+    --text-secondary:    var(--color-neutral-400);
+    --text-subtle:       var(--color-neutral-500);
+    --text-inverse:      var(--color-neutral-900);
+
+    --border-base:       var(--color-neutral-800);
+    --border-strong:     var(--color-neutral-700);
+
+    --accent:            var(--color-indigo-400);
+    --accent-hover:      var(--color-indigo-300);
+    --accent-soft:       rgba(99, 102, 241, 0.16);
+    --accent-faint:      rgba(99, 102, 241, 0.08);
+    --accent-glow:       rgba(99, 102, 241, 0.16);
+
+    --accent-warm:       var(--color-amber-400);
+    --accent-warm-soft:  rgba(245, 158, 11, 0.16);
+    --accent-warm-faint: rgba(245, 158, 11, 0.08);
+
+    --accent-success:    var(--color-emerald-500);
+    --accent-success-soft: rgba(16, 185, 129, 0.16);
+
+    --accent-rose:       var(--color-rose-500);
+    --accent-rose-soft:  rgba(244, 63, 94, 0.16);
+
+    --color-focus:       var(--color-indigo-400);
+
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.25);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.30), 0 1px 2px rgba(0, 0, 0, 0.20);
+    --shadow-md: 0 4px 8px -2px rgba(0, 0, 0, 0.35), 0 2px 4px -2px rgba(0, 0, 0, 0.25);
+    --shadow-lg: 0 12px 24px -8px rgba(0, 0, 0, 0.45), 0 4px 8px -4px rgba(0, 0, 0, 0.30);
+    --shadow-xl: 0 24px 48px -12px rgba(0, 0, 0, 0.55);
+    --shadow-accent: 0 8px 24px -4px rgba(99, 102, 241, 0.25);
+    --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+}
+
+/* 手动主题切换 */
+[data-theme="light"] {
+  --surface-base: var(--color-neutral-50);
+  --surface-elevated: var(--color-neutral-0);
+  --surface-soft: var(--color-neutral-100);
+  --surface-strong: var(--color-neutral-200);
+  --text-primary: var(--color-neutral-900);
+  --text-secondary: var(--color-neutral-500);
+  --text-subtle: var(--color-neutral-400);
+  --text-inverse: var(--color-neutral-0);
+  --border-base: var(--color-neutral-200);
+  --border-strong: var(--color-neutral-300);
+  --accent: var(--color-indigo-600);
+  --accent-hover: var(--color-indigo-700);
+  --accent-soft: var(--color-indigo-100);
+  --accent-faint: var(--color-indigo-50);
+}
+[data-theme="dark"] {
+  --surface-base: var(--color-neutral-975);
+  --surface-elevated: var(--color-neutral-900);
+  --surface-soft: var(--color-neutral-800);
+  --surface-strong: var(--color-neutral-700);
+  --text-primary: var(--color-neutral-50);
+  --text-secondary: var(--color-neutral-400);
+  --text-subtle: var(--color-neutral-500);
+  --text-inverse: var(--color-neutral-900);
+  --border-base: var(--color-neutral-800);
+  --border-strong: var(--color-neutral-700);
+  --accent: var(--color-indigo-400);
+  --accent-hover: var(--color-indigo-300);
+  --accent-soft: rgba(99, 102, 241, 0.16);
+  --accent-faint: rgba(99, 102, 241, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+   4. Global Base
+   -------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-tab-size: 4; tab-size: 4;
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--surface-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--accent-hover);
+}
+
+:focus:not(:focus-visible) { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+img, svg { display: block; max-width: 100%; }
+ul, ol { margin: 0; padding-left: 1.5em; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-300);
+  border-radius: var(--radius-full);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neutral-400);
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb,
+:root:not([data-theme="light"]) ::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-700);
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) ::-webkit-scrollbar-thumb {
+    background: var(--color-neutral-700);
+    background-clip: padding-box;
+  }
+}
+
+/* 打印 */
+@media print {
+  .topbar, .left-rail, .right-rail, .site-footer, .mobile-menu-toggle { display: none !important; }
+  .content-pane { width: 100% !important; }
+}

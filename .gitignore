@@ -1,1 +1,23 @@
+# 日志文件
 *.log
+
+# Jekyll 构建产物
+_site/
+.jekyll-cache/
+.jekyll-metadata
+
+# 部署时可能产生的大文件占位
+libs/*.min.js
+libs/*.min.css
+
+# IDE/编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
