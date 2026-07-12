@@ -162,14 +162,14 @@ if (document.readyState === 'loading') {
   init();
 }
 
-// 弹幕无缝循环：复制一份内容使 translateX(-50%) 衔接
+// 弹幕无缝循环：对每个 track 复制其内容使 translateX(-50%) 衔接
 (function () {
-  var track = document.querySelector('.danmaku-track');
-  if (!track) return;
-  var items = track.querySelectorAll('.danmaku-item');
-  items.forEach(function (item) {
-    var clone = item.cloneNode(true);
-    track.appendChild(clone);
+  var tracks = document.querySelectorAll('.danmaku-track');
+  tracks.forEach(function (track) {
+    var items = track.querySelectorAll('.danmaku-item');
+    items.forEach(function (item) {
+      track.appendChild(item.cloneNode(true));
+    });
   });
 })();
 })();

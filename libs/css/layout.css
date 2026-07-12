@@ -66,6 +66,10 @@
   height: var(--topbar-height);
   mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
 }
 .danmaku-track {
   display: inline-flex;
