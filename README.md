@@ -40,7 +40,7 @@ Enjoy the simplicity.
 ## 联系
 
 - GitHub: [@michaelguan](https://github.com/michaelguan)
-- 邮件: michael@example.com
+- 邮件: guan_tao@outlook.com
 
 ---
 
