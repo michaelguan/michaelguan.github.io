@@ -299,9 +299,10 @@
 /* --------------------------------------------------------------------------
    9. Responsive — Mobile (≤768) — 单栏 + 抽屉
    -------------------------------------------------------------------------- */
-/* 移动端隐藏弹幕 */
+/* 移动端隐藏弹幕 + 右栏折叠按钮（右栏改为底部抽屉） */
 @media (max-width: 768px) {
   .topbar-danmaku { display: none; }
+  .content-toolbar [data-action="toggle-right-rail"] { display: none; }
   :root {
     --left-rail-width: 280px;
     --right-rail-width: 100%;
