@@ -7,206 +7,130 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is the GitHub Pages site for `michaelguan.github.io`. A **pure static personal blog** built with vanilla HTML/CSS/JS — zero build step, zero dependencies, deployed directly to GitHub Pages.
 
 **Tech Stack:**
-- **Structure:** `index.html` (frame) + `pages/{tech,game,life}/*.html` (content)
-- **Routing:** `libs/js/router.js` (~100 lines) — History API + iframe src switching
-- **Styling:** CSS Custom Properties (design tokens) + modular CSS files in `libs/css/`
-- **Deployment:** `deploy.sh` (cross-platform) / `run.bat` (Windows) — git add/commit/push
+- **Structure:** `index.html` (frame) + `pages/{tech,game,life}/*.html` (content loaded in an iframe)
+- **Routing:** `libs/js/router.js` (~220 lines) — History API + iframe `src` switching; hash → route
+- **Layout/interaction:** `libs/js/layout.js` (~175 lines) — three-column collapse, mobile drawers, danmaku loop, state persistence
+- **Styling:** CSS Custom Properties (design tokens in `theme.css`) + modular CSS files in `libs/css/`
+- **Deployment:** `deploy.sh` (cross-platform, Git Bash) / `run.bat` (Windows, legacy) — `git add . && commit && push`
 
-## Directory Structure
+## Layout Architecture ("The Reading Room")
+
+`index.html` renders a persistent three-column shell that loads once and never reloads:
 
 ```
-michaelguan.github.io/
-├── index.html              # Blog frame: nav + hero + <iframe name="content-frame"> + footer
-├── libs/                   # Core local assets (lightweight, no frameworks)
-│   ├── css/
-│   │   ├── reset.css       # Minimal normalize (~30 lines)
-│   │   ├── theme.css       # Design tokens: colors, spacing, typography, dark mode
-│   │   ├── nav.css         # Sticky nav, mobile hamburger menu
-│   │   ├── hero.css        # Homepage hero section
-│   │   └── iframe.css      # Content frame wrapper, loading spinner, error state
-│   └── js/
-│       └── router.js       # Hash-based routing, history.pushState, iframe load/error handling
-├── pages/                  # Content pages (organized by category)
-│   ├── tech/
-│   │   ├── index.html      # Tech article list
-│   │   ├── hello-world.html
-│   │   ├── css-variables-theme.html
-│   │   └── vanilla-js-router.html
-│   ├── game/
-│   │   ├── index.html      # Game article list
-│   │   ├── elden-ring.html
-│   │   └── balatro.html
-│   └── life/
-│       ├── index.html      # Life article list
-│       ├── tokyo-trip.html
-│       └── reading-2024.html
-├── imgs/                   # Images (avatars, covers) — currently empty
-├── favicon.ico             # Site favicon
-├── _config.yml             # Jekyll config (GitHub Pages requirement, theme: cayman)
-├── .gitignore              # *.log, _site/, libs/*.min.*, IDE files
-├── deploy.sh               # Cross-platform deploy script (git add/commit/push)
-├── run.bat                 # Windows deploy script (legacy)
-└── CLAUDE.md               # This file
+┌──────────────────────────── topbar (sticky) ────────────────────────────┐
+│  brand · danmaku(scrolling mottos) · menu toggle                          │
+├──────────┬────────────────────────────────────────┬──────────────────────┤
+│ left-rail│            content-pane                  │   right-rail         │
+│ (sticky) │  toolbar (breadcrumb, view toggle)      │   (sticky)           │
+│  nav +   │  iframe[name=content-frame]            │   motto · stats ·    │
+│  subnav  │                                        │   recent list        │
+└──────────┴────────────────────────────────────────┴──────────────────────┘
+                                footer
 ```
 
-## Key Architecture Decisions
+- `.app-layout` is a CSS grid with `data-left-collapsed` / `data-right-collapsed` attributes that `layout.js` toggles and persists to `localStorage` (key `blog-layout-state`).
+- The `iframe[name="content-frame"]` holds the loaded content page; its `src` is swapped by the router and its `height` is auto-measured to the content's scroll height (`adjustFrameHeight` in `router.js`).
+- On mobile (≤768px) the rails become fixed off-canvas drawers (`.left-rail.is-open`, `.right-rail.is-open`) over a `.backdrop`; the topbar danmaku and right-rail toggle are hidden.
 
-### Frame + Iframe Routing
-- `index.html` loads once, stays persistent (nav, hero, footer)
-- Category links (`#tech`, `#game`, `#life`) change `iframe.src` + `history.pushState`
-- Browser back/forward buttons work via `popstate` listener
-- Content pages use `<a target="content-frame">` to stay inside the frame
-- **SEO note:** iframe content not indexed by Google directly. Add sitemap later if needed.
+## Routing Model (`libs/js/router.js`)
 
-### CSS Token System (`libs/css/theme.css`)
-Two-layer variable architecture:
-```css
-/* Layer 1: Primitive tokens (raw values) */
---color-blue-500: #3b82f6;
---color-gray-50: #fafafa;
+The same `router.js` is loaded in **both** `index.html` (parent) and each content page (child). It self-detects context via `window === window.top`:
 
-/* Layer 2: Semantic aliases (what components use) */
---color-primary: var(--color-blue-600);
---color-bg: var(--color-gray-50);
---color-text: var(--color-gray-900);
-```
-Dark mode via `@media (prefers-color-scheme: dark)` overriding Layer 2 only.
+- **Parent (`isParent`):** owns the iframe, binds `.nav-item[data-category]` and `[data-frame-link]` clicks, manages `history.pushState` / `popstate` / `hashchange`, sets active nav highlight, breadcrumb label (`[data-crumb-current]`), and article count (`[data-count]`).
+- **Child:** only re-binds `.nav-item[data-category]` so category clicks inside the iframe bubble up to `window.parent.blogRouter.navigateTo(route)`.
 
-### No Framework, No Build
-- Vanilla ES6 modules not used (single `router.js` loaded via `<script>`)
-- No Tailwind, Bootstrap, jQuery, React, Vue
-- CSS files linked via `<link>` in each page (HTTP/2 multiplexing makes this fast enough)
-- If page count grows >50, consider 11ty or Vite + SSG — not before
+`ROUTES` maps a short key to an iframe src path:
 
-## Content Conventions
-
-### Article Front Matter (in HTML comments, optional for future tooling)
-```html
-<!--
-  title: "Article Title"
-  date: "2025-01-15"
-  category: "tech"        # tech | game | life
-  tags: ["css", "theming"]
-  description: "One-line summary for SEO/social"
--->
+```js
+const ROUTES = { tech: '/pages/tech/index.html', game: ..., life: ... };
 ```
 
-### Category Structure
-| Category | Route Hash | Directory | Description |
-|----------|------------|-----------|-------------|
-| 技术 | `#tech` | `pages/tech/` | Backend, frontend, architecture, tools |
-| 游戏 | `#game` | `pages/game/` | Reviews, design analysis, dev logs |
-| 生活 | `#life` | `pages/life/` | Travel, reading, remote work, minimalism |
+Article links use `<a href="/pages/.../slug.html" data-frame-link target="content-frame">` — `data-frame-link` is the selector the parent binds, and `target="content-frame"` lets the browser load it into the named iframe even without JS. **Never** use `target="_top"`/`_parent` on content links — that breaks the frame.
+
+Exposed global: `window.blogRouter = { navigateTo, getCurrentRoute, ROUTES }`.
+Exposed global (from `layout.js`): `window.blogLayout = { toggleLeftRail, toggleRightRail, openMobileLeft, openMobileRight, closeMobileDrawer, getState }`.
+
+To add a category: create `pages/<cat>/index.html`, add a `<nav>` entry + `.subnav` block in `index.html`, add the key to `ROUTES`, and update the `counts`/`labels` maps in `setActiveNav`.
+
+## CSS Token System (`libs/css/theme.css`)
+
+Three layers, in order:
+1. **Primitive tokens** (`--color-indigo-600`, `--color-neutral-50`, …) — raw color values only.
+2. **Semantic tokens** (`--surface-base`, `--text-primary`, `--accent`, `--accent-warm`, `--border-base`, spacing `--space-*`, type `--text-*`, radius, shadow, z-index, layout dims) — **components consume only these.**
+3. **Dark mode** overrides the semantic layer (only) under `@media (prefers-color-scheme: dark)`. Manual override via `[data-theme="light"]` / `[data-theme="dark"]` on `:root` is also defined.
+
+Don't hardcode hex colors in component CSS — use `var(--accent)`, `var(--surface-elevated)`, etc. Dark mode adjusts automatically as long as you stay on semantic tokens.
+
+CSS files are linked via `<link>` in both `index.html` and content pages (HTTP/2 multiplexing makes this fine). **Never use `@import`** — it serializes requests. Content pages pull in only what they need (`reset`, `theme`, plus `category` for index pages or `article` for article pages), so the frame stays light. `index.html` links the shell styles: `theme · layout · leftnav · sidebar · main · iframe · reset`.
+
+## Content Pages
+
+Each page is a standalone HTML document loaded into the iframe and must link its own CSS (`reset`, `theme`, then `category` or `article`) and load `router.js` so its category links can bubble to the parent. See `pages/tech/index.html` as the template for category lists and any `pages/*/<article>.html` for article pages.
+
+Article/category counts shown in the UI (badge counts, breadcrumb "N 篇文章", stats card, recent list) are **hand-maintained** in `index.html` and `router.js` (`counts`/`labels` maps). When you add or remove an article, update:
+- The `<span class="nav-item-badge">N</span>` next to its category in the left rail
+- The `counts` map inside `setActiveNav` in `router.js`
+- The `.subnav` link list under the category in `index.html`
+- The category index page's listing + pagination status
+- The "最近" (recent) list and 文章/标签 stats in the right rail, if relevant
 
 ### Linking Rules
-- **Nav links (index.html):** `<a href="#tech" data-route="tech">` — router intercepts
-- **Category index → article:** `<a href="/pages/tech/hello-world.html" target="content-frame">`
-- **Article → category index:** `<a href="/pages/tech/index.html" target="content-frame">`
-- **Article → external:** `<a href="https://..." target="_blank" rel="noopener noreferrer">`
-- **Never** use `target="_top"` or `target="_parent"` unless intentionally breaking frame
+- **Category nav (index.html):** `<a href="#tech" class="nav-item" data-category="tech">` — router intercepts; hash drives the iframe src.
+- **Category index → article:** `<a href="/pages/tech/slug.html" data-frame-link target="content-frame">`
+- **External:** `<a href="https://..." target="_blank" rel="noopener noreferrer">`
+
+## GitHub Pages Deployment
+
+- **No Jekyll, no build.** The repo contains neither `_config.yml` nor `.nojekyll`; GitHub Pages treats the repo as a plain static file tree and serves files as-is. No Liquid templates, no `_posts/`, no plugins — every page is hand-written HTML.
+- **Deployment is a git push.** No CI/CD — `git push` triggers the Pages rebuild (typically 30–60s). `deploy.sh` / `run.bat` are thin wrappers over `git add . && commit && push`.
+- `imgs/` is empty; add optimized assets (WebP, <200KB) there and reference as `/imgs/filename.jpg`.
 
 ## Common Commands
 
 ### Local Development
 ```bash
-# Option 1: Python (simplest, no install)
+# Simplest — any static server works; the frame + iframe need a server (file:// breaks routing)
 python -m http.server 5173
-
-# Option 2: Jekyll (matches GitHub Pages build)
-bundle exec jekyll serve --port 4000
-
-# Option 3: Any static server (live-server, serve, nginx, etc.)
-npx serve .
+# or: npx serve .
 ```
-Open `http://localhost:5173` (or 4000) — the frame loads, click nav to test routing.
+Open `http://localhost:5173` and click nav items to test routing. The iframe loads `pages/tech/index.html` by default and swaps on hash change.
 
 ### Deploy
 ```bash
-# Cross-platform (Linux/macOS/WSL/Git Bash)
-./deploy.sh
-
-# Windows (cmd/PowerShell)
+# Cross-platform (Linux/macOS/WSL/Git Bash) — pass an optional commit message
+./deploy.sh "your message"     # no arg → "update YYYY-MM-DD HH:MM:SS"
+# Windows (legacy) — logs to github.log
 run.bat
 ```
-Both do: `git add -A && git commit -m "update YYYYMMDD HH:MM:SS" && git push origin main`
+Both run: `git add . && git commit -m "<msg>" && git push`.
 
 ### Add New Article
-1. Create `pages/{category}/slug.html` (copy an existing article as template)
-2. Add link in `pages/{category}/index.html` article list
-3. Test locally: `python -m http.server 5173` → navigate to category → click article
-4. `./deploy.sh`
-
-### Add New Category
-1. `mkdir pages/newcat`
-2. Create `pages/newcat/index.html` (copy from `tech/index.html`, update titles/links)
-3. Add nav item in `index.html`: `<a href="#newcat" class="nav-link" data-route="newcat">新分类</a>`
-4. Add route in `router.js` ROUTES object: `'newcat': '/pages/newcat/index.html'`
-5. Deploy
-
-## File-Specific Notes
-
-### `index.html` (Frame)
-- Contains nav, hero (shown only on first load), iframe wrapper, footer
-- Loads `libs/css/*.css` and `libs/js/router.js`
-- Router auto-initializes on `DOMContentLoaded`, reads `location.hash` for deep link
-- Hero hidden via JS when iframe first loads (`.hero { display: none }` added dynamically)
-
-### `libs/js/router.js`
-- **ROUTES object** maps hash → iframe src path
-- `navigateTo(route, {push:true})` — core function, callable from console or iframe pages via `parent.blogRouter.navigateTo('tech')`
-- Handles: loading spinner, error state, active link highlighting, mobile menu close, scroll-to-top
-- **Exposed global:** `window.blogRouter = { navigateTo, getCurrentRoute, ROUTES }`
-
-### `libs/css/theme.css`
-- **All design tokens here.** Don't hardcode colors/spacings in other CSS files.
-- Dark mode: `@media (prefers-color-scheme: dark)` overrides semantic layer only
-- Future: add `[data-theme="dark"]` selector for manual toggle
-
-### `_config.yml`
-- Minimal Jekyll config for GitHub Pages (`theme: jekyll-theme-cayman`)
-- **No plugins, no collections, no custom processing** — Jekyll only used to satisfy Pages requirement
-- Old `gitment` credentials removed (were exposed in repo history — rotate on GitHub if reused)
-
-### `deploy.sh` / `run.bat`
-- Identical logic: add all → commit with timestamp → push
-- `deploy.sh` uses `COMMIT_MSG` var for testability
-- No CI/CD — push triggers GitHub Pages rebuild automatically (~30-60s)
+1. Copy an existing `pages/<cat>/<article>.html` (article) or `pages/<cat>/index.html` (listing) as a template.
+2. Create `pages/<category>/slug.html`.
+3. Add the article link to the `.subnav` list under its category in `index.html` (left rail) and to the category `index.html` listing.
+4. Update badge counts, the `counts` map in `router.js`, and the right-rail recent/stats cards as needed.
+5. Test locally, then `./deploy.sh`.
 
 ## Conventions for This Repo
 
-- **Zero external JS deps.** `router.js` is the only JS file. No `node_modules`, no `package.json`.
-- **CSS via `<link>`, not `@import`.** Browsers parallelize `<link>`, `@import` serializes.
-- **Semantic HTML.** `header[role=banner]`, `nav[role=navigation]`, `main[role=main]`, `footer[role=contentinfo]`, `article`, `time[datetime]`, `a[target="content-frame"]`.
-- **Accessibility:** skip link, ARIA labels, `aria-current="page"` on active nav, focus-visible outlines, reduced-motion media query.
-- **Mobile-first responsive.** Breakpoint at 640px (nav → hamburger, hero text clamps).
-- **Images:** Put in `imgs/`, reference as `/imgs/filename.jpg`. Optimize before commit (WebP, <200KB).
+- **Zero external JS deps.** `router.js` + `layout.js` are the only JS files. No `node_modules`, no `package.json`, no build scripts.
+- **CSS via `<link>`, never `@import`.**
+- **Semantic + accessible HTML.** Skip link, `header[role=banner]`, `nav[role=navigation]`, `main[role=main]`, `footer[role=contentinfo]`, `time[datetime]`, `aria-current="page"` on active nav, `aria-expanded` on collapsible subnav toggles, focus-visible outlines, `prefers-reduced-motion` respected.
+- **Mobile-first responsive.** Breakpoints: ≤1024px (tablet, shrinks rails) and ≤768px (single column + off-canvas drawers, danmaku hidden).
+- **Images:** put in `imgs/`, reference as `/imgs/filename.jpg`, optimize (WebP, <200KB) before commit.
 - **No inline styles** except `style="display:none"` toggled by JS. All styling in `libs/css/`.
 
 ## What NOT to Do
 
-- ❌ Don't add npm/yarn/pnpm, `package.json`, build scripts
-- ❌ Don't import React/Vue/Svelte — this is intentionally framework-free
-- ❌ Don't put large libraries in `libs/` (ECharts, sql.js, jQuery were removed)
-- ❌ Don't use `document.write` or `document.writeln` (legacy `aboutme.js` did this)
-- ❌ Don't hardcode colors like `#2563eb` in component CSS — use `var(--color-primary)`
-- ❌ Don't break the frame: external links must use `target="_blank" rel="noopener noreferrer"`
-
-## Future Enhancements (When Needed)
-
-| Feature | Approach | Effort |
-|---------|----------|--------|
-| Markdown → HTML | 11ty / VitePress / custom Node script | Medium |
-| Full-text search | Pagefind (static, no backend) | Low |
-| Comments | Giscus / Utterances (GitHub Discussions) | Low |
-| RSS / Sitemap | Generate at deploy time (Node script in `deploy.sh`) | Low |
-| Analytics | Plausible / Umami / GA (single `<script>` in `index.html`) | Low |
-| Manual dark/light toggle | Add `theme-toggle` button + `localStorage` + `[data-theme]` | Low |
-| Article pagination | Static: split index.html into `page-1.html`, `page-2.html` | Medium |
+- ❌ Don't add npm/yarn/pnpm, `package.json`, or build scripts.
+- ❌ Don't import React/Vue/Svelte — this is intentionally framework-free.
+- ❌ Don't put large libraries in `libs/` (ECharts, sql.js, jQuery were all removed previously).
+- ❌ Don't use `document.write` / `document.writeln` (a legacy `aboutme.js` did this).
+- ❌ Don't hardcode colors like `#6366F1` in component CSS — use `var(--accent)` etc.
+- ❌ Don't break the frame: internal links use `target="content-frame"`; external links use `target="_blank" rel="noopener noreferrer"`. Never `target="_top"`/`_parent`.
+- ❌ Don't reintroduce Jekyll (no `_config.yml`, no `_posts/`, no `.nojekyll`). The site is served as a plain static file tree by GitHub Pages; templates/plugins would break the zero-build model. If the article count grows large, prefer a separate static generator (11ty/VitePress) producing static files, not Jekyll.
 
 ## Personal Data Notes
 
-- Author: Michael Guan (关某)
-- Birth year referenced in legacy code: 1986/1987 (removed from current blog)
-- Past employer: 工商银行软件开发中心杭州研发部 (ICBC Software Dev Center Hangzhou)
-- Education: 武汉理工大学 计算机科学与技术 本科
-- These appear only in git history (`scripts/aboutme.js`, `scripts/lifematrix.js`) — not in current blog content
+- Author: Michael Guan. Contact: `guan_tao@outlook.com`, GitHub `@michaelguan`.
