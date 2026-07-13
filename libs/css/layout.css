@@ -40,6 +40,28 @@
   letter-spacing: -0.015em;
   color: var(--text-primary);
   text-decoration: none;
+  position: relative;
+}
+.topbar-brand .brand-text {
+  font-weight: 600;
+}
+.topbar-brand .brand-separator {
+  color: var(--accent);
+  font-size: var(--text-sm);
+  opacity: 0.7;
+}
+.topbar-brand .brand-tag {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--accent-faint);
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+  letter-spacing: 0.02em;
+}
+.topbar-brand:hover .brand-tag {
+  background: var(--accent-soft);
 }
 .topbar-brand .brand-mark {
   display: inline-flex;
@@ -53,6 +75,23 @@
   font-weight: 700;
   font-size: var(--text-sm);
   box-shadow: var(--shadow-inset);
+  position: relative;
+  overflow: hidden;
+}
+.topbar-brand .brand-mark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    rgba(255,255,255,0.15) 0%,
+    transparent 50%,
+    rgba(245, 158, 11, 0.08) 100%);
+  pointer-events: none;
+}
+.topbar-brand:hover .brand-mark {
+  transform: scale(1.05);
+  transition: transform var(--transition-fast);
+  box-shadow: var(--shadow-inset), 0 0 0 3px var(--accent-faint);
 }
 .topbar-brand:hover { color: var(--text-primary); }
 
@@ -71,23 +110,44 @@
   justify-content: center;
   gap: 4px;
   background: linear-gradient(90deg,
-    rgba(99, 102, 241, 0.08) 0%,
-    rgba(168, 85, 247, 0.08) 25%,
-    rgba(236, 72, 153, 0.08) 50%,
-    rgba(168, 85, 247, 0.08) 75%,
-    rgba(99, 102, 241, 0.08) 100%);
+    rgba(99, 102, 241, 0.06) 0%,
+    rgba(99, 102, 241, 0.12) 25%,
+    rgba(245, 158, 11, 0.08) 50%,
+    rgba(99, 102, 241, 0.12) 75%,
+    rgba(99, 102, 241, 0.06) 100%);
   border-radius: var(--radius-md);
   margin: 0 var(--space-3);
   padding: 6px 0;
+  position: relative;
+}
+.topbar-danmaku::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(99, 102, 241, 0.03) 30%,
+    rgba(245, 158, 11, 0.02) 50%,
+    rgba(99, 102, 241, 0.03) 70%,
+    transparent 100%);
+  pointer-events: none;
 }
 @media (prefers-color-scheme: dark) {
   .topbar-danmaku {
     background: linear-gradient(90deg,
-      rgba(99, 102, 241, 0.12) 0%,
-      rgba(168, 85, 247, 0.12) 25%,
-      rgba(236, 72, 153, 0.12) 50%,
-      rgba(168, 85, 247, 0.12) 75%,
-      rgba(99, 102, 241, 0.12) 100%);
+      rgba(129, 140, 248, 0.08) 0%,
+      rgba(129, 140, 248, 0.16) 25%,
+      rgba(251, 191, 36, 0.10) 50%,
+      rgba(129, 140, 248, 0.16) 75%,
+      rgba(129, 140, 248, 0.08) 100%);
+  }
+  .topbar-danmaku::before {
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(129, 140, 248, 0.04) 30%,
+      rgba(251, 191, 36, 0.03) 50%,
+      rgba(129, 140, 248, 0.04) 70%,
+      transparent 100%);
   }
 }
 .danmaku-track {
@@ -107,16 +167,18 @@
   letter-spacing: 0.08em;
   color: var(--text-secondary);
   user-select: none;
-  opacity: 0.75;
-  text-shadow: 0 0 1px rgba(99, 102, 241, 0.2);
+  opacity: 0.85;
+  text-shadow: 0 0 2px rgba(99, 102, 241, 0.1);
+  position: relative;
 }
 .danmaku-item::before {
   content: "◆";
   display: inline-block;
   margin-right: 0.5em;
   color: var(--accent);
-  font-size: 0.65em;
+  font-size: 0.55em;
   vertical-align: middle;
+  opacity: 0.6;
 }
 @keyframes danmaku-scroll {
   0%   { transform: translateX(0); }
