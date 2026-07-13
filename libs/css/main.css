@@ -6,9 +6,13 @@
 .content-panel {
   background: var(--surface-elevated);
   border: 1px solid var(--border-base);
+  border-top: 2px solid var(--accent); /* 书脊色条，颜色随分类 */
   border-radius: var(--radius-lg);
+  border-top-left-radius: var(--radius-xl);
+  border-top-right-radius: var(--radius-xl);
+  border-bottom: none;
   overflow: hidden;
-  box-shadow: var(--shadow-xs);
+  box-shadow: none; /* 去阴影，纸面语言 */
   display: flex;
   flex-direction: column;
 }
@@ -52,10 +56,8 @@
 .content-toolbar-count {
   font-size: var(--text-xs);
   color: var(--text-subtle);
-  background: var(--surface-soft);
-  padding: 2px 8px;
-  border-radius: var(--radius-full);
-  font-weight: 600;
+  font-weight: 500;
+  font-family: var(--font-sans);
 }
 
 /* 视图切换 */

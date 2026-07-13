@@ -69,12 +69,12 @@
   justify-content: center;
   width: 28px; height: 28px;
   border-radius: var(--radius-sm);
-  background: linear-gradient(135deg, var(--accent) 0%, var(--color-indigo-700) 100%);
+  background: var(--accent-warm); /* 琥珀钢印，全站唯一暖色品牌锚点 */
   color: var(--text-inverse);
   font-family: var(--font-mono);
   font-weight: 700;
   font-size: var(--text-sm);
-  box-shadow: var(--shadow-inset);
+  box-shadow: var(--shadow-xs);
   position: relative;
   overflow: hidden;
 }
@@ -82,21 +82,16 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg,
-    rgba(255,255,255,0.15) 0%,
-    transparent 50%,
-    rgba(245, 158, 11, 0.08) 100%);
-  pointer-events: none;
+  border: 1px solid rgba(255,255,255,0.2); /* 内描边，印章质感 */
 }
 .topbar-brand:hover .brand-mark {
   transform: scale(1.05);
   transition: transform var(--transition-fast);
-  box-shadow: var(--shadow-inset), 0 0 0 3px var(--accent-faint);
+  box-shadow: var(--shadow-sm), 0 0 0 3px var(--accent-warm-faint);
 }
 .topbar-brand:hover { color: var(--text-primary); }
 
-/* Danmaku (弹幕) — topbar 右侧滚动文字                                    */
-/* -------------------------------------------------------------------------- */
+/* Danmaku (弹幕) — topbar 右侧滚动文字 */
 .topbar-danmaku {
   flex: 1 1 auto;
   min-width: 0;
@@ -108,49 +103,9 @@
   flex-direction: column;
   justify-content: center;
   gap: 4px;
-  /* 方案 B：indigo 主导，amber 作为"心跳"点缀 */
-  background: linear-gradient(90deg,
-    rgba(99, 102, 241, 0.04) 0%,
-    rgba(99, 102, 241, 0.10) 40%,
-    rgba(245, 158, 11, 0.06) 60%,
-    rgba(99, 102, 241, 0.10) 80%,
-    rgba(99, 102, 241, 0.04) 100%);
-  border-radius: var(--radius-md);
+  background: transparent;
   margin: 0 var(--space-3);
   padding: 6px 0;
-  position: relative;
-}
-/* 第二层叠加：更淡的渐变增加深度 */
-.topbar-danmaku::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(99, 102, 241, 0.03) 35%,
-    rgba(245, 158, 11, 0.02) 55%,
-    rgba(99, 102, 241, 0.03) 75%,
-    transparent 100%);
-  pointer-events: none;
-}
-/* 暗色模式：提高 opacity 保证对比度 */
-@media (prefers-color-scheme: dark) {
-  .topbar-danmaku {
-    background: linear-gradient(90deg,
-      rgba(129, 140, 248, 0.06) 0%,
-      rgba(129, 140, 248, 0.14) 40%,
-      rgba(251, 191, 36, 0.08) 60%,
-      rgba(129, 140, 248, 0.14) 80%,
-      rgba(129, 140, 248, 0.06) 100%);
-  }
-  .topbar-danmaku::before {
-    background: linear-gradient(90deg,
-      transparent 0%,
-      rgba(129, 140, 248, 0.04) 35%,
-      rgba(251, 191, 36, 0.03) 55%,
-      rgba(129, 140, 248, 0.04) 75%,
-      transparent 100%);
-  }
 }
 .danmaku-track {
   display: inline-flex;
@@ -161,6 +116,7 @@
 }
 .danmaku-track:nth-child(2) {
   animation-delay: -15s;
+  opacity: 0.7; /* 第二行稍淡，创造纵深 */
 }
 .danmaku-item {
   flex-shrink: 0;
@@ -169,18 +125,16 @@
   letter-spacing: 0.08em;
   color: var(--text-secondary);
   user-select: none;
-  opacity: 0.85;
-  text-shadow: 0 0 2px rgba(99, 102, 241, 0.1);
-  position: relative;
 }
-.danmaku-item::before {
+/* 仅每 5 条显示一次 ◆，降低视觉噪音 */
+.danmaku-item:nth-child(5n+1)::before {
   content: "◆";
   display: inline-block;
   margin-right: 0.5em;
-  color: var(--accent);
+  color: var(--accent-warm); /* 改用 amber，温暖点缀 */
   font-size: 0.55em;
   vertical-align: middle;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 @keyframes danmaku-scroll {
   0%   { transform: translateX(0); }

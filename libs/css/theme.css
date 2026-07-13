@@ -106,7 +106,7 @@
   --font-sans:    'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
   --font-serif:   'Source Serif 4', 'Source Serif Pro', 'Noto Serif SC', Georgia, 'Times New Roman', serif;
   --font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --font-display: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --font-display: 'Source Serif 4', 'Source Serif Pro', 'Noto Serif SC', Georgia, 'Times New Roman', serif; /* 改为 serif 担起叙事 */
 
   /* 字阶 (clamp 流体) */
   --text-xs:   clamp(0.72rem, 0.70rem + 0.10vw, 0.78rem);   /* 11.5-12.5px */
@@ -187,7 +187,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   3. Dark Mode — 仅覆盖语义层
+   3. Dark Mode — 明静暗暖：amber 主导焦点/选中/链接下划线
    -------------------------------------------------------------------------- */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -210,9 +210,10 @@
     --accent-faint:      rgba(99, 102, 241, 0.08);
     --accent-glow:       rgba(99, 102, 241, 0.16);
 
+    /* amber 提权：暗色下作为主要强调色（用于焦点、链接下划线、选中态） */
     --accent-warm:       var(--color-amber-400);
-    --accent-warm-soft:  rgba(245, 158, 11, 0.16);
-    --accent-warm-faint: rgba(245, 158, 11, 0.08);
+    --accent-warm-soft:  rgba(251, 191, 36, 0.24);
+    --accent-warm-faint: rgba(251, 191, 36, 0.12);
 
     --accent-success:    var(--color-emerald-500);
     --accent-success-soft: rgba(16, 185, 129, 0.16);
@@ -220,15 +221,27 @@
     --accent-rose:       var(--color-rose-500);
     --accent-rose-soft:  rgba(244, 63, 94, 0.16);
 
-    --color-focus:       var(--color-indigo-400);
+    --color-focus:       var(--color-amber-400); /* 焦点环改用 amber */
 
     --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.25);
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.30), 0 1px 2px rgba(0, 0, 0, 0.20);
     --shadow-md: 0 4px 8px -2px rgba(0, 0, 0, 0.35), 0 2px 4px -2px rgba(0, 0, 0, 0.25);
     --shadow-lg: 0 12px 24px -8px rgba(0, 0, 0, 0.45), 0 4px 8px -4px rgba(0, 0, 0, 0.30);
     --shadow-xl: 0 24px 48px -12px rgba(0, 0, 0, 0.55);
-    --shadow-accent: 0 8px 24px -4px rgba(99, 102, 241, 0.25);
+    --shadow-accent: 0 8px 24px -4px rgba(251, 191, 36, 0.25); /* shadow-accent 改用 amber */
     --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  /* 暗色模式下的焦点/链接覆盖 */
+  :root:not([data-theme="light"]) :focus-visible {
+    outline-color: var(--color-amber-400);
+  }
+  :root:not([data-theme="light"]) a:hover {
+    text-decoration-color: var(--color-amber-400);
+  }
+  :root:not([data-theme="light"]) ::selection {
+    background: var(--accent-warm-faint);
+    color: var(--text-primary);
   }
 }
 
@@ -296,13 +309,13 @@ body {
 }
 
 ::selection {
-  background: var(--accent-soft);
-  color: var(--accent-hover);
+  background: var(--accent-warm-faint); /* amber 暖底选中 */
+  color: var(--text-primary);
 }
 
 :focus:not(:focus-visible) { outline: none; }
 :focus-visible {
-  outline: 2px solid var(--color-focus);
+  outline: 1.5px dashed var(--accent-warm); /* 铅笔圈效果 */
   outline-offset: 2px;
   border-radius: var(--radius-xs);
 }
@@ -314,7 +327,9 @@ a {
 }
 a:hover {
   color: var(--accent);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: var(--accent-warm);
+  text-underline-offset: 3px;
 }
 
 img, svg { display: block; max-width: 100%; }
