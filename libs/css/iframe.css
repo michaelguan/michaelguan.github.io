@@ -44,33 +44,6 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Skeleton pulse — 加载条 */
-.content-frame-container::after {
-  content: "";
-  position: absolute;
-  top: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 56px;
-  height: 6px;
-  background: var(--surface-strong);
-  border-radius: var(--radius-full);
-  z-index: 3;
-  opacity: 1;
-  animation: iframe-pulse 1.4s ease-in-out infinite;
-  transition: opacity var(--transition-base);
-  box-shadow:
-    -80px 0 0 var(--accent-faint),
-    80px 0 0 var(--accent-warm-faint);
-}
-.content-frame-container.is-loaded::after {
-  opacity: 0;
-  pointer-events: none;
-}
-@keyframes iframe-pulse {
-  0%, 100% { transform: translateX(-50%) scaleX(0.85); opacity: 0.7; }
-  50% { transform: translateX(-50%) scaleX(1); opacity: 1; }
-}
 
 /* Error — 通过 data-error 属性显示错误文案 */
 .content-frame-container.has-error iframe { display: none; }
