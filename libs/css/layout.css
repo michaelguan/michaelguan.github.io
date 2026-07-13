@@ -69,7 +69,26 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2px;
+  gap: 4px;
+  background: linear-gradient(90deg,
+    rgba(99, 102, 241, 0.08) 0%,
+    rgba(168, 85, 247, 0.08) 25%,
+    rgba(236, 72, 153, 0.08) 50%,
+    rgba(168, 85, 247, 0.08) 75%,
+    rgba(99, 102, 241, 0.08) 100%);
+  border-radius: var(--radius-md);
+  margin: 0 var(--space-3);
+  padding: 6px 0;
+}
+@media (prefers-color-scheme: dark) {
+  .topbar-danmaku {
+    background: linear-gradient(90deg,
+      rgba(99, 102, 241, 0.12) 0%,
+      rgba(168, 85, 247, 0.12) 25%,
+      rgba(236, 72, 153, 0.12) 50%,
+      rgba(168, 85, 247, 0.12) 75%,
+      rgba(99, 102, 241, 0.12) 100%);
+  }
 }
 .danmaku-track {
   display: inline-flex;
@@ -78,14 +97,26 @@
   animation: danmaku-scroll 30s linear infinite;
   will-change: transform;
 }
+.danmaku-track:nth-child(2) {
+  animation-delay: -15s;
+}
 .danmaku-item {
   flex-shrink: 0;
   font-family: var(--font-serif);
-  font-size: 0.85rem;
-  letter-spacing: 0.06em;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
   color: var(--text-secondary);
   user-select: none;
-  opacity: 0.7;
+  opacity: 0.75;
+  text-shadow: 0 0 1px rgba(99, 102, 241, 0.2);
+}
+.danmaku-item::before {
+  content: "◆";
+  display: inline-block;
+  margin-right: 0.5em;
+  color: var(--accent);
+  font-size: 0.65em;
+  vertical-align: middle;
 }
 @keyframes danmaku-scroll {
   0%   { transform: translateX(0); }
