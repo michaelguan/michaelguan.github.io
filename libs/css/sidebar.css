@@ -46,7 +46,7 @@
 .card-more svg { width: 12px; height: 12px; stroke-width: 2.2; }
 
 /* --------------------------------------------------------------------------
-   Recent list — 日期改用 mono，紧凑布局
+   Recent list
    -------------------------------------------------------------------------- */
 .recent-list {
   margin: 0;
@@ -66,119 +66,108 @@
 .recent-list li:last-child { border-bottom: none; }
 
 .recent-marker {
-  width: 6px;
-  height: 6px;
-  margin-top: 9px;
+  width: 8px;
+  height: 8px;
+  margin-top: 8px;
   border-radius: var(--radius-full);
   background: var(--accent);
   flex-shrink: 0;
-  box-shadow: 0 0 0 2px var(--accent-faint);
+  box-shadow: 0 0 0 3px var(--accent-faint);
 }
-.recent-marker[data-category="game"] { background: var(--accent-success); box-shadow: 0 0 0 2px var(--accent-success-soft); }
-.recent-marker[data-category="life"] { background: var(--accent-warm); box-shadow: 0 0 0 2px var(--accent-warm-soft); }
+.recent-marker[data-category="game"] { background: var(--accent-success); box-shadow: 0 0 0 3px var(--accent-success-soft); }
+.recent-marker[data-category="life"] { background: var(--accent-warm); box-shadow: 0 0 0 3px var(--accent-warm-soft); }
 
 .recent-meta { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .recent-title {
   font-size: var(--text-sm);
-  font-weight: 500;
+  font-weight: 600;
   color: var(--text-primary);
   text-decoration: none;
-  line-height: var(--leading-snug);
+  line-height: 1.4;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
-.recent-title:hover { color: var(--accent); text-decoration: underline; text-decoration-color: var(--accent-warm); text-underline-offset: 2px; }
+.recent-title:hover { color: var(--accent); }
 .recent-date {
   font-size: var(--text-xs);
   color: var(--text-subtle);
-  font-family: var(--font-mono);
-  letter-spacing: 0.02em;
 }
 
 /* --------------------------------------------------------------------------
-   Stats card — 改成单行大数字"8 篇"
+   Stats card
    -------------------------------------------------------------------------- */
-.stats-card {
-  background: transparent;
-  border: none;
-  border-top: 1px solid var(--border-base);
-  border-radius: 0;
-  padding: var(--space-5) 0;
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: var(--space-3);
 }
-.stats-card .card-header {
-  display: none; /* 去掉"数据"标题 */
-}
-.stat-large {
+.stat-cell {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
+  gap: 2px;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--surface-soft);
+  transition: background var(--transition-fast);
 }
-.stat-number {
-  font-family: var(--font-mono);
-  font-size: 2.5rem;
-  font-weight: 500;
+.stat-cell:hover { background: var(--accent-faint); }
+.stat-value {
+  font-family: var(--font-sans);
+  font-size: var(--text-xl);
+  font-weight: 700;
   color: var(--text-primary);
   letter-spacing: -0.02em;
-  line-height: 1;
+  line-height: 1.1;
 }
-.stat-caption {
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
-}
-.stats-inline {
-  display: flex;
-  gap: var(--space-4);
+.stat-label {
   font-size: var(--text-xs);
-  color: var(--text-subtle);
-}
-.stats-inline span {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.stats-inline strong {
-  color: var(--text-primary);
-  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 /* --------------------------------------------------------------------------
-   Quote / motto card — 改为无背景衬线引文 + amber 左竖线
+   Quote / motto card
    -------------------------------------------------------------------------- */
 .motto-card {
   position: relative;
-  background: transparent;
-  border: none;
-  border-left: 3px solid var(--accent-warm);
-  border-radius: 0;
-  padding: var(--space-4) var(--space-5);
+  background: linear-gradient(140deg, var(--accent-faint) 0%, var(--surface-elevated) 100%);
+  border-color: var(--accent-soft);
+  padding: var(--space-5);
   gap: var(--space-3);
-  box-shadow: none;
 }
-.motto-card:hover {
-  box-shadow: none;
+@media (prefers-color-scheme: dark) {
+  .motto-card {
+    background: linear-gradient(140deg, rgba(99, 102, 241, 0.08) 0%, var(--surface-elevated) 100%);
+  }
 }
-.motto-card .card-header {
-  display: none; /* 去掉"座右铭"标题，更干净 */
+.motto-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: var(--text-inverse);
 }
+.motto-mark svg { width: 16px; height: 16px; }
 .motto-text {
   font-family: var(--font-serif);
-  font-size: var(--text-lg);
-  line-height: var(--leading-relax);
+  font-size: var(--text-md);
+  line-height: var(--leading-snug);
   color: var(--text-primary);
   margin: 0;
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: 0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 .motto-author {
   font-size: var(--text-xs);
   color: var(--text-secondary);
   margin: 0;
-  margin-top: var(--space-2);
 }
 
 /* --------------------------------------------------------------------------
