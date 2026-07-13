@@ -95,7 +95,6 @@
 }
 .topbar-brand:hover { color: var(--text-primary); }
 
-/* -------------------------------------------------------------------------- */
 /* Danmaku (弹幕) — topbar 右侧滚动文字                                    */
 /* -------------------------------------------------------------------------- */
 .topbar-danmaku {
@@ -109,44 +108,47 @@
   flex-direction: column;
   justify-content: center;
   gap: 4px;
+  /* 方案 B：indigo 主导，amber 作为"心跳"点缀 */
   background: linear-gradient(90deg,
-    rgba(99, 102, 241, 0.06) 0%,
-    rgba(99, 102, 241, 0.12) 25%,
-    rgba(245, 158, 11, 0.08) 50%,
-    rgba(99, 102, 241, 0.12) 75%,
-    rgba(99, 102, 241, 0.06) 100%);
+    rgba(99, 102, 241, 0.04) 0%,
+    rgba(99, 102, 241, 0.10) 40%,
+    rgba(245, 158, 11, 0.06) 60%,
+    rgba(99, 102, 241, 0.10) 80%,
+    rgba(99, 102, 241, 0.04) 100%);
   border-radius: var(--radius-md);
   margin: 0 var(--space-3);
   padding: 6px 0;
   position: relative;
 }
+/* 第二层叠加：更淡的渐变增加深度 */
 .topbar-danmaku::before {
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   background: linear-gradient(90deg,
     transparent 0%,
-    rgba(99, 102, 241, 0.03) 30%,
-    rgba(245, 158, 11, 0.02) 50%,
-    rgba(99, 102, 241, 0.03) 70%,
+    rgba(99, 102, 241, 0.03) 35%,
+    rgba(245, 158, 11, 0.02) 55%,
+    rgba(99, 102, 241, 0.03) 75%,
     transparent 100%);
   pointer-events: none;
 }
+/* 暗色模式：提高 opacity 保证对比度 */
 @media (prefers-color-scheme: dark) {
   .topbar-danmaku {
     background: linear-gradient(90deg,
-      rgba(129, 140, 248, 0.08) 0%,
-      rgba(129, 140, 248, 0.16) 25%,
-      rgba(251, 191, 36, 0.10) 50%,
-      rgba(129, 140, 248, 0.16) 75%,
-      rgba(129, 140, 248, 0.08) 100%);
+      rgba(129, 140, 248, 0.06) 0%,
+      rgba(129, 140, 248, 0.14) 40%,
+      rgba(251, 191, 36, 0.08) 60%,
+      rgba(129, 140, 248, 0.14) 80%,
+      rgba(129, 140, 248, 0.06) 100%);
   }
   .topbar-danmaku::before {
     background: linear-gradient(90deg,
       transparent 0%,
-      rgba(129, 140, 248, 0.04) 30%,
-      rgba(251, 191, 36, 0.03) 50%,
-      rgba(129, 140, 248, 0.04) 70%,
+      rgba(129, 140, 248, 0.04) 35%,
+      rgba(251, 191, 36, 0.03) 55%,
+      rgba(129, 140, 248, 0.04) 75%,
       transparent 100%);
   }
 }
