@@ -58,35 +58,6 @@
   font-weight: 600;
 }
 
-/* 视图切换 */
-.view-switch {
-  display: inline-flex;
-  align-items: center;
-  background: var(--surface-soft);
-  border-radius: var(--radius-md);
-  padding: 2px;
-}
-.view-switch button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px; height: 28px;
-  background: transparent;
-  border: none;
-  color: var(--text-secondary);
-  cursor: pointer;
-  border-radius: var(--radius-sm);
-  transition: background var(--transition-fast), color var(--transition-fast);
-}
-.view-switch button:hover,
-.view-switch button:focus-visible { color: var(--text-primary); }
-.view-switch button[aria-pressed="true"] {
-  background: var(--surface-elevated);
-  color: var(--text-primary);
-  box-shadow: var(--shadow-xs);
-}
-.view-switch svg { width: 14px; height: 14px; stroke-width: 2.2; }
-
 /* --------------------------------------------------------------------------
    Compact mode — 当两栏都收起时让中央拉伸
    -------------------------------------------------------------------------- */

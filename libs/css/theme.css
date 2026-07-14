@@ -90,6 +90,10 @@
   --accent-faint:      var(--color-indigo-50);
   --accent-glow:       rgba(99, 102, 241, 0.10);
 
+  /* Background ambient glow (very faint — depth without competing with content) */
+  --bg-glow-indigo:    rgba(99, 102, 241, 0.08);
+  --bg-glow-amber:     rgba(245, 158, 11, 0.05);
+
   --accent-warm:       var(--color-amber-600);
   --accent-warm-soft:  var(--color-amber-100);
   --accent-warm-faint: var(--color-amber-50);
@@ -209,6 +213,8 @@
     --accent-soft:       rgba(99, 102, 241, 0.16);
     --accent-faint:      rgba(99, 102, 241, 0.08);
     --accent-glow:       rgba(99, 102, 241, 0.16);
+    --bg-glow-indigo:    rgba(99, 102, 241, 0.12);
+    --bg-glow-amber:     rgba(245, 158, 11, 0.08);
 
     --accent-warm:       var(--color-amber-400);
     --accent-warm-soft:  rgba(245, 158, 11, 0.16);
@@ -264,6 +270,8 @@
   --accent-hover: var(--color-indigo-300);
   --accent-soft: rgba(99, 102, 241, 0.16);
   --accent-faint: rgba(99, 102, 241, 0.08);
+  --bg-glow-indigo: rgba(99, 102, 241, 0.12);
+  --bg-glow-amber: rgba(245, 158, 11, 0.08);
 }
 
 /* --------------------------------------------------------------------------
@@ -285,7 +293,10 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--surface-base);
+  background:
+    radial-gradient(48rem 48rem at 12% -8%, var(--bg-glow-indigo), transparent 60%),
+    radial-gradient(42rem 42rem at 100% 0%, var(--bg-glow-amber), transparent 55%),
+    var(--surface-base);
   color: var(--text-primary);
   font-family: var(--font-sans);
   font-size: var(--text-base);
