@@ -11,7 +11,6 @@ cat > 10.html << 'EOF'
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anthropics Financial Services - 第 10 页</title>
-    <script src="../libs/tailwind.js"></script>
     <link rel="stylesheet" href="../libs/style.css">
     <style>
         body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
@@ -20,6 +19,7 @@ cat > 10.html << 'EOF'
         select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
         .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
     </style>
+    <link rel="stylesheet" href="../libs/tailwind.css">
 </head>
 <body>
     <div class="slide-container" id="slide-track">

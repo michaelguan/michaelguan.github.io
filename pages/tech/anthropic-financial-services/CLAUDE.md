@@ -22,15 +22,15 @@ Opening `index.html` via `file://` may fail to load the slide iframes depending 
 
 ### Two-layer structure
 
-- **`index.html`** — the *host shell*. It links `libs/reveal.css` + a swappable theme (`libs/simple.css` by default), `libs/tailwind.js` (Tailwind CDN runtime), and `libs/reveal.js` (Reveal.js, loaded as a classic `<script>`, not a module). On `DOMContentLoaded` it **generates all 32 slide slots at runtime** (`totalSlidesCount = 32`) as `<section><iframe class="slide-iframe" data-src="./slides/NN.html"></iframe></section>`, then initializes Reveal.js. Slides are *lazy-loaded*: an iframe's `src` is only set when Reveal navigates to that slide (`slidechanged` / `ready` events), and a CSS fade-in (`opacity 0 → .iframe-visible`) fires on `iframe.onload`. A defensive `forceShowFirstSlide` runs at 50ms/200ms to avoid a blank first frame.
-- **`slides/NN.html`** (01–32) — each slide is a **standalone full-viewport HTML page** with its own `<head>`. Each slide re-includes `../libs/tailwind.js` and `../libs/style.css`. The slide body is always:
+- **`index.html`** — the *host shell*. It links `libs/reveal.css` + a swappable theme (`libs/simple.css` by default), `libs/tailwind.css` (precompiled Tailwind), and `libs/reveal.js` (Reveal.js, loaded as a classic `<script>`, not a module). On `DOMContentLoaded` it **generates all 32 slide slots at runtime** (`totalSlidesCount = 32`) as `<section><iframe class="slide-iframe" data-src="./slides/NN.html"></iframe></section>`, then initializes Reveal.js. Slides are *lazy-loaded*: an iframe's `src` is only set when Reveal navigates to that slide (`slidechanged` / `ready` events), and a CSS fade-in (`opacity 0 → .iframe-visible`) fires on `iframe.onload`. A defensive `forceShowFirstSlide` runs at 50ms/200ms to avoid a blank first frame.
+- **`slides/NN.html`** (01–32) — each slide is a **standalone full-viewport HTML page** with its own `<head>`. Each slide links `../libs/tailwind.css` and `../libs/style.css`. The slide body is always:
   ```html
   <div class="slide-container" id="slide-track">
     <div class="slide"> ...content... </div>
     <!-- some slides add more <div class="slide"> siblings for the flex "slide-track" horizontal scroll, but most are single-slide -->
   </div>
   ```
-  There is **no per-slide JavaScript** — every slide has exactly one `<script>` tag (the Tailwind runtime). All interactivity lives in the host shell.
+  There is **no per-slide JavaScript** — slides link `../libs/tailwind.css` (precompiled Tailwind) and have no `<script>` tags. All interactivity lives in the host shell.
 
 ### Theming
 
@@ -40,7 +40,7 @@ Themes are swapped at runtime by changing `#theme-link`'s `href` to `./libs/{bla
 
 - `style.css` — the **Phosphor icon font**: `@font-face` for the Phosphor family plus ~2000 `.ph.ph-*:before { content: "\e..." }` glyph mappings. Icons are used via `<i class="ph ph-<name>"></i>`. Font binaries: `Phosphor.woff2/.woff/.ttf`.
 - `reveal.js`, `reveal.css` — Reveal.js engine + base styles.
-- `tailwind.js` — Tailwind CDN runtime (provides utility classes at runtime; there is **no Tailwind build/config** in this repo).
+- `tailwind.css` — precompiled Tailwind (generated once via the Tailwind CLI from the deck's markup and committed as static CSS; the published site has **no Tailwind runtime/build step**).
 - `simple/black/league/dracula/solarized.css` — Reveal theme skins.
 
 ### Notable gotchas

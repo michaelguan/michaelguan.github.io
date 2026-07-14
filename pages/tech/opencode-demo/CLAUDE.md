@@ -32,7 +32,7 @@ python -m http.server 8000  # 或任何其他静态服务器
   - 左右翻页按钮、右下角控制面板、全屏自动隐藏 UI
 
 - **`slides/01.html` ~ `slides/43.html`** — 每一页幻灯片为一个独立 HTML 文件，自包含结构和样式。每个 slide 内部都引用了：
-  - `../libs/tailwind.js` — Tailwind CSS
+  - `../libs/tailwind.css` — Tailwind（预编译静态 CSS）
   - `../libs/style.css` — Phosphor 图标字体样式
   - 页面内部的 `<style>` 标签定义了 `.slide-container` / `.slide` / `.content-area` 等样式
 
@@ -57,7 +57,7 @@ python -m http.server 8000  # 或任何其他静态服务器
 │   ├── league.css      # 主题（金属灰）
 │   ├── dracula.css     # 主题（吸血鬼）
 │   ├── solarized.css   # 主题（羊皮纸）
-│   ├── tailwind.js     # Tailwind CSS
+│   ├── tailwind.css    # Tailwind（预编译静态 CSS）
 │   ├── style.css       # Phosphor 图标字体 + 公用图标样式
 │   └── Phosphor.*      # Phosphor 图标字体文件
 ```
