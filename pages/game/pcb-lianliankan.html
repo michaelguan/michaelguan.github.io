@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PCB 连连看 · Lianliankan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/libs/css/reset.css">
+  <link rel="stylesheet" href="pcb-game.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="chip-logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00ff95" stroke-width="1.6">
+            <rect x="6" y="6" width="12" height="12" rx="2"/>
+            <path d="M9 3v3M12 3v3M15 3v3M9 18v3M12 18v3M15 18v3M3 9h3M3 12h3M3 15h3M18 9h3M18 12h3M18 15h3" stroke-linecap="round"/>
+            <rect x="10" y="10" width="4" height="4" fill="#00ff95" stroke="none"/>
+          </svg>
+        </div>
+        <div>
+          <h1>PCB 连连看</h1>
+          <div class="sub">LIANLIANKAN · CIRCUIT MATCH</div>
+        </div>
+      </div>
+      <div class="hud">
+        <div class="stat"><span class="k">时间</span><span class="v" id="hud-time">05:00</span></div>
+        <div class="stat"><span class="k">分数</span><span class="v" id="hud-score">0</span></div>
+        <div class="stat combo"><span class="k">连击</span><span class="v" id="hud-combo">x0</span></div>
+        <div class="stat"><span class="k">最佳</span><span class="v" id="hud-best">0</span></div>
+      </div>
+    </header>
+
+    <div class="toolbar">
+      <div class="seg" id="diff-seg" role="group" aria-label="难度">
+        <button type="button" data-diff="easy" class="active">简单</button>
+        <button type="button" data-diff="medium">中等</button>
+        <button type="button" data-diff="hard">困难</button>
+      </div>
+      <span class="spacer"></span>
+      <button type="button" class="btn" id="btn-hint" title="提示 (H)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1.1 1.2 1.1 2.2h5c0-1 .5-1.7 1.1-2.2A6 6 0 0 0 12 3Z"/></svg>
+        提示
+      </button>
+      <button type="button" class="btn" id="btn-shuffle" title="重排 (S)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+        重排
+      </button>
+      <button type="button" class="btn icon" id="btn-pause" title="暂停 (P)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+      </button>
+      <button type="button" class="btn icon" id="btn-sound" title="音效 (M)" aria-pressed="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a9 9 0 0 1 0 13" id="sound-on"/></svg>
+      </button>
+      <button type="button" class="btn icon" id="btn-restart" title="重开 (R)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v5h-5"/></svg>
+      </button>
+    </div>
+
+    <div class="board-wrap">
+      <div class="board" id="board">
+        <svg class="trace-layer" id="trace" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
+    </div>
+
+    <div class="footer-note">点击两个相同元件，若能用 ≤2 折的铜箔走线连通即可消除 · 键盘 1-4 选难度 / H 提示 / S 重排 / P 暂停</div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- Start modal -->
+  <div class="modal" id="modal-start">
+    <div class="panel">
+      <h2>PCB 连连看</h2>
+      <div class="tag">LIANLIANKAN · CIRCUIT MATCH</div>
+      <p>在电路板上连通成对的元件。两个相同元件之间若能用不超过两次转折的铜箔走线相连，即可“焊接”消除。</p>
+      <div class="how">
+        <div>· 选 <b>简单 / 中等 / 困难</b> 决定板面与时限</div>
+        <div>· 点击两个相同元件，连线 ≤2 折即消除</div>
+        <div>· 无路可走时自动<b>重排</b>，也可用按钮手动重排</div>
+        <div>· 连续快速消除可累积 <b>连击</b> 加分</div>
+      </div>
+      <div class="diff-row">
+        <button type="button" class="btn primary" data-start="easy">简单 8×6</button>
+        <button type="button" class="btn primary" data-start="medium">中等 12×7</button>
+        <button type="button" class="btn primary" data-start="hard">困难 14×8</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pause modal -->
+  <div class="modal" id="modal-pause">
+    <div class="panel">
+      <h2>已暂停</h2>
+      <div class="tag">PAUSED</div>
+      <p>走线已冻结，时间停止。</p>
+      <div class="actions">
+        <button type="button" class="btn primary" id="btn-resume">继续 (P)</button>
+        <button type="button" class="btn" id="btn-pause-restart">重开</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Win modal -->
+  <div class="modal" id="modal-win">
+    <div class="panel">
+      <h2>焊接完成</h2>
+      <div class="tag">BOARD CLEARED</div>
+      <div class="result-grid">
+        <div class="cell"><div class="k">最终分数</div><div class="v" id="win-score">0</div></div>
+        <div class="cell"><div class="k">用时</div><div class="v" id="win-time">0:00</div></div>
+        <div class="cell"><div class="k">最高连击</div><div class="v" id="win-combo">x0</div></div>
+        <div class="cell"><div class="k">提示次数</div><div class="v" id="win-hints">0</div></div>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn primary" id="btn-win-again">再来一局</button>
+        <button type="button" class="btn" id="btn-win-menu">选难度</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lose modal -->
+  <div class="modal" id="modal-lose">
+    <div class="panel">
+      <h2>时间耗尽</h2>
+      <div class="tag">TIME UP</div>
+      <p>还有元件未焊接。再来一局？</p>
+      <div class="result-grid">
+        <div class="cell"><div class="k">最终分数</div><div class="v" id="lose-score">0</div></div>
+        <div class="cell"><div class="k">剩余元件</div><div class="v" id="lose-left">0</div></div>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn primary" id="btn-lose-again">再来一局</button>
+        <button type="button" class="btn" id="btn-lose-menu">选难度</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="pcb-logic.js"></script>
+  <script src="pcb-game.js"></script>
+</body>
+</html>
