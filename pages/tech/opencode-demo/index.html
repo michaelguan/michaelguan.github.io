@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>OpenCode：开源 AI 编程代理</title>
     
-    <link rel="stylesheet" href="./libs/reveal.css">
-    <link rel="stylesheet" id="theme-link" href="./libs/simple.css">
-    <link rel="stylesheet" href="./libs/style.css">
+    <link rel="stylesheet" href="../../../libs/reveal.css">
+    <link rel="stylesheet" id="theme-link" href="../../../libs/simple.css">
+    <link rel="stylesheet" href="../../../libs/style.css">
     
     
     <style>
@@ -70,7 +70,7 @@
         .panel-icon-btn { background: transparent; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #475569; transition: color 0.2s; }
         .panel-icon-btn:hover { color: #2563eb; }
     </style>
-<link rel="stylesheet" href="./libs/tailwind.css">
+<link rel="stylesheet" href="../../../libs/tailwind.css">
 </head>
 <body>
 
@@ -99,7 +99,7 @@
         <div class="slides" id="slides-container"></div>
     </div>
 
-    <script src="./libs/reveal.js"></script>
+    <script src="../../../libs/reveal.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const totalSlidesCount = 32;
@@ -178,7 +178,7 @@
 
             // 监听下拉选择更换皮肤
             themeSelect.addEventListener('change', (e) => {
-                themeLink.href = `./libs/${e.target.value}.css`;
+                themeLink.href = `../../../libs/${e.target.value}.css`;
                 window.focus();
             });
 
