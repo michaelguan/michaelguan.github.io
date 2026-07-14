@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropics Financial Services - 第 02 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-identification-card text-blue-600"></i> 一句话定位
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-10"></div>
+
+            <!-- Main quote -->
+            <div class="bg-white p-10 rounded-2xl card-gradient-border flex flex-col justify-center mb-8">
+                <i class="ph ph-quotes text-5xl text-blue-100 mb-4"></i>
+                <p class="text-3xl font-bold text-slate-900 leading-relaxed mb-4">
+                    金融服务业的第一套开源 AI Agent 框架
+                </p>
+                <p class="text-xl text-slate-600 leading-relaxed">
+                    为投行、股票研究、私募股权和财富管理提供 <span class="text-blue-600 font-bold">10+ 专用智能体</span>、<span class="text-blue-600 font-bold">117+ 专业技能</span>，以及对接 <span class="text-blue-600 font-bold">11 大数据平台</span> 的 MCP 连接器
+                </p>
+            </div>
+
+            <!-- Key differentiators -->
+            <div class="grid grid-cols-2 gap-6">
+                <div class="bg-slate-50 p-6 rounded-xl card-gradient-border">
+                    <h4 class="font-bold text-slate-800 mb-3 flex items-center gap-2">
+                        <i class="ph ph-check text-green-500"></i> 完全开源
+                    </h4>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li class="flex items-center gap-2">
+                            <i class="ph ph-code text-blue-400"></i> 所有 Agent prompt 透明可审计
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="ph ph-books text-blue-400"></i> 技能定义基于 Markdown，易修改
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="ph ph-git-branch text-blue-400"></i> Apache 2.0 许可，可商用可 Fork
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-blue-50 p-6 rounded-xl card-gradient-border-blue">
+                    <h4 class="font-bold text-blue-900 mb-3 flex items-center gap-2">
+                        <i class="ph ph-lightning text-blue-500"></i> 企业级生产能力
+                    </h4>
+                    <ul class="space-y-2 text-sm text-blue-800">
+                        <li class="flex items-center gap-2">
+                            <i class="ph ph-plugs text-blue-400"></i> 11 个 MCP 连接器对接主流数据源
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="ph ph_upload text-blue-400"></i> 支持 Managed Agents API 自部署
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="ph ph-shield-check text-blue-400"></i> 金融机构可直接集成到工作流
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 为什么是金融：行业背景与三大矛盾 -->
+            <div class="mb-6 bg-slate-50 p-5 rounded-xl card-gradient-border">
+                <div class="flex items-start gap-3 mb-3">
+                    <i class="ph ph-chart-line-up text-blue-500 text-2xl mt-0.5"></i>
+                    <div>
+                        <h4 class="font-bold text-slate-800 mb-1">为什么从金融切入</h4>
+                        <p class="text-sm text-slate-600">分析师 <span class="font-bold text-blue-600">60%+</span> 的时间消耗在数据提取、Excel 建模与 PPT 制作，而非真正的分析判断；传统 RPA 与宏脚本难以处理 PDF 报告、电话会记录等非结构化文档。</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-3 mt-2">
+                    <div class="bg-white p-3 rounded-lg border border-slate-100">
+                        <p class="text-xs font-bold text-slate-700 mb-0.5">效率 vs 安全</p>
+                        <p class="text-xs text-slate-500">既要 AI 高效，又须严控数据安全</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg border border-slate-100">
+                        <p class="text-xs font-bold text-slate-700 mb-0.5">标准化 vs 定制</p>
+                        <p class="text-xs text-slate-500">沉淀机构最佳实践，又允许差异化</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg border border-slate-100">
+                        <p class="text-xs font-bold text-slate-700 mb-0.5">交互式 vs 自动化</p>
+                        <p class="text-xs text-slate-500">同一提示词，临时分析与定时批量兼用</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom banner -->
+            <div class="mt-6 bg-gradient-to-r from-blue-500 to-emerald-500 p-6 rounded-xl text-white">
+                <p class="text-center font-bold text-lg">
+                    <i class="ph ph-info mr-2"></i>
+                    从数据连接到建模到报告生成，端到端覆盖金融分析全流程
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

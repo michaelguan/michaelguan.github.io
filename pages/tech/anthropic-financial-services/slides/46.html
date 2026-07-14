@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropics Financial Services - 第 46 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <!-- Hero icon -->
+            <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-3xl flex items-center justify-center mb-8 shadow-2xl">
+                <i class="ph ph-rocket-launch text-5xl text-white"></i>
+            </div>
+
+            <!-- Main heading -->
+            <h1 class="text-4xl font-black text-white mb-4 text-center">
+                从一行命令到你的第一个金融 Agent
+            </h1>
+
+            <!-- Installation code block -->
+            <div class="bg-slate-900/80 backdrop-blur p-6 rounded-xl font-mono text-sm text-emerald-300 mb-8 max-w-3xl w-full shadow-2xl border border-slate-700">
+                <p class="text-slate-400 mb-2"># 添加插件市场</p>
+                <p class="mb-4">claude plugin marketplace add anthropics/financial-services</p>
+                <p class="text-slate-400 mb-2"># 先装核心底座 (含全部 MCP 连接器)</p>
+                <p class="mb-4">claude plugin install financial-analysis@claude-for-financial-services</p>
+                <p class="text-slate-400 mb-2"># 按需装 agent</p>
+                <p class="mb-1">claude plugin install pitch-agent@claude-for-financial-services</p>
+                <p>claude plugin install gl-reconciler@claude-for-financial-services</p>
+            </div>
+
+            <!-- CTA chips -->
+            <div class="flex items-center gap-4 mb-6">
+                <span class="bg-slate-800 border border-slate-700 text-white text-xs px-4 py-2 rounded-full">
+                    github.com/anthropics/financial-services
+                </span>
+                <span class="bg-slate-800 border border-slate-700 text-white text-xs px-4 py-2 rounded-full">
+                    Apache-2.0
+                </span>
+                <span class="bg-slate-800 border border-slate-700 text-white text-xs px-4 py-2 rounded-full">
+                    33K★ · 4.9K fork
+                </span>
+            </div>
+
+            <!-- Note pill -->
+            <div class="bg-amber-500/20 border border-amber-500/50 px-4 py-2 rounded-full mb-6">
+                <p class="text-xs text-amber-200">
+                    <i class="ph ph-info mr-1"></i>
+                    Cowork 可直接粘贴 repo URL 到 Settings → Plugins，或上传 zipped plugins/ 目录
+                </p>
+            </div>
+
+            <!-- Human-in-the-Loop 红线提示 -->
+            <div class="bg-rose-500/15 border border-rose-400/50 px-5 py-3 rounded-xl mb-6 max-w-3xl">
+                <p class="text-sm text-rose-200 flex items-center gap-2">
+                    <i class="ph ph-hand-palm text-rose-300"></i>
+                    <span>Agent 是效率工具而非决策者 — 涉及金额、合规、对外的输出必须 <strong class="text-rose-100">Human-in-the-Loop</strong></span>
+                </p>
+            </div>
+
+            <!-- Footer disclaimer -->
+            <p class="text-slate-400 text-sm text-center max-w-3xl">
+                本仓库为参考实现 — 跑出的产物为初稿，需持牌专业人士复核。不构成任何投资、法律、税务或会计建议。
+            </p>
+        </div>
+    </div>
+</body>
+</html>

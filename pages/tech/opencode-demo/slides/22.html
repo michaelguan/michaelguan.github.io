@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode：开源 AI 编程代理 - 第 22 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-users-three text-blue-600"></i> Subagents 子代理
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-8"></div>
+
+            <div class="bg-white p-5 rounded-xl card-gradient-border mb-5">
+                <p class="text-base text-slate-700 leading-relaxed">
+                    OpenCode 的代理分两类：<b class="text-slate-900">Primary</b> 是你直接对话的主代理（用 <code class="bg-slate-100 px-1.5 py-0.5 rounded text-purple-600 text-sm">Tab</code> 切换），<b class="text-slate-900">Subagent</b> 是主代理可委派、也可被你 <code class="bg-slate-100 px-1.5 py-0.5 rounded text-purple-600 text-sm">@提及</code> 调用的专门助手。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-5 mb-5">
+                <div class="bg-white p-5 rounded-xl card-gradient-border">
+                    <h3 class="font-bold text-slate-800 mb-3 flex items-center gap-2"><i class="ph ph-user-circle text-blue-500"></i> 内置 Primary（2）</h3>
+                    <ul class="space-y-2 text-sm text-slate-700">
+                        <li class="flex items-start gap-2"><i class="ph ph-hammer text-emerald-500 mt-0.5"></i><span><b>Build</b> · 默认，全工具开放，正常开发</span></li>
+                        <li class="flex items-start gap-2"><i class="ph ph-clipboard-text text-amber-500 mt-0.5"></i><span><b>Plan</b> · 受限，只读+分析，不改动代码</span></li>
+                    </ul>
+                </div>
+                <div class="bg-blue-50 p-5 rounded-xl card-gradient-border-blue">
+                    <h3 class="font-bold text-blue-900 mb-3 flex items-center gap-2"><i class="ph ph-users text-blue-500"></i> 内置 Subagent（3）</h3>
+                    <ul class="space-y-2 text-sm text-blue-800">
+                        <li class="flex items-start gap-2"><i class="ph ph-bolt text-blue-400 mt-0.5"></i><span><b>General</b> · 多步研究/并行任务，可改文件</span></li>
+                        <li class="flex items-start gap-2"><i class="ph ph-magnifying-glass text-blue-400 mt-0.5"></i><span><b>Explore</b> · 快速只读探索代码库</span></li>
+                        <li class="flex items-start gap-2"><i class="ph ph-binoculars text-blue-400 mt-0.5"></i><span><b>Scout</b> · 拉取外部依赖到缓存做对照</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-5">
+                <div class="bg-slate-900 text-slate-100 p-5 rounded-xl font-mono text-sm">
+                    <div class="text-slate-400 text-xs mb-2">// opencode.json 自定义子代理</div>
+                    <div><span class="text-pink-400">"agent"</span>: {</div>
+                    <div class="pl-4"><span class="text-sky-400">"code-reviewer"</span>: {</div>
+                    <div class="pl-8"><span class="text-sky-400">"model"</span>: <span class="text-amber-300">"anthropic/claude-sonnet-4-5"</span>,</div>
+                    <div class="pl-8"><span class="text-sky-400">"mode"</span>: <span class="text-amber-300">"subagent"</span>,</div>
+                    <div class="pl-8"><span class="text-sky-400">"permission"</span>: { <span class="text-sky-400">"edit"</span>: <span class="text-amber-300">"deny"</span> }</div>
+                    <div class="pl-4">}</div>
+                    <div>}</div>
+                </div>
+                <div class="bg-blue-50 p-5 rounded-xl card-gradient-border-blue">
+                    <h3 class="font-bold text-blue-900 mb-3 flex items-center gap-2"><i class="ph ph-at text-blue-500"></i> 调用方式</h3>
+                    <ul class="space-y-2 text-sm text-blue-800">
+                        <li class="flex items-start gap-2"><i class="ph ph-dot text-blue-400 mt-1"></i><span><b>自动委派</b>：主代理按 description 自动选</span></li>
+                        <li class="flex items-start gap-2"><i class="ph ph-dot text-blue-400 mt-1"></i><span><b>手动 @</b>：<code class="bg-white px-1.5 py-0.5 rounded text-xs">@general 帮我查这个函数</code></span></li>
+                        <li class="flex items-start gap-2"><i class="ph ph-dot text-blue-400 mt-1"></i><span><b>子会话</b>：用 <code class="bg-white px-1.5 py-0.5 rounded text-xs">+Down</code> 进入、<code class="bg-white px-1.5 py-0.5 rounded text-xs">←/→</code> 循环</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

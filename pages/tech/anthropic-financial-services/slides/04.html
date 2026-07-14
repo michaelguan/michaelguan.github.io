@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropics Financial Services - 第 04 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 3rem 6rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-stack text-blue-600"></i> 技术架构：四层堆栈
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-8"></div>
+
+            <!-- Architecture stack -->
+            <div class="space-y-3">
+                <!-- Layer 1: Agents -->
+                <div class="bg-white p-5 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-5">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i class="ph ph-robot text-blue-600 text-3xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-1">
+                            <h3 class="text-lg font-bold text-slate-800">第一层：智能体 Agents</h3>
+                            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-bold">10+</span>
+                        </div>
+                        <p class="text-sm text-slate-600">端到端工作流编排 — 每个 Agent 自带系统提示 + 捆绑的技能 + 工具权限</p>
+                        <p class="text-xs text-slate-500 mt-1">Pitch Agent · Meeting Prep · Market Researcher · Earnings Reviewer · Model Builder · Valuation Reviewer · GL Reconciler · Month-End Closer · Statement Auditor · KYC Screener</p>
+                    </div>
+                    <div class="text-right text-xs text-slate-400 flex-shrink-0">plugins/agent-plugins/<br><span class="font-mono text-blue-500">slug</span>/</div>
+                </div>
+
+                <!-- Layer 2: Skills + Commands -->
+                <div class="bg-white p-5 rounded-xl card-gradient-border border-l-4 border-l-emerald-500 flex items-center gap-5">
+                    <div class="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i class="ph ph-puzzle-piece text-emerald-600 text-3xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-1">
+                            <h3 class="text-lg font-bold text-slate-800">第二层：技能 Skills & 斜杠指令 Commands</h3>
+                            <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-bold">117+ / 50+</span>
+                        </div>
+                        <p class="text-sm text-slate-600">领域专长与方法论 — Claude 按需自动调用；用户可用 <span class="font-mono text-emerald-600">/comps /dcf /earnings</span> 显式触发</p>
+                        <p class="text-xs text-slate-500 mt-1">在 verticals 中单一编写 → 各 Agent 捆绑各自所需副本同步，源与副本保持一致</p>
+                    </div>
+                    <div class="text-right text-xs text-slate-400 flex-shrink-0">plugins/vertical-plugins/<br><span class="font-mono text-emerald-500">vertical</span>/skills/</div>
+                </div>
+
+                <!-- Layer 3: MCP Connectors -->
+                <div class="bg-white p-5 rounded-xl card-gradient-border border-l-4 border-l-amber-500 flex items-center gap-5">
+                    <div class="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i class="ph ph-plugs text-amber-600 text-3xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-1">
+                            <h3 class="text-lg font-bold text-slate-800">第三层：数据连接器 MCP Connectors</h3>
+                            <span class="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full font-bold">11</span>
+                        </div>
+                        <p class="text-sm text-slate-600">基于 MCP 协议对接外部数据平台 — 全部集中在 financial-analysis 核心插件，跨 Agent 共享</p>
+                        <p class="text-xs text-slate-500 mt-1">S&P Global · FactSet · Morningstar · Daloopa · Moody's · LSEG · PitchBook · Chronograph · MT Newswires · Aiera · Box</p>
+                    </div>
+                    <div class="text-right text-xs text-slate-400 flex-shrink-0">.mcp.json<br><span class="font-mono text-amber-500">MCP 协议</span></div>
+                </div>
+
+                <!-- Layer 4: Deployment -->
+                <div class="bg-white p-5 rounded-xl card-gradient-border border-l-4 border-l-purple-500 flex items-center gap-5">
+                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i class="ph ph-cloud text-purple-600 text-3xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-1">
+                            <h3 class="text-lg font-bold text-slate-800">第四层：四种部署方式</h3>
+                            <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full font-bold">4</span>
+                        </div>
+                        <p class="text-sm text-slate-600">同一份系统提示与技能，四种运行入口，按你的工作流引擎选择运行位置</p>
+                        <p class="text-xs text-slate-500 mt-1">Cowork 插件 · Claude Code CLI · Managed Agents API (<span class="font-mono">/v1/agents</span>) · Microsoft 365 Add-in</p>
+                    </div>
+                    <div class="text-right text-xs text-slate-400 flex-shrink-0">managed-agent-cookbooks/<br><span class="font-mono text-purple-500">agent.yaml</span></div>
+                </div>
+            </div>
+
+            <!-- 三大设计原则（业务视角） -->
+            <div class="mt-5 grid grid-cols-3 gap-3">
+                <div class="bg-white p-3.5 rounded-xl card-gradient-border border-t-4 border-t-rose-400">
+                    <div class="flex items-center gap-2 mb-1">
+                        <i class="ph ph-shield-check text-rose-500 text-lg"></i>
+                        <h4 class="text-sm font-bold text-slate-800">安全三层隔离</h4>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">读取层（仅 Read/Grep 接触不可信文档）→ 处理层（可信隔离区，可连 MCP）→ 输出层（唯一写权限），架构层面杜绝注入与泄露</p>
+                </div>
+                <div class="bg-white p-3.5 rounded-xl card-gradient-border border-t-4 border-t-emerald-400">
+                    <div class="flex items-center gap-2 mb-1">
+                        <i class="ph ph-repeat text-emerald-500 text-lg"></i>
+                        <h4 class="text-sm font-bold text-slate-800">技能与执行分离</h4>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">Skill（操作手册）与 Agent（执行者）解耦，改 <span class="font-mono text-emerald-600">SKILL.md</span> 后跑 <span class="font-mono text-emerald-600">sync-agent-skills.py</span> 全量同步</p>
+                </div>
+                <div class="bg-white p-3.5 rounded-xl card-gradient-border border-t-4 border-t-amber-400">
+                    <div class="flex items-center gap-2 mb-1">
+                        <i class="ph ph-plugs-connected text-amber-500 text-lg"></i>
+                        <h4 class="text-sm font-bold text-slate-800">数据源统一接入</h4>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">12 个 MCP 数据源集中配置，处理层节点部署时自动获得接入，无需重复采购或重复对接</p>
+                </div>
+            </div>
+
+            <!-- Bottom note -->
+            <div class="mt-4 bg-gradient-to-r from-blue-500 to-emerald-500 p-5 rounded-xl text-white">
+                <p class="text-center font-bold text-base">
+                    <i class="ph ph-info mr-2"></i>
+                    一切皆基于文件 — 全部是 Markdown 与 JSON，无构建步骤；同一份源码，Cowork 与 Managed Agent 双形态
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

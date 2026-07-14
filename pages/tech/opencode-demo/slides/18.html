@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode：开源 AI 编程代理 - 第 18 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-wrench text-blue-600"></i> Skills 体系概览
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-10"></div>
+
+            <div class="bg-white p-6 rounded-xl card-gradient-border mb-6">
+                <p class="text-lg text-slate-700 leading-relaxed mb-4">
+                    Skills 是 OpenCode 的核心扩展机制，每个 Skill 是一个独立的技能模块，定义了特定场景下的行为和指导。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="bg-slate-50 p-5 rounded-xl card-gradient-border-slate">
+                    <h3 class="font-bold text-slate-800 mb-3">Skill 结构</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li class="flex items-center gap-2"><i class="ph ph-file text-blue-400"></i><code class="bg-white px-1 py-0.5 rounded text-xs">SKILL.md</code> - 核心指导文件</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-folder text-blue-400"></i><code class="bg-white px-1 py-0.5 rounded text-xs">scripts/</code> - 相关脚本</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-files text-blue-400"></i><code class="bg-white px-1 py-0.5 rounded text-xs">references/</code> - 参考文档</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-50 p-5 rounded-xl card-gradient-border-slate">
+                    <h3 class="font-bold text-slate-800 mb-3">触发机制</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li class="flex items-center gap-2"><i class="ph ph-keyword text-green-400"></i> 关键词自动触发</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-magic-wand text-green-400"></i> 场景智能识别</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-plug text-green-400"></i> 手动调用</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 p-5 rounded-xl card-gradient-border-blue mb-6">
+                <h3 class="font-bold text-blue-900 mb-3">内置 Skills 类型</h3>
+                <div class="grid grid-cols-3 gap-3 text-sm text-blue-800">
+                    <div class="bg-white p-3 rounded-lg text-center"><i class="ph ph-pencil-simple text-blue-400 text-xl mb-1"></i><p class="font-medium">编码技能</p></div>
+                    <div class="bg-white p-3 rounded-lg text-center"><i class="ph ph-bug text-blue-400 text-xl mb-1"></i><p class="font-medium">调试技能</p></div>
+                    <div class="bg-white p-3 rounded-lg text-center"><i class="ph ph-test-tube text-blue-400 text-xl mb-1"></i><p class="font-medium">测试技能</p></div>
+                    <div class="bg-white p-3 rounded-lg text-center"><i class="ph ph-code text-blue-400 text-xl mb-1"></i><p class="font-medium">重构技能</p></div>
+                    <div class="bg-white p-3 rounded-lg text-center"><i class="ph ph-shield text-blue-400 text-xl mb-1"></i><p class="font-medium">安全技能</p></div>
+                    <div class="bg-white p-3 rounded-lg text-center"><i class="ph ph-docs text-blue-400 text-xl mb-1"></i><p class="font-medium">文档技能</p></div>
+                </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl card-gradient-border">
+                <h3 class="font-bold text-slate-800 mb-3">查看可用 Skills</h3>
+                <code class="text-sm text-slate-600 break-all bg-slate-100 p-3 rounded block">
+                    /tools  # 查看所有可用工具和 Skills
+                </code>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

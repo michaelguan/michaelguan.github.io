@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropics Financial Services - 第 50 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 2.5rem 5rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-tree-structure text-blue-600"></i> 多 Agent 接力工作流（handoff）
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-4"></div>
+
+            <div class="grid grid-cols-5 gap-4 mb-4">
+                <!-- 左：工作原理示意（占 3 列） -->
+                <div class="col-span-3 bg-white p-4 rounded-xl card-gradient-border">
+                    <p class="text-sm font-bold text-slate-800 mb-2 flex items-center gap-2"><i class="ph ph-faders text-blue-500"></i> 工作原理</p>
+                    <!-- 链路条 -->
+                    <div class="flex items-center gap-2 mb-3 flex-wrap text-xs">
+                        <span class="bg-blue-500 text-white px-2.5 py-1.5 rounded-lg font-bold">Agent A</span>
+                        <i class="ph ph-caret-right text-slate-300 text-lg"></i>
+                        <span class="bg-slate-100 border border-dashed border-blue-400 text-slate-700 px-2.5 py-1.5 rounded-lg font-mono text-[11px] leading-snug text-center">
+                            {"type":"handoff_request",<br>"target_agent":"model-builder",<br>"payload":{"event":"..."}}
+                        </span>
+                        <i class="ph ph-caret-right text-slate-300 text-lg"></i>
+                        <span class="bg-emerald-500 text-white px-2.5 py-1.5 rounded-lg font-bold">Agent B</span>
+                    </div>
+                    <!-- 步骤 -->
+                    <ol class="space-y-1 text-xs text-slate-600 ml-1">
+                        <li class="flex items-start gap-1.5"><i class="ph ph-dot text-blue-400 mt-1"></i><span>Agent A 输出流中生成 <span class="font-mono text-blue-600">handoff_request</span> JSON blob</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-dot text-blue-400 mt-1"></i><span><span class="font-mono text-blue-600">orchestrate.py</span> 监听 <span class="font-mono">message_delta</span>，正则捕获 blob</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-dot text-blue-400 mt-1"></i><span>硬编码白名单校验（仅 10 个已部署 Agent slug）</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-dot text-blue-400 mt-1"></i><span>JSON Schema 校验 → <span class="font-mono text-blue-600">steer()</span> 引导到 Agent B</span></li>
+                    </ol>
+                    <pre class="bg-slate-900 text-emerald-300 text-[11px] font-mono p-3 rounded-lg mt-2 overflow-x-auto leading-relaxed"><span class="text-slate-500"># orchestrate.py</span>
+ALLOWED_TARGETS = { "pitch-agent", "model-builder", ... }
+<span class="text-slate-500"># 校验通过后 steer</span>
+client.beta.agents.sessions.steer(
+    agent_id=target_id,
+    input=handoff["payload"]["event"])</pre>
+                </div>
+
+                <!-- 右：三种触发方式（占 2 列） -->
+                <div class="col-span-2 flex flex-col gap-2.5">
+                    <div class="bg-blue-50 p-3 rounded-xl card-gradient-border-blue">
+                        <p class="text-xs font-bold text-blue-900 mb-1 flex items-center gap-1.5"><i class="ph ph-chat-centered-dots text-blue-500"></i> ① 自然语言</p>
+                        <p class="text-[11px] text-blue-800 leading-relaxed">说出端到端需求，Agent 自判是否接力</p>
+                        <code class="block text-[10px] font-mono text-blue-600 bg-blue-100 px-2 py-1 rounded mt-1">处理 NVDA Q1 财报，需更新就重建 DCF</code>
+                    </div>
+                    <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-200">
+                        <p class="text-xs font-bold text-emerald-900 mb-1 flex items-center gap-1.5"><i class="ph ph-terminal-window text-emerald-600"></i> ② 显式指定</p>
+                        <p class="text-[11px] text-emerald-800 leading-relaxed">手动指定接力链</p>
+                        <code class="block text-[10px] font-mono text-emerald-600 bg-emerald-100 px-2 py-1 rounded mt-1">先跑 reviewer，完成交给 builder 更新 DCF</code>
+                    </div>
+                    <div class="bg-purple-50 p-3 rounded-xl border border-purple-200">
+                        <p class="text-xs font-bold text-purple-900 mb-1 flex items-center gap-1.5"><i class="ph ph-lightning text-purple-500"></i> ③ API 自动路由</p>
+                        <p class="text-[11px] text-purple-800 leading-relaxed">托管部署后，orchestrate.py / Temporal / Airflow 监听输出流自动路由</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5 条现成接力链路 -->
+            <div class="bg-white p-4 rounded-xl card-gradient-border">
+                <p class="text-sm font-bold text-slate-800 mb-3 flex items-center gap-2"><i class="ph ph-arrows-clockwise text-blue-500"></i> 现成接力链路（5 条）</p>
+                <div class="space-y-2">
+                    <div class="flex items-center gap-3 bg-slate-50 rounded-lg px-3 py-2">
+                        <span class="font-mono text-xs font-bold text-blue-600 bg-blue-100 px-2 py-1 rounded">earnings-reviewer</span>
+                        <i class="ph ph-caret-right text-slate-400"></i>
+                        <span class="font-mono text-xs font-bold text-emerald-600 bg-emerald-100 px-2 py-1 rounded">model-builder</span>
+                        <span class="text-xs text-slate-600">业绩驱动投资主题变更后重建 DCF</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-slate-50 rounded-lg px-3 py-2">
+                        <span class="font-mono text-xs font-bold text-blue-600 bg-blue-100 px-2 py-1 rounded">pitch-agent</span>
+                        <i class="ph ph-caret-right text-slate-400"></i>
+                        <span class="font-mono text-xs font-bold text-emerald-600 bg-emerald-100 px-2 py-1 rounded">model-builder</span>
+                        <span class="text-xs text-slate-600">投资主题变更后需要重建模型</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-slate-50 rounded-lg px-3 py-2">
+                        <span class="font-mono text-xs font-bold text-blue-600 bg-blue-100 px-2 py-1 rounded">market-researcher</span>
+                        <i class="ph ph-caret-right text-slate-400"></i>
+                        <span class="font-mono text-xs font-bold text-emerald-600 bg-emerald-100 px-2 py-1 rounded">model-builder</span>
+                        <span class="text-xs text-slate-600">创意短名单中出现的标的需要建模</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-slate-50 rounded-lg px-3 py-2">
+                        <span class="font-mono text-xs font-bold text-blue-600 bg-blue-100 px-2 py-1 rounded">valuation-reviewer</span>
+                        <i class="ph ph-caret-right text-slate-400"></i>
+                        <span class="font-mono text-xs font-bold text-emerald-600 bg-emerald-100 px-2 py-1 rounded">gl-reconciler</span>
+                        <span class="text-xs text-slate-600">被标记的投资组合公司进入总账核对</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-slate-50 rounded-lg px-3 py-2">
+                        <span class="font-mono text-xs font-bold text-blue-600 bg-blue-100 px-2 py-1 rounded">gl-reconciler</span>
+                        <i class="ph ph-caret-right text-slate-400"></i>
+                        <span class="font-mono text-xs font-bold text-emerald-600 bg-emerald-100 px-2 py-1 rounded">month-end-closer</span>
+                        <span class="text-xs text-slate-600">已验证差异纳入月度结账说明</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropics Financial Services - 第 01 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+        .hero-glow { background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 70%); }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide relative overflow-hidden">
+            <!-- Background glow -->
+            <div class="absolute inset-0 hero-glow pointer-events-none"></div>
+
+            <!-- Main content -->
+            <div class="relative z-10 text-center">
+                <!-- Logo icon -->
+                <div class="w-28 h-28 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl">
+                    <i class="ph ph-currency-circle-dollar text-6xl text-white"></i>
+                </div>
+
+                <!-- Title -->
+                <h1 class="text-6xl font-black text-white mb-4 tracking-tight">
+                    Anthropics Financial Services
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="text-2xl text-blue-200 mb-10 font-light">
+                    金融服务业的第一套开源 AI Agent 框架
+                </p>
+
+                <!-- Stats badges -->
+                <div class="flex items-center justify-center gap-4 mb-12">
+                    <div class="bg-slate-800/80 backdrop-blur px-6 py-3 rounded-full border border-slate-700">
+                        <i class="ph ph-star text-yellow-400 mr-2"></i>
+                        <span class="text-white font-bold">33K+</span>
+                        <span class="text-slate-400 text-sm ml-1">Stars</span>
+                    </div>
+                    <div class="bg-slate-800/80 backdrop-blur px-6 py-3 rounded-full border border-slate-700">
+                        <i class="ph ph-git-fork text-blue-400 mr-2"></i>
+                        <span class="text-white font-bold">4.9K+</span>
+                        <span class="text-slate-400 text-sm ml-1">Forks</span>
+                    </div>
+                    <div class="bg-slate-800/80 backdrop-blur px-6 py-3 rounded-full border border-slate-700">
+                        <i class="ph ph-users text-emerald-400 mr-2"></i>
+                        <span class="text-white font-bold">258+</span>
+                        <span class="text-slate-400 text-sm ml-1">Subscribers</span>
+                    </div>
+                </div>
+
+                <!-- Coverage areas -->
+                <div class="grid grid-cols-4 gap-4 max-w-3xl mx-auto mb-10">
+                    <div class="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+                        <i class="ph ph-briefcase text-blue-400 text-2xl mb-2"></i>
+                        <div class="text-white text-sm font-medium">投行</div>
+                    </div>
+                    <div class="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+                        <i class="ph ph-chart-line text-emerald-400 text-2xl mb-2"></i>
+                        <div class="text-white text-sm font-medium">股票研究</div>
+                    </div>
+                    <div class="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+                        <i class="ph ph-vault text-amber-400 text-2xl mb-2"></i>
+                        <div class="text-white text-sm font-medium">私募股权</div>
+                    </div>
+                    <div class="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+                        <i class="ph ph-wallet text-purple-400 text-2xl mb-2"></i>
+                        <div class="text-white text-sm font-medium">财富管理</div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <p class="text-slate-400 text-sm mt-8">
+                    github.com/anthropics/financial-services · Apache 2.0 License
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

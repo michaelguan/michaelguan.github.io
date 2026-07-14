@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode：开源 AI 编程代理 - 第 25 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-puzzle-piece text-blue-600"></i> Plugins 插件机制
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-8"></div>
+
+            <div class="bg-white p-5 rounded-xl card-gradient-border mb-5">
+                <p class="text-base text-slate-700 leading-relaxed">
+                    插件是 JS/TS 模块，导出一个返回 <b class="text-slate-900">hooks</b> 的函数——通过订阅生命周期事件来扩展或改写 OpenCode 行为。两种加载方式，启动时自动加载。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-5 mb-5">
+                <div class="bg-blue-50 p-5 rounded-xl card-gradient-border-blue">
+                    <h3 class="font-bold text-blue-900 mb-3 flex items-center gap-2"><i class="ph ph-folder-simple text-blue-500"></i> ① 本地文件</h3>
+                    <ul class="space-y-2 text-sm text-blue-800">
+                        <li class="flex items-start gap-2"><i class="ph ph-dot text-blue-400 mt-1"></i><span>放 <code class="bg-white px-1.5 py-0.5 rounded text-xs">.opencode/plugins/</code>（项目级）</span></li>
+                        <li class="flex items-start gap-2"><i class="ph ph-dot text-blue-400 mt-1"></i><span>或 <code class="bg-white px-1.5 py-0.5 rounded text-xs">~/.config/opencode/plugins/</code>（全局）</span></li>
+                        <li class="flex items-start gap-2"><i class="ph ph-dot text-blue-400 mt-1"></i><span>启动时自动加载，无需安装</span></li>
+                    </ul>
+                </div>
+                <div class="bg-white p-5 rounded-xl card-gradient-border">
+                    <h3 class="font-bold text-slate-800 mb-3 flex items-center gap-2"><i class="ph ph-package text-blue-500"></i> ② npm 包</h3>
+                    <div class="bg-slate-900 text-slate-100 p-3 rounded-lg font-mono text-xs mb-2">
+                        <div><span class="text-pink-400">"plugin"</span>: [<span class="text-emerald-300">"opencode-helicone-session"</span>]</div>
+                    </div>
+                    <p class="text-xs text-slate-600">Bun 在启动时自动安装，缓存到 <code class="bg-slate-100 px-1 rounded">~/.cache/opencode/</code></p>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 text-slate-100 p-5 rounded-xl font-mono text-xs leading-relaxed mb-5">
+                <div class="text-slate-400 text-xs mb-1">// .opencode/plugins/my-plugin.ts</div>
+                <div><span class="text-purple-400">export const</span> <span class="text-sky-300">MyPlugin</span> = <span class="text-purple-400">async</span> ({ client, $, directory }) => ({</div>
+                <div class="pl-4"><span class="text-emerald-300">"tool.execute.before"</span>: <span class="text-purple-400">async</span> (input, output) => {</div>
+                <div class="pl-8"><span class="text-purple-400">if</span> (input.tool === <span class="text-amber-300">"bash"</span>) { <span class="text-slate-400">/* 审查/改写命令 */</span> }</div>
+                <div class="pl-4">}</div>
+                <div>})</div>
+            </div>
+
+            <div class="flex flex-wrap gap-2">
+                <span class="bg-white px-3 py-1.5 rounded-full text-xs text-slate-700 border border-slate-200 flex items-center gap-1.5"><i class="ph ph-command text-blue-400"></i> command.executed</span>
+                <span class="bg-white px-3 py-1.5 rounded-full text-xs text-slate-700 border border-slate-200 flex items-center gap-1.5"><i class="ph ph-file-text text-blue-400"></i> file.edited</span>
+                <span class="bg-white px-3 py-1.5 rounded-full text-xs text-slate-700 border border-slate-200 flex items-center gap-1.5"><i class="ph ph-chat-circle-text text-blue-400"></i> message.updated</span>
+                <span class="bg-white px-3 py-1.5 rounded-full text-xs text-slate-700 border border-slate-200 flex items-center gap-1.5"><i class="ph ph-shield-check text-blue-400"></i> permission.asked</span>
+                <span class="bg-white px-3 py-1.5 rounded-full text-xs text-slate-700 border border-slate-200 flex items-center gap-1.5"><i class="ph ph-wrench text-blue-400"></i> tool.execute.before/after</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

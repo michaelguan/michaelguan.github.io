@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode：开源 AI 编程代理 - 第 11 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-blackberry text-blue-600"></i> Checkpoint 检查点机制
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-10"></div>
+
+            <div class="bg-white p-6 rounded-xl card-gradient-border mb-6">
+                <p class="text-lg text-slate-700 leading-relaxed mb-4">
+                    OpenCode 的 <code class="bg-slate-100 px-2 py-1 rounded text-purple-600">/checkpoint</code> 机制让你可以在长时间任务中保存进度，随时恢复到之前的状态。
+                </p>
+                <div class="flex items-center gap-2 text-sm text-slate-500">
+                    <i class="ph ph-lightning text-yellow-500"></i>
+                    特别适合复杂任务、跨天工作流和需要多次迭代的场景。
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4 mb-6">
+                <div class="bg-slate-50 p-5 rounded-xl card-gradient-border-slate text-center">
+                    <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="ph ph-floppy-disk text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 mb-2">保存检查点</h3>
+                    <p class="text-sm text-slate-600">/checkpoint save 保存当前任务状态</p>
+                </div>
+
+                <div class="bg-blue-50 p-5 rounded-xl card-gradient-border-blue text-center">
+                    <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="ph ph-arrow-u-up-left text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-blue-900 mb-2">恢复到点</h3>
+                    <p class="text-sm text-blue-800">/checkpoint restore [id] 恢复到指定检查点</p>
+                </div>
+
+                <div class="bg-slate-50 p-5 rounded-xl card-gradient-border-slate text-center">
+                    <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="ph ph-list-dashes text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 mb-2">查看列表</h3>
+                    <p class="text-sm text-slate-600">/checkpoint list 查看所有检查点</p>
+                </div>
+            </div>
+
+            <div class="bg-yellow-50 p-5 rounded-xl border border-yellow-200 mb-6">
+                <h3 class="font-bold text-yellow-900 mb-3 flex items-center gap-2">
+                    <i class="ph ph-stairs text-yellow-600"></i> 典型使用场景
+                </h3>
+                <div class="grid grid-cols-3 gap-3 text-sm text-yellow-800">
+                    <div class="flex items-center gap-2"><i class="ph ph-check text-yellow-500"></i><span>复杂重构前保存</span></div>
+                    <div class="flex items-center gap-2"><i class="ph ph-check text-yellow-500"></i><span>迭代开发多版本</span></div>
+                    <div class="flex items-center gap-2"><i class="ph ph-check text-yellow-500"></i><span>跨天任务暂停</span></div>
+                </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl card-gradient-border">
+                <h3 class="font-bold text-slate-800 mb-3">检查点存储位置</h3>
+                <code class="text-sm text-slate-600 break-all bg-slate-100 px-3 py-2 rounded block">
+                    ~/.config/opencode/checkpoints/<session-id>/
+                </code>
+                <p class="text-xs text-slate-500 mt-2">检查点包含完整的会话状态、对话历史和任务进度</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

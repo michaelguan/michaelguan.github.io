@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropics Financial Services - 第 22 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 3rem 6rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-arrows-clockwise text-blue-600"></i> Meeting Prep Agent 工作流
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-8"></div>
+
+            <!-- Workflow steps -->
+            <div class="space-y-3 mb-6">
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">1</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">确认客户信息与会议情境</h4>
+                        <p class="text-sm text-slate-600">读取客户 ticker，确认会议类型（路演/尽职调查/定期沟通）和战略情境（融资/并购/顾问）</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">identify context</code>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">2</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">拉取客户财务数据与市场分析</h4>
+                        <p class="text-sm text-slate-600">通过 S&P Global / Morningstar 获取最新财报、股价、评级变化，分析最近的市场动态</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">/client-report</code>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">3</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">生成定制化投资提案</h4>
+                        <p class="text-sm text-slate-600">基于会议目标生成投资提案草案，包含交易结构建议、估值范围和潜在方案对比</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">/investment-proposal</code>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">4</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">执行竞争比较分析</h4>
+                        <p class="text-sm text-slate-600">选取 5-8 家对标公司，对比估值倍数、增长率和市场定位，生成比较矩阵</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">/competitive-analysis</code>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">5</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">聚合过往互动记录</h4>
+                        <p class="text-sm text-slate-600">从 Box/Egnyte 检索历史会议纪要、邮件往来和提案文档，生成互动时间线</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">Box/Egnyte MCP</code>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">6</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">组装完整简报包并等待审阅</h4>
+                        <p class="text-sm text-slate-600">将所有部分整合为统一的会议简报包，等待银行家复核和签字</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">assembly</code>
+                </div>
+            </div>
+
+            <!-- Guardrails -->
+            <div class="bg-yellow-50 p-5 rounded-xl border border-yellow-200">
+                <h3 class="font-bold text-yellow-900 mb-3 flex items-center gap-2">
+                    <i class="ph ph-shield-check text-yellow-600"></i> Guardrails（安全机制）
+                </h3>
+                <div class="grid grid-cols-3 gap-3 text-sm text-yellow-800">
+                    <div class="flex items-start gap-2"><i class="ph ph-check text-yellow-500 mt-0.5"></i><span>所有数据必须标注来源</span></div>
+                    <div class="flex items-start gap-2"><i class="ph ph-check text-yellow-500 mt-0.5"></i><span>无数据支持的观点标记 [UNSOURCED]</span></div>
+                    <div class="flex items-start gap-2"><i class="ph ph-check text-yellow-500 mt-0.5"></i><span>每步完成后暂停等待人工确认</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

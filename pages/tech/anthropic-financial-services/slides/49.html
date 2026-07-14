@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropics Financial Services - 第 49 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 2.5rem 5rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .matrix-row { border-bottom: 1px solid #f1f5f9; }
+        .matrix-row:last-child { border-bottom: none; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-plugs-connected text-blue-600"></i> 业务落地矩阵（二）— 数据源、行内替代与对接
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-4"></div>
+
+            <!-- 内网落地三原则呼应 -->
+            <div class="grid grid-cols-3 gap-3 mb-4">
+                <div class="bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2 flex items-center gap-2">
+                    <i class="ph ph-check text-emerald-500"></i>
+                    <span class="text-xs font-bold text-emerald-800">能封装不改写</span>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2 flex items-center gap-2">
+                    <i class="ph ph-check text-emerald-500"></i>
+                    <span class="text-xs font-bold text-emerald-800">能静态不实时</span>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2 flex items-center gap-2">
+                    <i class="ph ph-check text-emerald-500"></i>
+                    <span class="text-xs font-bold text-emerald-800">能分批不一步到位</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl card-gradient-border mb-3">
+                <table class="w-full">
+                    <thead>
+                        <tr class="text-xs text-slate-500 border-b-2 border-slate-100">
+                            <th class="text-left font-semibold pb-2 w-[16%]">智能体</th>
+                            <th class="text-left font-semibold pb-2 w-[26%]">所需外部数据</th>
+                            <th class="text-left font-semibold pb-2 w-[30%]">行内替代数据源</th>
+                            <th class="text-left font-semibold pb-2 w-[28%]">对接方式</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-[11px]">
+                        <tr class="matrix-row">
+                            <td class="py-1.5 pr-2 font-mono font-bold text-slate-800">pitch-agent</td>
+                            <td class="py-1.5 pr-2 text-slate-600">CapIQ（市场数据、可比公司）</td>
+                            <td class="py-1.5 pr-2 text-slate-600">Wind 终端 / 行研库 / 监管报送</td>
+                            <td class="py-1.5 pr-2 text-slate-600">封装 Wind API 为 MCP，或 Excel 静态注入</td>
+                        </tr>
+                        <tr class="matrix-row">
+                            <td class="py-1.5 pr-2 font-mono font-bold text-slate-800">earnings-reviewer</td>
+                            <td class="py-1.5 pr-2 text-slate-600">FactSet/Daloopa（财务数据）</td>
+                            <td class="py-1.5 pr-2 text-slate-600">行内信贷系统 / 评级系统</td>
+                            <td class="py-1.5 pr-2 text-slate-600">抽取客户财务数据标准化，暴露为 MCP</td>
+                        </tr>
+                        <tr class="matrix-row">
+                            <td class="py-1.5 pr-2 font-mono font-bold text-slate-800">market-researcher</td>
+                            <td class="py-1.5 pr-2 text-slate-600">CapIQ / FactSet</td>
+                            <td class="py-1.5 pr-2 text-slate-600">Wind / 行研库 / 内部研报库</td>
+                            <td class="py-1.5 pr-2 text-slate-600">Wind API 封装 + 内部研报库全文检索</td>
+                        </tr>
+                        <tr class="matrix-row">
+                            <td class="py-1.5 pr-2 font-mono font-bold text-slate-800">model-builder</td>
+                            <td class="py-1.5 pr-2 text-slate-600">CapIQ/Daloopa（历史财务）</td>
+                            <td class="py-1.5 pr-2 text-slate-600">行内信贷系统 + Wind</td>
+                            <td class="py-1.5 pr-2 text-slate-600">信贷系统供客户财务，Wind 供市场数据</td>
+                        </tr>
+                        <tr class="matrix-row">
+                            <td class="py-1.5 pr-2 font-mono font-bold text-slate-800">meeting-prep-agent</td>
+                            <td class="py-1.5 pr-2 text-slate-600">CRM + CapIQ</td>
+                            <td class="py-1.5 pr-2 text-slate-600">OCRM/CCRM + 持仓系统</td>
+                            <td class="py-1.5 pr-2 text-slate-600">CRM MCP 封装 OCRM，市场用 Wind</td>
+                        </tr>
+                        <tr class="matrix-row">
+                            <td class="py-1.5 pr-2 font-mono font-bold text-slate-800">valuation-reviewer</td>
+                            <td class="py-1.5 pr-2 text-slate-600">投资组合 MCP</td>
+                            <td class="py-1.5 pr-2 text-slate-600">行内投管系统 / 托管行数据</td>
+                            <td class="py-1.5 pr-2 text-slate-600">封装投管系统为 MCP，托管行文件导入</td>
+                        </tr>
+                        <tr class="matrix-row">
+                            <td class="py-1.5 pr-2 font-mono font-bold text-slate-800">statement-auditor</td>
+                            <td class="py-1.5 pr-2 text-slate-600">NAV MCP</td>
+                            <td class="py-1.5 pr-2 text-slate-600">托管行数据 / 行内估值系统</td>
+                            <td class="py-1.5 pr-2 text-slate-600">封装估值系统接口或文件导入</td>
+                        </tr>
+                        <tr class="matrix-row">
+                            <td class="py-1.5 pr-2 font-mono font-bold text-slate-800">gl-reconciler</td>
+                            <td class="py-1.5 pr-2 text-slate-600">内部 GL + 子账 MCP</td>
+                            <td class="py-1.5 pr-2 text-slate-600">核心银行系统总账 + 业务子账</td>
+                            <td class="py-1.5 pr-2 text-slate-600">直接封装行内系统接口（无需外部）</td>
+                        </tr>
+                        <tr class="matrix-row">
+                            <td class="py-1.5 pr-2 font-mono font-bold text-slate-800">month-end-closer</td>
+                            <td class="py-1.5 pr-2 text-slate-600">内部 GL MCP</td>
+                            <td class="py-1.5 pr-2 text-slate-600">核心总账 + 费用 + 固定资产系统</td>
+                            <td class="py-1.5 pr-2 text-slate-600">直接封装行内系统接口（无需外部）</td>
+                        </tr>
+                        <tr>
+                            <td class="py-1.5 pr-2 font-mono font-bold text-slate-800">kyc-screener</td>
+                            <td class="py-1.5 pr-2 text-slate-600">筛查 MCP（制裁/PEP）</td>
+                            <td class="py-1.5 pr-2 text-slate-600">反洗钱系统 / 人行接口 / 外部名单</td>
+                            <td class="py-1.5 pr-2 text-slate-600">封装反洗钱接口，制裁名单可本地部署</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 外部数据源对照 -->
+            <div class="grid grid-cols-6 gap-2">
+                <div class="bg-blue-50 rounded-lg px-2.5 py-1.5 text-center"><span class="text-xs font-bold text-blue-700">CapIQ</span><p class="text-[10px] text-slate-500">市场·可比·先例</p></div>
+                <div class="bg-blue-50 rounded-lg px-2.5 py-1.5 text-center"><span class="text-xs font-bold text-blue-700">FactSet</span><p class="text-[10px] text-slate-500">财务·一致预期</p></div>
+                <div class="bg-blue-50 rounded-lg px-2.5 py-1.5 text-center"><span class="text-xs font-bold text-blue-700">Daloopa</span><p class="text-[10px] text-slate-500">财务报表·估值</p></div>
+                <div class="bg-blue-50 rounded-lg px-2.5 py-1.5 text-center"><span class="text-xs font-bold text-blue-700">LSEG</span><p class="text-[10px] text-slate-500">全球市场·预测</p></div>
+                <div class="bg-blue-50 rounded-lg px-2.5 py-1.5 text-center"><span class="text-xs font-bold text-blue-700">S&P Global</span><p class="text-[10px] text-slate-500">信用评级·行业</p></div>
+                <div class="bg-blue-50 rounded-lg px-2.5 py-1.5 text-center"><span class="text-xs font-bold text-blue-700">Morningstar</span><p class="text-[10px] text-slate-500">基金评级·股研</p></div>
+                <div class="bg-blue-50 rounded-lg px-2.5 py-1.5 text-center"><span class="text-xs font-bold text-blue-700">Moody's</span><p class="text-[10px] text-slate-500">信用·违约概率</p></div>
+                <div class="bg-blue-50 rounded-lg px-2.5 py-1.5 text-center"><span class="text-xs font-bold text-blue-700">PitchBook</span><p class="text-[10px] text-slate-500">VC/PE 交易·融资</p></div>
+                <div class="bg-blue-50 rounded-lg px-2.5 py-1.5 text-center"><span class="text-xs font-bold text-blue-700">Aiera</span><p class="text-[10px] text-slate-500">业绩会实时转录</p></div>
+                <div class="bg-blue-50 rounded-lg px-2.5 py-1.5 text-center"><span class="text-xs font-bold text-blue-700">MT Newswires</span><p class="text-[10px] text-slate-500">实时金融新闻</p></div>
+                <div class="bg-blue-50 rounded-lg px-2.5 py-1.5 text-center"><span class="text-xs font-bold text-blue-700">Chronograph</span><p class="text-[10px] text-slate-500">PE 组合管理</p></div>
+                <div class="bg-emerald-600 text-white rounded-lg px-2.5 py-1.5 text-center"><span class="text-xs font-bold">Wind</span><p class="text-[10px] text-emerald-100">内网首选替代</p></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode：开源 AI 编程代理 - 第 31 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-shield-check text-blue-600"></i> 约束智能体行为
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-6"></div>
+
+            <div class="bg-white p-5 rounded-xl card-gradient-border mb-5">
+                <p class="text-base text-slate-700 leading-relaxed">
+                    Superpowers 不是"建议"，而是<b class="text-slate-900">硬性规则</b>。智能体面临"可能适用"的任何技能时，<b class="text-rose-600">必须调用</b>——这不是可选项，不能合理化绕过。
+                </p>
+            </div>
+
+            <div class="bg-red-50 p-5 rounded-xl border-2 border-red-300 mb-5">
+                <h3 class="font-bold text-red-900 mb-3 flex items-center gap-2"><i class="ph ph-prohibit text-red-600"></i> 硬门槛（Hard Gates）</h3>
+                <ul class="space-y-2 text-sm text-red-800">
+                    <li class="flex items-start gap-2"><i class="ph ph-x-circle text-red-500 mt-0.5"></i><span><b>TDD</b>：没有失败测试前，绝不写实现代码。先写测试是第一步骤。</span></li>
+                    <li class="flex items-start gap-2"><i class="ph ph-x-circle text-red-500 mt-0.5"></i><span><b脑storming</b>：在创建任何实现技能、写任何代码、生成任何脚手架前，必须先呈现设计并获得用户批准。</span></li>
+                    <li class="flex items-start gap-2"><i class="ph ph-x-circle text-red-500 mt-0.5"></i><span><b>Verification</b>：声称"完成"之前，必须有可运行的测试通过、有证据证明修复有效。</span></li>
+                </ul>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-5">
+                <div class="bg-blue-50 p-5 rounded-xl card-gradient-border-blue">
+                    <h3 class="font-bold text-blue-900 mb-3 text-sm"><i class="ph ph-warning text-blue-500"></i> 理性化红旗</h3>
+                    <ul class="space-y-1.5 text-xs text-blue-800">
+                        <li class="flex items-start gap-1.5"><i class="ph ph-warning text-amber-500 mt-0.5"></i><span>"这只是简单问题" → 问题也是任务</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-warning text-amber-500 mt-0.5"></i><span>"先收集上下文" → 技能检查在先</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-warning text-amber-500 mt-0.5"></i><span>"快速浏览代码" → 技能告诉你如何浏览</span></li>
+                    </ul>
+                </div>
+                <div class="bg-emerald-50 p-5 rounded-xl border border-emerald-200">
+                    <h3 class="font-bold text-emerald-900 mb-3 text-sm"><i class="ph ph-check text-emerald-500"></i> 技能优先级</h3>
+                    <ul class="space-y-1.5 text-xs text-emerald-800">
+                        <li class="flex items-start gap-1.5"><i class="ph ph-shield text-emerald-500 mt-0.5"></i><span><b class="text-emerald-900">流程技能优先</b>：brainstorming、debugging</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-shield text-emerald-500 mt-0.5"></i><span><b class="text-emerald-900">实现技能在后</b>：executing-plans、tdd</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 text-slate-100 p-5 rounded-xl font-mono text-sm">
+                <div class="text-slate-400 text-xs mb-2">// 技能规则示例</div>
+                <div><span class="text-pink-400">IF</span> 有 1% 可能性某技能适用</div>
+                <div><span class="text-amber-300">THEN</span> 必须在该技能指导下工作</div>
+                <div class="text-emerald-300 mt-2">这不可协商。这是 Superpowers 的核心。</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

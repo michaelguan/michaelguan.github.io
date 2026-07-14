@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode：开源 AI 编程代理 - 第 30 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-star text-blue-600"></i> 14 个 Skill 详解
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-5"></div>
+
+            <div class="bg-white p-5 rounded-xl card-gradient-border mb-5">
+                <p class="text-base text-slate-700 leading-relaxed">
+                    Superpowers 提供覆盖完整开发流程的 14 个可组合技能。每个是带有明确步骤、检查点、硬性障碍的 <code class="bg-slate-100 px-2 py-1 rounded text-purple-600 text-sm">SKILL.md</code> 文件。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200">
+                    <h3 class="font-bold text-emerald-900 mb-2 text-sm"><i class="ph ph-pencil-square text-emerald-500"></i> 设计与规划</h3>
+                    <ul class="space-y-1.5 text-xs text-emerald-800">
+                        <li class="flex items-start gap-1.5"><i class="ph ph-check text-emerald-500 mt-0.5"></i><span><b>brainstorming</b>：需求&设计讨论，视觉原型</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-check text-emerald-500 mt-0.5"></i><span><b>writing-plans</b>：拆解任务，精确到文件和行</span></li>
+                    </ul>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-xl card-gradient-border-blue">
+                    <h3 class="font-bold text-blue-900 mb-2 text-sm"><i class="ph ph-code text-blue-500"></i> 实现与执行</h3>
+                    <ul class="space-y-1.5 text-xs text-blue-800">
+                        <li class="flex items-start gap-1.5"><i class="ph ph-dot text-blue-400 mt-0.5"></i><span><b>executing-plans</b>：按步骤执行，节点检查</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-dot text-blue-400 mt-0.5"></i><span><b>subagent-driven-development</b>：分派子代理</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-dot text-blue-400 mt-0.5"></i><span><b>using-git-worktrees</b>：隔离工作树</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div class="bg-amber-50 p-4 rounded-xl border border-amber-200">
+                    <h3 class="font-bold text-amber-900 mb-2 text-sm"><i class="ph ph-bug text-amber-500"></i> 测试与调试</h3>
+                    <ul class="space-y-1.5 text-xs text-amber-800">
+                        <li class="flex items-start gap-1.5"><i class="ph ph-check text-amber-500 mt-0.5"></i><span><b>test-driven-development</b>：红绿重构循环</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-check text-amber-500 mt-0.5"></i><span><b>systematic-debugging</b>：4 阶段根因分析</span></li>
+                    </ul>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-xl border border-purple-200">
+                    <h3 class="font-bold text-purple-900 mb-2 text-sm"><i class="ph ph-users text-purple-500"></i> 审查与完成</h3>
+                    <ul class="space-y-1.5 text-xs text-purple-800">
+                        <li class="flex items-start gap-1.5"><i class="ph ph-check text-purple-500 mt-0.5"></i><span><b>code-review</b>：发送/接收审查</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-check text-purple-500 mt-0.5"></i><span><b>verification-before-completion</b>：证据验证</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-check text-purple-500 mt-0.5"></i><span><b>finishing-a-development-branch</b>：分支收尾</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-cyan-50 p-4 rounded-xl border border-cyan-200">
+                    <h3 class="font-bold text-cyan-900 mb-2 text-sm"><i class="ph ph-users-three text-cyan-500"></i> 并行开发</h3>
+                    <ul class="space-y-1.5 text-xs text-cyan-800">
+                        <li class="flex items-start gap-1.5"><i class="ph ph-dot text-cyan-400 mt-0.5"></i><span><b>dispatching-parallel-agents</b>：多代理并行</span></li>
+                    </ul>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <h3 class="font-bold text-slate-900 mb-2 text-sm"><i class="ph ph-books text-slate-500"></i> 元技能</h3>
+                    <ul class="space-y-1.5 text-xs text-slate-800">
+                        <li class="flex items-start gap-1.5"><i class="ph ph-dot text-slate-400 mt-0.5"></i><span><b>writing-skills</b>：编写新技能</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

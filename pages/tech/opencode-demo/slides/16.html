@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode：开源 AI 编程代理 - 第 16 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-books text-blue-600"></i> opencode.json 配置
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-10"></div>
+
+            <div class="bg-white p-6 rounded-xl card-gradient-border mb-6">
+                <p class="text-lg text-slate-700 leading-relaxed mb-4">
+                    <code class="bg-slate-100 px-2 py-1 rounded text-blue-600">opencode.json</code> 是 OpenCode 的核心配置文件，用于定义项目级的行为和偏好。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="bg-slate-50 p-5 rounded-xl card-gradient-border-slate">
+                    <h3 class="font-bold text-slate-800 mb-3">用户级配置</h3>
+                    <code class="text-xs text-slate-600 break-all">~/.config/opencode/opencode.json</code>
+                    <p class="text-xs text-slate-500 mt-2">全局默认配置，所有项目共享</p>
+                </div>
+                <div class="bg-blue-50 p-5 rounded-xl card-gradient-border-blue">
+                    <h3 class="font-bold text-blue-900 mb-3">项目级配置</h3>
+                    <code class="text-xs text-blue-800 break-all">项目根目录/.opencode/opencode.json</code>
+                    <p class="text-xs text-blue-700 mt-2">优先级更高，覆盖用户级配置</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl card-gradient-border mb-6">
+                <h3 class="font-bold text-slate-800 mb-3">配置结构示例</h3>
+                <code class="text-xs text-slate-700 break-all bg-slate-100 p-3 rounded block">
+{
+  "model": "anthropic/claude-opus-4-7",
+  "tools": {
+    "shell": { "enabled": true, "autoApprove": [] },
+    "file": { "enabled": true }
+  },
+  "plugins": ["oh-my-opencode"]
+}
+                </code>
+            </div>
+
+            <div class="bg-slate-50 p-5 rounded-xl card-gradient-border-slate">
+                <h3 class="font-bold text-slate-800 mb-3">常用配置项</h3>
+                <div class="grid grid-cols-2 gap-3 text-sm text-slate-600">
+                    <div class="flex items-center gap-2"><code class="text-blue-600 bg-white px-2 py-0.5 rounded">model</code><span>默认模型</span></div>
+                    <div class="flex items-center gap-2"><code class="text-blue-600 bg-white px-2 py-0.5 rounded">tools</code><span>工具开关</span></div>
+                    <div class="flex items-center gap-2"><code class="text-blue-600 bg-white px-2 py-0.5 rounded">plugins</code><span>加载插件</span></div>
+                    <div class="flex items-center gap-2"><code class="text-blue-600 bg-white px-2 py-0.5 rounded">memory</code><span>记忆配置</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

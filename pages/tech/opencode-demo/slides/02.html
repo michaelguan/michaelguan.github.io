@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode：开源 AI 编程代理 - 第02页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        .content-area { overflow-y: auto; scrollbar-width: none; }
+        .content-area::-webkit-scrollbar { display: none; }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-identification-card text-blue-600"></i> 一句话定位
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-10"></div>
+
+            <div class="bg-white p-10 rounded-2xl card-gradient-border flex flex-col justify-center">
+                <i class="ph ph-quotes text-5xl text-blue-100 mb-4"></i>
+                <p class="text-xl text-slate-700 leading-loose mb-8 font-medium">
+                    OpenCode 是一个<span class="text-blue-600 font-bold">开源的 AI 编程代理</span>（AI coding agent）。它提供<span class="text-emerald-600 font-bold">终端界面、桌面应用和 IDE 扩展</span>等多种使用方式，内置免费模型，或连接任意提供商的任意模型——包括 Claude、GPT、Gemini 等。<br><br>
+                    它在终端里像 IDE 一样听你指挥帮你写代码，又不锁你进任何一个生态：模型任意、key 自带、整套逻辑开源可自托管。
+                </p>
+                <div class="flex items-center gap-3 text-slate-500 font-medium">
+                    <i class="ph ph-lightbulb text-2xl text-amber-500"></i> 一个能写代码、懂规则、还能换成自有模型的命令行 agent。
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

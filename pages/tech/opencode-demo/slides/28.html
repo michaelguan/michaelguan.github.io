@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode：开源 AI 编程代理 - 第 28 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-git-merge text-blue-600"></i> 用法与编排
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-6"></div>
+
+            <div class="bg-slate-900 text-slate-100 p-5 rounded-xl mb-5 font-mono text-xs leading-relaxed">
+                <div class="text-slate-400 mb-2">// ① npm 安装插件</div>
+                <div class="text-emerald-300">npm install -g oh-my-opencode</div>
+                <div class="text-slate-400 mt-3 mb-2">// ② 在 opencode.json 启用</div>
+                <div><span class="text-pink-400">"plugin"</span>: [<span class="text-amber-300">"oh-my-opencode@latest"</span>]</div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-5">
+                <div class="bg-blue-50 p-5 rounded-xl card-gradient-border-blue">
+                    <h3 class="font-bold text-blue-900 mb-3 flex items-center gap-2"><i class="ph ph-plugs text-blue-500"></i> 52 个生命周期 Hook</h3>
+                    <ul class="space-y-1.5 text-sm text-blue-800">
+                        <li class="flex items-start gap-2"><i class="ph ph-dot text-blue-400 mt-1"></i><span><code class="bg-white px-1.5 py-0.5 rounded text-xs">config</code>：6 阶段配置加载</span></li>
+                        <li class="flex items-start gap-2"><i class="ph ph-dot text-blue-400 mt-1"></i><span><code class="bg-white px-1.5 py-0.5 rounded text-xs">tool.execute.before/after</code>：工具拦截</span></li>
+                        <li class="flex items-start gap-2"><i class="ph ph-dot text-blue-400 mt-1"></i><span><code class="bg-white px-1.5 py-0.5 rounded text-xs">experimental.chat.messages.transform</code>：消息注入</span></li>
+                        <li class="flex items-start gap-2"><i class="ph ph-dot text-blue-400 mt-1"></i><span><code class="bg-white px-1.5 py-0.5 rounded text-xs">event</code>：会话生命周期</span></li>
+                    </ul>
+                </div>
+                <div class="bg-white p-5 rounded-xl card-gradient-border">
+                    <h3 class="font-bold text-slate-800 mb-3 flex items-center gap-2"><i class="ph ph-lightning text-blue-500"></i> 26 个工具</h3>
+                    <ul class="space-y-1.5 text-sm text-slate-700">
+                        <li class="flex items-start gap-2"><i class="ph ph-check text-emerald-500 mt-0.5"></i><span>Hashline 编辑工具（精确到行）</span></li>
+                        <li class="flex items-start gap-2"><i class="ph ph-check text-emerald-500 mt-0.5"></i><span>背景任务管理</span></li>
+                        <li class="flex items-start gap-2"><i class="ph ph-check text-emerald-500 mt-0.5"></i><span>Skill 上下文加载</span></li>
+                        <li class="flex items-start gap-2"><i class="ph ph-check text-emerald-500 mt-0.5"></i><span>Agent 调用与 MCP OAuth</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-amber-50 p-4 rounded-xl border border-amber-200">
+                <h3 class="font-bold text-amber-900 mb-2 text-sm flex items-center gap-1.5"><i class="ph ph-warning text-amber-500"></i> 启动顺序</h3>
+                <ol class="text-xs text-amber-800 space-y-1">
+                    <li>① loadConfig（JSONC 解析、Zod 验证）</li>
+                    <li>② createManagers（tmux/session/skill）</li>
+                    <li>③ createTools（26 工具注册）</li>
+                    <li>④ createHooks（52 hooks 注入）</li>
+                    <li>⑤ createPluginInterface（OpenCode hook 处理）</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropics Financial Services - 第 48 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 2.5rem 5rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .matrix-row { border-bottom: 1px solid #f1f5f9; }
+        .matrix-row:last-child { border-bottom: none; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-buildings text-blue-600"></i> 业务落地矩阵（一）— 智能体 × 银行岗位
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-5"></div>
+
+            <div class="bg-white p-5 rounded-2xl card-gradient-border mb-4">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="text-xs text-slate-500 border-b-2 border-slate-100">
+                            <th class="text-left font-semibold pb-2 w-[20%]">智能体</th>
+                            <th class="text-left font-semibold pb-2 w-[16%]">银行岗位</th>
+                            <th class="text-left font-semibold pb-2 w-[44%]">业务流程</th>
+                            <th class="text-left font-semibold pb-2 w-[20%]">决策权限</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 投行部 蓝 -->
+                        <tr class="matrix-row">
+                            <td class="py-2 pr-2"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500"></span><span class="font-bold text-slate-800 font-mono text-xs">pitch-agent</span></div></td>
+                            <td class="py-2 pr-2 text-xs text-slate-600">投行部 · 高级分析师</td>
+                            <td class="py-2 pr-2 text-xs text-slate-600">可比公司 → 先例交易 → DCF/LBO 建模 → PitchBook 生成</td>
+                            <td class="py-2 pr-2"><span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full font-medium">草拟权 · 需 MD 审批</span></td>
+                        </tr>
+                        <tr class="matrix-row">
+                            <td class="py-2 pr-2"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500"></span><span class="font-bold text-slate-800 font-mono text-xs">model-builder</span></div></td>
+                            <td class="py-2 pr-2 text-xs text-slate-600">投行部 · 金融建模岗</td>
+                            <td class="py-2 pr-2 text-xs text-slate-600">DCF/LBO/三表模型构建 → 勾稽复核 → 敏感性分析</td>
+                            <td class="py-2 pr-2"><span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full font-medium">草拟权 · 需 VP 审批</span></td>
+                        </tr>
+                        <tr class="matrix-row">
+                            <td class="py-2 pr-2"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500"></span><span class="font-bold text-slate-800 font-mono text-xs">valuation-reviewer</span></div></td>
+                            <td class="py-2 pr-2 text-xs text-slate-600">投行/基金会计主管</td>
+                            <td class="py-2 pr-2 text-xs text-slate-600">季度投资组合估值审查 → LP 报告生成 → 瀑布分配</td>
+                            <td class="py-2 pr-2"><span class="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full font-medium">建议权 · 需 IR/CCO 签字</span></td>
+                        </tr>
+                        <!-- 研究部 绿 -->
+                        <tr class="matrix-row">
+                            <td class="py-2 pr-2"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-500"></span><span class="font-bold text-slate-800 font-mono text-xs">earnings-reviewer</span></div></td>
+                            <td class="py-2 pr-2 text-xs text-slate-600">研究部 · 股票研究员</td>
+                            <td class="py-2 pr-2 text-xs text-slate-600">财报电话会读取 → 财务模型更新 → 研究笔记撰写</td>
+                            <td class="py-2 pr-2"><span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full font-medium">草拟权 · 需首席分析师</span></td>
+                        </tr>
+                        <tr class="matrix-row">
+                            <td class="py-2 pr-2"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-500"></span><span class="font-bold text-slate-800 font-mono text-xs">market-researcher</span></div></td>
+                            <td class="py-2 pr-2 text-xs text-slate-600">研究部 · 行业研究员</td>
+                            <td class="py-2 pr-2 text-xs text-slate-600">行业概览 → 竞争格局 → 可比分析 → 创意筛选 → 研报</td>
+                            <td class="py-2 pr-2"><span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full font-medium">草拟权 · 需分析师</span></td>
+                        </tr>
+                        <!-- 客户经理 紫 -->
+                        <tr class="matrix-row">
+                            <td class="py-2 pr-2"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-purple-500"></span><span class="font-bold text-slate-800 font-mono text-xs">meeting-prep-agent</span></div></td>
+                            <td class="py-2 pr-2 text-xs text-slate-600">客户经理 · 私行顾问</td>
+                            <td class="py-2 pr-2 text-xs text-slate-600">客户画像提取 → 持仓分析 → 市场背景 → 简报包生成</td>
+                            <td class="py-2 pr-2"><span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full font-medium">完全授权 · 仅供顾问参考</span></td>
+                        </tr>
+                        <!-- 运营部 青 -->
+                        <tr class="matrix-row">
+                            <td class="py-2 pr-2"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-cyan-500"></span><span class="font-bold text-slate-800 font-mono text-xs">gl-reconciler</span></div></td>
+                            <td class="py-2 pr-2 text-xs text-slate-600">运营部 · 总账会计</td>
+                            <td class="py-2 pr-2 text-xs text-slate-600">总账与子账逐日对账 → 差异追踪 → 异常报告</td>
+                            <td class="py-2 pr-2"><span class="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full font-medium">建议权 · 需主管签字</span></td>
+                        </tr>
+                        <tr class="matrix-row">
+                            <td class="py-2 pr-2"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-cyan-500"></span><span class="font-bold text-slate-800 font-mono text-xs">statement-auditor</span></div></td>
+                            <td class="py-2 pr-2 text-xs text-slate-600">运营部 · 对账单审核岗</td>
+                            <td class="py-2 pr-2 text-xs text-slate-600">LP 对账单与 NAV 逐笔勾稽 → 差异标记 → 签字确认表</td>
+                            <td class="py-2 pr-2"><span class="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full font-medium">建议权 · 需人工签字</span></td>
+                        </tr>
+                        <!-- 合规部 玫 -->
+                        <tr class="matrix-row">
+                            <td class="py-2 pr-2"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-rose-500"></span><span class="font-bold text-slate-800 font-mono text-xs">kyc-screener</span></div></td>
+                            <td class="py-2 pr-2 text-xs text-slate-600">合规部 · 开户审核岗</td>
+                            <td class="py-2 pr-2 text-xs text-slate-600">开户文件解析 → 制裁/PEP 筛查 → 风险评级 → 上报包</td>
+                            <td class="py-2 pr-2"><span class="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full font-medium">建议权 · 需合规官</span></td>
+                        </tr>
+                        <!-- 财务部 琥珀 -->
+                        <tr class="matrix-row">
+                            <td class="py-2 pr-2"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-amber-500"></span><span class="font-bold text-slate-800 font-mono text-xs">month-end-closer</span></div></td>
+                            <td class="py-2 pr-2 text-xs text-slate-600">财务部 · 会计主管</td>
+                            <td class="py-2 pr-2 text-xs text-slate-600">应计项目计提 → 滚进计算 → 差异分析 → 结账包生成</td>
+                            <td class="py-2 pr-2"><span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full font-medium">草拟权 · 需财务总监</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- 部门图例 -->
+                <div class="flex items-center justify-center gap-4 mt-3 pt-3 border-t border-slate-100">
+                    <span class="flex items-center gap-1 text-xs text-slate-500"><span class="w-2 h-2 rounded-full bg-blue-500"></span>投行部</span>
+                    <span class="flex items-center gap-1 text-xs text-slate-500"><span class="w-2 h-2 rounded-full bg-emerald-500"></span>研究部</span>
+                    <span class="flex items-center gap-1 text-xs text-slate-500"><span class="w-2 h-2 rounded-full bg-purple-500"></span>客户经理</span>
+                    <span class="flex items-center gap-1 text-xs text-slate-500"><span class="w-2 h-2 rounded-full bg-cyan-500"></span>运营部</span>
+                    <span class="flex items-center gap-1 text-xs text-slate-500"><span class="w-2 h-2 rounded-full bg-rose-500"></span>合规部</span>
+                    <span class="flex items-center gap-1 text-xs text-slate-500"><span class="w-2 h-2 rounded-full bg-amber-500"></span>财务部</span>
+                </div>
+            </div>
+
+            <!-- 底部核心发现 -->
+            <div class="bg-slate-50 border-l-4 border-l-blue-500 p-4 rounded-xl flex items-start gap-3">
+                <i class="ph ph-lightbulb text-blue-500 text-xl mt-0.5"></i>
+                <p class="text-sm text-slate-700"><strong>核心发现：</strong>10 个智能体覆盖银行 <strong>5 个主要部门</strong>的核心业务流程；所有 Agent 输出均为<strong>草稿或建议</strong>，最终决策与分发均在人工控制下 —— 满足金融机构"人机协同"的监管要求。</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

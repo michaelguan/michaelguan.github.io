@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Services 深度解析</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  :root {
+    --bg: #f8f2ea;
+    --section-bg: #f3ece2;
+    --card-bg: #ede4d8;
+    --card-hover: #e5dccc;
+    --border: #d5c8b8;
+    --text: #3d3228;
+    --text-secondary: #8a7a6a;
+    --accent: #b87a4a;
+    --accent-light: #c8924e;
+    --accent-dark: #9a6038;
+    --header-start: #9a6038;
+    --header-end: #b87a4a;
+    --tag-bg: #e5dccc;
+    --code-bg: #ede4d8;
+    --danger: #b84a3a;
+    --safe: #4a8a5a;
+    --box-bg: #faf5ee;
+  }.dark {
+    --bg: #1a1612;
+    --section-bg: #221e1a;
+    --card-bg: #2a2620;
+    --card-hover: #322e28;
+    --border: #3d3832;
+    --text: #e0d8d0;
+    --text-secondary: #a09888;
+    --accent: #c8924e;
+    --accent-light: #d8a260;
+    --accent-dark: #b87a4a;
+    --header-start: #1a1612;
+    --header-end: #2a2620;
+    --tag-bg: #3d3832;
+    --code-bg: #2a2620;
+    --box-bg: #221e1a;
+  }  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 0;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  /* 主题切换按钮 */
+  .theme-toggle {
+    position: fixed; top: 16px; right: 16px; z-index: 999;
+    background: rgba(255,255,255,0.2); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%; width: 42px; height: 42px;
+    cursor: pointer; font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s; color: white;
+  }
+  .theme-toggle:hover { background: rgba(255,255,255,0.35); transform: scale(1.1); }
+
+  .header {
+    background: linear-gradient(135deg, var(--header-start) 0%, var(--header-end) 100%);
+    color: white;
+    padding: 56px 40px 40px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+  }
+  .header .brand { font-size: 14px; letter-spacing: 2px; margin-bottom: 12px; font-weight: 500; opacity: 0.7; }
+  .header h1 { font-size: 36px; font-weight: 700; margin-bottom: 8px; position: relative; z-index: 1; }
+  .header .subtitle { font-size: 16px; opacity: 0.9; position: relative; z-index: 1; }
+  .header .meta {
+    margin-top: 24px; display: flex; gap: 28px; justify-content: center;
+    flex-wrap: wrap; font-size: 13px; opacity: 0.75; position: relative; z-index: 1;
+  }
+  .header .meta span { display: flex; align-items: center; gap: 6px; }
+
+  /* 导航 */
+  .top-nav { background: var(--accent-dark); padding: 0; text-align: center; }
+  .top-nav a {
+    flex: 1; padding: 12px 8px; color: rgba(255,255,255,0.9); text-decoration: none;
+    font-size: 13px; font-weight: 500; border-right: 1px solid rgba(255,255,255,0.15);
+    transition: background 0.2s;
+  }
+  .top-nav a:hover { background: rgba(255,255,255,0.12); }
+  .top-nav a:last-child { border-right: none; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+  .section {
+    background: var(--section-bg);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+    transition: background 0.3s, border 0.3s;
+  }
+  .section h2 {
+    font-size: 20px; font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section h3 {
+    font-size: 16px; font-weight: 600;
+    color: var(--accent-dark);
+    margin: 18px 0 10px;
+  }
+  .section h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--accent);
+    margin: 14px 0 8px;
+  }
+  p { font-size: 14px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 10px; }
+
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin: 16px 0; }
+  .stat-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    transition: background 0.3s;
+  }
+  .stat-card .num { font-size: 26px; font-weight: 700; color: var(--accent-dark); }
+  .stat-card .label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+
+  .plugin-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin: 12px 0; }
+  .plugin-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px 24px;
+    border-left: 4px solid var(--accent);
+    transition: all 0.15s ease;
+  }
+  .plugin-card:hover { background: var(--card-hover); transform: translateX(2px); }
+  .plugin-card .name {
+    font-size: 16px; font-weight: 600; color: var(--text);
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .plugin-card .name .badge {
+    font-size: 11px; font-weight: 500; padding: 2px 8px;
+    border-radius: 8px; background: var(--accent); color: white;
+  }
+  .plugin-card .path { font-size: 12px; color: var(--text-secondary); margin: 4px 0; font-family: 'Menlo', monospace; opacity: 0.7; }
+  .plugin-card .desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin: 6px 0; }
+
+  .use-box {
+    background: var(--box-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 10px 0;
+    transition: background 0.3s, border 0.3s;
+  }
+  .use-box .label { font-size: 12px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .use-box code { font-size: 12px; background: var(--code-bg); padding: 2px 6px; border-radius: 4px; color: var(--text); }
+  .use-box .example { font-size: 13px; color: var(--text-secondary); margin: 4px 0; padding-left: 12px; border-left: 2px solid var(--border); }
+
+  .cmd-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+  .cmd-table th {
+    background: var(--accent); color: white;
+    padding: 9px 12px; text-align: left; font-weight: 600;
+  }
+  .cmd-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  .cmd-table tr:hover td { background: var(--card-bg); }
+  .cmd-table code { font-size: 12px; background: var(--code-bg); padding: 1px 5px; border-radius: 3px; }
+
+  .deploy-box {
+    background: #2c2c2c; color: #e0e0e0;
+    border-radius: 10px; padding: 16px 20px; margin: 12px 0;
+    font-family: 'Menlo', 'Consolas', monospace; font-size: 13px; line-height: 1.8;
+    overflow-x: auto;
+  }
+  .deploy-box .comment { color: #c8924e; }
+
+  .value-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
+  .value-card {
+    background: var(--card-bg); border-radius: 10px; padding: 16px;
+    border-left: 4px solid var(--accent); transition: background 0.3s;
+  }
+  .value-card .title { font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .value-card p { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+
+  .scene-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
+  .scene-card {
+    background: var(--card-bg); border-radius: 10px; padding: 16px; transition: background 0.3s;
+  }
+  .scene-card .title { font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .scene-card p { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+
+  .event-list { margin: 8px 0; padding: 0; list-style: none; }
+  .event-list li {
+    font-size: 13px; padding: 6px 10px; margin: 4px 0;
+    background: var(--card-bg); border-radius: 6px;
+    border-left: 3px solid var(--accent-light);
+  }
+  .event-list li .ev { color: var(--accent); font-weight: 500; }
+
+  .footer {
+    text-align: center; padding: 32px 24px;
+    color: var(--text-secondary); font-size: 12px; opacity: 0.6;
+  }
+
+  @media (max-width: 768px) {
+    .container { padding: 16px; }
+    .section { padding: 18px; }
+    .arch-grid { grid-template-columns: 1fr; }
+    .header { padding: 32px 20px; }
+    .header h1 { font-size: 24px; }
+    .value-grid, .scene-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="切换深色主题">🌙</button>
+<script>
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  const btn = document.getElementById('themeBtn');
+  btn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+}
+// 检测系统深色模式偏好
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  document.body.classList.add('dark');
+  document.getElementById('themeBtn').textContent = '☀️';
+}
+</script>
+
+<div class="header" style="text-align:center; padding:56px 40px;">
+  <div style="font-size:14px; color:rgba(255,255,255,0.6); letter-spacing:2px; margin-bottom:12px; font-weight:500;">ANTHROPIC FINANCIAL SERVICES</div>
+  <h1 style="font-size:36px; font-weight:700; margin-bottom:8px;">📊 深度解析</h1>
+  <div class="subtitle" style="font-size:16px; opacity:0.9;">架构、方法论与使用指南</div>
+  <div class="meta" style="margin-top:24px; display:flex; gap:28px; justify-content:center; flex-wrap:wrap; font-size:13px; opacity:0.75;">
+    <span>📅 2026年7月10日</span>
+    <span>📂 D:\workplace\work-icbc\financial-services-main</span>
+    <span>🔌 已安装 20 个插件</span>
+    <span>🤖 10 个智能体</span>
+    <span>📚 234 个技能</span>
+  </div>
+</div>
+<!-- 顶部导航 -->
+<div style="background:var(--accent-dark); padding:0; text-align:center;">
+  <div style="display:flex; justify-content:center; gap:0; max-width:700px; margin:0 auto;">
+    <a href="#overview" style="flex:1; padding:14px 8px; color:rgba(255,255,255,0.85); text-decoration:none; font-size:13px; font-weight:500; letter-spacing:0.5px; transition:all 0.2s; border-bottom:2px solid transparent;" onmouseover="this.style.color='#fff';this.style.borderBottomColor='rgba(255,255,255,0.5)'" onmouseout="this.style.color='rgba(255,255,255,0.85)';this.style.borderBottomColor='transparent'">概览</a>
+    <a href="#background" style="flex:1; padding:14px 8px; color:rgba(255,255,255,0.85); text-decoration:none; font-size:13px; font-weight:500; letter-spacing:0.5px; transition:all 0.2s; border-bottom:2px solid transparent;" onmouseover="this.style.color='#fff';this.style.borderBottomColor='rgba(255,255,255,0.5)'" onmouseout="this.style.color='rgba(255,255,255,0.85)';this.style.borderBottomColor='transparent'">背景</a>
+    <a href="#value" style="flex:1; padding:14px 8px; color:rgba(255,255,255,0.85); text-decoration:none; font-size:13px; font-weight:500; letter-spacing:0.5px; transition:all 0.2s; border-bottom:2px solid transparent;" onmouseover="this.style.color='#fff';this.style.borderBottomColor='rgba(255,255,255,0.5)'" onmouseout="this.style.color='rgba(255,255,255,0.85)';this.style.borderBottomColor='transparent'">价值</a>
+    <a href="#scenarios" style="flex:1; padding:14px 8px; color:rgba(255,255,255,0.85); text-decoration:none; font-size:13px; font-weight:500; letter-spacing:0.5px; transition:all 0.2s; border-bottom:2px solid transparent;" onmouseover="this.style.color='#fff';this.style.borderBottomColor='rgba(255,255,255,0.5)'" onmouseout="this.style.color='rgba(255,255,255,0.85)';this.style.borderBottomColor='transparent'">场景</a>
+    <a href="#plugins" style="flex:1; padding:14px 8px; color:rgba(255,255,255,0.85); text-decoration:none; font-size:13px; font-weight:500; letter-spacing:0.5px; transition:all 0.2s; border-bottom:2px solid transparent;" onmouseover="this.style.color='#fff';this.style.borderBottomColor='rgba(255,255,255,0.5)'" onmouseout="this.style.color='rgba(255,255,255,0.85)';this.style.borderBottomColor='transparent'">全景</a>
+  </div>
+</div>
+
+<!-- 概览 -->
+<div class="container">
+<div class="section" id="overview">
+  <h2>📋 项目概览</h2>
+  <p>本项目是 <strong>Anthropic 官方发布的 Financial Services 插件套件</strong>，面向投资银行、股票研究、资产管理、私募股权、基金运营等金融机构的全场景 Claude Code 插件和 Managed Agent 模板集合。</p>
+  <p>项目以"<strong>同一源文件，两种交付方式</strong>"为核心理念：每个 Named Agent 既可作为 Claude Code 插件在交互式会话中即时调用，也可作为托管代理通过 Anthropic API 自动化部署。目前已安装 <strong>20 个插件</strong>，覆盖从投行 PitchBook 制作到基金月度结账的完整金融业务链条。</p>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="num">20</div><div class="label">已安装插件</div></div>
+    <div class="stat-card"><div class="num">10</div><div class="label">Managed Agent</div></div>
+    <div class="stat-card"><div class="num">7</div><div class="label">垂直领域技能组</div></div>
+    <div class="stat-card"><div class="num">2</div><div class="label">合作伙伴数据源</div></div>
+    <div class="stat-card"><div class="num">234</div><div class="label">SKILL 技能文件</div></div>
+    <div class="stat-card"><div class="num">12</div><div class="label">MCP 数据源</div></div>
+  </div>
+</div>
+
+<div class="section" id="background">
+  <h2>📖 项目背景与战略意义</h2>
+
+  <h3>行业背景</h3>
+  <p>金融机构的日常运营依赖大量重复性、高精度的手工工作——分析师花 60% 以上的时间在数据提取、Excel 建模和 PPT 制作上，而非真正的分析判断。传统的自动化工具（RPA、宏脚本）难以应对金融业务中非结构化文档（PDF 报告、电话会记录、邮件）的处理需求。</p>
+
+  <h3>Anthropic 的战略布局</h3>
+  <p>Anthropic 选择金融服务作为首个行业垂直插件套件，体现了对高价值、强监管行业的战略优先级。该项目解决了三个核心矛盾：</p>
+  <ul style="font-size:13px; color:#555; line-height:1.9; padding-left:20px; margin:8px 0;">
+    <li><strong>效率与安全的矛盾：</strong>金融机构需要 AI 的高效，但必须严格控制数据安全——三层隔离架构（读取层/处理层/输出层）确保不可信文档无法触及写操作</li>
+    <li><strong>标准化与定制的矛盾：</strong>234 个 SKILL.md 技能文件沉淀了机构级的最佳实践（投行 PitchBook 模板、DCF 建模规范、KYC 规则引擎），同时允许每家机构修改 <code>vertical-plugins/</code> 下的源文件实现差异化</li>
+    <li><strong>交互与自动化的矛盾：</strong>同一份系统提示词既可以交互式使用（Claude Code 插件），也可以自动化部署（Managed Agent API），覆盖"临时分析"和"定时批量处理"两个场景</li>
+  </ul>
+
+  <h3>对金融机构的价值</h3>
+  <ul style="font-size:13px; color:#555; line-height:1.9; padding-left:20px; margin:8px 0;">
+    <li><strong>缩短 Turnaround Time：</strong>PitchBook 制作从 2-3 天缩短到分钟级；财报电话会分析从半天缩短到即时</li>
+    <li><strong>降低操作风险：</strong>模型中的每个计算单元格都是公式而不是硬编码（audit-xls 强制检查），对账单逐笔勾稽确保零遗漏</li>
+    <li><strong>知识资产化：</strong>234 个 SKILL.md 将资深分析师的操作经验转化为可复制、可审计的机构知识库</li>
+  </ul>
+</div>
+
+<div class="section" id="value">
+  <h2>💎 核心价值</h2>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:12px 0;">
+    <div style="background:#f0ece2; border-radius:10px; padding:16px; border-left:4px solid #7a9068;">
+      <div style="font-weight:600; color:#3d5533; margin-bottom:4px;">🔒 安全优先的三层隔离</div>
+      <div style="font-size:12px; color:#555; line-height:1.6;">每个 Agent 拆分为读取层（仅 Read/Grep，接触不可信文档）→ 处理层（可信隔离区，可连 MCP）→ 输出层（唯一写权限）三层架构，从架构层面杜绝 prompt 注入和数据泄露风险。</div>
+    </div>
+    <div style="background:#f0ece2; border-radius:10px; padding:16px; border-left:4px solid #7a9068;">
+      <div style="font-weight:600; color:#3d5533; margin-bottom:4px;">🧩 技能与执行分离</div>
+      <div style="font-size:12px; color:#555; line-height:1.6;">Skill（操作手册）和 Agent（执行者）解耦：编辑技能只需改 <code>vertical-plugins/</code> 下的 SKILL.md，运行 <code>sync-agent-skills.py</code> 自动同步到所有 Agent。一次修改，处处生效。</div>
+    </div>
+    <div style="background:#f0ece2; border-radius:10px; padding:16px; border-left:4px solid #7a9068;">
+      <div style="font-weight:600; color:#3d5533; margin-bottom:4px;">🔗 多 Agent 接力工作流</div>
+      <div style="font-size:12px; color:#555; line-height:1.6;">通过 <code>handoff_request</code> 协议实现 Agent 间自动接力——Earnings Reviewer 更新模型后自动触发 Model Builder 重建 DCF，形成端到端自动化流水线。</div>
+    </div>
+    <div style="background:#f0ece2; border-radius:10px; padding:16px; border-left:4px solid #7a9068;">
+      <div style="font-weight:600; color:#3d5533; margin-bottom:4px;">🌐 数据源统一接入</div>
+      <div style="font-size:12px; color:#555; line-height:1.6;">12 个 MCP 数据源（FactSet、CapIQ、LSEG、S&P、Moody's、PitchBook 等）集中配置，所有 Agent 共享。处理层节点在部署时自动获得数据接入能力，无需重复采购。</div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="scenarios">
+  <h2>🎯 典型使用场景</h2>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:12px 0;">
+    <div style="background:#f0ece2; border-radius:10px; padding:16px;">
+      <div style="font-weight:600; color:#3d5533; margin-bottom:4px;">🏦 投行 Pitch 材料制作</div>
+      <div style="font-size:12px; color:#555; line-height:1.6;">MD 提出需求 → pitch-agent 自动从 CapIQ 拉取可比公司数据和先例交易 → 构建 DCF/LBO 模型 → 生成品牌化 PitchBook PPTX → 质量检查 → 交付初稿。原来 2-3 天的工作缩短到 15 分钟。</div>
+    </div>
+    <div style="background:#f0ece2; border-radius:10px; padding:16px;">
+      <div style="font-weight:600; color:#3d5533; margin-bottom:4px;">📰 财报季批量处理</div>
+      <div style="font-size:12px; color:#555; line-height:1.6;">财报季覆盖列表 50+ 公司 → earnings-reviewer 逐个读取电话会记录 → 自动更新覆盖模型中的预测数据 → 撰写研究笔记 → 差异标记。覆盖范围从人工的 5-10 只扩展到全列表，且每份笔记格式统一可审计。</div>
+    </div>
+    <div style="background:#f0ece2; border-radius:10px; padding:16px;">
+      <div style="font-weight:600; color:#3d5533; margin-bottom:4px;">📅 月度结账与对账</div>
+      <div style="font-size:12px; color:#555; line-height:1.6;">gl-reconciler 每日运行：按资产类别比对总账与子账 → 标记差异 → Critic 独立复核 → 输出例外报告。月末 month-end-closer 接收 handoff 自动处理应计项目和滚动前推 → 生成结账包。原本 3-5 天的结账流程压缩到 1 天。</div>
+    </div>
+    <div style="background:#f0ece2; border-radius:10px; padding:16px;">
+      <div style="font-weight:600; color:#3d5533; margin-bottom:4px;">🛡️ 客户开户 KYC 筛查</div>
+      <div style="font-size:12px; color:#555; line-height:1.6;">新客户开户 → kyc-screener 自动解析开户 PDF 中的身份信息 → 运行制裁名单/PEP 规则引擎 → 标记合规缺口 → 输出上报包给合规官。人工审查时间从 2 小时缩短到 15 分钟。</div>
+    </div>
+    <div style="background:#f0ece2; border-radius:10px; padding:16px;">
+      <div style="font-weight:600; color:#3d5533; margin-bottom:4px;">📊 行业研究与创意生成</div>
+      <div style="font-size:12px; color:#555; line-height:1.6;">投资经理提出主题（如"美国数据中心电力供应缺口"）→ market-researcher 自动完成行业概览、竞争格局、可比公司分析 → 输出创意短名单（3-5 家最受益的公司）→ 附带研究报告。从 idea 到 actionable 的短名单不再需要 1 周。</div>
+    </div>
+    <div style="background:#f0ece2; border-radius:10px; padding:16px;">
+      <div style="font-weight:600; color:#3d5533; margin-bottom:4px;">🤝 客户会议准备</div>
+      <div style="font-size:12px; color:#555; line-height:1.6;">客户会议触发 → meeting-prep-agent 自动从 CRM 拉取关系历史和持仓 → 从 CapIQ 获取市场背景 → 读取近期客户通信 → 生成简报包和谈话要点。顾问进会议室前 5 分钟拿到完整资料包。</div>
+    </div>
+  </div>
+
+  <div class="use-box" style="margin-top:12px; background:#f0ece2;">
+    <div class="label">💡 一句话总结</div>
+    <p style="font-size:14px; margin:4px 0; color:#3d5533; font-weight:500;">
+      这不是一套简单的工具集合，而是一个<strong>可编程的金融劳动力</strong>——每个 Agent 对应一个金融岗位的操作规范，Skill 对应岗位的操作手册，MCP 对应岗位的数据终端，handoff 对应跨岗位的协作流程。
+    </p>
+  </div>
+</div><div class="section">
+  <h2>🏦 业务落地、系统集成与运营保障</h2>
+
+  <h3>岗位角色与责任矩阵</h3>
+  <p>以下将 10 个智能体映射到银行的实际岗位和业务流程：</p>
+<table class="cmd-table" style="margin-top:12px;">
+    <tr><th>智能体</th><th>银行对应岗位</th><th>业务流程</th><th>所需外部数据</th><th>行内替代数据源</th><th>对接方式</th><th>决策权限</th></tr>
+    <tr>
+      <td><strong>valuation-reviewer</strong></td>
+      <td>投行部 / 基金会计主管</td>
+      <td>季度投资组合估值审查 → LP 报告生成 → 瀑布分配</td>
+      <td>投资组合 MCP</td>
+      <td>行内投资管理系统 / 托管行数据接口</td>
+      <td>封装投资管理系统为 MCP；托管行数据通过文件导入</td>
+      <td>建议权（需 IR/CCO 签字）</td>
+    </tr>
+    <tr>
+      <td><strong>statement-auditor</strong></td>
+      <td>运营部 / 对账单审核岗</td>
+      <td>LP 对账单与 NAV 逐笔勾稽 → 差异标记 → 签字确认表</td>
+      <td>NAV MCP</td>
+      <td>托管行数据接口 / 行内资产估值系统</td>
+      <td>封装估值系统接口或通过文件导入</td>
+      <td>建议权（需人工签字）</td>
+    </tr>
+    <tr>
+      <td><strong>pitch-agent</strong></td>
+      <td>投行部 / 高级分析师</td>
+      <td>可比公司分析 → 先例交易 → DCF/LBO 建模 → PitchBook 生成</td>
+      <td>CapIQ（市场数据、可比公司）</td>
+      <td>Wind 金融终端 / 行研数据库 / 监管报送数据</td>
+      <td>封装 Wind API 为 MCP 服务，或导出 Excel 静态注入</td>
+      <td>草拟权（需 MD 审批）</td>
+    </tr>
+    <tr>
+      <td><strong>earnings-reviewer</strong></td>
+      <td>研究部 / 股票研究员</td>
+      <td>财报电话会读取 → 财务模型更新 → 研究笔记撰写</td>
+      <td>FactSet/Daloopa（财务数据）</td>
+      <td>行内信贷系统（客户财报数据）/ 评级系统 / 外部采购数据</td>
+      <td>从信贷系统抽取客户财务数据，标准化后暴露为 MCP</td>
+      <td>草拟权（需首席分析师审批）</td>
+    </tr>
+    <tr>
+      <td><strong>meeting-prep-agent</strong></td>
+      <td>客户经理 / 私行顾问</td>
+      <td>客户画像提取 → 持仓分析 → 市场背景 → 简报包生成</td>
+      <td>CRM + CapIQ（客户信息 + 市场）</td>
+      <td>行内客户管理系统（OCRM/CCRM）/ 持仓系统</td>
+      <td>CRM MCP 封装 OCRM 接口；市场数据用 Wind 替代</td>
+      <td>完全授权（仅供顾问参考）</td>
+    </tr>
+    <tr>
+      <td><strong>market-researcher</strong></td>
+      <td>研究部 / 行业研究员</td>
+      <td>行业概览 → 竞争格局 → 可比分析 → 创意筛选 → 研究报告</td>
+      <td>CapIQ/FactSet</td>
+      <td>Wind / 行研数据库 / 内部研报库</td>
+      <td>Wind API 封装 + 内部研报库全文检索</td>
+      <td>草拟权（需分析师审批）</td>
+    </tr>
+    <tr>
+      <td><strong>model-builder</strong></td>
+      <td>投行部 / 金融建模岗</td>
+      <td>DCF/LBO/三表模型构建 → 勾稽复核 → 敏感性分析</td>
+      <td>CapIQ/Daloopa（历史财务数据）</td>
+      <td>行内信贷系统 + Wind</td>
+      <td>信贷系统提供客户实际财务数据，Wind 提供市场数据</td>
+      <td>草拟权（需 VP 审批）</td>
+    </tr>
+    <tr>
+      <td><strong>gl-reconciler</strong></td>
+      <td>运营部 / 总账会计</td>
+      <td>总账与子账逐日对账 → 差异追踪 → 异常报告</td>
+      <td>内部 GL MCP + 子账 MCP</td>
+      <td>核心银行系统（总账模块）+ 各业务条线子账系统</td>
+      <td>直接封装行内系统接口为 MCP 服务（无需外部数据）</td>
+      <td>建议权（需主管签字）</td>
+    </tr>
+    <tr>
+      <td><strong>kyc-screener</strong></td>
+      <td>合规部 / 开户审核岗</td>
+      <td>开户文件解析 → 制裁/PEP 筛查 → 风险评级 → 上报包</td>
+      <td>筛查 MCP（制裁/PEP）</td>
+      <td>行内反洗钱系统 / 人行接口 / 外部采购名单</td>
+      <td>封装反洗钱系统接口为 MCP；制裁名单可本地部署</td>
+      <td>建议权（需合规官决定）</td>
+    </tr>
+    <tr>
+      <td><strong>month-end-closer</strong></td>
+      <td>财务部 / 会计主管</td>
+      <td>应计项目计提 → 滚进计算 → 差异分析 → 结账包生成</td>
+      <td>内部 GL MCP</td>
+      <td>核心银行系统总账模块 + 费用系统 + 固定资产系统</td>
+      <td>直接封装行内系统接口（无需外部数据）</td>
+      <td>草拟权（需财务总监审批）</td>
+    </tr>
+</table>
+  <p style="font-size:13px; color:var(--text-secondary); margin-top:8px;"><strong>外部数据源说明：</strong></p>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; font-size:12px; margin:4px 0;">
+    <div style="background:var(--card-bg); border-radius:6px; padding:8px 10px;"><strong>CapIQ</strong> — 市场数据、可比公司、先例交易</div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:8px 10px;"><strong>FactSet</strong> — 财务数据、一致预期、行业对标</div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:8px 10px;"><strong>Daloopa</strong> — 财务报表、历史数据、估值指标</div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:8px 10px;"><strong>LSEG</strong> — 全球市场数据、分析师预测</div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:8px 10px;"><strong>S&P Global</strong> — 信用评级、行业分析</div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:8px 10px;"><strong>Morningstar</strong> — 基金评级、股票研究数据</div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:8px 10px;"><strong>Moody's</strong> — 信用评级、违约概率数据</div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:8px 10px;"><strong>PitchBook</strong> — VC/PE 交易、融资轮次</div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:8px 10px;"><strong>Aiera</strong> — 业绩电话会实时转录</div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:8px 10px;"><strong>MT Newswires</strong> — 实时金融新闻</div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:8px 10px;"><strong>Chronograph</strong> — PE 投资组合管理</div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:8px 10px;"><strong>Wind</strong> — 中国市场数据（内网首选替代）</div>
+  </div>
+
+  <div class="use-box" style="margin-top:12px;">
+    <div class="label">💡 核心发现</div>
+    <p style="font-size:13px; margin:4px 0;">
+      10 个智能体覆盖了银行 <strong>5 个主要部门</strong>（投行部、研究部、运营部、合规部、财务部）的核心业务流程。<br>
+      所有 Agent 的输出都是<strong>草稿或建议</strong>，最终决策和分发均在人工控制下——满足金融机构"人机协同"的监管要求。
+    </p>
+  </div>
+
+
+
+  
+
+<div class="use-box" style="margin-top:12px;">
+    <div class="label">💡 内网部署核心原则</div>
+    <p style="font-size:13px; margin:4px 0;">
+      <strong>能封装的不改写：</strong>优先将行内现有系统接口封装为 MCP 服务，不修改 Agent 代码<br>
+      <strong>能静态的不实时：</strong>非实时场景（如行业研究、PitchBook 模板）用 Excel/CSV 静态注入，减少对接工作量<br>
+      <strong>能分批的不一步到位：</strong>先上不依赖外部数据的 Agent（GL Recon、月结），再上有替代方案的 Agent
+    </p>
+  </div>
+
+<div class="use-box" style="margin-top:12px; background:var(--card-bg); border-left:4px solid var(--accent);">
+    <div class="label">📌 一句话原则</div>
+    <p style="font-size:14px; margin:4px 0; color:var(--text); font-weight:500;">
+      Agent 是效率工具，不是决策者——所有涉及金额、合规、对外的输出，都必须有人工在环路（Human-in-the-Loop）。
+    </p>
+  </div>
+</div>
+
+<div class="section" id="plugins">
+  <h2>🧩 智能体与技能全景</h2>
+  <p>按项目目录结构分为三大类：<strong>智能体</strong>（端到端工作流）、<strong>垂直领域</strong>（技能来源）、<strong>合作伙伴</strong>（数据连接器）。</p>
+
+  <div class="use-box" style="margin-bottom:18px; background:var(--card-bg); border-left:4px solid var(--accent);">
+    <div class="label" style="color:var(--accent);">💡 技能与 Agent 的关系</div>
+    <p style="font-size:13px; margin:4px 0; color:var(--text-secondary);">
+      <strong>所有 Agent 使用的技能都来自垂直插件。</strong> 垂直插件按金融领域分类（投行、研究、财务分析、私募等），每个领域包含该岗位所需的专业技能文件（SKILL.md）。
+    </p>
+    <p style="font-size:13px; margin:4px 0; color:var(--text-secondary);">
+      一个 Agent 可以同时从<strong>多个垂直插件</strong>获取技能。例如 pitch-agent 同时从 <code>investment-banking</code>（投行技能）和 <code>financial-analysis</code>（财务建模技能）加载技能。
+    </p>
+    <p style="font-size:13px; margin:4px 0; color:var(--text-secondary);">
+      <strong>垂直插件 = 按领域分类的知识库</strong>，<strong>Agent = 按工作流跨领域打包的执行体</strong>。编辑技能只需改垂直插件下的源文件，运行 <code>sync-agent-skills.py</code> 自动同步到所有引用了该技能的 Agent。
+    </p>
+  </div>
+
+  <h3>🤖 智能体（Managed Agent Cookbooks）</h3>
+  <p style="font-size:13px; color:#888; margin-bottom:12px;">
+    每个智能体包含完整的 <code>agent.yaml</code>（系统提示词）+ 子代理架构 + 技能集。可直接在 Claude Code 中使用，也可部署为托管代理。
+  </p>
+
+  <!-- 子代理概念说明 -->
+  <div class="use-box" style="margin-bottom:18px; background:#f0ece2; border-left:4px solid #7a9068;">
+    <div class="label">🤖 子代理（Sub-Agent）是什么</div>
+    <p style="font-size:13px; margin:6px 0; color:#555;">
+      每个智能体内部不是一个人干活，而是一个<strong>小团队</strong>。编排器（编排器/总负责人）接到你的任务后，拆解给多个<strong>子代理</strong>分工协作。
+    </p>
+    <p style="font-size:13px; margin:6px 0; color:#555;">
+      出于安全考虑，每个子代理的权限被严格限制在<strong>三层隔离</strong>中：</p>
+    <table class="cmd-table" style="font-size:12px;">
+      <tr><th width="18%">层级</th><th>子代理角色</th><th>权限</th><th>说明</th></tr>
+      <tr>
+        <td style="color:#c0392b;font-weight:600;">🥇 读取层</td>
+        <td><code>*-reader</code>（资料包/电话会/文档读取器等）</td>
+        <td><code>Read, Grep 仅</code></td>
+        <td>唯一接触外部不可信文档的层级，输出结构化 JSON，绝不写文件</td>
+      </tr>
+      <tr>
+        <td style="color:#27ae60;font-weight:600;">🥈 处理层</td>
+        <td><code>*-updater / resolver / builder</code>（模型更新器/核对器等）</td>
+        <td><code>Read, Grep, Agent, MCP</code></td>
+        <td>可信隔离区，不接触原始文档，可连接外部数据源（FactSet/CapIQ）</td>
+      </tr>
+      <tr>
+        <td style="color:#7a9068;font-weight:600;">🥉 输出层</td>
+        <td><code>*-writer / poster / publisher</code>（笔记/报告输出器等）</td>
+        <td><code>Read, Write, Edit</code></td>
+        <td>唯一持有写权限的层级，产出最终文件，从不接触不可信文档</td>
+      </tr>
+    </table>
+  </div>
+  <!-- 子代理概念说明结束 -->
+
+  <div class="plugin-grid">
+
+    <!-- 1. Valuation Reviewer -->
+    <div class="plugin-card">
+      <div class="name">🔎 valuation-reviewer <span class="badge plugin">v0.1.1</span> <span style="font-size:11px;color:#7a9068;font-weight:500;">🎭 基金会计主管</span></div>
+      <div class="path">📁 managed-agent-cookbooks/valuation-reviewer/</div>
+      <div class="desc">估值审查器 · 导入 GP 估值资料包，运行估值模板，暂存 LP 报告</div>
+      <div class="use-box" style="margin-top:8px;">
+        <div style="font-size:12px;color:#5a7a4a;font-weight:600;">📋 工作流程</div>
+        <div style="font-size:12px;color:#555;margin:4px 0;line-height:1.7;">
+          <strong>角色：</strong>基金会计主管，负责审查投资组合公司估值并准备 LP 报告。<br>
+          <strong>产出：</strong>估值摘要（报告价值/方法/关键输入）→ 瀑布分配（NAV/绩效收益）→ LP 报告包<br>
+          <strong>流程：</strong>① 摄入 GP 包（不可信）→ ② 运行估值模板 → ③ 瀑布分配 → ④ 准备 LP 报告<br>
+          <strong>防护栏：</strong>GP 包读取器仅有 Read/Grep；不进行外部分发，需 IR 和 CCO 签字
+        </div>
+      </div>
+      <div class="use-box" style="margin-top:6px;">
+        <div style="font-size:12px;color:#5a7a4a;font-weight:600;">🧩 核心技能方法论</div>
+        <div style="font-size:12px;color:#555;margin:4px 0;line-height:1.7;">
+          <code>returns-analysis</code> — 先收齐进入/融资/运营/退出四类假设，然后构建标准 IRR/MOIC 敏感性表。方法论核心是压力测试：在不同进入倍数、退出倍数和持有期组合下，看 MOIC 和 IRR 的波动范围<br>
+          <code>portfolio-monitoring</code> — 摄入财务报表后做三层分析：① 提取核心 KPI（收入/EBITDA/杠杆率/现金流）→ ② 对比预算和上期标记差异 → ③ 对超阈值差异追溯根本原因<br>
+          <code>ic-memo</code> — 遵循经典投委会备忘录结构：执行摘要 → 市场背景 → 财务分析 → 交易条款 → 风险缓释 → 回报情景。核心是"先结论后证据"的投行叙事逻辑
+        </div>
+      </div>
+      <div class="use-box" style="margin-top:6px;">
+        <div class="example"><span class="ev">"Review portco valuations for fund Growth-III as of 2026-03-31"</span><br><span style="font-size:12px;color:#888;">审查 Growth-III 基金截至 2026-03-31 的投资组合估值，portco = portfolio company（投资组合公司）</span></div>
+      </div>
+    </div>
+
+    <!-- 2. Statement Auditor -->
+    <div class="plugin-card">
+      <div class="name">📋 statement-auditor <span class="badge plugin">v0.1.0</span> <span style="font-size:11px;color:#7a9068;font-weight:500;">🎭 对账单最后把关人</span></div>
+      <div class="path">📁 managed-agent-cookbooks/statement-auditor/</div>
+      <div class="desc">对账单审计器 · 将预生成的 LP 对账单与 NAV 数据逐笔勾稽，自动标记差异并输出审计底稿</div>
+      <div class="use-box" style="margin-top:8px;">
+        <div style="font-size:12px;color:#5a7a4a;font-weight:600;">📋 工作流程</div>
+        <div style="font-size:12px;color:#555;margin:4px 0;line-height:1.7;">
+          <strong>角色：</strong>LP 对账单离开公司前的最后一道审核者。<br>
+          <strong>产出：</strong>勾稽表（对账单字段 vs NAV 来源）→ 异常清单（差异及疑似原因）→ 签字确认表（通过/暂缓）<br>
+          <strong>流程：</strong>① 读取对账单（不可信）→ ② 通过 NAV MCP 逐字段对账 → ③ 标记异常格式化为签字确认表<br>
+          <strong>防护栏：</strong>对账单读取器仅有 Read/Grep；不进行分发，需人工签字
+        </div>
+      </div>
+      <div class="use-box" style="margin-top:6px;">
+        <div style="font-size:12px;color:#5a7a4a;font-weight:600;">🧩 核心技能方法论</div>
+        <div style="font-size:12px;color:#555;margin:4px 0;line-height:1.7;">
+          <code>nav-tieout</code> — 先从 NAV 包反推出每个 LP 的应占资本账户余额（按出资比例/分配规则），然后逐字段比对实际对账单。核心方法是"再计算校验"——不信任上游数据，独立重新计算一遍<br>
+          <code>audit-xls</code> — 四维审计法：① 公式准确性（无断裂链接、循环引用仅限有意）→ ② 平衡检查（资产负债表左右平衡、现金勾稽）→ ③ 逻辑合理性（利润率不过100%、折旧不过资产值）→ ④ 格式规范（蓝/黑/绿色字体标准）
+        </div>
+      </div>
+      <div class="use-box" style="margin-top:6px;">
+        <div class="example"><span class="ev">"Audit statements for fund Growth-III, period Q1-2026"</span><br><span style="font-size:12px;color:#888;">审计 Growth-III 基金 2026 年第一季度的 LP 对账单</span></div>
+      </div>
+    </div>
+
+    <!-- 3. Pitch Agent -->
+    <div class="plugin-card">
+      <div class="name">🎯 pitch-agent <span class="badge plugin">v0.1.1</span> <span style="font-size:11px;color:#7a9068;font-weight:500;">🎭 资深投行分析师</span></div>
+      <div class="path">📁 managed-agent-cookbooks/pitch-agent/</div>
+      <div class="desc">Pitch 演示代理 · 从可比公司、先例交易和 LBO 分析自动生成投行级品牌化 PitchBook 演示文稿</div>
+      <div class="use-box" style="margin-top:8px;">
+        <div style="font-size:12px;color:#5a7a4a;font-weight:600;">📋 工作流程</div>
+        <div style="font-size:12px;color:#555;margin:4px 0;line-height:1.7;">
+          <strong>角色：</strong>资深投行分析师，从头到尾完成客户路演初稿。<br>
+          <strong>产出：</strong>Excel 估值工作簿（可比公司/先例/DCF/LBO/橄榄球场）+ PowerPoint 路演材料<br>
+          <strong>流程：</strong>① 明确目标与情境 → ② 编写情境概述 → ③ CapIQ 提取数据 → ④ 展开可比分析 → ⑤ 构建 LBO/DCF/三表模型 → ⑥ 生成橄榄球场 → ⑦ 填充路演材料 → ⑧ IB 质量检查<br>
+          <strong>防护栏：</strong>无外部通信；每个数字可来源追踪；构建后暂停审阅
+        </div>
+      </div>
+      <div class="use-box" style="margin-top:6px;">
+        <div style="font-size:12px;color:#5a7a4a;font-weight:600;">🧩 核心技能方法论</div>
+        <div style="font-size:12px;color:#555;margin:4px 0;line-height:1.7;">
+          <code>sector-overview</code> — 金字塔叙事结构：市场规模 ↔ 增长驱动 → 价值链 → 竞争格局 → 变革因素。每个结论都必须有数据支撑，数据必须有来源归属<br>
+          <code>comps-analysis</code> — 先选 5-8 家最可比的公司，统一指标定义（注意不同会计准则导致的差异），然后用箱线图/百分位法识别异常值，避免被极端值带偏<br>
+          <code>pitch-deck</code> — 核心原则是"数据绑定"：幻灯片上的每个数字都必须可追溯到 Excel 工作簿中的命名区域。每次修改后做交叉引用验证，确保跨幻灯片的一致性<br>
+          <code>ib-check-deck</code> — 从四个维度独立审查：① 数字一致性（同一指标在不同幻灯片上是否冲突）→ ② 数据-叙事对齐（图表趋势是否支持文字主张）→ ③ 投行语言标准（术语精确、措辞保守）→ ④ 格式统一性
+        </div>
+      </div>
+      <div class="use-box" style="margin-top:6px;">
+        <div class="example"><span class="ev">"Build pitch book: target CRWD, acquirer PANW, thesis: platform consolidation in security"</span><br><span style="font-size:12px;color:#888;">制作 PitchBook——目标 CRWD（CrowdStrike），收购方 PANW（Palo Alto Networks），主题：网络安全平台整合</span></div>
+      </div>
+    </div>
+
+    <!-- 4. Earnings Reviewer -->
+    <div class="plugin-card">
+      <div class="name">📰 earnings-reviewer <span class="badge plugin">v0.1.1</span> <span style="font-size:11px;color:#7a9068;font-weight:500;">🎭 高级股票研究员</span></div>
+      <div class="path">📁 managed-agent-cookbooks/earnings-reviewer/</div>
+      <div class="desc">业绩审查器 · 读取财报电话会记录，自动更新财务模型中的预测数据并撰写研究笔记</div>
+      <div class="use-box" style="margin-top:8px;">
+        <div style="font-size:12px;color:#5a7a4a;font-weight:600;">📋 工作流程</div>
+        <div style="font-size:12px;color:#555;margin:4px 0;line-height:1.7;">
+          <strong>角色：</strong>高级股票研究分析师，负责被覆盖公司的业绩后更新。<br>
+          <strong>产出：</strong>更新的覆盖模型 + 业绩简报草稿 + 差异表（实际 vs 一致预期 vs 先前估计）<br>
+          <strong>流程：</strong>① 通过 FactSet/Daloopa 提取实际值和一致预期 → ② 读取电话会记录（不可信）→ ③ 更新模型 → ④ 模型质量控制 → ⑤ 起草简报<br>
+          <strong>防护栏：</strong>电话会记录视为不可信；每个数字注明来源；不发布，需分析师签字
+        </div>
+      </div>
+      <div class="use-box" style="margin-top:6px;">
+        <div style="font-size:12px;color:#5a7a4a;font-weight:600;">🧩 核心技能方法论</div>
+        <div style="font-size:12px;color:#555;margin:4px 0;line-height:1.7;">
+          <code>earnings-analysis</code> — 机构级业绩更新方法论：① 量化超/低预期（收入/EBITDA/EPS 三个层面）→ ② 分析驱动因素（价/量、成本结构、一次性项目）→ ③ 更新估计并标记对投资主题的影响。受众已熟悉公司，只讲"新的"<br>
+          <code>model-update</code> — 分四个层次更新：① 历史实际值替换 → ② 管理层指导调整 → ③ 假设修正（增长/利润率/资本支出）→ ④ 估值重算。每个变更单元格必须可追溯到来源，不允许无依据的手工调整<br>
+          <code>morning-note</code> — "紧凑、有观点、可操作"原则：三句话内说清发生了什么、为什么重要、该做什么。70% 给没时间的人看摘要，30% 给感兴趣的人看细节
+        </div>
+      </div>
+      <div class="use-box" style="margin-top:6px;">
+        <div class="example"><span class="ev">"Process earnings: NVDA Q1-FY27"</span><br><span style="font-size:12px;color:#888;">处理 NVDA（英伟达）FY2027 财年第一季度财报</span></div>
+      </div>
+    </div>
+
+    <!-- 5. Meeting Prep Agent -->
+    <div class="plugin-card">
+      <div class="name">🤝 meeting-prep-agent <span class="badge plugin">v0.1.1</span> <span style="font-size:11px;color:#7a9068;font-weight:500;">🎭 会议准备伙伴</span></div>
+      <div class="path">📁 managed-agent-cookbooks/meeting-prep-agent/</div>
+      <div class="desc">会议准备代理 · 整合 CRM 客户画像、持仓数据和近期动态，自动生成会前简报资料包</div>
+      <div class="use-box" style="margin-top:8px;">
+        <div style="font-size:12px;color:#5a7a4a;font-weight:600;">📋 工作流程</div>
+        <div style="font-size:12px;color:#555;margin:4px 0;line-height:1.7;">
+          <strong>角色：</strong>顾问在每次客户会议前的筹备伙伴。<br>
+          <strong>产出：</strong>简报包（关系摘要/持仓快照/近期活动/市场背景/建议议程）+ 谈话要点（3-5 个事项）<br>
+          <strong>流程：</strong>① 通过 CRM MCP 拉取关系信息 → ② 通过 CapIQ 获取市场背景 → ③ 读取近期通信（不可信）→ ④ 起草简报包 → ⑤ 准备给顾问<br>
+          <strong>防护栏：</strong>客户提供的文档和邮件不可信；不向客户发送，仅供顾问使用
+        </div>
+      </div>
+      <div class="use-box" style="margin-top:6px;">
+        <div style="font-size:12px;color:#5a7a4a;font-weight:600;">🧩 核心技能方法论</div>
+        <div style="font-size:12px;color:#555;margin:4px 0;line-height:1.7;">
+          <code>client-review</code> — 会议准备三要素：① 收益归因（账户涨了多少、为什么）→ ② 配置偏差（偏离基准部分需解释）→ ③ 待办事项跟踪（上次会议承诺的事做了没）。先看结果再看原因<br>
+          <code>client-report</code> — 专业客户报告结构：业绩摘要 → 配置分析 → 市场评论 → 展望。核心技巧是将复杂归因数据转化为客户能理解的叙述——"您的账户 X% 涨了，主要来自 Y 行业"<br>
+          <code>investment-proposal</code> — 新客户推介四步法：① 了解客户需求与约束 → ② 建议配置方案 → ③ 模拟预期结果（含下行情景）→ ④ 讲清费用结构和合作方式
+        </div>
+      </div>
+      <div class="use-box" style="margin-top:6px;">
+        <div class="example"><span class="ev">"Briefing pack for client C-004921, meeting cal-evt-8f2a"</span><br><span style="font-size:12px;color:#888;">为客户 C-004921 准备会议简报包</span></div>
+      </div>
+    </div>
+
+    <!-- 6. Market Researcher -->
+    <div class="plugin-card">
+      <div class="name">📊 market-researcher <span class="badge plugin">v0.1.1</span> <span style="font-size:11px;color:#7a9068;font-weight:500;">🎭 高级研究员</span></div>
+      <div class="path">📁 managed-agent-cookbooks/market-researcher/</div>
+      <div class="desc">市场研究员 · 从行业材料中提取关键信息，完成对标分析和创意筛选，输出行业研究报告</div>
+      <div class="use-box" style="margin-top:8px;">
+        <div style="font-size:12px;color:#5a7a4a;font-weight:600;">📋 工作流程</div>
+        <div style="font-size:12px;color:#555;margin:4px 0;line-height:1.7;">
+          <strong>角色：</strong>高级研究助理，负责撰写行业或主题性基础研究报告初稿。<br>
+          <strong>产出：</strong>行业概况 → 竞争格局 → 可比公司倍数 → 创意短名单（3-5 公司）→ 结构化研究报告<br>
+          <strong>流程：</strong>① 明确范围与角度 → ② 撰写概况 → ③ 绘制格局 → ④ 展开可比分析 → ⑤ 发掘创意 → ⑥ 汇编报告<br>
+          <strong>防护栏：</strong>第三方报告不可信；每个数字注明来源；草拟后暂停审阅
+        </div>
+      </div>
+      <div class="use-box" style="margin-top:6px;">
+        <div style="font-size:12px;color:#5a7a4a;font-weight:600;">🧩 核心技能方法论</div>
+        <div style="font-size:12px;color:#555;margin:4px 0;line-height:1.7;">
+          <code>competitive-analysis</code> — 两阶段法：先确定分析范围（单一目标 vs 多方比较、受众背景、投资背景），获得大纲批准后再构建内容。核心是不猜用户要什么，先确认再动手<br>
+          <code>comps-analysis</code> — 方法论四步：① 确定同行池（8-15 家）→ ② 统一指标定义（注意 GAAP vs Non-GAAP 差异）→ ③ 用百分位法识别异常值 → ④ 按业务构成解释倍数差异的原因<br>
+          <code>idea-generation</code> — 多维度筛选框架：按方向（多/空）× 市值（大/中/小）× 风格（价值/成长/质量/事件驱动）建立筛选参数。每个风格有独立的指标权重体系——价值看 PE/FCF yield，成长看增速加速度，空头看会计警示信号
+        </div>
+      </div>
+      <div class="use-box" style="margin-top:6px;">
+        <div class="example"><span class="ev">"Primer: US data-center power, angle: supply gap"</span><br><span style="font-size:12px;color:#888;">行业概览：美国数据中心电力，分析角度（angle）= 供应缺口</span></div>
+        <div class="example"><span class="ev">"Refresh comps only: US LTL freight"</span><br><span style="font-size:12px;color:#888;">仅刷新对标数据：美国零担货运行业</span></div>
+      </div>
+    </div>
+
+    <!-- 7. Model Builder -->
+    <div class="plugin-card">
+      <div class="name">🏗️ model-builder <span class="badge plugin">v0.1.0</span> <span style="font-size:11px;color:#7a9068;font-weight:500;">🎭 金融建模专家</span></div>
+      <div class="path">📁 managed-agent-cookbooks/model-builder/</div>
+      <div class="desc">模型构建器 · 从 MCP 数据源拉取财务数据，自动构建 DCF/LBO/三报表/可比分析模型并复核勾稽关系</div>
+      <div class="use-box" style="margin-top:8px;">
+        <div style="font-size:12px;color:#5a7a4a;font-weight:600;">📋 工作流程</div>
+        <div style="font-size:12px;color:#555;margin:4px 0;line-height:1.7;">
+          <strong>角色：</strong>财务建模专家，从零构建机构级估值模型。<br>
+          <strong>产出：</strong>完全链接的 Excel 工作簿：DCF（预测/WACC/敏感性）· LBO（资金来源/债务表/IRR）· 三表模型 · 可比公司分析<br>
+          <strong>流程：</strong>① 通过 CapIQ/Daloopa 提取历史数据 → ② 调用匹配技能构建模型 → ③ 审计勾稽关系 → ④ 敏感性分析 → ⑤ 提交审查<br>
+          <strong>防护栏：</strong>每个输出都是公式（无硬编码）；每个输入注明来源；构建后暂停
+        </div>
+      </div>
+      <div class="use-box" style="margin-top:6px;">
+        <div style="font-size:12px;color:#5a7a4a;font-weight:600;">🧩 核心技能方法论</div>
+        <div style="font-size:12px;color:#555;margin:4px 0;line-height:1.7;">
+          <code>dcf-model</code> — 投行级 DCF 构建规范：① 每个预测单元格必须是公式而非硬编码（唯一例外：历史输入和假设驱动因素）→ ② 分步验证：数据拉取后确认输入 → 收入预测后确认顶线 → FCF 后确认逻辑 → WACC 后确认假设 → 最终才做敏感性<br>
+          <code>lbo-model</code> — 核心逻辑是资金循环：并购资金从哪来（债务+权益）→ 被收购公司的现金流如何还款 → 退出时剩余价值怎么分。每项债务的利率/摊销/期限都要单独建模，不能用加权平均敷衍<br>
+          <code>3-statement-model</code> — 勾稽三角：利润表的净利润 → 资产负债表的留存收益 → 现金流量表的经营现金流。三表必须联动，每变动一个假设能看到对其他两表的影响
+        </div>
+      </div>
+      <div class="use-box" style="margin-top:6px;">
+        <div class="example"><span class="ev">"Build dcf for MSFT, assumptions: {wacc: 0.085, tgr: 0.025, horizon: 5}"</span><br><span style="font-size:12px;color:#888;">为 MSFT（微软）构建 DCF 模型</span></div>
+        <div class="example"><span class="ev">"Build lbo for TGT, assumptions: {entry_multiple: 9.0, leverage: 5.5, hold: 5}"</span><br><span style="font-size:12px;color:#888;">为 TGT（Target）构建 LBO 模型</span></div>
+      </div>
+    </div>
+
+    <!-- 8. GL Reconciler -->
+    <div class="plugin-card">
+      <div class="name">🔄 gl-reconciler <span class="badge plugin">v0.1.0</span> <span style="font-size:11px;color:#7a9068;font-weight:500;">🎭 基金会计主管</span></div>
+      <div class="path">📁 managed-agent-cookbooks/gl-reconciler/</div>
+      <div class="desc">总账核对器 · 按交易日和资产类别比对总账与子账差异，追踪根因并输出例外报告</div>
+      <div class="use-box" style="margin-top:8px;">
+        <div style="font-size:12px;color:#5a7a4a;font-weight:600;">📋 工作流程</div>
+        <div style="font-size:12px;color:#555;margin:4px 0;line-height:1.7;">
+          <strong>角色：</strong>基金会计主管，负责日常总账与子账对账。<br>
+          <strong>产出：</strong>差异清单（科目/余额/差异金额/疑似原因）→ 根本原因追溯（交易级证据）→ 异常报告（含解决建议）<br>
+          <strong>流程：</strong>① 通过 GL MCP + 子账 MCP 拉取余额 → ② 按资产类别比对并隔离差异 → ③ 追溯根本原因 → ④ 独立复核 → ⑤ 起草异常报告<br>
+          <strong>防护栏：</strong>托管人对账单不可信；编排器不执行写入；不过账需人工审批
+        </div>
+      </div>
+      <div class="use-box" style="margin-top:6px;">
+        <div style="font-size:12px;color:#5a7a4a;font-weight:600;">🧩 核心技能方法论</div>
+        <div style="font-size:12px;color:#555;margin:4px 0;line-height:1.7;">
+          <code>gl-recon</code> — 标准对账流程：① 数据标准化（对齐键值、统一日期/金额格式）→ ② 全外连接匹配（六种分类：已匹配/金额差异/数量差异/时点差异/仅总账侧/仅子账侧）→ ③ 按可能原因分类（时点/汇率/映射/重复/数据质量）。核心是不要跳过标准化步骤——大部分差异来自数据格式不一致而非真的记错账<br>
+          <code>break-trace</code> — 审计线索回溯法：从差异行出发，沿着凭证链逐级上溯到原始交易。每个差异要回答"原始交易是什么、经过哪些中间账户、为什么最终余额对不上"
+        </div>
+      </div>
+      <div class="use-box" style="margin-top:6px;">
+        <div class="example"><span class="ev">"Reconcile GL vs subledger, trade date 2026-04-30, classes: equities, fixed-income, derivatives"</span><br><span style="font-size:12px;color:#888;">对账 2026-04-30 的总账与子账，资产类别：股票、固收、衍生品</span></div>
+      </div>
+    </div>
+
+    <!-- 9. KYC Screener -->
+    <div class="plugin-card">
+      <div class="name">🛡️ kyc-screener <span class="badge plugin">v0.1.0</span> <span style="font-size:11px;color:#7a9068;font-weight:500;">🎭 开户审核分析师</span></div>
+      <div class="path">📁 managed-agent-cookbooks/kyc-screener/</div>
+      <div class="desc">KYC 筛查器 · 解析开户文件中的身份信息，自动运行制裁/PEP 规则引擎并标记合规缺口</div>
+      <div class="use-box" style="margin-top:8px;">
+        <div style="font-size:12px;color:#5a7a4a;font-weight:600;">📋 工作流程</div>
+        <div style="font-size:12px;color:#555;margin:4px 0;line-height:1.7;">
+          <strong>角色：</strong>客户开户分析师，负责整理和筛查 KYC 文件包。<br>
+          <strong>产出：</strong>提取的实体文件（法定名称/UBO/地址）→ 规则引擎结果 → 制裁/PEP 筛查结果 → 上报包（含风险评级建议）<br>
+          <strong>流程：</strong>① 文档读取器从开户 PDF 提取结构化字段（不可信）→ ② 运行 KYC 规则引擎 → ③ 筛查 MCP 对具名方进行制裁/PEP 筛查 → ④ 打包上报<br>
+          <strong>防护栏：</strong>开户文件不可信；文档读取器仅 Read/Grep；不出风险评级决定
+        </div>
+      </div>
+      <div class="use-box" style="margin-top:6px;">
+        <div style="font-size:12px;color:#5a7a4a;font-weight:600;">🧩 核心技能方法论</div>
+        <div style="font-size:12px;color:#555;margin:4px 0;line-height:1.7;">
+          <code>kyc-doc-parse</code> — 解析三板斧：① 文件盘点（身份/实体/所有权/地址/资金来源/税务六类）→ ② 提取结构化字段进 JSON 模板（对未找到的字段用 null，绝不猜测）→ ③ 标记明显缺失项（过期证件、缺架构图）。输入不可信，只提取不执行<br>
+          <code>kyc-rules</code> — 规则引擎四步：① 计算风险评级（司法管辖区/申请类型/所有权透明度/PEP/资金来源六个维度）→ ② 检查文件完备性 → ③ 逐条规则评估（通过/未通过，每条引用规则来源）→ ④ 给出处置建议。关键原则：本技能不做决策，只评分和路由，最终决定由合规官做出
+        </div>
+      </div>
+      <div class="use-box" style="margin-top:6px;">
+        <div class="example"><span class="ev">"Screen onboarding packet PKT-2026-00318"</span><br><span style="font-size:12px;color:#888;">筛查开户资料包 PKT-2026-00318</span></div>
+        <div class="example"><span class="ev">"Periodic refresh: client C-004921, as-of 2026-04-30"</span><br><span style="font-size:12px;color:#888;">定期刷新客户 C-004921，截至 2026-04-30</span></div>
+      </div>
+    </div>
+
+    <!-- 10. Month-End Closer -->
+    <div class="plugin-card">
+      <div class="name">📅 month-end-closer <span class="badge plugin">v0.1.0</span> <span style="font-size:11px;color:#7a9068;font-weight:500;">🎭 财务主管助手</span></div>
+      <div class="path">📁 managed-agent-cookbooks/month-end-closer/</div>
+      <div class="desc">月度结账器 · 处理应计项目计提和滚动前推计算，生成含差异说明的月度结账包</div>
+      <div class="use-box" style="margin-top:8px;">
+        <div style="font-size:12px;color:#5a7a4a;font-weight:600;">📋 工作流程</div>
+        <div style="font-size:12px;color:#555;margin:4px 0;line-height:1.7;">
+          <strong>角色：</strong>主管的得力助手，负责执行实体和期间的结账清单。<br>
+          <strong>产出：</strong>应计项目计划表 → 滚进计算表（期初+发生额-冲销=期末）→ 差异分析 → 结账包（汇总供主管签字）<br>
+          <strong>流程：</strong>① 通过 GL MCP 拉取试算平衡表 → ② 构建应计项目与滚进计算 → ③ 起草差异分析 → ④ 汇总结账包<br>
+          <strong>防护栏：</strong>支持性发票不可信；不过账，需主管审批
+        </div>
+      </div>
+      <div class="use-box" style="margin-top:6px;">
+        <div style="font-size:12px;color:#5a7a4a;font-weight:600;">🧩 核心技能方法论</div>
+        <div style="font-size:12px;color:#555;margin:4px 0;line-height:1.7;">
+          <code>accrual-schedule</code> — 每项应计分录包含四要素：计算过程（公式可见）→ 支持文件引用 → 日记账草稿 → 审批状态。这些只是草稿，不过账，目的是让主管能在 5 分钟内理解并签字<br>
+          <code>roll-forward</code> — 核心恒等式：期初余额 + 本期发生额 - 本期冲销 = 期末余额。每个子项都要与总账明细对牢，差一分钱都不行<br>
+          <code>variance-commentary</code> — 差异分析双阈值机制：超过 5% 或固定下限的科目必须写说明。说明要讲"为什么"而非"是什么"——"云服务支出增加源于新增 GPU 预留"合格，"云服务支出增加 18%"不合格。如果数据不足以判断，写"驱动因素不明确——标记给主管"
+        </div>
+      </div>
+      <div class="use-box" style="margin-top:6px;">
+        <div class="example"><span class="ev">"Close entity US-OPCO for period 2026-04"</span><br><span style="font-size:12px;color:#888;">对 US-OPCO 执行 2026 年 4 月月度结账</span></div>
+        <div class="example"><span class="ev">"Close entity UK-HOLDCO for period 2026-03, scope: accruals only"</span><br><span style="font-size:12px;color:#888;">对 UK-HOLDCO 执行 2026 年 3 月月度结账，仅应计项目</span></div>
+      </div>
+    </div>  <h3 style="margin-top:24px;">📦 垂直领域（Vertical Plugins — 技能来源）</h3>
+  <p style="font-size:13px; color:#888; margin-bottom:12px;">
+    垂直领域插件是 <strong>技能的源文件仓库</strong>。编辑技能只需改这里的 SKILL.md，然后运行 <code>sync-agent-skills.py</code> 自动同步到各智能体。不包含子代理架构，只提供知识和模板。
+  </p>
+  <div class="plugin-grid">
+
+    <div class="plugin-card" style="border-left-color:#7a9068;">
+      <div class="name">💼 investment-banking <span class="badge plugin">v0.2.1</span></div>
+      <div class="path">📁 plugins/vertical-plugins/investment-banking/</div>
+      <div class="desc">投行业务技能组 — 11 个技能</div>
+      <div class="use-box" style="margin-top:6px;">
+        <div style="font-size:12px;color:var(--accent);font-weight:600;">🧩 核心技能方法论</div>
+        <div style="font-size:12px;color:var(--text-secondary);margin:4px 0;line-height:1.7;">
+          <code>merger-model</code> — 并购模型：先确定交易结构（资产收购/股权收购），然后建模三大层次——购买价格分摊（PPA）、合并后报表、每股收益影响（Accretion/Dilution）。核心是判断交易对收购方的 EPS 是增厚还是稀释<br>
+          <code>cim-builder</code> — 保密信息备忘录：遵循"先行业后公司"的叙事逻辑，先讲市场吸引力和增长逻辑，再讲公司优势和财务表现。数据必须全部来源可追溯<br>
+          <code>pitch-deck / teaser / process-letter</code> — 投行文档三件套：teaser 是不标识公司的 1 页概览，pitch-deck 是完整路演材料，process-letter 是正式流程函。每个有严格的行业格式标准
+        </div>
+      </div>
+    </div>
+
+    <div class="plugin-card" style="border-left-color:#7a9068;">
+      <div class="name">🔍 equity-research <span class="badge plugin">v0.1.2</span></div>
+      <div class="path">📁 plugins/vertical-plugins/equity-research/</div>
+      <div class="desc">股票研究技能组 — 9 个技能</div>
+      <div class="use-box" style="margin-top:6px;">
+        <div style="font-size:12px;color:var(--accent);font-weight:600;">🧩 核心技能方法论</div>
+        <div style="font-size:12px;color:var(--text-secondary);margin:4px 0;line-height:1.7;">
+          <code>initiating-coverage</code> — 启动覆盖报告标准结构：投资结论 → 公司概况 → 行业背景 → 财务分析 → 估值 → 风险。40+ 页的完整报告框架，核心是"投资结论先行"<br>
+          <code>catalyst-calendar</code> — 催化剂日历：按时间线排列未来 12 个月的潜在股价驱动事件（业绩日、产品发布、监管决定），每个事件标注预期影响方向和置信度<br>
+          <code>thesis-tracker</code> — 投资主题追踪器：记录每个覆盖公司的核心投资主题、验证/否定条件、当前置信度。当关键条件触发时自动标记主题变化
+        </div>
+      </div>
+    </div>
+
+    <div class="plugin-card" style="border-left-color:#7a9068;">
+      <div class="name">📈 financial-analysis <span class="badge plugin">v0.1.1</span></div>
+      <div class="path">📁 plugins/vertical-plugins/financial-analysis/</div>
+      <div class="desc">财务分析通用技能组 — 13 个技能，也是 MCP 数据源配置中心</div>
+      <div class="use-box" style="margin-top:6px;">
+        <div style="font-size:12px;color:var(--accent);font-weight:600;">🧩 核心技能方法论</div>
+        <div style="font-size:12px;color:var(--text-secondary);margin:4px 0;line-height:1.7;">
+          <code>dcf-model / lbo-model / 3-statement-model</code> — 三大建模技能：DCF 重在未来现金流折现，LBO 重在杠杆和回报分配，三表重在勾稽联动。每个模型遵循蓝/黑/绿颜色编码标准<br>
+          <code>clean-data-xls</code> — 数据清洗方法论：先做格式标准化（日期/数字/文本），再处理缺失值（标记不猜测），最后做合理性校验（范围/分布/异常值）<br>
+          <code>skill-creator</code> — 元技能：用于快速创建新的 SKILL.md 文件，遵循标准模板格式
+        </div>
+      </div>
+      <div style="font-size:12px; color:#b87a4a; margin-top:4px;">⚠️ 此插件包含 MCP 数据源配置（12 个数据源的公共入口），内网部署时主要修改此文件</div>
+    </div>
+
+    <div class="plugin-card" style="border-left-color:#7a9068;">
+      <div class="name">🏦 private-equity <span class="badge plugin">v0.1.2</span></div>
+      <div class="path">📁 plugins/vertical-plugins/private-equity/</div>
+      <div class="desc">私募股权技能组 — 10 个技能</div>
+      <div class="use-box" style="margin-top:6px;">
+        <div style="font-size:12px;color:var(--accent);font-weight:600;">🧩 核心技能方法论</div>
+        <div style="font-size:12px;color:var(--text-secondary);margin:4px 0;line-height:1.7;">
+          <code>deal-sourcing → deal-screening → ic-memo</code> — PE 项目漏斗：先广泛寻源（deal-sourcing），再用筛选标准打分（deal-screening），通过的发尽调清单（dd-checklist），最后形成投委会备忘录（ic-memo）。每一阶段减少候选数量、增加分析深度<br>
+          <code>unit-economics</code> — 单位经济分析：拆解到单个产品/客户的收入成本结构，核心指标是 CAC（获客成本）、LTV（客户生命周期价值）、回收期。如果 LTV/CAC < 3，规模扩张只会放大亏损<br>
+          <code>value-creation-plan</code> — 投后价值创造：百日计划 → 运营改进 → 增长战略 → 退出准备。每个阶段有明确的 KPI 和里程碑
+        </div>
+      </div>
+    </div>
+
+    <div class="plugin-card" style="border-left-color:#7a9068;">
+      <div class="name">💰 wealth-management <span class="badge plugin">v0.1.2</span></div>
+      <div class="path">📁 plugins/vertical-plugins/wealth-management/</div>
+      <div class="desc">财富管理技能组 — 6 个技能</div>
+      <div class="use-box" style="margin-top:6px;">
+        <div style="font-size:12px;color:var(--accent);font-weight:600;">🧩 核心技能方法论</div>
+        <div style="font-size:12px;color:var(--text-secondary);margin:4px 0;line-height:1.7;">
+          <code>financial-plan</code> — 财务规划方法论：从客户生命周期目标出发（退休/教育/购房），倒推所需的储蓄率、资产配置和风险承受能力。核心是蒙特卡洛模拟输出成功概率<br>
+          <code>portfolio-rebalance</code> — 再平衡决策树：先设偏离阈值（绝对 ±5% 或相对 ±20%），再考虑税收影响（应税账户优先用现金流调整，退休账户直接买卖），最后执行<br>
+          <code>tax-loss-harvesting</code> — 税收亏损收割：在市场下跌时卖出亏损头寸抵税，同时买入替代品保持敞口。核心是避免洗售规则（30 天内不可买回相同证券）
+        </div>
+      </div>
+    </div>
+
+    <div class="plugin-card" style="border-left-color:#7a9068;">
+      <div class="name">📊 fund-admin <span class="badge plugin">v0.1.0</span></div>
+      <div class="path">📁 plugins/vertical-plugins/fund-admin/</div>
+      <div class="desc">基金行政管理技能组 — 6 个技能</div>
+      <div class="use-box" style="margin-top:6px;">
+        <div style="font-size:12px;color:var(--accent);font-weight:600;">🧩 核心技能方法论</div>
+        <div style="font-size:12px;color:var(--text-secondary);margin:4px 0;line-height:1.7;">
+          <code>nav-tieout</code> — NAV 勾稽：从底层持仓估值出发，逐层累加至基金级 NAV，与行政管理人的 NAV 报告逐项比对。核心是"从下往上"的独立重算，不信任上游聚合结果<br>
+          <code>accrual-schedule + roll-forward</code> — 应计和滚进是基金会计的基础双轮：应计确保费用在正确的期间确认，滚进确保期初期末余额变动可追溯。两者配合形成完整的权责发生制链条
+        </div>
+      </div>
+    </div>
+
+    <div class="plugin-card" style="border-left-color:#7a9068;">
+      <div class="name">⚙️ operations <span class="badge plugin">v0.1.0</span></div>
+      <div class="path">📁 plugins/vertical-plugins/operations/</div>
+      <div class="desc">运营操作技能组 — 2 个技能</div>
+      <div class="use-box" style="margin-top:6px;">
+        <div style="font-size:12px;color:var(--accent);font-weight:600;">🧩 核心技能方法论</div>
+        <div style="font-size:12px;color:var(--text-secondary);margin:4px 0;line-height:1.7;">
+          <code>kyc-doc-parse + kyc-rules</code> — KYC 处理流水线：先解析后判定。解析阶段只提取不判断（输出结构化 JSON），判定阶段只评分不决策（输出风险评级和上报建议）。两个阶段严格分离，确保解析阶段的文档不可信不会影响规则判定
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 style="margin-top:24px;">🤝 合作伙伴（Partner-built — 数据连接器）</h3>
+  <p style="font-size:13px; color:#888; margin-bottom:12px;">
+    金融数据供应商的独立插件，提供 MCP 数据源接入能力。可作为智能体的数据来源。
+  </p>
+  <div class="plugin-grid">
+
+    <div class="plugin-card" style="border-left-color:#a4bc8f;">
+      <div class="name">📡 lseg <span class="badge plugin">v1.0.0</span></div>
+      <div class="path">📁 plugins/partner-built/lseg/</div>
+      <div class="desc"><strong>LSEG（路孚特）</strong> — 全球市场数据与分析师预测。8 个技能：<code>equity-research</code> · <code>bond-relative-value</code> 债券相对价值 · <code>fixed-income-portfolio</code> 固收组合 · <code>macro-rates-monitor</code> 宏观利率 · <code>swap-curve-strategy</code> 互换曲线 · <code>bond-futures-basis</code> 债券期货 · <code>option-vol-analysis</code> 期权波动率 · <code>fx-carry-trade</code> 外汇套利</div>
+      <div style="font-size:12px; color:#888; margin-top:4px;">🔗 MCP: api.analytics.lseg.com/lfa/mcp/server-cl</div>
+      <div class="use-box" style="margin-top:6px;">
+        <span class="example"><span class="ev">"从 LSEG 拉取 Apple 的最新财务数据"</span></span>
+      </div>
+    </div>
+
+    <div class="plugin-card" style="border-left-color:#a4bc8f;">
+      <div class="name">📡 sp-global <span class="badge plugin">v1.0.1</span></div>
+      <div class="path">📁 plugins/partner-built/spglobal/</div>
+      <div class="desc"><strong>S&P Global（标普全球）</strong> — 信用评级与行业分析。3 个技能：<code>tear-sheet</code> 公司概览 · <code>funding-digest</code> 融资摘要 · <code>earnings-preview-beta</code> 业绩预览</div>
+      <div style="font-size:12px; color:#888; margin-top:4px;">🔗 MCP: kfinance.kensho.com/integrations/mcp</div>
+      <div class="use-box" style="margin-top:6px;">
+        <span class="example"><span class="ev">"查询 S&P 对 Tesla 的信用评级"</span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 style="margin-top:24px;">☁️ 工具插件</h3>
+  <div class="plugin-grid">
+
+    <div class="plugin-card" style="border-left-color:#8fa87a;">
+      <div class="name">☁️ claude-for-msft-365-install <span class="badge plugin">v0.1.6</span></div>
+      <div class="path">📁 claude-for-msft-365-install/</div>
+      <div class="desc"><strong>Claude for Office 加载项管理工具</strong> — 将 Claude Office 加载项指向自建云（Vertex AI / Bedrock / LLM 网关）。</div>
+      <div class="use-box" style="margin-top:6px;">
+        <div class="label">可用命令</div>
+        <table class="cmd-table">
+          <tr><td><code>/claude-for-msft-365-install:setup</code></td><td>交互式向导——预配云资源、管理员同意、写入清单</td></tr>
+          <tr><td><code>/claude-for-msft-365-install:manifest</code></td><td>生成定制加载项清单 XML</td></tr>
+          <tr><td><code>/claude-for-msft-365-install:consent</code></td><td>Azure 管理员同意 URL</td></tr>
+          <tr><td><code>/claude-for-msft-365-install:debug</code></td><td>诊断部署问题</td></tr>
+          <tr><td><code>/claude-for-msft-365-install:bootstrap</code></td><td>构建引导端点</td></tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- 财报分析深度解读 -->
+<div class="section">
+  <h2>📰 财报分析深度解读</h2>
+
+  <p>以 earnings-reviewer 为核心，串联上下游 Agent，展示一条完整的"财报发布 → 模型更新 → 投资决策"端到端链路。</p>
+
+  <h3>端到端流程</h3>
+  <div style="display:flex; align-items:center; justify-content:center; gap:4px; margin:16px 0; flex-wrap:wrap; font-size:13px;">
+    <div style="background:var(--accent); color:white; padding:10px 16px; border-radius:8px; font-weight:600; text-align:center; min-width:100px;">
+      📰 财报发布<br><span style="font-size:11px; font-weight:400;">上市公司</span>
+    </div>
+    <div style="color:var(--accent); font-size:22px;">→</div>
+    <div style="background:var(--accent-dark); color:white; padding:10px 16px; border-radius:8px; font-weight:600; text-align:center; min-width:130px;">
+      🎙️ transcript-reader<br><span style="font-size:11px; font-weight:400;">电话会读取</span>
+    </div>
+    <div style="color:var(--accent); font-size:22px;">→</div>
+    <div style="background:var(--accent); color:white; padding:10px 16px; border-radius:8px; font-weight:600; text-align:center; min-width:130px;">
+      🔄 model-updater<br><span style="font-size:11px; font-weight:400;">模型更新</span>
+    </div>
+    <div style="color:var(--accent); font-size:22px;">→</div>
+    <div style="background:var(--accent-dark); color:white; padding:10px 16px; border-radius:8px; font-weight:600; text-align:center; min-width:130px;">
+      📝 note-writer<br><span style="font-size:11px; font-weight:400;">研究笔记</span>
+    </div>
+    <div style="color:var(--accent); font-size:22px;">→</div>
+    <div style="background:#b87a4a; color:white; padding:10px 16px; border-radius:8px; font-weight:600; text-align:center; min-width:100px;">
+      🏗️ model-builder<br><span style="font-size:11px; font-weight:400;">接力重建</span>
+    </div>
+  </div>
+
+  <h3>数据流与安全隔离</h3>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:12px 0;">
+    <div style="background:var(--card-bg); border-radius:10px; padding:16px; border-top:3px solid #c0392b;">
+      <div style="font-weight:600; color:var(--text); margin-bottom:4px;">🥇 读取层 · transcript-reader</div>
+      <div style="font-size:12px; color:var(--text-secondary); line-height:1.6;">
+        <strong>输入：</strong>财报电话会记录、新闻稿（不可信文档）<br>
+        <strong>工具：</strong>仅 Read + Grep<br>
+        <strong>输出：</strong>结构化 JSON（ticker, period, actuals, guidance）<br>
+        <strong>安全：</strong>不写文件、不连 MCP、不执行文档内的任何指令<br>
+        <strong>技能：</strong><code>earnings-analysis</code> 指导如何提取超/低预期数据
+      </div>
+    </div>
+    <div style="background:var(--card-bg); border-radius:10px; padding:16px; border-top:3px solid #27ae60;">
+      <div style="font-weight:600; color:var(--text); margin-bottom:4px;">🥈 处理层 · model-updater</div>
+      <div style="font-size:12px; color:var(--text-secondary); line-height:1.6;">
+        <strong>输入：</strong>结构化 JSON + FactSet/Daloopa MCP 数据<br>
+        <strong>工具：</strong>Read + Grep + Agent + MCP<br>
+        <strong>输出：</strong>更新后的覆盖模型<br>
+        <strong>安全：</strong>不接触原始文档，在可信隔离区工作<br>
+        <strong>技能：</strong><code>model-update</code> 四层次更新法
+      </div>
+    </div>
+    <div style="background:var(--card-bg); border-radius:10px; padding:16px; border-top:3px solid #b87a4a;">
+      <div style="font-weight:600; color:var(--text); margin-bottom:4px;">🥉 输出层 · note-writer</div>
+      <div style="font-size:12px; color:var(--text-secondary); line-height:1.6;">
+        <strong>输入：</strong>差异表 + 更新后的模型<br>
+        <strong>工具：</strong>Read + Write + Edit（唯一写权限）<br>
+        <strong>输出：</strong><code>./out/model-&lt;ticker&gt;.xlsx</code> + <code>./out/note-&lt;ticker&gt;.docx</code><br>
+        <strong>安全：</strong>从不开源原始电话会记录<br>
+        <strong>技能：</strong><code>morning-note</code> + <code>xlsx-author</code>
+      </div>
+    </div>
+  </div>
+
+  <h3>核心方法论：earnings-analysis 技能</h3>
+  <p>这是 earnings-reviewer 最核心的技能，定义了<strong>机构级业绩更新报告</strong>（8-12 页，3,000-5,000 字）的分析标准。遵循摩根大通、高盛、摩根士丹利等投行的研究格式。</p>
+
+  <h4>五阶段工作流程</h4>
+  <div style="display:flex; gap:8px; margin:12px 0; flex-wrap:wrap;">
+    <div style="flex:1; min-width:120px; background:var(--card-bg); border-radius:8px; padding:12px; text-align:center; border-left:3px solid var(--accent);">
+      <div style="font-weight:700; font-size:15px; color:var(--accent);">30-60 分钟</div>
+      <div style="font-weight:600; font-size:12px;">① 数据收集</div>
+      <div style="font-size:11px; color:var(--text-secondary);">搜索最新业绩材料，验证发布日期（须在 3 个月内），下载电话会记录、10-Q、新闻稿</div>
+    </div>
+    <div style="flex:1; min-width:120px; background:var(--card-bg); border-radius:8px; padding:12px; text-align:center; border-left:3px solid var(--accent);">
+      <div style="font-weight:700; font-size:15px; color:var(--accent);">2-3 小时</div>
+      <div style="font-weight:600; font-size:12px;">② 分析</div>
+      <div style="font-size:11px; color:var(--text-secondary);">每个关键指标的超/低预期分析，细分/地区拆解，利润率与指导分析，更新模型</div>
+    </div>
+    <div style="flex:1; min-width:120px; background:var(--card-bg); border-radius:8px; padding:12px; text-align:center; border-left:3px solid var(--accent);">
+      <div style="font-weight:700; font-size:15px; color:var(--accent);">1-2 小时</div>
+      <div style="font-weight:600; font-size:12px;">③ 图表生成</div>
+      <div style="font-size:11px; color:var(--text-secondary);">8-12 个图表：收入/利润率/每股收益趋势、超低预期汇总、估计修订</div>
+    </div>
+    <div style="flex:1; min-width:120px; background:var(--card-bg); border-radius:8px; padding:12px; text-align:center; border-left:3px solid var(--accent);">
+      <div style="font-weight:700; font-size:15px; color:var(--accent);">2-3 小时</div>
+      <div style="font-weight:600; font-size:12px;">④ 报告创建</div>
+      <div style="font-size:11px; color:var(--text-secondary);">8-12 页 DOCX，含摘要/结果分析/指标/主题/估值/附录</div>
+    </div>
+    <div style="flex:1; min-width:120px; background:var(--card-bg); border-radius:8px; padding:12px; text-align:center; border-left:3px solid var(--accent);">
+      <div style="font-weight:700; font-size:15px; color:var(--accent);">30 分钟</div>
+      <div style="font-weight:600; font-size:12px;">⑤ 质量检查</div>
+      <div style="font-size:11px; color:var(--text-secondary);">验证内容/格式/准确性/及时性，确认每个数字有来源</div>
+    </div>
+  </div>
+
+  <h4>超/低预期分析三步法</h4>
+  <div style="display:flex; gap:12px; margin:12px 0; flex-wrap:wrap;">
+    <div style="flex:1; min-width:200px; background:var(--card-bg); border-radius:10px; padding:14px;">
+      <div style="font-weight:600; color:var(--accent); margin-bottom:4px;">第一步：量化差异</div>
+      <div style="font-size:12px; color:var(--text-secondary); line-height:1.6;">
+        在收入、EBITDA、EPS 三个层面逐一对比实际值 vs 一致预期 vs 先前估计。<br>
+        <strong>格式：</strong>"收入超预期 1.2 亿美元或 3%"，"EBITDA 低于预期 0.5 亿或 8%"<br>
+        <strong>注意：</strong>明确标注一致预期的来源（彭博/FactSet）和日期
+      </div>
+    </div>
+    <div style="flex:1; min-width:200px; background:var(--card-bg); border-radius:10px; padding:14px;">
+      <div style="font-weight:600; color:var(--accent); margin-bottom:4px;">第二步：拆解原因</div>
+      <div style="font-size:12px; color:var(--text-secondary); line-height:1.6;">
+        从三个维度解释<strong>为什么</strong>：<br>
+        <strong>价/量拆分</strong>——是涨价还是卖多了？<br>
+        <strong>成本结构</strong>——毛利率 vs 运营费用，固定 vs 可变<br>
+        <strong>一次性项目</strong>——重组费用、资产减值、税务调整
+      </div>
+    </div>
+    <div style="flex:1; min-width:200px; background:var(--card-bg); border-radius:10px; padding:14px;">
+      <div style="font-weight:600; color:var(--accent); margin-bottom:4px;">第三步：更新估计</div>
+      <div style="font-size:12px; color:var(--text-secondary); line-height:1.6;">
+        根据实际结果修订前瞻估计，清晰显示<strong>旧估计 vs 新估计</strong>。<br>
+        解释什么变了、为什么变、对投资主题的影响。<br>
+        是改变主题的事件还是噪音？——区分信号与噪音
+      </div>
+    </div>
+  </div>
+
+  <h4>引用规范（强制要求 ⭐⭐⭐）</h4>
+  <p>每个数字必须标注特定来源和可点击超链接，来源列表需包含：</p>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:12px; margin:8px 0;">
+    <div style="background:var(--card-bg); border-radius:6px; padding:8px;">✅ 业绩新闻稿（含日期和 URL）</div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:8px;">✅ 10-Q 申报文件（含申报日期和 EDGAR 链接）</div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:8px;">✅ 电话会议记录（含日期）</div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:8px;">✅ 投资者演示/补充材料</div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:8px;">✅ 一致预期来源（彭博/FactSet，含日期）</div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:8px;">✅ 先前指导（来自上一季度材料）</div>
+  </div>
+  <p style="font-size:12px; color:var(--text-secondary);">无来源的数据标记为 <code>[UNSOURCED]</code>，绝不估算。报告末尾附"来源与参考"章节，全部为可点击超链接。</p>
+
+  <h4>报告结构（12 页模板）</h4>
+  <table class="cmd-table">
+    <tr><th width="10%">页码</th><th>内容</th></tr>
+    <tr><td>第 1 页</td><td>摘要——评级、目标价、关键要点、超/低预期总览</td></tr>
+    <tr><td>第 2-3 页</td><td>详细结果分析——收入/利润拆解、细分地区表现</td></tr>
+    <tr><td>第 4-5 页</td><td>关键指标与指导——对比一致预期、管理层指导分析</td></tr>
+    <tr><td>第 6-7 页</td><td>更新后的投资主题——业绩对主题的影响、主题是否改变</td></tr>
+    <tr><td>第 8-10 页</td><td>估值与估计——更新后的 DCF、目标价推导、敏感性分析</td></tr>
+    <tr><td>第 11-12 页</td><td>附录——图表补充、详细来源列表</td></tr>
+  </table>
+
+  <h3>模型更新方法论：model-update 技能</h3>
+  <p>这是一个<strong>六步执行流程</strong>，从识别变化到输出更新后的模型和估值。每个步骤都有标准化的输入/输出格式，确保审计可追溯。</p>
+
+  <table class="cmd-table">
+    <tr><th width="12%">步骤</th><th>操作</th><th>输入</th><th>输出</th></tr>
+    <tr>
+      <td><strong>① 识别变化</strong></td>
+      <td>确定更新触发因素：业绩发布、指导变化、估计修订、宏观更新、事件驱动（并购/重组/管理层变更）</td>
+      <td>财报新闻稿、管理层指引</td>
+      <td>变化类型清单</td>
+    </tr>
+    <tr>
+      <td><strong>② 导入新数据</strong></td>
+      <td>按行项目逐一对比<strong>先前估计 vs 实际值</strong>，记录差异和备注。需覆盖收入、毛利率、运营费用、EBITDA、每股收益，以及细分/地区的收入和利润率</td>
+      <td>业绩报告实际值</td>
+      <td>差异表（行项目/先前估计/实际值/差异/备注）</td>
+    </tr>
+    <tr>
+      <td><strong>③ 修订前瞻估计</strong></td>
+      <td>基于新数据调整未来预测。对比<strong>旧 FY 估计 vs 新 FY 估计 vs 旧下一年 vs 新下一年</strong>。逐一记录每个假设的变动原因</td>
+      <td>差异表 + 管理导指引</td>
+      <td>修订后的财务预测表</td>
+    </tr>
+    <tr>
+      <td><strong>④ 重算估值</strong></td>
+      <td>用更新后的估计重新运行 DCF + 市盈率法 + EV/EBITDA 法。对比先前估值 vs 更新后估值</td>
+      <td>修订后财务预测</td>
+      <td>新目标价 + 估值变化表</td>
+    </tr>
+    <tr>
+      <td><strong>⑤ 摘要与行动</strong></td>
+      <td>一段话总结：什么变了、为什么、对股票意味着什么。判断：这是改变主题的事件还是噪音？维持还是更改评级？</td>
+      <td>估值变化表</td>
+      <td>评级/目标价建议 + 执行摘要</td>
+    </tr>
+    <tr>
+      <td><strong>⑥ 输出</strong></td>
+      <td>生成更新后的 Excel 模型 + 估计变化摘要 + 目标价推导说明</td>
+      <td>全部上述输出</td>
+      <td>模型文件 + 摘要文档</td>
+    </tr>
+  </table>
+
+  <h4>关键原则</h4>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:8px 0; font-size:12px;">
+    <div style="background:var(--card-bg); border-radius:6px; padding:10px;">
+      <strong>来源先行</strong>——在向前预测前，始终将估计与公司报告的实际数字核对，不依赖记忆
+    </div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:10px;">
+      <strong>区分信号与噪音</strong>——单季度波动可能是噪音，趋势变化才是信号。不要在噪音上过度调整
+    </div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:10px;">
+      <strong>GAAP vs 调整后</strong>——注意非经常性项目，明确标注估计是基于 GAAP 还是调整后口径
+    </div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:10px;">
+      <strong>跟踪修订历史</strong>——记录每次估计修订的原因，展示分析演变过程
+    </div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:10px;">
+      <strong>对照一致预期</strong>——修订后的估计与市场共识对比如何？偏差需要合理解释
+    </div>
+    <div style="background:var(--card-bg); border-radius:6px; padding:10px;">
+      <strong>股份数量陷阱</strong>——股票薪酬、可转债、回购带来的稀释可能实质性影响每股收益
+    </div>
+  </div>
+
+  <h3>接力场景：财报驱动的工作流</h3>
+  <p>财报分析是整个投资研究流程的起点，可以自动触发后续工作：</p>
+
+  <table class="cmd-table">
+    <tr><th>触发条件</th><th>接力 Agent</th><th>说明</th></tr>
+    <tr>
+      <td>业绩驱动投资主题变更</td>
+      <td>→ <strong>model-builder</strong></td>
+      <td>如果财报结果显示原有投资主题不再成立，earnings-reviewer 发出 handoff_request，model-builder 重建 DCF/LBO 模型</td>
+    </tr>
+    <tr>
+      <td>行业级业绩冲击</td>
+      <td>→ <strong>market-researcher</strong></td>
+      <td>某家公司业绩超预期可能意味着行业趋势变化，触发行业研究报告更新</td>
+    </tr>
+    <tr>
+      <td>新投资创意</td>
+      <td>→ <strong>pitch-agent</strong></td>
+      <td>业绩超预期 + 模型更新完成后，可自动生成 PitchBook 向客户推介</td>
+    </tr>
+  </table>
+
+  <div class="use-box" style="margin-top:12px;">
+    <div class="label">💡 一条典型的财报分析执行链路</div>
+    <p style="font-size:13px; margin:4px 0; font-family:monospace; color:var(--accent);">
+      "Process earnings: NVDA Q1-FY27"
+    </p>
+    <p style="font-size:13px; margin:4px 0; color:var(--text-secondary);">
+      ① transcript-reader 读取电话会记录 → ② model-updater 通过 FactSet 获取一致预期并更新 DCF → ③ audit-xls 检查模型勾稽 → ④ note-writer 生成研究笔记 → ⑤ 如投资主题变更，handoff 到 model-builder 重建模型
+    </p>
+    <p style="font-size:12px; margin:4px 0; color:var(--text-secondary);">
+      全程约 5-10 分钟，替代分析师半天的重复性工作。分析师的精力从"数据搬运"解放到"判断和决策"。
+    </p>
+  </div>
+</div><!-- 多 Agent 接力工作流 -->
+<div class="section" id="handoff">
+  <h2>🔗 多 Agent 接力工作流</h2>
+
+  <h3>工作原理</h3>
+  <p>接力通过 <strong>handoff_request</strong> 协议实现，代码在 <code>scripts/orchestrate.py</code> 中：</p>
+
+  <div style="display:flex; align-items:center; justify-content:center; gap:6px; margin:16px 0; flex-wrap:wrap; font-size:14px;">
+    <div style="background:var(--accent); color:white; padding:10px 18px; border-radius:10px; font-weight:600;">Agent A</div>
+    <div style="color:#999; font-size:20px;">→</div>
+    <div style="background:var(--card-bg); padding:10px 18px; border-radius:10px; border:1px dashed var(--accent); font-size:12px; text-align:center; max-width:280px;">
+      <code style="background:var(--code-bg);padding:2px 5px;border-radius:3px;">{"type":"handoff_request",<br> "target_agent":"model-builder",<br> "payload":{"event":"Build dcf..."}}</code>
+    </div>
+    <div style="color:#999; font-size:20px;">→</div>
+    <div style="background:var(--accent-light); color:white; padding:10px 18px; border-radius:10px; font-weight:600;">Agent B</div>
+  </div>
+
+  <p><strong>步骤：</strong></p>
+  <ol style="font-size:13px; color:var(--text-secondary); line-height:1.9; padding-left:20px; margin:8px 0;">
+    <li><strong>Agent A</strong>（如 Earnings Reviewer）在处理完任务后，在其输出文本中生成一个 handoff_request JSON blob</li>
+    <li><strong>orchestrate.py</strong> 监听 Agent A 的会话输出流（<code>message_delta</code> 事件），用正则 <code>HANDOFF_RE</code> 捕获该 blob</li>
+    <li>脚本对 <code>target_agent</code> 做<strong>硬编码白名单校验</strong>（只允许 10 个已部署 Agent slug）</li>
+    <li>对 <code>payload</code> 做 <strong>JSON Schema 校验</strong>（event 最长 2000 字符、context_ref 正则过滤）</li>
+    <li>校验通过后，调用 <code>client.beta.agents.sessions.steer()</code> 向 Agent B 发送引导事件</li>
+  </ol>
+
+  <div class="deploy-box" style="font-size:12px; margin-top:12px;">
+    <span class="comment"># orchestrate.py 核心逻辑</span><br>
+    <span class="cmd">ALLOWED_TARGETS = { "pitch-agent", "market-researcher", "earnings-reviewer",</span><br>
+    <span class="cmd">    "meeting-prep-agent", "model-builder", "gl-reconciler", "kyc-screener",</span><br>
+    <span class="cmd">    "valuation-reviewer", "month-end-closer", "statement-auditor" }</span><br><br>
+    <span class="comment"># 验证通过后 steer 目标 Agent</span><br>
+    <span class="cmd">client.beta.agents.sessions.steer(</span><br>
+    <span class="cmd">    agent_id=target_id,</span><br>
+    <span class="cmd">    input=handoff["payload"]["event"],</span><br>
+    <span class="cmd">)</span>
+  </div>
+
+  <h3>现有的接力链路</h3>
+  <div style="display:flex; flex-direction:column; gap:10px; margin:12px 0;">
+    <div style="display:flex; flex-wrap:wrap; gap:6px; align-items:center; background:var(--card-bg); border-radius:8px; padding:10px 14px;">
+      <span style="background:var(--accent); color:white; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:600;">📰 Earnings Reviewer</span>
+      <span style="color:#999;">→</span>
+      <span style="background:var(--accent-light); color:white; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:600;">🏗️ Model Builder</span>
+      <span style="font-size:12px; color:var(--text-secondary); margin-left:8px;">业绩驱动的投资主题变更后需要重建 DCF</span>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:6px; align-items:center; background:var(--card-bg); border-radius:8px; padding:10px 14px;">
+      <span style="background:var(--accent); color:white; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:600;">🎯 Pitch Agent</span>
+      <span style="color:#999;">→</span>
+      <span style="background:var(--accent-light); color:white; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:600;">🏗️ Model Builder</span>
+      <span style="font-size:12px; color:var(--text-secondary); margin-left:8px;">投资主题变更后需要重建模型</span>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:6px; align-items:center; background:var(--card-bg); border-radius:8px; padding:10px 14px;">
+      <span style="background:var(--accent); color:white; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:600;">🔎 Valuation Reviewer</span>
+      <span style="color:#999;">→</span>
+      <span style="background:var(--accent-light); color:white; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:600;">🔄 GL Reconciler</span>
+      <span style="font-size:12px; color:var(--text-secondary); margin-left:8px;">被标记的投资组合公司需要进入总账核对</span>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:6px; align-items:center; background:var(--card-bg); border-radius:8px; padding:10px 14px;">
+      <span style="background:var(--accent); color:white; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:600;">🔄 GL Reconciler</span>
+      <span style="color:#999;">→</span>
+      <span style="background:var(--accent-light); color:white; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:600;">📅 Month-End Closer</span>
+      <span style="font-size:12px; color:var(--text-secondary); margin-left:8px;">已验证的差异需要纳入月度结账说明</span>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:6px; align-items:center; background:var(--card-bg); border-radius:8px; padding:10px 14px;">
+      <span style="background:var(--accent); color:white; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:600;">📊 Market Researcher</span>
+      <span style="color:#999;">→</span>
+      <span style="background:var(--accent-light); color:white; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:600;">🏗️ Model Builder</span>
+      <span style="font-size:12px; color:var(--text-secondary); margin-left:8px;">创意短名单中出现的标的需要建模</span>
+    </div>
+  </div>
+
+  <h3>如何触发接力</h3>
+  <table class="cmd-table">
+    <tr><th width="28%">触发方式</th><th>说明</th></tr>
+    <tr>
+      <td><strong>方式一：自然语言</strong></td>
+      <td>在 Claude Code 中说出端到端需求，Agent 自动判断是否需要接力。<br>
+      <code>"处理 NVDA 的 Q1-FY27 财报，如果模型需要更新就重建 DCF"</code></td>
+    </tr>
+    <tr>
+      <td><strong>方式二：显式指定</strong></td>
+      <td>手动指定接力链。<br>
+      <code>"先跑 earnings-reviewer 处理 NVDA 财报，完成后交给 model-builder 更新 DCF"</code></td>
+    </tr>
+    <tr>
+      <td><strong>方式三：API 部署后自动路由</strong></td>
+      <td>部署为 Managed Agent 后，orchestrate.py（或 Temporal/Airflow）监听输出流中的 handoff_request，自动路由到目标 Agent。</td>
+    </tr>
+  </table>
+</div>
+</div>
+
+</div>
+
+<div class="footer">
+  <p>Generated by Hermes Agent · Financial Services Plugins Usage Report · 2026-07-10</p>
+  <p style="margin-top:4px; color:#ccc;">项目路径: D:\workplace\work-icbc\financial-services-main</p>
+</div>
+
+</body>
+</html>

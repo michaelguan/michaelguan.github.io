@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode：开源 AI 编程代理 - 第 27 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-users-four text-blue-600"></i> 11 个智能体详解
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-4"></div>
+
+            <div class="bg-white p-5 rounded-xl card-gradient-border mb-5">
+                <p class="text-base text-slate-700 leading-relaxed">
+                    oh-my-opencode 的 11 个内置智能体，按角色分为<b class="text-slate-900">核心代理</b>、<b class="text-slate-900">规划代理</b>、<b class="text-slate-900">子代理</b>三类。每个有专属模型、温度、工具权限。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200">
+                    <h3 class="font-bold text-emerald-900 mb-2 text-sm flex items-center gap-1.5"><i class="ph ph-star text-amber-500"></i> 核心代理（4）</h3>
+                    <ul class="space-y-1.5 text-xs text-emerald-800">
+                        <li class="flex items-start gap-1.5"><i class="ph ph-check text-emerald-500 mt-0.5"></i><span><b>Sisyphus</b>：默认编排者，-plan+ 委派，32k thinking</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-check text-emerald-500 mt-0.5"></i><span><b>Hephaestus</b>：自主深度工作者，完整执行</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-check text-emerald-500 mt-0.5"></i><span><b>Prometheus</b>：战略计划者，访谈模式</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-check text-emerald-500 mt-0.5"></i><span><b>Atlas</b>：Todo 清单编排者</span></li>
+                    </ul>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-xl card-gradient-border-blue">
+                    <h3 class="font-bold text-blue-900 mb-2 text-sm flex items-center gap-1.5"><i class="ph ph-brain text-blue-500"></i> 子代理（7）</h3>
+                    <ul class="space-y-1.5 text-xs text-blue-800">
+                        <li class="flex items-start gap-1.5"><i class="ph ph-dot text-blue-400 mt-0.5"></i><span><b>Oracle</b>：架构决策/代码审查（只读）</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-dot text-blue-400 mt-0.5"></i><span><b>Librarian</b>：多仓库分析/文档查询</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-dot text-blue-400 mt-0.5"></i><span><b>Explore</b>：快速代码库探索</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-dot text-blue-400 mt-0.5"></i><span><b>Multimodal-Looker</b>：PDF/图像分析</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-dot text-blue-400 mt-0.5"></i><span><b>Metis</b>：计划前顾问（预分析）</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-dot text-blue-400 mt-0.5"></i><span><b>Momus</b>：计划审查者</span></li>
+                        <li class="flex items-start gap-1.5"><i class="ph ph-dot text-blue-400 mt-0.5"></i><span><b>Sisyphus-Junior</b>：分类派生的执行者</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-amber-50 p-4 rounded-xl border border-amber-200 text-xs text-amber-900">
+                <b>模型跳转链：</b>主模型不可用时，按预设 fallback 链自动切换到下一档模型，保证任务不中断。例如 Sisyphus：claude-opus-4-7 → kimi-k2.6 → k2p5 → glm-5 → big-pickle
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode：开源 AI 编程代理 - 第 10 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-chats text-blue-600"></i> Sessions 会话管理
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-10"></div>
+
+            <div class="grid grid-cols-2 gap-6 content-area mb-6">
+                <div class="bg-white p-6 rounded-xl card-gradient-border">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center">
+                            <i class="ph ph-plus-circle text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800">会话创建</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-green-500"></i> 每个任务自动创建新会话</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-green-500"></i> /sessions 查看历史会话</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-green-500"></i> 会话自动保存到本地</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl card-gradient-border">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center">
+                            <i class="ph ph-arrow-u-up-left text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800">会话恢复</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-green-500"></i> /resume 恢复最近任务</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-green-500"></i> 通过 session ID 查找</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-green-500"></i> 会话状态持久化</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 p-6 rounded-xl card-gradient-border-blue">
+                <h3 class="font-bold text-blue-900 mb-4 flex items-center gap-2">
+                    <i class="ph ph-users text-blue-500"></i> 多会话并行
+                </h3>
+                <div class="grid grid-cols-3 gap-4 text-sm text-blue-800">
+                    <div class="bg-white p-3 rounded-lg"><p class="font-medium mb-1">会话隔离</p><p class="text-xs text-slate-600">每个会话独立上下文</p></div>
+                    <div class="bg-white p-3 rounded-lg"><p class="font-medium mb-1">并行执行</p><p class="text-xs text-slate-600">多任务同时处理</p></div>
+                    <div class="bg-white p-3 rounded-lg"><p class="font-medium mb-1">状态同步</p><p class="text-xs text-slate-600">跨会话共享记忆</p></div>
+                </div>
+            </div>
+
+            <div class="mt-6 bg-white p-5 rounded-xl card-gradient-border">
+                <h3 class="font-bold text-slate-800 mb-3">会话命令速查</h3>
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                    <div class="flex items-center gap-2"><code class="text-blue-600 bg-blue-50 px-2 py-1 rounded">/sessions</code><span class="text-slate-500">列出所有会话</span></div>
+                    <div class="flex items-center gap-2"><code class="text-blue-600 bg-blue-50 px-2 py-1 rounded">/resume [id]</code><span class="text-slate-500">恢复指定会话</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

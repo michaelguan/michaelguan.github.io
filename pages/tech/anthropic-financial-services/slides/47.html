@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropics Financial Services - 第 47 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 3rem 6rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-briefcase text-blue-600"></i> 六大典型业务场景
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-8"></div>
+
+            <div class="grid grid-cols-3 gap-5 mb-6">
+                <!-- 1 投行 Pitch -->
+                <div class="bg-white p-5 rounded-2xl card-gradient-border border-t-4 border-t-blue-500">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i class="ph ph-briefcase text-blue-500 text-2xl"></i>
+                        <h3 class="text-base font-bold text-slate-800">投行 Pitch 材料</h3>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-3 leading-relaxed">MD 提需求 → CapIQ 拉可比公司与先例 → 构建 DCF/LBO → 生成品牌化 PitchBook PPTX → 自检初稿。</p>
+                    <div class="bg-blue-50 px-3 py-1.5 rounded-lg flex items-center gap-2">
+                        <i class="ph ph-timer text-blue-500 text-sm"></i>
+                        <span class="text-xs font-bold text-blue-700">2-3 天 → 15 分钟</span>
+                    </div>
+                </div>
+
+                <!-- 2 财报季批量 -->
+                <div class="bg-white p-5 rounded-2xl card-gradient-border border-t-4 border-t-emerald-500">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i class="ph ph-chart-line-up text-emerald-500 text-2xl"></i>
+                        <h3 class="text-base font-bold text-slate-800">财报季批量处理</h3>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-3 leading-relaxed">50+ 覆盖多头逐个读电话会 → 自动更新覆盖模型预测 → 撰写研究笔记 → 差异标记。</p>
+                    <div class="bg-emerald-50 px-3 py-1.5 rounded-lg flex items-center gap-2">
+                        <i class="ph ph-timer text-emerald-500 text-sm"></i>
+                        <span class="text-xs font-bold text-emerald-700">5-10 只 → 全列表</span>
+                    </div>
+                </div>
+
+                <!-- 3 月度结账对账 -->
+                <div class="bg-white p-5 rounded-2xl card-gradient-border border-t-4 border-t-cyan-500">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i class="ph ph-arrows-clockwise text-cyan-500 text-2xl"></i>
+                        <h3 class="text-base font-bold text-slate-800">月度结账与对账</h3>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-3 leading-relaxed">每日 GL vs 子账比对 → 标差异 → Critic 复核 → 月末应计/滚进，自动生成结账包。</p>
+                    <div class="bg-cyan-50 px-3 py-1.5 rounded-lg flex items-center gap-2">
+                        <i class="ph ph-timer text-cyan-500 text-sm"></i>
+                        <span class="text-xs font-bold text-cyan-700">3-5 天 → 1 天</span>
+                    </div>
+                </div>
+
+                <!-- 4 KYC 筛查 -->
+                <div class="bg-white p-5 rounded-2xl card-gradient-border border-t-4 border-t-rose-500">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i class="ph ph-shield-check text-rose-500 text-2xl"></i>
+                        <h3 class="text-base font-bold text-slate-800">客户开户 KYC 筛查</h3>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-3 leading-relaxed">解析开户 PDF 身份信息 → 制裁/PEP 规则引擎 → 标记合规缺口 → 出上报包给合规官。</p>
+                    <div class="bg-rose-50 px-3 py-1.5 rounded-lg flex items-center gap-2">
+                        <i class="ph ph-timer text-rose-500 text-sm"></i>
+                        <span class="text-xs font-bold text-rose-700">2 小时 → 15 分钟</span>
+                    </div>
+                </div>
+
+                <!-- 5 行业研究与创意 -->
+                <div class="bg-white p-5 rounded-2xl card-gradient-border border-t-4 border-t-amber-500">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i class="ph ph-magnifying-glass text-amber-500 text-2xl"></i>
+                        <h3 class="text-base font-bold text-slate-800">行业研究与创意</h3>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-3 leading-relaxed">投资主题（如"数据中心电力缺口"）→ 行业概览/竞争格局 → 3-5 家最受益短名单 + 研报。</p>
+                    <div class="bg-amber-50 px-3 py-1.5 rounded-lg flex items-center gap-2">
+                        <i class="ph ph-timer text-amber-500 text-sm"></i>
+                        <span class="text-xs font-bold text-amber-700">1 周 → 当天</span>
+                    </div>
+                </div>
+
+                <!-- 6 客户会议准备 -->
+                <div class="bg-white p-5 rounded-2xl card-gradient-border border-t-4 border-t-purple-500">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i class="ph ph-calendar-check text-purple-500 text-2xl"></i>
+                        <h3 class="text-base font-bold text-slate-800">客户会议准备</h3>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-3 leading-relaxed">会议触发 → CRM 拉关系/持仓 → CapIQ 市场背景 → 近期通信读取 → 会前简报包+谈话要点。</p>
+                    <div class="bg-purple-50 px-3 py-1.5 rounded-lg flex items-center gap-2">
+                        <i class="ph ph-timer text-purple-500 text-sm"></i>
+                        <span class="text-xs font-bold text-purple-700">进门前 5 分钟拿到</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 一句话总结 -->
+            <div class="bg-gradient-to-r from-blue-500 to-emerald-500 p-5 rounded-xl text-white">
+                <p class="text-center font-bold text-base">
+                    <i class="ph ph-info mr-2"></i>
+                    可编程的金融劳动力 —— Agent = 岗位规范，Skill = 操作手册，MCP = 数据终端
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

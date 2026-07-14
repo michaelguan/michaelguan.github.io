@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode：开源 AI 编程代理 - 第 04 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-users-four text-blue-600"></i> 谁在做 OpenCode
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-10"></div>
+
+            <div class="grid grid-cols-2 gap-8">
+                <!-- 左：Anomaly Innovations -->
+                <div class="bg-white p-8 rounded-2xl card-gradient-border border-l-4 border-l-blue-500">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center">
+                            <i class="ph ph-buildings text-3xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">Anomaly Innovations</h3>
+                            <p class="text-sm text-slate-500">OpenCode 创始团队</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed">
+                        由 Austin Anderson 等开发者创立，致力于打造开源的 AI 编程代理框架。OpenCode 的核心架构和初始版本由此团队完成。
+                    </p>
+                </div>
+
+                <!-- 右：SST 团队 -->
+                <div class="bg-white p-8 rounded-2xl card-gradient-border border-l-4 border-l-emerald-500">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center">
+                            <i class="ph ph-code text-3xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">SST 团队</h3>
+                            <p class="text-sm text-slate-500">核心贡献者</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed">
+                        SST（Serverless Toolkit）团队深度参与了 OpenCode 的开发。他们在开发者工具领域的经验为 OpenCode 的工程化提供了重要支持。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="mt-8 grid grid-cols-4 gap-4">
+                <div class="bg-blue-50 p-6 rounded-xl card-gradient-border-blue text-center">
+                    <div class="text-3xl font-black text-blue-600 mb-1">65K+</div>
+                    <div class="text-sm text-slate-600">GitHub Stars</div>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-xl card-gradient-border-blue text-center">
+                    <div class="text-3xl font-black text-blue-600 mb-1">290+</div>
+                    <div class="text-sm text-slate-600">Contributors</div>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-xl card-gradient-border-blue text-center">
+                    <div class="text-3xl font-black text-blue-600 mb-1">211</div>
+                    <div class="text-sm text-slate-600">Releases</div>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-xl card-gradient-border-blue text-center">
+                    <div class="text-3xl font-black text-blue-600 mb-1">v4.15</div>
+                    <div class="text-sm text-slate-600">最新版本的</div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-slate-50 p-6 rounded-xl card-gradient-border-slate">
+                <p class="text-slate-700 text-center leading-relaxed">
+                    <i class="ph ph-seal-check text-blue-500 mr-2"></i>
+                    <strong>开源社区驱动：</strong>OpenCode 由全球开发者共同维护，采用开放开发模式，所有功能迭代和 Bug 修复透明可见。
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

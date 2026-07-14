@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode：开源 AI 编程代理 - 第 29 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-rocket-launch text-blue-600"></i> Superpowers 方法论
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-6"></div>
+
+            <div class="bg-slate-900 text-slate-100 p-6 rounded-xl mb-5">
+                <p class="text-lg leading-relaxed">
+                    <b class="text-white">Superpowers</b> by <span class="text-emerald-300">obra (Jesse Vincent)</span> —— 一套给智能体用的<b class="text-white">可组合技能框架 + 软件开发方法论</b>。248K+ stars，增长速度最快的开发者工具之一。
+                </p>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl card-gradient-border mb-5">
+                <h3 class="font-bold text-slate-800 mb-3 flex items-center gap-2"><i class="ph ph-heart text-rose-500"></i> 核心理念</h3>
+                <p class="text-base text-slate-700 leading-relaxed mb-3">
+                    把 AI 智能体当成<b class="text-slate-900">强大但无纪律的初级工程师</b>——光告诉它"要写测试"是不够的，必须给<b class="text-slate-900">明确的步骤流程和硬性障碍</b>，让它无法跳过关键环节。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-5">
+                <div class="bg-blue-50 p-5 rounded-xl card-gradient-border-blue">
+                    <h3 class="font-bold text-blue-900 mb-3 flex items-center gap-2"><i class="ph ph-target text-blue-500"></i> Process Over Instinct</h3>
+                    <p class="text-sm text-blue-800">
+                        Skills 提供系统化工作流，防止常见错误。遵循流程比临时发挥更能稳定生产好代码。
+                    </p>
+                </div>
+                <div class="bg-emerald-50 p-5 rounded-xl border border-emerald-200">
+                    <h3 class="font-bold text-emerald-900 mb-3 flex items-center gap-2"><i class="ph ph-check-circle text-emerald-500"></i> Verification at Every Step</h3>
+                    <p class="text-sm text-emerald-800">
+                        每个阶段都要验证：测试必须先失败、改动要先测试、根因必须找到——用证据代替声明。
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-yellow-50 p-5 rounded-xl border border-yellow-200">
+                <h3 class="font-bold text-yellow-900 mb-3 flex items-center gap-2"><i class="ph ph-lightning text-yellow-600"></i> 自动激活机制</h3>
+                <p class="text-sm text-yellow-800">
+                    智能体识别任务类型后<b class="text-yellow-900">自动加载</b>对应技能——写新特性加载 brainstorming，测试失败加载 systematic-debugging。不需要手动切换；如果有一丁点可能相关，就必须调用。
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

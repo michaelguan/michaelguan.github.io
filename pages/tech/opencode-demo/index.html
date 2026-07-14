@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>OpenCode：开源 AI 编程代理</title>
+    
+    <link rel="stylesheet" href="./libs/reveal.css">
+    <link rel="stylesheet" id="theme-link" href="./libs/simple.css">
+    <link rel="stylesheet" href="./libs/style.css">
+    <script src="./libs/tailwind.js"></script>
+    
+    <style>
+        html, body { 
+            width: 100% !important; height: 100% !important; margin: 0 !important; padding: 0 !important; 
+            overflow: hidden !important; background-color: #f8fafc; 
+        }
+        .reveal, .reveal .slides { width: 100% !important; height: 100% !important; padding: 0 !important; margin: 0 !important; }
+        .reveal h1, .reveal h2, .reveal h3 { text-transform: none !important; }
+        
+        .reveal .slides section { 
+            width: 100% !important; height: 100% !important; padding: 0 !important; margin: 0 !important; 
+            box-sizing: border-box; top: 0 !important; display: block !important;
+        }
+        
+        /* 初始透明度为0，并捆绑 cubic-bezier 动画，实现发布会级淡入呼吸感 */
+        .slide-iframe { 
+            position: absolute !important; top: 0 !important; left: 0 !important;
+            width: 100% !important; height: 100% !important; border: none !important; 
+            margin: 0 !important; padding: 0 !important; display: block; overflow: hidden !important;
+            background: transparent;
+            opacity: 0;
+            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        /* 当页面完全加载完后激活此类名，平滑显现 */
+        .slide-iframe.iframe-visible { opacity: 1 !important; }
+
+        /* 左右控制按钮以及悬浮面板捆绑智能隐形过渡类 */
+        .ui-element {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            pointer-events: auto;
+        }
+        .ui-element.mouse-idle-hide {
+            opacity: 0 !important;
+            pointer-events: none !important;
+            transform: translateY(10px); /* 隐形时伴随优雅的向下沉降 */
+        }
+        .nav-btn.mouse-idle-hide { transform: translateY(-50%) scale(0.9) !important; }
+
+        /* 悬浮毛玻璃按钮标准规范 */
+        .nav-btn {
+            position: fixed; top: 50%; transform: translateY(-50%);
+            width: 3.5rem; height: 3.5rem; display: flex; align-items: center; justify-content: center;
+            border-radius: 9999px; background-color: rgba(148, 163, 184, 0.2); color: #475569; 
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); opacity: 0.4; z-index: 9999 !important; 
+            border: none; cursor: pointer; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); 
+        }
+        .nav-btn:hover { background-color: #2563eb; color: #ffffff; opacity: 1; transform: translateY(-50%) scale(1.05) !important; }
+
+        /* 右下角面板 */
+        .control-panel {
+            position: fixed; bottom: 1.5rem; right: 1.5rem;
+            display: flex; align-items: center; gap: 0.75rem;
+            background-color: rgba(255, 255, 255, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            padding: 0.5rem 1rem; border-radius: 9999px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid rgba(226, 232, 240, 0.8); z-index: 9999 !important;
+        }
+        #theme-wrapper { display: flex; align-items: center; gap: 0.25rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); max-width: 300px; opacity: 1; padding-right: 0.5rem; }
+        #theme-wrapper.fullscreen-hide { max-width: 0 !important; opacity: 0 !important; padding-right: 0 !important; border-right-width: 0 !important; margin-right: -0.25rem; overflow: hidden; pointer-events: none; }
+        .panel-select { appearance: none; -webkit-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; font-size: 0.875rem; font-weight: 600; color: #334155; }
+        .panel-icon-btn { background: transparent; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #475569; transition: color 0.2s; }
+        .panel-icon-btn:hover { color: #2563eb; }
+    </style>
+</head>
+<body>
+
+    <button id="prev-btn" class="nav-btn ui-element left-6"><i class="ph ph-caret-left text-3xl font-bold"></i></button>
+    <button id="next-btn" class="nav-btn ui-element right-6"><i class="ph ph-caret-right text-3xl font-bold"></i></button>
+
+    <div class="control-panel ui-element">
+        <div id="theme-wrapper" class="border-r border-slate-300">
+            <i class="ph ph-palette text-slate-500 text-base mr-1"></i>
+            <select id="theme-select" class="panel-select">
+                <option value="simple">极简白 (Simple)</option>
+                <option value="black">科技黑 (Black)</option>
+                <option value="league">金属灰 (League)</option>
+                <option value="dracula">吸血鬼 (Dracula)</option>
+                <option value="solarized">羊皮纸 (Solarized)</option>
+            </select>
+        </div>
+        <button id="overview-btn" class="panel-icon-btn text-lg" title="全景俯瞰模式 (ESC)"><i class="ph ph-squares-four font-bold"></i></button>
+        <div class="text-xs text-slate-400 font-bold flex items-center gap-1 pl-1">
+            <i class="ph ph-presentation text-base text-slate-500"></i>
+            <span id="current-index">1</span> / <span id="total-index-display">31</span>
+        </div>
+    </div>
+
+    <div class="reveal">
+        <div class="slides" id="slides-container"></div>
+    </div>
+
+    <script src="./libs/reveal.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const totalSlidesCount = 32;
+            
+            const container = document.getElementById('slides-container');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const themeSelect = document.getElementById('theme-select');
+            const themeLink = document.getElementById('theme-link');
+            const themeWrapper = document.getElementById('theme-wrapper');
+            const overviewBtn = document.getElementById('overview-btn');
+            const currentIndexSpan = document.getElementById('current-index');
+            document.getElementById('total-index-display').textContent = totalSlidesCount;
+
+            // 全自动动态生成所有物理插槽
+            let generatedSlotsHtml = '';
+            for (let i = 1; i <= totalSlidesCount; i++) {
+                const formattedNum = String(i).padStart(2, '0');
+                generatedSlotsHtml += `<section><iframe class="slide-iframe" data-src="./slides/${formattedNum}.html"></iframe></section>`;
+            }
+            container.innerHTML = generatedSlotsHtml;
+
+            // 安全的纯物理惰性加载逻辑
+            function loadCurrentSlideIframe(event) {
+                const currentSlide = event.currentSlide;
+                if (!currentSlide) return;
+                
+                const iframe = currentSlide.querySelector('.slide-iframe');
+                if (iframe) {
+                    if (!iframe.src) {
+                        const realPath = iframe.getAttribute('data-src');
+                        
+                        // 子页面完全渲染载入完毕后再通知 CSS 淡入
+                        iframe.onload = () => {
+                            iframe.classList.add('iframe-visible');
+                            window.focus(); 
+                        };
+                        iframe.src = realPath;
+                    } else {
+                        // 兜底：如果 src 已经存在，确保它亮起来
+                        iframe.classList.add('iframe-visible');
+                    }
+                }
+                
+                currentIndexSpan.textContent = Reveal.getIndices().h + 1;
+                window.focus();
+            }
+
+            // 先把事件绑定好
+            Reveal.on('ready', loadCurrentSlideIframe);
+            Reveal.on('slidechanged', loadCurrentSlideIframe);
+
+            // 初始化 Reveal.js
+            Reveal.initialize({
+                // 翻页特效，支持：slide、fade、convex、concave、zoom、spin、cube
+                controls: false, progress: true, hash: true, transition: 'slide',
+                width: "100%", height: "100%", margin: 0, minScale: 1, maxScale: 1,
+                center: false, loop: true 
+            });
+
+            // 💡 终极补丁：强制心跳强制显现。在框架定型后的 50ms 和 200ms，强行把第一页捞出来点亮，绝对不给它留白屏的机会
+            function forceShowFirstSlide() {
+                const firstSection = container.querySelector('section');
+                if (firstSection) {
+                    const firstIframe = firstSection.querySelector('.slide-iframe');
+                    if (firstIframe) {
+                        if (!firstIframe.src) {
+                            firstIframe.src = firstIframe.getAttribute('data-src');
+                        }
+                        firstIframe.classList.add('iframe-visible');
+                    }
+                }
+            }
+            setTimeout(forceShowFirstSlide, 50);
+            setTimeout(forceShowFirstSlide, 200);
+
+            // 监听下拉选择更换皮肤
+            themeSelect.addEventListener('change', (e) => {
+                themeLink.href = `./libs/${e.target.value}.css`;
+                window.focus();
+            });
+
+            // 点击网关图标一键点火全局 Overview 模式
+            overviewBtn.addEventListener('click', () => {
+                Reveal.toggleOverview();
+                window.focus();
+            });
+
+            // 全屏探测与 UI 自动剪枝
+            function detectF11Fullscreen() {
+                const isCodeFullscreen = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+                const isF11Fullscreen = (window.innerHeight >= window.screen.height - 15) || (window.outerHeight === window.screen.height);
+                if (isCodeFullscreen || isF11Fullscreen) {
+                    themeWrapper.classList.add('fullscreen-hide');
+                } else {
+                    themeWrapper.classList.remove('fullscreen-hide');
+                }
+            }
+            window.addEventListener('resize', detectF11Fullscreen);
+
+            // 无人控制时，UI 元素自动淡出隐藏
+            let mouseIdleTimer;
+            function resetMouseIdleTimer() {
+                const uiElements = document.querySelectorAll('.ui-element');
+                uiElements.forEach(el => el.classList.remove('mouse-idle-hide'));
+                
+                clearTimeout(mouseIdleTimer);
+                mouseIdleTimer = setTimeout(() => {
+                    if (!Reveal.isOverview()) {
+                        uiElements.forEach(el => el.classList.add('mouse-idle-hide'));
+                    }
+                }, 3000);
+            }
+            window.addEventListener('mousemove', resetMouseIdleTimer);
+
+            prevBtn.addEventListener('click', () => { Reveal.prev(); window.focus(); });
+            nextBtn.addEventListener('click', () => { Reveal.next(); window.focus(); });
+            window.addEventListener('click', () => window.focus());
+        });
+    </script>
+</body>
+</html>

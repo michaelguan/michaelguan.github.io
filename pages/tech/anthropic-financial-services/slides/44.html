@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropics Financial Services - 第 44 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 3rem 6rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-book-bookmark text-cyan-600"></i> 垂直插件 ⑥ fund-admin — 基金运营内脏
+            </h2>
+            <div class="w-16 h-1 bg-cyan-500 rounded-full mb-6"></div>
+
+            <div class="bg-white p-5 rounded-xl card-gradient-border border-l-4 border-l-cyan-500 mb-6">
+                <h4 class="font-bold text-cyan-900 mb-3 text-sm">技能列表 (6)</h4>
+                <div class="grid grid-cols-2 gap-3 text-xs text-slate-600">
+                    <div class="flex items-start gap-2"><i class="ph ph-check text-cyan-400 mt-0.5"></i><div><span class="font-mono text-cyan-700">gl-recon</span> — 总账双面对账，断差清单</div></div>
+                    <div class="flex items-start gap-2"><i class="ph ph-check text-cyan-400 mt-0.5"></i><div><span class="font-mono text-cyan-700">break-trace</span> — 断差根因链</div></div>
+                    <div class="flex items-start gap-2"><i class="ph ph-check text-cyan-400 mt-0.5"></i><div><span class="font-mono text-cyan-700">nav-tieout</span> — NAV 明细↔合计勾稽</div></div>
+                    <div class="flex items-start gap-2"><i class="ph ph-check text-cyan-400 mt-0.5"></i><div><span class="font-mono text-cyan-700">accrual-schedule</span> — 应计表生成</div></div>
+                    <div class="flex items-start gap-2"><i class="ph ph-check text-cyan-400 mt-0.5"></i><div><span class="font-mono text-cyan-700">roll-forward</span> — 期初→期末滚动</div></div>
+                    <div class="flex items-start gap-2"><i class="ph ph-check text-cyan-400 mt-0.5"></i><div><span class="font-mono text-cyan-700">variance-commentary</span> — 差异评论</div></div>
+                </div>
+            </div>
+
+            <div class="bg-amber-50 p-4 rounded-lg border-l-4 border-l-amber-500 mb-6">
+                <p class="text-xs font-bold text-amber-900 mb-2">重要说明</p>
+                <ul class="space-y-1 text-xs text-amber-800">
+                    <li class="flex items-start gap-2"><i class="ph ph-info text-amber-500 mt-0.5"></i><span>多数技能通过 Skills 自动调用 (无独立 slash 指令)</span></li>
+                    <li class="flex items-start gap-2"><i class="ph ph-info text-amber-500 mt-0.5"></i><span>与 GL Reconciler / Month-End Closer / Statement Auditor 三个 Agent 高度重叠</span></li>
+                    <li class="flex items-start gap-2"><i class="ph ph-info text-amber-500 mt-0.5"></i><span>装 Agent 即自带整套，不必单独装 fund-admin</span></li>
+                </ul>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-cyan-500 mb-6">
+                <h4 class="font-bold text-cyan-900 mb-2 text-xs">对应 Agent Mapping</h4>
+                <div class="space-y-2 text-xs text-slate-600">
+                    <div class="flex items-center justify-between p-2 bg-cyan-50 rounded">
+                        <span class="font-mono text-cyan-700 font-bold">GL Reconciler</span>
+                        <i class="ph ph-arrow-right text-cyan-400"></i>
+                        <span class="font-mono text-cyan-600">gl-recon / break-trace</span>
+                    </div>
+                    <div class="flex items-center justify-between p-2 bg-cyan-50 rounded">
+                        <span class="font-mono text-cyan-700 font-bold">Month-End Closer</span>
+                        <i class="ph ph-arrow-right text-cyan-400"></i>
+                        <span class="font-mono text-cyan-600">accrual-schedule / roll-forward / variance-commentary</span>
+                    </div>
+                    <div class="flex items-center justify-between p-2 bg-cyan-50 rounded">
+                        <span class="font-mono text-cyan-700 font-bold">Statement Auditor</span>
+                        <i class="ph ph-arrow-right text-cyan-400"></i>
+                        <span class="font-mono text-cyan-600">nav-tieout</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-100 p-3 rounded-lg">
+                <p class="text-xs text-slate-500 mb-1">MCP 数据源</p>
+                <p class="text-xs text-slate-600">Box/Egnyte + Chronograph</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

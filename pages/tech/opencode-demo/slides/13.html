@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode：开源 AI 编程代理 - 第 13 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-lightbulb text-blue-600"></i> 上手速览
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-10"></div>
+
+            <div class="grid grid-cols-2 gap-6 content-area">
+                <div class="bg-slate-50 p-6 rounded-xl card-gradient-border-slate">
+                    <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                        <i class="ph ph-download-simple text-blue-500"></i> 安装
+                    </h3>
+                    <code class="text-sm text-slate-700 break-all bg-white p-3 rounded block">
+                        bunx oh-my-opencode install
+                    </code>
+                    <p class="text-xs text-slate-500 mt-2">支持 npm、bun、Homebrew 等多种方式</p>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-xl card-gradient-border-slate">
+                    <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                        <i class="ph ph-gear text-blue-500"></i> 初次配置
+                    </h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        运行 <code class="bg-white px-1 py-0.5 rounded text-blue-600">opencode auth login</code> 登录你的模型提供商账号
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl card-gradient-border">
+                    <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                        <i class="ph ph-rocket-launch text-blue-500"></i> 第一个任务
+                    </h3>
+                    <code class="text-sm text-slate-700 break-all bg-slate-50 p-3 rounded block">
+                        ultrawork 帮我读取 src/main.ts 并解释
+                    </code>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl card-gradient-border">
+                    <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                        <i class="ph ph-books text-blue-500"></i> 常见入门路径
+                    </h3>
+                    <ul class="text-sm text-slate-600 space-y-1">
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-green-500"></i> 代码解释与问答</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-green-500"></i> 小 bug 修复</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-green-500"></i> 功能逐步开发</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-6 bg-blue-50 p-5 rounded-xl card-gradient-border-blue">
+                <h3 class="font-bold text-blue-900 mb-3">快速命令参考</h3>
+                <div class="grid grid-cols-4 gap-3 text-sm text-blue-800">
+                    <div class="flex items-center gap-1.5"><i class="ph ph-terminal text-blue-400"></i><code class="bg-white px-1.5 py-0.5 rounded text-xs">opencode</code></div>
+                    <div class="flex items-center gap-1.5"><i class="ph ph-question text-blue-400"></i><code class="bg-white px-1.5 py-0.5 rounded text-xs">/help</code></div>
+                    <div class="flex items-center gap-1.5"><i class="ph ph-files text-blue-400"></i><code class="bg-white px-1.5 py-0.5 rounded text-xs">@file</code></div>
+                    <div class="flex items-center gap-1.5"><i class="ph ph-terminal-window text-blue-400"></i><code class="bg-white px-1.5 py-0.5 rounded text-xs">!cmd</code></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode：开源 AI 编程代理 - 第 23 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-plugs-connected text-blue-600"></i> MCP 模型上下文协议
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-8"></div>
+
+            <div class="bg-white p-5 rounded-xl card-gradient-border mb-5">
+                <p class="text-base text-slate-700 leading-relaxed">
+                    通过 <b class="text-slate-900">MCP</b>（Model Context Protocol）把外部工具接进 OpenCode——本地命令行进程或远程 HTTP 端点皆可。接入后，MCP 工具会与内置工具一起自动对 LLM 可用。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-5 mb-5">
+                <div class="bg-slate-900 text-slate-100 p-5 rounded-xl font-mono text-xs leading-relaxed">
+                    <div class="text-slate-400 text-xs mb-2">// Local 类型</div>
+                    <div><span class="text-pink-400">"mcp"</span>: {</div>
+                    <div class="pl-4"><span class="text-sky-400">"filesystem"</span>: {</div>
+                    <div class="pl-8"><span class="text-sky-400">"type"</span>: <span class="text-amber-300">"local"</span>,</div>
+                    <div class="pl-8"><span class="text-sky-400">"command"</span>: [<span class="text-emerald-300">"npx","-y","@modelcontextprotocol/server-filesystem","/tmp"</span>],</div>
+                    <div class="pl-8"><span class="text-sky-400">"timeout"</span>: <span class="text-amber-300">10000</span></div>
+                    <div class="pl-4">}</div>
+                    <div>}</div>
+                </div>
+                <div class="bg-slate-900 text-slate-100 p-5 rounded-xl font-mono text-xs leading-relaxed">
+                    <div class="text-slate-400 text-xs mb-2">// Remote 类型</div>
+                    <div><span class="text-pink-400">"mcp"</span>: {</div>
+                    <div class="pl-4"><span class="text-sky-400">"jira"</span>: {</div>
+                    <div class="pl-8"><span class="text-sky-400">"type"</span>: <span class="text-amber-300">"remote"</span>,</div>
+                    <div class="pl-8"><span class="text-sky-400">"url"</span>: <span class="text-emerald-300">"https://jira.example.com/mcp"</span>,</div>
+                    <div class="pl-8"><span class="text-sky-400">"headers"</span>: { <span class="text-sky-400">"Authorization"</span>: <span class="text-emerald-300">"Bearer ..."</span> }</div>
+                    <div class="pl-4">}</div>
+                    <div>}</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4">
+                <div class="bg-blue-50 p-4 rounded-xl card-gradient-border-blue text-center">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <i class="ph ph-text-aa text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-blue-900 mb-1 text-sm">靠"名字"调用</h3>
+                    <p class="text-xs text-blue-700">提示词里写 <code class="bg-white px-1 rounded">use the filesystem tool</code></p>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-xl text-center" style="border:1px solid #e0f2fe; box-shadow:0 10px 40px -10px rgba(56,189,248,0.1)">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <i class="ph ph-power text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-blue-900 mb-1 text-sm">enabled 开关</h3>
+                    <p class="text-xs text-blue-700">设 <code class="bg-white px-1 rounded">false</code> 临时禁用，不删配置</p>
+                </div>
+                <div class="bg-rose-50 p-4 rounded-xl text-center" style="border:1px solid #fecdd3">
+                    <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <i class="ph ph-warning text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-rose-900 mb-1 text-sm">⚠️ Context 成本</h3>
+                    <p class="text-xs text-rose-700">工具多会挤占上下文，按需启用</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

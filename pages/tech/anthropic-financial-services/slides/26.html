@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropics Financial Services - 第 26 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 3rem 6rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-arrows-clockwise text-blue-600"></i> Earnings Reviewer 工作流
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-8"></div>
+
+            <div class="space-y-3 mb-6">
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">1</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">摄入电话会议转录文本</h4>
+                        <p class="text-sm text-slate-600">从 MT Newswires 或直接上传获取电话会议完整转录，分离管理层陈述与 Q&A 部分</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">transcript ingestion</code>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">2</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">提取关键财务数据与指引</h4>
+                        <p class="text-sm text-slate-600">使用 NLP 从转录中提取收入、EPS、毛利率、现金流等实际数据及管理层新指引</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">/earnings</code>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">3</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">对比市场共识与上季指引</h4>
+                        <p class="text-sm text-slate-600">通过 Daloopa 拉取分析师共识预期，计算预期差（beat/miss），对比上季指引兑现情况</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">Daloopa MCP</code>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">4</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">更新财务模型</h4>
+                        <p class="text-sm text-slate-600">使用 /model-update 将新数据填入 Excel 模型，更新历史列，调整未来预测假设</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">/model-update</code>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">5</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">生成晨会笔记初稿</h4>
+                        <p class="text-sm text-slate-600">自动生成结构化晨会笔记，包含核心亮点、数据表格、管理层言论摘引、风险提示</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">/morning-note</code>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">6</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">等待分析师审阅与发布</h4>
+                        <p class="text-sm text-slate-600">等待分析师复核数据准确性、补充独家观点、签字后发布</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">review & publish</code>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-3 mb-4">
+                <!-- 端到端链路 -->
+                <div class="bg-white p-3 rounded-xl card-gradient-border">
+                    <p class="text-xs font-bold text-slate-800 mb-2 flex items-center gap-1"><i class="ph ph-arrows-clockwise text-blue-500"></i> 端到端链路（子代理+接力）</p>
+                    <div class="flex items-center gap-1 text-[11px] text-slate-600 flex-wrap">
+                        <span class="bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded">transcript-reader</span><i class="ph ph-caret-right text-slate-300"></i>
+                        <span class="bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded">model-updater</span><i class="ph ph-caret-right text-slate-300"></i>
+                        <span class="bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded">note-writer</span>
+                    </div>
+                    <p class="text-[11px] text-slate-500 mt-1.5">投资主题变更时 <span class="font-mono text-amber-600">handoff</span> → model-builder 重建 DCF</p>
+                </div>
+                <!-- 超低预期三步法 -->
+                <div class="bg-white p-3 rounded-xl card-gradient-border">
+                    <p class="text-xs font-bold text-slate-800 mb-2 flex items-center gap-1"><i class="ph ph-scales text-blue-500"></i> 超/低预期三步法</p>
+                    <ul class="space-y-1 text-[11px] text-slate-600">
+                        <li class="flex items-start gap-1"><i class="ph ph-dot text-blue-400 mt-1"></i><span><span class="font-bold">量化差异：</span>收入/EBITDA/EPS 三层对比实际 vs 预期</span></li>
+                        <li class="flex items-start gap-1"><i class="ph ph-dot text-blue-400 mt-1"></i><span><span class="font-bold">拆解原因：</span>价/量 · 成本结构 · 一次性项目</span></li>
+                        <li class="flex items-start gap-1"><i class="ph ph-dot text-blue-400 mt-1"></i><span><span class="font-bold">更新估计：</span>旧 vs 新，区分信号与噪音</span></li>
+                    </ul>
+                </div>
+                <!-- 引用规范 -->
+                <div class="bg-amber-50 p-3 rounded-xl border border-amber-200">
+                    <p class="text-xs font-bold text-amber-900 mb-2 flex items-center gap-1"><i class="ph ph-shield-check text-amber-600"></i> Guardrails · 引用规范</p>
+                    <ul class="space-y-1 text-[11px] text-amber-800">
+                        <li class="flex items-center gap-1"><i class="ph ph-check text-amber-500"></i><span>每数标注来源与可点击超链接</span></li>
+                        <li class="flex items-center gap-1"><i class="ph ph-check text-amber-500"></i><span>无来源标 <code class="bg-amber-100 px-1 rounded font-mono">[UNSOURCED]</code> 绝不估算</span></li>
+                        <li class="flex items-center gap-1"><i class="ph ph-check text-amber-500"></i><span>模型更新后待分析师签字发布</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

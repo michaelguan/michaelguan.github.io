@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropics Financial Services - 第 32 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 3rem 6rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-arrows-clockwise text-blue-600"></i> GL Reconciler 工作流
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-8"></div>
+
+            <div class="space-y-3 mb-6">
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">1</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">摄入 GL 与子账数据</h4>
+                        <p class="text-sm text-slate-600">从 Box/Egnyte 获取 GL 总账与子账 Excel 数据，解析科目结构、交易流水与余额信息</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">data ingestion</code>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">2</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">Critic 子代理：扫描识别断差</h4>
+                        <p class="text-sm text-slate-600">比对总账与子账余额，识别所有不平衡账户，计算断差金额，按严重性分类（<1k / 1k-10k / >10k）</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">/gl-recon</code>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">3</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">Reader 子代理：追踪交易流水</h4>
+                        <p class="text-sm text-slate-600">对每个断差账户逐笔追踪交易流水，定位 Possible 断差交易（未匹配/重复/金额差异）</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">break-trace</code>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">4</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">Resolver 子代理：根因分析</h4>
+                        <p class="text-sm text-slate-600">分析断差模式，判断根因类型（Timing difference / Entry error / Missing transaction / System bug）</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">root cause analysis</code>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">5</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">分级路由处理</h4>
+                        <p class="text-sm text-slate-600">低金额断差自动 APPROVE 或 REJECT；中高金额 FLAGGED 路由人工复核；重大风险即时上报</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">tiered routing</code>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">6</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">输出对账报告待审批</h4>
+                        <p class="text-sm text-slate-600">生成完整对账报告，包含断差明细、根因分析、修复建议，等待财务负责人签字</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">report generation</code>
+                </div>
+            </div>
+
+            <div class="bg-yellow-50 p-5 rounded-xl border border-yellow-200">
+                <h3 class="font-bold text-yellow-900 mb-3 flex items-center gap-2">
+                    <i class="ph ph-shield-check text-yellow-600"></i> Guardrails（安全机制）
+                </h3>
+                <div class="grid grid-cols-3 gap-3 text-sm text-yellow-800">
+                    <div class="flex items-start gap-2"><i class="ph ph-check text-yellow-500 mt-0.5"></i><span>>$10k 必须人工复核</span></div>
+                    <div class="flex items-start gap-2"><i class="ph ph-check text-yellow-500 mt-0.5"></i><span>根因须有证据链支撑</span></div>
+                    <div class="flex items-start gap-2"><i class="ph ph-check text-yellow-500 mt-0.5"></i><span>所有操作需记录审计轨迹</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

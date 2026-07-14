@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode：开源 AI 编程代理 - 第 24 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-clipboard-text text-blue-600"></i> /plan 模式详解
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-8"></div>
+
+            <div class="bg-white p-5 rounded-xl card-gradient-border mb-5">
+                <p class="text-base text-slate-700 leading-relaxed mb-2">
+                    <b class="text-slate-900">Plan</b> 是 OpenCode 内置的受限主代理——切换它（<code class="bg-slate-100 px-1.5 py-0.5 rounded text-purple-600 text-sm">Tab</code> 或命令），代理进入"只读思考"阶段，把方案给你看清楚后再动手。
+                </p>
+                <div class="flex items-center gap-2 text-sm text-slate-500">
+                    <i class="ph ph-lightning text-yellow-500"></i>
+                    让 OpenCode 先当"思考伙伴"，而不是"执行机器"。
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-5 mb-5">
+                <div class="bg-blue-50 p-5 rounded-xl card-gradient-border-blue">
+                    <h3 class="font-bold text-blue-900 mb-3 flex items-center gap-2"><i class="ph ph-lock-key text-blue-500"></i> 默认权限（全部 ask）</h3>
+                    <ul class="space-y-2 text-sm text-blue-800">
+                        <li class="flex items-start gap-2"><i class="ph ph-dot text-blue-400 mt-1"></i><span><b>file edits</b>：所有写入/补丁/编辑都需确认</span></li>
+                        <li class="flex items-start gap-2"><i class="ph ph-dot text-blue-400 mt-1"></i><span><b>bash</b>：所有 bash 命令都需确认</span></li>
+                        <li class="flex items-start gap-2"><i class="ph ph-dot text-blue-400 mt-1"></i><span>仅允许在 <code class="bg-white px-1.5 py-0.5 rounded text-xs">.opencode/plans/*.md</code> 写计划</span></li>
+                    </ul>
+                </div>
+                <div class="bg-white p-5 rounded-xl card-gradient-border">
+                    <h3 class="font-bold text-slate-800 mb-3 flex items-center gap-2"><i class="ph ph-target text-blue-500"></i> 适合场景</h3>
+                    <ul class="space-y-2 text-sm text-slate-700">
+                        <li class="flex items-start gap-2"><i class="ph ph-check text-emerald-500 mt-0.5"></i><span>架构决策、跨系统重构</span></li>
+                        <li class="flex items-start gap-2"><i class="ph ph-check text-emerald-500 mt-0.5"></i><span>安全审查、性能分析</span></li>
+                        <li class="flex items-start gap-2"><i class="ph ph-check text-emerald-500 mt-0.5"></i><span>读代码、给建议但不改文件</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 text-slate-100 p-5 rounded-xl font-mono text-sm">
+                <div class="text-emerald-400"># 在 plan 模式下提问</div>
+                <div class="text-slate-300">「分析我们的鉴权体系（src/auth/），给出 OAuth2 登录的落地方案。<span class="text-amber-300">不要写任何代码，只要方案。</span>」</div>
+                <div class="text-slate-400 text-xs mt-2">// 系统提醒：READ-ONLY 阶段活跃，禁止任何文件修改 —— 即使用户直接要求也必须拒绝。</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

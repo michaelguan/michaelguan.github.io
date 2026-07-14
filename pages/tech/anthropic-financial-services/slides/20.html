@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropics Financial Services - 第 20 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 3rem 6rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-arrows-split-three text-blue-600"></i> Pitch Agent 工作流
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-6"></div>
+
+            <div class="bg-white p-4 rounded-xl card-gradient-border mb-4">
+                <p class="text-sm font-bold text-slate-800 mb-3 flex items-center gap-2"><i class="ph ph-timer text-blue-500"></i> 9 步端到端流程 End-to-End Workflow</p>
+                <div class="space-y-2">
+                    <div class="flex items-start gap-3">
+                        <span class="bg-blue-100 text-blue-700 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">1</span>
+                        <p class="text-sm text-slate-600"><strong>输入目标公司/行业</strong> — 指定目标公司名称或行业赛道</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="bg-blue-100 text-blue-700 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">2</span>
+                        <p class="text-sm text-slate-600"><strong>数据源查询</strong> — 调用 MCP 查询 PitchBook、Daloopa、FactSet 获取基础数据</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="bg-blue-100 text-blue-700 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">3</span>
+                        <p class="text-sm text-slate-600"><strong>财务数据提取</strong> — 从财报、10-K/10-Q 提取关键财务指标</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="bg-blue-100 text-blue-700 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">4</span>
+                        <p class="text-sm text-slate-600"><strong>可比公司筛选</strong> — 基于行业、规模、增长率筛选对标公司</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="bg-blue-100 text-blue-700 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">5</span>
+                        <p class="text-sm text-slate-600"><strong>交易案例检索</strong> — 从 PitchBook 获取同类交易估值倍数</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="bg-blue-100 text-blue-700 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">6</span>
+                        <p class="text-sm text-slate-600"><strong>估值建模</strong> — 生成 DCF、倍数法、LBO 模型</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="bg-blue-100 text-blue-700 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">7</span>
+                        <p class="text-sm text-slate-600"><strong>敏感性分析</strong> — 多情景假设 (Bull/Base/Bear) 与敏感性测试</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="bg-blue-100 text-blue-700 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">8</span>
+                        <p class="text-sm text-slate-600"><strong>素材整合</strong> — 从 Box/Egnyte 获取历史材料和案例</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="bg-emerald-100 text-emerald-700 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">9</span>
+                        <p class="text-sm text-slate-600"><strong>PPT 生成</strong> — 按投行标准模板输出完整 Pitch Deck</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-blue-500 to-emerald-500 p-4 rounded-xl text-white">
+                <p class="text-sm font-bold">
+                    <i class="ph ph-check-circle mr-2"></i>
+                    全程 30-60 分钟，人工仅需最后审阅确认
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

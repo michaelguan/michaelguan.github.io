@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode：开源 AI 编程代理 - 第 17 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-file-text text-blue-600"></i> AGENTS.md 规范
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-10"></div>
+
+            <div class="bg-white p-6 rounded-xl card-gradient-border mb-6">
+                <p class="text-lg text-slate-700 leading-relaxed mb-4">
+                    <code class="bg-slate-100 px-2 py-1 rounded text-blue-600">AGENTS.md</code> 是 OpenCode 的标准化项目规范文件，用于定义智能体在项目中的行为和规则。
+                </p>
+                <div class="flex items-center gap-2 text-sm text-slate-500">
+                    <i class="ph ph-info text-blue-400"></i>
+                    这与 Claude Code 共享同一规范，生态互通。
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="bg-slate-50 p-5 rounded-xl card-gradient-border-slate">
+                    <h3 class="font-bold text-slate-800 mb-3">项目规则</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-green-500"></i> 编码规范定义</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-green-500"></i> 技术栈说明</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-green-500"></i> 项目架构概述</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-50 p-5 rounded-xl card-gradient-border-slate">
+                    <h3 class="font-bold text-slate-800 mb-3">工具权限</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-green-500"></i> 允许的工具列表</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-green-500"></i> 危险操作限制</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-green-500"></i> 自动批准规则</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 p-5 rounded-xl card-gradient-border-blue mb-6">
+                <h3 class="font-bold text-blue-900 mb-3">典型内容结构</h3>
+                <code class="text-xs text-blue-800 break-all bg-white p-3 rounded block">
+---
+name: 项目名称
+description: 项目描述
+tools:
+  - shell: "允许的 shell 命令"
+  - file: "文件操作规则"
+rules:
+  - "代码风格要求"
+  - "测试规范要求"
+---
+                </code>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl card-gradient-border">
+                <h3 class="font-bold text-slate-800 mb-3">位置与优先级</h3>
+                <p class="text-sm text-slate-600">
+                    放在项目根目录的 <code class="bg-slate-100 px-2 py-0.5 rounded text-blue-600">AGENTS.md</code>，OpenCode 启动时自动读取，为该项目提供上下文和行为指导。
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

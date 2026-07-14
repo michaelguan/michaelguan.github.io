@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropics Financial Services - 第 37 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 3rem 6rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #fff5f5 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-shield-check text-rose-600"></i> 10. KYC Screener (合规画像)
+            </h2>
+            <div class="w-16 h-1 bg-rose-500 rounded-full mb-6"></div>
+
+            <!-- 定位 -->
+            <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-rose-500 mb-4">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-rose-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i class="ph ph-shield-check text-rose-600 text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-base font-bold text-slate-800 mb-1">定位</h3>
+                        <p class="text-sm text-slate-600">吃进一堆上板文件，自动解析 + 跑规则引擎，把缺口与风险标出来 — 把人工 KYC 从逐张照看变成对照确认</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 输入 & 输出 -->
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div class="bg-white p-4 rounded-xl card-gradient-border">
+                    <h3 class="text-sm font-bold text-slate-800 mb-2 flex items-center gap-2"><i class="ph ph-folder-open text-rose-500"></i> 输入</h3>
+                    <ul class="space-y-1.5 text-xs text-slate-600">
+                        <li class="flex items-start gap-2"><i class="ph ph-check text-rose-400 mt-0.5"></i> KYC 文档包（身份、股权、UBO、声明、尽调表）</li>
+                        <li class="flex items-start gap-2"><i class="ph ph-check text-rose-400 mt-0.5"></i> 规则网格配置</li>
+                        <li class="flex items-start gap-2"><i class="ph ph-check text-rose-400 mt-0.5"></i> 风险评分口径</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-4 rounded-xl card-gradient-border">
+                    <h3 class="text-sm font-bold text-slate-800 mb-2 flex items-center gap-2"><i class="ph ph-files text-rose-500"></i> 输出</h3>
+                    <ul class="space-y-1.5 text-xs text-slate-600">
+                        <li class="flex items-start gap-2"><i class="ph ph-check text-rose-400 mt-0.5"></i> <span><span class="font-mono text-rose-600">kyc-doc-parse</span> 后的结构化实体 — 客户 / 受益人 / 股权穿透图</span></li>
+                        <li class="flex items-start gap-2"><i class="ph ph-check text-rose-400 mt-0.5"></i> 规则评估表 — 每条规则的 pass / fail / 需补</li>
+                        <li class="flex items-start gap-2"><i class="ph ph-check text-rose-400 mt-0.5"></i> 缺口与升级清单 — escalator 把高风险项路由给人</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 适用场景 & 技能清单 -->
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div class="bg-white p-4 rounded-xl card-gradient-border">
+                    <h3 class="text-sm font-bold text-slate-800 mb-2 flex items-center gap-2"><i class="ph ph-target text-rose-500"></i> 适用场景</h3>
+                    <ul class="space-y-1.5 text-xs text-slate-600">
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-rose-400"></i> 客户上板 (onboarding) 时批量合规筛查</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-rose-400"></i> 反洗钱 (AML) 与制裁复核</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-4 rounded-xl card-gradient-border">
+                    <h3 class="text-sm font-bold text-slate-800 mb-2 flex items-center gap-2"><i class="ph ph-puzzle-piece text-rose-500"></i> 技能清单</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs text-rose-700 bg-rose-50 px-2.5 py-1 rounded-full font-bold">kyc-doc-parse</span>
+                        <span class="text-xs text-rose-700 bg-rose-50 px-2.5 py-1 rounded-full font-bold">kyc-rules</span>
+                        <span class="text-xs text-rose-700 bg-rose-50 px-2.5 py-1 rounded-full font-bold">escalator</span>
+                        <span class="text-xs text-rose-700 bg-rose-50 px-2.5 py-1 rounded-full font-bold">xlsx-author</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Highlight note -->
+            <div class="bg-rose-50 border-l-4 border-l-rose-500 p-4 rounded-xl">
+                <p class="text-sm text-rose-800 font-medium">
+                    <i class="ph ph-info mr-1"></i>
+                    KYC Screener 的 <span class="font-mono font-bold">escalator</span> 子代理决定一条命中是"合规闭环"还是"必升人工"— 决策不替人，只路由
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

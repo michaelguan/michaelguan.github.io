@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode：开源 AI 编程代理 - 第 09 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-plugs text-blue-600"></i> Slash 命令体系
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-10"></div>
+
+            <div class="grid grid-cols-2 gap-6 content-area">
+                <div class="bg-white p-5 rounded-xl card-gradient-border">
+                    <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                        <i class="ph ph-lightning text-yellow-500"></i> 常用命令
+                    </h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center justify-between"><code class="text-blue-600 bg-blue-50 px-2 py-1 rounded">/help</code><span class="text-slate-500">查看帮助</span></div>
+                        <div class="flex items-center justify-between"><code class="text-blue-600 bg-blue-50 px-2 py-1 rounded">/clear</code><span class="text-slate-500">清空上下文</span></div>
+                        <div class="flex items-center justify-between"><code class="text-blue-600 bg-blue-50 px-2 py-1 rounded">/model</code><span class="text-slate-500">切换模型</span></div>
+                        <div class="flex items-center justify-between"><code class="text-blue-600 bg-blue-50 px-2 py-1 rounded">/plan</code><span class="text-slate-500">进入规划模式</span></div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl card-gradient-border">
+                    <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                        <i class="ph ph-gear text-purple-500"></i> 高级命令
+                    </h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center justify-between"><code class="text-purple-600 bg-purple-50 px-2 py-1 rounded">/resume</code><span class="text-slate-500">继续中断任务</span></div>
+                        <div class="flex items-center justify-between"><code class="text-purple-600 bg-purple-50 px-2 py-1 rounded">/checkpoint</code><span class="text-slate-500">创建检查点</span></div>
+                        <div class="flex items-center justify-between"><code class="text-purple-600 bg-purple-50 px-2 py-1 rounded">/share</code><span class="text-slate-500">生成分享链接</span></div>
+                        <div class="flex items-center justify-between"><code class="text-purple-600 bg-purple-50 px-2 py-1 rounded">/tools</code><span class="text-slate-500">查看可用工具</span></div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 p-5 rounded-xl card-gradient-border-blue col-span-2">
+                    <h3 class="font-bold text-blue-900 mb-4 flex items-center gap-2">
+                        <i class="ph ph-sparkle text-blue-500"></i> 主题命令
+                    </h3>
+                    <div class="grid grid-cols-4 gap-4 text-sm">
+                        <div class="flex items-center gap-2"><i class="ph ph-code text-blue-400"></i><span><code class="text-blue-700">/edit</code> 编辑代码</span></div>
+                        <div class="flex items-center gap-2"><i class="ph ph-question text-blue-400"></i><span><code class="text-blue-700">/ask</code> 提问</span></div>
+                        <div class="flex items-center gap-2"><i class="ph ph-magnifying-glass text-blue-400"></i><span><code class="text-blue-700">/search</code> 搜索</span></div>
+                        <div class="flex items-center gap-2"><i class="ph ph-test-tube text-blue-400"></i><span><code class="text-blue-700">/test</code> 运行测试</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 bg-slate-50 p-4 rounded-xl card-gradient-border-slate">
+                <p class="text-slate-600 text-center text-sm">
+                    <i class="ph ph-info text-blue-400 mr-2"></i>
+                    输入 <code class="bg-white px-2 py-0.5 rounded text-blue-600">/</code> 即可查看完整的命令列表
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

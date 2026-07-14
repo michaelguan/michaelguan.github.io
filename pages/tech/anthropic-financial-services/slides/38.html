@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropics Financial Services - 第 38 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 3rem 6rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #fff5f5 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-shield-check text-rose-600"></i> KYC Screener · 文档→规则→升级三段路由
+            </h2>
+            <div class="w-16 h-1 bg-rose-500 rounded-full mb-6"></div>
+
+            <!-- 核心技能链 -->
+            <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-rose-500 mb-4">
+                <h3 class="text-sm font-bold text-slate-800 mb-2 flex items-center gap-2"><i class="ph ph-flow-arrow text-rose-500"></i> 核心技能链</h3>
+                <div class="flex items-center gap-2 text-sm font-mono">
+                    <span class="text-xs text-rose-700 bg-rose-50 px-3 py-1.5 rounded-lg font-bold">kyc-doc-parse</span>
+                    <i class="ph ph-arrow-right text-rose-400 text-lg"></i>
+                    <span class="text-xs text-rose-700 bg-rose-50 px-3 py-1.5 rounded-lg font-bold">kyc-rules</span>
+                    <i class="ph ph-arrow-right text-rose-400 text-lg"></i>
+                    <span class="text-xs text-rose-700 bg-rose-50 px-3 py-1.5 rounded-lg font-bold">escalator</span>
+                    <i class="ph ph-arrow-right text-rose-400 text-lg"></i>
+                    <span class="text-xs text-slate-600 bg-slate-100 px-3 py-1.5 rounded-lg font-bold">人工</span>
+                </div>
+            </div>
+
+            <!-- 子分工 & MCP -->
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div class="bg-white p-4 rounded-xl card-gradient-border">
+                    <h3 class="text-sm font-bold text-slate-800 mb-2 flex items-center gap-2"><i class="ph ph-tree-structure text-rose-500"></i> 子分工</h3>
+                    <ul class="space-y-2 text-xs text-slate-600">
+                        <li class="flex items-start gap-2"><span class="text-rose-600 font-mono font-bold mt-0.5">doc-reader</span><span class="text-slate-400 text-xs mt-0.5">(叶)</span><span class="flex-1">读 KYC 文档，结构化为实体与字段</span></li>
+                        <li class="flex items-start gap-2"><span class="text-rose-600 font-mono font-bold mt-0.5">rules-engine</span><span class="text-slate-400 text-xs mt-0.5">(叶)</span><span class="flex-1">跑规则网格评估，每规则 pass / 需补 / fail</span></li>
+                        <li class="flex items-start gap-2"><span class="text-rose-600 font-mono font-bold mt-0.5">escalator</span><span class="text-slate-400 text-xs mt-0.5">(叶)</span><span class="flex-1">把高风险命中路由给人 — 升级清单与建议动作</span></li>
+                    </ul>
+                </div>
+                <div class="bg-white p-4 rounded-xl card-gradient-border">
+                    <h3 class="text-sm font-bold text-slate-800 mb-2 flex items-center gap-2"><i class="ph pl databases text-rose-500"></i> <i class="ph ph-database text-rose-500"></i> MCP 数据源</h3>
+                    <ul class="space-y-1.5 text-xs text-slate-600">
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-rose-400"></i> Box / Egnyte（文档库）+ Egnyte 留痕</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-rose-400"></i> 可选外部制裁名单（制裁数据需企业接入）</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 工作流 -->
+            <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-rose-500 mb-4">
+                <h3 class="text-sm font-bold text-slate-800 mb-2 flex items-center gap-2"><i class="ph ph-list-checks text-rose-500"></i> 工作流</h3>
+                <div class="grid grid-cols-4 gap-3">
+                    <div class="bg-rose-50 rounded-lg p-3 text-center">
+                        <div class="text-rose-600 font-bold text-lg mb-1">1</div>
+                        <p class="text-xs text-slate-700"><span class="font-mono text-rose-600">doc-reader</span> 把 PDF / 扫描件结构化为客户 / UBO / 股权图</p>
+                    </div>
+                    <div class="bg-rose-50 rounded-lg p-3 text-center">
+                        <div class="text-rose-600 font-bold text-lg mb-1">2</div>
+                        <p class="text-xs text-slate-700"><span class="font-mono text-rose-600">rules-engine</span> 跑规则网格 — 字段缺失 / 越线 / 矛盾</p>
+                    </div>
+                    <div class="bg-rose-50 rounded-lg p-3 text-center">
+                        <div class="text-rose-600 font-bold text-lg mb-1">3</div>
+                        <p class="text-xs text-slate-700"><span class="font-mono text-rose-600">escalator</span> 决策每条命中 — 闭环 or 升人工</p>
+                    </div>
+                    <div class="bg-rose-50 rounded-lg p-3 text-center">
+                        <div class="text-rose-600 font-bold text-lg mb-1">4</div>
+                        <p class="text-xs text-slate-700">产缺口清单与升级工单，<span class="font-mono text-rose-600">xlsx-author</span> 打包</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guardrails -->
+            <div class="bg-rose-50 border-l-4 border-l-rose-500 p-4 rounded-xl">
+                <h3 class="text-sm font-bold text-rose-800 mb-2 flex items-center gap-2"><i class="ph ph-shield text-rose-600"></i> Guardrails</h3>
+                <div class="flex flex-wrap gap-3 text-xs text-rose-700">
+                    <span class="flex items-center gap-1.5"><i class="ph ph-check-circle text-rose-500"></i> 不替人下"通过"决定 — escalator 只路由，不裁决</span>
+                    <span class="flex items-center gap-1.5"><i class="ph ph-check-circle text-rose-500"></i> 制裁命中一律升人工</span>
+                    <span class="flex items-center gap-1.5"><i class="ph ph-check-circle text-rose-500"></i> 所有规则命中留痕可审计</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

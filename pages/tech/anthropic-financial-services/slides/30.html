@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropics Financial Services - 第 30 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 3rem 6rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-arrows-clockwise text-blue-600"></i> Valuation Reviewer 工作流
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-8"></div>
+
+            <div class="space-y-3 mb-6">
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">1</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">接收并解析 GP 估值包</h4>
+                        <p class="text-sm text-slate-600">从 Box/Egnyte 获取 GP 发送的估值材料（PDF+Excel），提取关键估值数据与方法说明</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">package-reader</code>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">2</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">核对估值方法与 IPEV 准则一致性</h4>
+                        <p class="text-sm text-slate-600">检查每家组合公司使用的估值方法（市场法/收益法/成本法）是否符合 IPEV 与国际准则</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">method validation</code>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">3</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">运行估值模板计算</h4>
+                        <p class="text-sm text-slate-600">使用 /valuation-runner 对每家组合公司执行标准化估值流程，生成可比估值区间</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">/valuation-runner</code>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">4</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">识别异常估值与波动</h4>
+                        <p class="text-sm text-slate-600">对比上季度估值，识别重大变动（>10%），标记估值假设变化与潜在风险点</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">variance detection</code>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">5</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">生成 LP 报告材料</h4>
+                        <p class="text-sm text-slate-600">准备 LP 季报所需的估值汇总表、投后表现分析、NAV 计算表</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">/portfolio-monitoring</code>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl card-gradient-border border-l-4 border-l-blue-500 flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-600 font-bold">6</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-slate-800 mb-1">等待投资委员会审阅</h4>
+                        <p class="text-sm text-slate-600">将审计报告与 LP 材料递交投资委员会，处理反馈意见后定稿</p>
+                    </div>
+                    <code class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 font-mono">/ic-memo</code>
+                </div>
+            </div>
+
+            <div class="bg-yellow-50 p-5 rounded-xl border border-yellow-200">
+                <h3 class="font-bold text-yellow-900 mb-3 flex items-center gap-2">
+                    <i class="ph ph-shield-check text-yellow-600"></i> Guardrails（安全机制）
+                </h3>
+                <div class="grid grid-cols-3 gap-3 text-sm text-yellow-800">
+                    <div class="flex items-start gap-2"><i class="ph ph-check text-yellow-500 mt-0.5"></i><span>估值方法变更需 flagged</span></div>
+                    <div class="flex items-start gap-2"><i class="ph ph-check text-yellow-500 mt-0.5"></i><span>重大差异需 GP 解释</span></div>
+                    <div class="flex items-start gap-2"><i class="ph ph-check text-yellow-500 mt-0.5"></i><span>所有假设需可追溯</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

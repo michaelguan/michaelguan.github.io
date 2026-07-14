@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropics Financial Services - 第 27 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 3rem 6rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-calculator text-blue-600"></i> 5. Model Builder (金融建模器)
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-6"></div>
+            <div class="bg-blue-50 p-6 rounded-xl card-gradient-border border-l-4 border-l-blue-500 mb-6">
+                <p class="text-xl font-bold text-blue-900 mb-2">DCF / LBO / 三张表 / comps — 在 Excel 中直接造出可追踪、可勾稽、可交班的财务模型</p>
+            </div>
+            <div class="space-y-4 mb-8">
+                <div class="bg-white p-5 rounded-xl card-gradient-border border-l-4 border-l-blue-500">
+                    <h4 class="font-bold text-slate-800 mb-2 flex items-center gap-2"><i class="ph ph-arrow-down text-blue-600"></i> 输入 Input</h4>
+                    <ul class="space-y-1.5 text-sm text-slate-600">
+                        <li class="flex items-center gap-2"><i class="ph ph-dot text-blue-400"></i> 目标公司 + 可用的 filings/历史数据</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-dot text-blue-400"></i> 模型类型 (DCF / LBO / 3-statement / comps)</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-dot text-blue-400"></i> 可选模板与核算口径</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-5 rounded-xl card-gradient-border border-l-4 border-l-blue-500">
+                    <h4 class="font-bold text-slate-800 mb-2 flex items-center gap-2"><i class="ph ph-arrow-up text-blue-600"></i> 输出 Output</h4>
+                    <ul class="space-y-1.5 text-sm text-slate-600">
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-blue-400"></i><span class="font-mono text-blue-700">Excel 模型工作簿</span> — 每单元格为可追踪公式，蓝/黑/绿三色规范</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-blue-400"></i><span class="font-mono text-blue-700">balance check</span> 与 audit-xls 报告</li>
+                        <li class="flex items-center gap-2"><i class="ph ph-check text-blue-400"></i> 敏感性/情景表 (可选)</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-5 rounded-xl card-gradient-border border-l-4 border-l-blue-500">
+                    <h4 class="font-bold text-slate-800 mb-2 flex items-center gap-2"><i class="ph ph-target text-blue-600"></i> 适用场景</h4>
+                    <p class="text-sm text-slate-600">分析师立模型起点 — DCF、LBO、三张表、对标估值</p>
+                </div>
+            </div>
+            <div class="bg-slate-100 p-4 rounded-lg">
+                <p class="text-xs text-slate-500 mb-2 font-medium">技能清单 Skills</p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-xs font-mono bg-blue-100 text-blue-700 px-3 py-1 rounded-full">dcf-model</span>
+                    <span class="text-xs font-mono bg-blue-100 text-blue-700 px-3 py-1 rounded-full">lbo-model</span>
+                    <span class="text-xs font-mono bg-blue-100 text-blue-700 px-3 py-1 rounded-full">3-statement-model</span>
+                    <span class="text-xs font-mono bg-blue-100 text-blue-700 px-3 py-1 rounded-full">comps-analysis</span>
+                    <span class="text-xs font-mono bg-blue-100 text-blue-700 px-3 py-1 rounded-full">audit-xls</span>
+                    <span class="text-xs font-mono bg-blue-100 text-blue-700 px-3 py-1 rounded-full">xlsx-author</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

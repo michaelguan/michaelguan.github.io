@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode：开源 AI 编程代理 - 第 05 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-scales text-blue-600"></i> vs Claude Code：开源平替
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-10"></div>
+
+            <!-- 对比表格 -->
+            <div class="bg-white p-8 rounded-2xl card-gradient-border mb-6">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b border-slate-200">
+                            <th class="text-left py-3 px-4 text-slate-500 font-medium">特性</th>
+                            <th class="text-center py-3 px-4 text-blue-600 font-bold">OpenCode</th>
+                            <th class="text-center py-3 px-4 text-slate-600 font-bold">Claude Code</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-slate-700">
+                        <tr class="border-b border-slate-100">
+                            <td class="py-3 px-4 font-medium">开源状态</td>
+                            <td class="text-center py-3 px-4"><i class="ph ph-check-circle text-green-500 text-xl"></i> 全开源</td>
+                            <td class="text-center py-3 px-4"><i class="ph ph-x-circle text-red-400 text-xl"></i> 闭源</td>
+                        </tr>
+                        <tr class="border-b border-slate-100">
+                            <td class="py-3 px-4 font-medium">模型选择</td>
+                            <td class="text-center py-3 px-4"><i class="ph ph-check-circle text-green-500 text-xl"></i> 任意模型</td>
+                            <td class="text-center py-3 px-4"><i class="ph ph-lock-key text-slate-400 text-xl"></i> 仅限 Anthropic</td>
+                        </tr>
+                        <tr class="border-b border-slate-100">
+                            <td class="py-3 px-4 font-medium">API Key</td>
+                            <td class="text-center py-3 px-4"><i class="ph ph-key text-blue-500 text-xl"></i> 自带 Key</td>
+                            <td class="text-center py-3 px-4"><i class="ph ph-lock-key text-slate-400 text-xl"></i> 必须 Anthropic</td>
+                        </tr>
+                        <tr class="border-b border-slate-100">
+                            <td class="py-3 px-4 font-medium">代码隐私</td>
+                            <td class="text-center py-3 px-4"><i class="ph ph-shield-check text-green-500 text-xl"></i> 本地执行</td>
+                            <td class="text-center py-3 px-4"><i class="ph ph-globe text-slate-400 text-xl"></i> 云端传输</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-medium">插件生态</td>
+                            <td class="text-center py-3 px-4"><i class="ph ph-puzzle-piece text-blue-500 text-xl"></i> 开放扩展</td>
+                            <td class="text-center py-3 px-4"><i class="ph ph-check-circle text-slate-400 text-xl"></i> 官方市场</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 共同点 -->
+            <div class="grid grid-cols-2 gap-6">
+                <div class="bg-slate-50 p-6 rounded-xl card-gradient-border-slate">
+                    <h4 class="font-bold text-slate-800 mb-3 flex items-center gap-2">
+                        <i class="ph ph-check text-green-500"></i> 共同支持的规范
+                    </h4>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li class="flex items-center gap-2">
+                            <i class="ph ph-file-text text-blue-400"></i> AGENTS.md 规范
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="ph ph-plugs text-blue-400"></i> MCP 工具协议
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="ph ph-code text-blue-400"></i> Skills 体系
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-blue-50 p-6 rounded-xl card-gradient-border-blue">
+                    <h4 class="font-bold text-blue-900 mb-3 flex items-center gap-2">
+                        <i class="ph ph-lightning text-blue-500"></i> OpenCode 优势
+                    </h4>
+                    <ul class="space-y-2 text-sm text-blue-800">
+                        <li class="flex items-center gap-2">
+                            <i class="ph ph-lock-key-open text-blue-500"></i> 打破供应商锁定
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="ph ph-currency-circle-dollar text-blue-500"></i> 成本灵活可控
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="ph ph-code text-blue-500"></i> 可自托管／可审计
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-6 bg-gradient-to-r from-blue-500 to-emerald-500 p-6 rounded-xl text-white">
+                <p class="text-center font-bold text-lg">
+                    <i class="ph ph-info mr-2"></i>
+                    本质相同，选择自由：同样的工程理念，更多的开放选择
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

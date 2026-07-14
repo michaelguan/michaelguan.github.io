@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropics Financial Services - 第 45 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 3rem 6rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-handshake text-blue-600"></i> 合作生态 — 两大市场数据合作插件
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-8"></div>
+
+            <div class="grid grid-cols-2 gap-6">
+                <div class="bg-white p-5 rounded-xl card-gradient-border border-t-4 border-t-blue-500">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="ph ph-chart-line text-blue-500 text-3xl"></i>
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-800">LSEG (Refinitiv)</h3>
+                            <p class="text-xs text-slate-500">partner-built/lseg</p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-xs font-bold text-slate-700 mb-1">8 固定收入技能 + 8 条 /analyze-* 指令</p>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="text-xs font-mono bg-blue-50 text-blue-700 px-2 py-0.5 rounded">bond-futures-basis</span>
+                            <span class="text-xs font-mono bg-blue-50 text-blue-700 px-2 py-0.5 rounded">bond-relative-value</span>
+                            <span class="text-xs font-mono bg-blue-50 text-blue-700 px-2 py-0.5 rounded">fx-carry-trade</span>
+                            <span class="text-xs font-mono bg-blue-50 text-blue-700 px-2 py-0.5 rounded">swap-curve-strategy</span>
+                            <span class="text-xs font-mono bg-blue-50 text-blue-700 px-2 py-0.5 rounded">option-vol-analysis</span>
+                            <span class="text-xs font-mono bg-blue-50 text-blue-700 px-2 py-0.5 rounded">macro-rates-monitor</span>
+                            <span class="text-xs font-mono bg-blue-50 text-blue-700 px-2 py-0.5 rounded">equity-research</span>
+                            <span class="text-xs font-mono bg-blue-50 text-blue-700 px-2 py-0.5 rounded">fixed-income-portfolio</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-xs font-mono bg-slate-100 text-slate-700 px-2 py-1 rounded text-xs inline-block">https://api.analytics.lseg.com/lfa/mcp</p>
+                    </div>
+                    <div class="bg-blue-50 p-3 rounded-lg">
+                        <p class="text-xs text-blue-700 font-medium">用场：FICC 桌面、利率策略、波动率套利</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl card-gradient-border border-t-4 border-t-amber-500">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="ph ph-newspaper text-amber-500 text-3xl"></i>
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-800">S&P Global (CapIQ)</h3>
+                            <p class="text-xs text-slate-500">partner-built/spglobal</p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-xs font-bold text-slate-700 mb-1">3 技能</p>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="text-xs font-mono bg-amber-50 text-amber-700 px-2 py-0.5 rounded">earnings-preview-beta</span>
+                            <span class="text-xs font-mono bg-amber-50 text-amber-700 px-2 py-0.5 rounded">funding-digest</span>
+                            <span class="text-xs font-mono bg-amber-50 text-amber-700 px-2 py-0.5 rounded">tear-sheet</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-xs font-mono bg-slate-100 text-slate-700 px-2 py-1 rounded text-xs inline-block">https://kfinance.kensho.com/integrations/mcp</p>
+                    </div>
+                    <div class="bg-amber-50 p-3 rounded-lg">
+                        <p class="text-xs text-amber-700 font-medium">earnings-preview-beta: 业绩会前瞻长模板 + report-template.md</p>
+                        <p class="text-xs text-amber-700 font-medium mt-1">tear-sheet: 一页交底 — 含 4 种视角 reference</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-100 p-4 rounded-lg mt-6 border-l-4 border-l-slate-400">
+                <p class="text-xs font-bold text-slate-700 mb-1">特别说明</p>
+                <p class="text-xs text-slate-600">合作插件由合作方维护，自带各自 LICENSE — 安装即装，使用需该方授权</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

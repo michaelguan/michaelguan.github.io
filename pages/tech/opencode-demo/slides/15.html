@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode：开源 AI 编程代理 - 第 15 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 4rem 8rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+        .card-gradient-border-blue { position: relative; background-color: #f0f9ff; border: 1px solid #e0f2fe !important; box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.1), 0 4px 10px -2px rgba(56, 189, 248, 0.03) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-plugs text-blue-600"></i> 75+ Providers 支持
+            </h2>
+            <div class="w-16 h-1 bg-blue-500 rounded-full mb-10"></div>
+
+            <div class="bg-white p-6 rounded-xl card-gradient-border mb-6">
+                <p class="text-lg text-slate-700 leading-relaxed mb-4">
+                    OpenCode 支持 <strong>75+ 个模型提供商</strong>，不锁定任何单一供应商，让你自由选择最合适的模型。
+                </p>
+                <div class="flex items-center gap-2 text-sm text-slate-500">
+                    <i class="ph ph-check-circle text-green-500"></i>
+                    支持 API 密钥自带，代码和数据不经过第三方服务器。
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4 mb-6 content-area">
+                <div class="bg-slate-50 p-4 rounded-xl card-gradient-border-slate">
+                    <h4 class="font-bold text-blue-600 mb-2 text-sm">Anthropic</h4>
+                    <div class="space-y-1 text-xs text-slate-600">
+                        <p>• Claude Opus 4.7</p>
+                        <p>• Claude Sonnet 4.6</p>
+                        <p>• Claude Haiku 4.5</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl card-gradient-border-slate">
+                    <h4 class="font-bold text-blue-600 mb-2 text-sm">OpenAI</h4>
+                    <div class="space-y-1 text-xs text-slate-600">
+                        <p>• GPT-5.5 系列</p>
+                        <p>• GPT-5.4 系列</p>
+                        <p>• GPT-5 Nano</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl card-gradient-border-slate">
+                    <h4 class="font-bold text-blue-600 mb-2 text-sm">Google</h4>
+                    <div class="space-y-1 text-xs text-slate-600">
+                        <p>• Gemini 3.1 Pro</p>
+                        <p>• Gemini Advanced</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl card-gradient-border-slate">
+                    <h4 class="font-bold text-blue-600 mb-2 text-sm">Kimi</h4>
+                    <div class="space-y-1 text-xs text-slate-600">
+                        <p>• Kimi K2.6</p>
+                        <p>• Kimi K2.5</p>
+                        <p>• K2p5</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl card-gradient-border-slate">
+                    <h4 class="font-bold text-blue-600 mb-2 text-sm">GLM</h4>
+                    <div class="space-y-1 text-xs text-slate-600">
+                        <p>• GLM 5.1</p>
+                        <p>• GLM 5</p>
+                        <p>• GLM 4.6V</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl card-gradient-border-slate">
+                    <h4 class="font-bold text-blue-600 mb-2 text-sm">其他</h4>
+                    <div class="space-y-1 text-xs text-slate-600">
+                        <p>• MiniMax M2.7</p>
+                        <p>• Grok Code Fast</p>
+                        <p>• 及更多...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 p-5 rounded-xl card-gradient-border-blue">
+                <h3 class="font-bold text-blue-900 mb-3 flex items-center gap-2">
+                    <i class="ph ph-arrows-wide text-blue-500"></i> 模型切换
+                </h3>
+                <div class="flex items-center gap-3 text-sm text-blue-800">
+                    <code class="bg-white px-3 py-1.5 rounded">/model</code>
+                    <span>查看所有可用模型并切换</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

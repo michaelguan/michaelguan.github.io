@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropics Financial Services - 第 10 页</title>
+    <script src="../libs/tailwind.js"></script>
+    <link rel="stylesheet" href="../libs/style.css">
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f8fafc; overflow: hidden; }
+        .slide-container { width: 100vw; height: 100vh; display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { width: 100vw; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; padding: 3rem 6rem; box-sizing: border-box; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent; border: none; outline: none; text-align: center; cursor: pointer; }
+        .card-gradient-border { position: relative; background-color: #ffffff; border: 1px solid #f1f5f9 !important; box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.02) !important; }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slide-track">
+        <div class="slide">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                <i class="ph ph-plugs text-amber-600"></i> MCP 连接器 ③ — S&P Global (CapIQ)
+            </h2>
+            <div class="w-16 h-1 bg-amber-500 rounded-full mb-6"></div>
+            <div class="bg-amber-50 p-4 rounded-lg mb-4 flex items-center justify-between">
+                <div>
+                    <p class="text-xl font-bold text-amber-900">S&P Global (CapIQ) — 并购与对标分析的黄金数据源</p>
+                    <p class="text-sm text-amber-700">CapIQ 是 pitch-deck 与估值模型的最大单一数据来源</p>
+                </div>
+                <span class="bg-amber-200 text-amber-800 px-3 py-1 rounded-full text-sm font-bold">MCP</span>
+            </div>
+            <div class="bg-white p-4 rounded-xl card-gradient-border mb-4">
+                <p class="text-xs text-slate-500 mb-1">端点 Endpoint</p>
+                <p class="text-xs font-mono bg-slate-100 text-slate-800 px-2 py-1 rounded">https://kfinance.kensho.com/integrations/mcp</p>
+            </div>
+            <div class="bg-white p-4 rounded-xl card-gradient-border mb-4">
+                <p class="text-sm font-bold text-slate-800 mb-2 flex items-center gap-2"><i class="ph ph-database text-amber-500"></i> 核心数据</p>
+                <ul class="space-y-1.5 text-sm text-slate-600">
+                    <li class="flex items-start gap-2"><i class="ph ph-check text-amber-400 mt-0.5"></i><span>公司财报/SEC filings 全文</span></li>
+                    <li class="flex items-start gap-2"><i class="ph ph-check text-amber-400 mt-0.5"></i><span>交易倍数 (EV/EBITDA, P/E, EV/Sales)</span></li>
+                    <li class="flex items-start gap-2"><i class="ph ph-check text-amber-400 mt-0.5"></i><span>并购先例交易历史与对价</span></li>
+                    <li class="flex items-start gap-2"><i class="ph ph-check text-amber-400 mt-0.5"></i><span>债券发行信息与收益率曲线</span></li>
+                </ul>
+            </div>
+            <div class="bg-white p-4 rounded-xl card-gradient-border mb-4">
+                <p class="text-sm font-bold text-slate-800 mb-2">技能调用</p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-xs font-mono bg-amber-50 text-amber-700 px-2 py-1 rounded">comps-analysis</span>
+                    <span class="text-xs font-mono bg-amber-50 text-amber-700 px-2 py-1 rounded">dcf-model</span>
+                    <span class="text-xs font-mono bg-amber-50 text-amber-700 px-2 py-1 rounded">lbo-model</span>
+                    <span class="text-xs font-mono bg-amber-50 text-amber-700 px-2 py-1 rounded">pitch-deck</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
