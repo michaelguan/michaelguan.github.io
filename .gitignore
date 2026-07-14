@@ -16,3 +16,6 @@ libs/*.min.css
 
 # Windows
 Thumbs.db
+
+# 规划工具临时目录
+.omo/
