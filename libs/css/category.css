@@ -18,27 +18,92 @@
 }
 
 /* --------------------------------------------------------------------------
-   Cover
+   Cover — 色块封面
    -------------------------------------------------------------------------- */
 .category-cover {
-  padding: var(--space-12) 0 var(--space-10);
+  padding: var(--space-16) 0 var(--space-12);
   border-bottom: 1px solid var(--border-base);
   background: var(--surface-elevated);
+  position: relative;
+  overflow: hidden;
 }
+
+/* 分类色块 — 顶部渐变条 */
+.category-page[data-category="tech"] .category-cover::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--color-indigo-500) 0%, var(--color-indigo-400) 100%);
+}
+.category-page[data-category="game"] .category-cover::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--color-emerald-500) 0%, var(--color-emerald-400) 100%);
+}
+.category-page[data-category="life"] .category-cover::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--color-amber-500) 0%, var(--color-amber-400) 100%);
+}
+
+/* 浮色背景 — 更明显的渐变 */
 .category-page[data-category="tech"] .category-cover {
   background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(99, 102, 241, 0.06) 0%, transparent 60%),
+    radial-gradient(60% 60% at 85% 15%, var(--bg-glow-indigo) 0%, transparent 60%),
     var(--surface-elevated);
 }
 .category-page[data-category="game"] .category-cover {
   background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(16, 185, 129, 0.10) 0%, transparent 60%),
+    radial-gradient(60% 60% at 85% 15%, rgba(16, 185, 129, 0.08) 0%, transparent 60%),
     var(--surface-elevated);
 }
 .category-page[data-category="life"] .category-cover {
   background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(217, 119, 6, 0.10) 0%, transparent 60%),
+    radial-gradient(60% 60% at 85% 15%, rgba(245, 158, 11, 0.08) 0%, transparent 60%),
     var(--surface-elevated);
+}
+
+/* 大字号装饰文字 */
+.category-page[data-category="tech"] .category-cover {
+  background-image:
+    radial-gradient(60% 60% at 85% 15%, var(--bg-glow-indigo) 0%, transparent 60%),
+    linear-gradient(to top, rgba(99, 102, 241, 0.03) 0%, transparent 40%);
+}
+.category-page[data-category="game"] .category-cover {
+  background-image:
+    radial-gradient(60% 60% at 85% 15%, rgba(16, 185, 129, 0.08) 0%, transparent 60%),
+    linear-gradient(to top, rgba(16, 185, 129, 0.03) 0%, transparent 40%);
+}
+.category-page[data-category="life"] .category-cover {
+  background-image:
+    radial-gradient(60% 60% at 85% 15%, rgba(245, 158, 11, 0.08) 0%, transparent 60%),
+    linear-gradient(to top, rgba(245, 158, 11, 0.03) 0%, transparent 40%);
+}
+
+/* 首页封面 */
+.home-cover {
+  padding: var(--space-20) 0 var(--space-14);
+  background:
+    radial-gradient(50% 50% at 90% 10%, var(--bg-glow-indigo) 0%, transparent 60%),
+    radial-gradient(40% 40% at 10% 80%, var(--bg-glow-amber) 0%, transparent 50%),
+    var(--surface-elevated);
+  position: relative;
+  overflow: hidden;
+}
+.home-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 0%, var(--surface-base) 100%);
+  pointer-events: none;
+}
+.category-page[data-category="home"] .category-cover::before {
+  background: linear-gradient(180deg, var(--color-indigo-400) 0%, var(--color-amber-400) 100%);
 }
 
 .category-eyebrow {
@@ -70,26 +135,30 @@
 }
 
 /* --------------------------------------------------------------------------
-   Featured article
+   Featured article — 增强层级
    -------------------------------------------------------------------------- */
 .featured-section {
-  padding: var(--space-10) 0 var(--space-8);
+  padding: var(--space-12) 0 var(--space-10);
 }
 
 .article-feature {
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-2xl);
   background: var(--surface-elevated);
-  border: 1px solid var(--border-base);
-  padding: var(--space-8);
-  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-strong);
+  padding: var(--space-10);
+  box-shadow:
+    0 1px 3px rgba(28, 25, 23, 0.06),
+    0 4px 12px rgba(28, 25, 23, 0.08);
   transition:
     transform var(--transition-base),
     box-shadow var(--transition-base),
     border-color var(--transition-base);
 }
 .article-feature:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+  box-shadow:
+    0 4px 8px rgba(28, 25, 23, 0.10),
+    0 12px 28px rgba(28, 25, 23, 0.12);
 }
 
 .feature-link {
@@ -136,11 +205,11 @@
 }
 
 .feature-title {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: clamp(1.5rem, 2.5vw, 2.25rem);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   margin: 0 0 var(--space-4);
   color: var(--text-primary);
 }
@@ -166,7 +235,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   Article Listing
+   Article Listing — Feature 优先，去 card 化
    -------------------------------------------------------------------------- */
 .article-listing-section {
   padding: 0 0 var(--space-10);
@@ -180,7 +249,7 @@
   color: var(--text-subtle);
   margin: 0 0 var(--space-5);
   padding-bottom: var(--space-3);
-  border-bottom: 1px dashed var(--border-base);
+  border-bottom: 1px solid var(--border-strong);
 }
 
 .article-list {
@@ -189,7 +258,7 @@
   padding: 0;
 }
 .article-item {
-  margin: 0;
+  margin: 0 0 var(--space-1);
   padding: 0;
   border-bottom: 1px solid var(--border-base);
 }
@@ -199,18 +268,31 @@
 
 .article-link {
   display: block;
-  padding: var(--space-6) var(--space-2);
+  padding: var(--space-5) var(--space-3);
   text-decoration: none;
   color: inherit;
   border-radius: var(--radius-md);
   transition: background var(--transition-base);
   position: relative;
+  /* 左侧彩色条 */
+  border-left: 3px solid transparent;
 }
 .article-link:hover {
-  background: var(--surface-elevated);
+  background: var(--surface-soft);
 }
 .article-link:hover .article-item-title {
   color: var(--accent);
+}
+
+/* 分类彩色条 */
+.article-item[data-category="tech"] .article-link {
+  border-left-color: var(--color-indigo-500);
+}
+.article-item[data-category="game"] .article-link {
+  border-left-color: var(--color-emerald-500);
+}
+.article-item[data-category="life"] .article-link {
+  border-left-color: var(--color-amber-500);
 }
 
 .article-item-meta {
@@ -227,9 +309,9 @@
 .article-item-title {
   font-family: var(--font-sans);
   font-size: var(--text-lg);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.4;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   margin: 0 0 var(--space-2);
   color: var(--text-primary);
   transition: color var(--transition-fast);
