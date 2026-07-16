@@ -304,6 +304,23 @@
 }
 
 /* --------------------------------------------------------------------------
+   Home page hint
+   -------------------------------------------------------------------------- */
+.home-hint {
+  margin-top: var(--space-6);
+  padding: var(--space-4) var(--space-5);
+  border: 1px dashed var(--border-base);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  text-align: center;
+}
+.home-hint strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
    Mobile
    -------------------------------------------------------------------------- */
 @media (max-width: 640px) {

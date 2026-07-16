@@ -8,13 +8,14 @@
   'use strict';
 
   const ROUTES = {
+    home: '/pages/home/index.html',
     tech: '/pages/tech/index.html',
     game: '/pages/game/index.html',
     life: '/pages/life/index.html'
   };
 
-  // 空 hash / 未识别 hash → 默认 tech
-  const DEFAULT_ROUTE = 'tech';
+  // 空 hash / 未识别 hash → 默认 home
+  const DEFAULT_ROUTE = 'home';
 
   // === Detect environment ===
   const isParent = window === window.top;
@@ -30,7 +31,7 @@
   }
 
   // === State ===
-  let currentRoute = 'tech';
+  let currentRoute = 'home';
   let isFirstLoad = true;
 
   // === Helpers ===
@@ -45,7 +46,7 @@
 
   function setActiveNav(route) {
     if (!isParent) return;
-    const validCategories = ['tech', 'game', 'life'];
+    const validCategories = ['home', 'tech', 'game', 'life'];
     if (!validCategories.includes(route)) return;
     navItems.forEach(item => {
       const isActive = item.dataset.category === route;
@@ -54,12 +55,12 @@
     });
     const crumbCurrent = document.querySelector('[data-crumb-current]');
     if (crumbCurrent) {
-      const labels = { tech: '技术', game: '游戏', life: '生活' };
-      crumbCurrent.textContent = labels[route] || '技术';
+      const labels = { home: '首页', tech: '技术', game: '游戏', life: '生活' };
+      crumbCurrent.textContent = labels[route] || '首页';
     }
     const count = document.querySelector('[data-count]');
     if (count) {
-      const counts = { tech: '3 篇文章', game: '2 篇文章', life: '2 篇文章' };
+      const counts = { home: '7 篇文章', tech: '3 篇文章', game: '2 篇文章', life: '2 篇文章' };
       count.textContent = counts[route] || '';
     }
   }
