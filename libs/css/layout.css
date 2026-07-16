@@ -396,25 +396,27 @@
 }
 
 /* --------------------------------------------------------------------------
-   9. Responsive — Mobile (≤768) — 单栏 + 抽屉
+   9. Responsive — Mobile (≤768) — 单栏 + 左抽屉（右栏彻底隐藏）
    -------------------------------------------------------------------------- */
-/* 移动端隐藏弹幕 + 右栏折叠按钮（右栏改为底部抽屉） */
+/* 移动端：右栏完全隐藏（不渲染、不占位），弹幕隐藏，右栏切换按钮也隐藏 */
 @media (max-width: 768px) {
   .topbar-danmaku { display: none; }
   .content-toolbar [data-action="toggle-right-rail"] { display: none; }
+  .right-rail { display: none !important; }
+
   :root {
     --left-rail-width: 280px;
-    --right-rail-width: 100%;
+    --right-rail-width: 0;
   }
   .app-layout {
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas: "content";
     padding: var(--space-4) var(--space-3);
   }
-  .left-rail, .right-rail {
+  .left-rail {
     position: fixed;
     top: var(--topbar-height);
-    bottom: 60px;
+    bottom: 0;
     width: var(--left-rail-width);
     max-width: 86vw;
     background: var(--surface-elevated);
@@ -424,53 +426,28 @@
     box-shadow: var(--shadow-xl);
     transition: transform var(--transition-slow), opacity var(--transition-fast);
     align-items: stretch;
-  }
-  .left-rail {
     left: 0;
     border-right: 1px solid var(--border-base);
     transform: translateX(-100%);
     opacity: 0;
     pointer-events: none;
+    overflow-y: auto;
   }
   .left-rail.is-open {
     transform: translateX(0);
     opacity: 1;
     pointer-events: auto;
   }
-  /* 右栏在移动端是底部抽屉 */
-  .right-rail {
-    left: 0; right: 0;
-    bottom: 0;
-    width: 100%;
-    max-width: 100%;
-    transform: translateY(100%);
-    border-top: 1px solid var(--border-base);
-    border-right: none;
-    height: 70vh;
-    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-    padding: var(--space-6) var(--space-5);
-  }
-  .right-rail.is-open {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
-  }
-  .right-rail-grid {
-    /* 移动端单列堆叠 */
-    grid-template-columns: 1fr !important;
-  }
   .content-pane { grid-area: content; }
 
-  /* 移动端显示汉堡按钮 */
   .mobile-menu-toggle { display: inline-flex; }
 
-  /* 收缩时的样式不再适用 */
+  /* 收缩状态在移动端不再适用，强制恢复单列 */
   .app-layout[data-left-collapsed="true"],
   .app-layout[data-right-collapsed="true"] {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  /* 页脚 */
   .site-footer-inner {
     flex-direction: column;
     text-align: center;
