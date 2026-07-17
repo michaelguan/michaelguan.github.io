@@ -6,8 +6,13 @@
 
 const STORAGE_KEY = 'blog-layout-state';
 const DEFAULT_STATE = {
-  leftCollapsed: false
+  leftCollapsed: false,
+  leftWidth: 240
 };
+
+const RAIL_MIN = 200;
+const RAIL_MAX_RATIO = 0.45;
+const RAIL_MAX_PX = 460;
 
 // === State ===
 const state = loadState();
@@ -32,17 +37,81 @@ function applyLayoutState() {
   const layout = document.querySelector('.app-layout');
   if (!layout) return;
   layout.dataset.leftCollapsed = String(state.leftCollapsed);
+  if (!state.leftCollapsed) {
+    layout.style.setProperty('--left-rail-width', state.leftWidth + 'px');
+  }
 
   document.querySelectorAll('[data-action="toggle-left-rail"]').forEach(btn => {
     btn.setAttribute('aria-pressed', String(state.leftCollapsed));
     btn.setAttribute('aria-label', state.leftCollapsed ? '展开左栏' : '收起左栏');
   });
+
+  const handle = document.querySelector('[data-rail-resize]');
+  if (handle) handle.classList.toggle('is-disabled', state.leftCollapsed);
 }
 
 function toggleLeftRail() {
   state.leftCollapsed = !state.leftCollapsed;
   applyLayoutState();
   saveState();
+}
+
+// === Left rail drag-to-resize ===
+function clampWidth(px) {
+  const max = Math.min(RAIL_MAX_PX, window.innerWidth * RAIL_MAX_RATIO);
+  return Math.max(RAIL_MIN, Math.min(px, max));
+}
+
+function initRailResize() {
+  const layout = document.querySelector('.app-layout');
+  const handle = document.querySelector('[data-rail-resize]');
+  if (!layout || !handle) return;
+  if (window.matchMedia('(max-width: 768px)').matches) return;
+
+  let dragging = false;
+
+  function onMove(e) {
+    if (!dragging) return;
+    const rect = layout.getBoundingClientRect();
+    // 内容区内边距左 = padding-left(var(--space-5)=1.25rem=20px)；列起点 = rect.left + paddingLeft
+    const cs = getComputedStyle(layout);
+    const padLeft = parseFloat(cs.paddingLeft) || 0;
+    const gap = parseFloat(cs.columnGap) || 0;
+    const x = e.clientX - rect.left - padLeft;
+    const next = clampWidth(x);
+    state.leftWidth = Math.round(next);
+    layout.style.setProperty('--left-rail-width', state.leftWidth + 'px');
+  }
+
+  function onUp() {
+    if (!dragging) return;
+    dragging = false;
+    document.removeEventListener('mousemove', onMove);
+    document.removeEventListener('mouseup', onUp);
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+    handle.classList.remove('is-dragging');
+    saveState();
+  }
+
+  handle.addEventListener('mousedown', e => {
+    if (state.leftCollapsed) return;
+    e.preventDefault();
+    dragging = true;
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+    handle.classList.add('is-dragging');
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onUp);
+  });
+
+  // 窗口尺寸变化时重新约束已保存宽度
+  window.addEventListener('resize', () => {
+    if (state.leftWidth) {
+      state.leftWidth = Math.round(clampWidth(state.leftWidth));
+      if (!state.leftCollapsed) layout.style.setProperty('--left-rail-width', state.leftWidth + 'px');
+    }
+  });
 }
 
 // === Mobile drawers ===
@@ -163,6 +232,7 @@ function initArticleSearch() {
 function init() {
   applyLayoutState();
   initArticleSearch();
+  initRailResize();
 
   // 事件委托
   document.addEventListener('click', e => {

@@ -261,6 +261,46 @@
   scrollbar-color: var(--border-strong) transparent;
 }
 
+/* 拖拽调整左栏宽度的手柄 */
+.rail-resize-handle {
+  position: absolute;
+  top: 0;
+  right: calc(var(--space-6) / -2 - 3px);
+  width: 6px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: var(--z-elevated);
+  border-radius: var(--radius-full);
+  background: transparent;
+  transition: background var(--transition-fast);
+}
+.rail-resize-handle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--border-strong);
+  transition: background var(--transition-fast);
+}
+.rail-resize-handle:hover::after,
+.rail-resize-handle:focus-visible::after,
+.rail-resize-handle.is-dragging::after {
+  background: var(--accent);
+}
+.rail-resize-handle:hover,
+.rail-resize-handle:focus-visible,
+.rail-resize-handle.is-dragging {
+  background: var(--accent-faint);
+  outline: none;
+}
+.rail-resize-handle.is-disabled {
+  display: none;
+}
+
 /* --------------------------------------------------------------------------
    4. Content Pane
    -------------------------------------------------------------------------- */
@@ -369,6 +409,7 @@
 /* 移动端：弹幕隐藏，单栏 + 左抽屉 */
 @media (max-width: 768px) {
   .topbar-danmaku { display: none; }
+  .rail-resize-handle { display: none; }
 
   :root {
     --left-rail-width: 280px;
