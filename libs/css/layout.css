@@ -225,8 +225,7 @@
   display: grid;
   grid-template-columns:
     var(--left-rail-width)
-    minmax(0, 1fr)
-    var(--right-rail-width);
+    minmax(0, 1fr);
   gap: var(--space-6);
   width: 100%;
   max-width: var(--layout-max-width);
@@ -237,24 +236,11 @@
 
 /* 收起左栏 */
 .app-layout[data-left-collapsed="true"] {
-  grid-template-columns: var(--left-rail-min) minmax(0, 1fr) var(--right-rail-width);
-}
-
-/* 收起右栏 */
-.app-layout[data-right-collapsed="true"] {
-  grid-template-columns: var(--left-rail-width) minmax(0, 1fr) 0;
-}
-.app-layout[data-left-collapsed="true"][data-right-collapsed="true"] {
-  grid-template-columns: var(--left-rail-min) minmax(0, 1fr) 0;
-}
-.app-layout[data-right-collapsed="true"] .right-rail {
-  width: 0; opacity: 0; pointer-events: none;
-  padding: 0; margin: 0; border: none;
-  overflow: hidden;
+  grid-template-columns: var(--left-rail-min) minmax(0, 1fr);
 }
 
 /* 过渡 */
-.left-rail, .right-rail, .content-pane {
+.left-rail, .content-pane {
   transition: width var(--transition-slow), opacity var(--transition-slow);
 }
 
@@ -306,25 +292,8 @@
 /* iframe 容器样式在 iframe.css 里定义（单一职责） */
 
 /* --------------------------------------------------------------------------
-   5. Right Rail
-   -------------------------------------------------------------------------- */
-.right-rail {
-  position: sticky;
-  top: calc(var(--topbar-height) + var(--space-6));
-  align-self: start;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-  height: calc(100vh - var(--topbar-height) - var(--space-12));
-  overflow-y: auto;
-  overflow-x: hidden;
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-strong) transparent;
-}
-
-/* --------------------------------------------------------------------------
-   6. 左栏收起状态 — 仅显示图标
-   -------------------------------------------------------------------------- */
+    5. 左栏收起状态 — 仅显示图标
+    -------------------------------------------------------------------------- */
 .app-layout[data-left-collapsed="true"] .left-rail {
   align-items: center;
 }
@@ -390,7 +359,6 @@
 @media (max-width: 1024px) {
   :root {
     --left-rail-width: 200px;
-    --right-rail-width: 260px;
   }
   .app-layout { gap: var(--space-5); padding: var(--space-5) var(--space-4); }
 }
@@ -398,15 +366,12 @@
 /* --------------------------------------------------------------------------
    9. Responsive — Mobile (≤768) — 单栏 + 左抽屉（右栏彻底隐藏）
    -------------------------------------------------------------------------- */
-/* 移动端：右栏完全隐藏（不渲染、不占位），弹幕隐藏，右栏切换按钮也隐藏 */
+/* 移动端：弹幕隐藏，单栏 + 左抽屉 */
 @media (max-width: 768px) {
   .topbar-danmaku { display: none; }
-  .content-toolbar [data-action="toggle-right-rail"] { display: none; }
-  .right-rail { display: none !important; }
 
   :root {
     --left-rail-width: 280px;
-    --right-rail-width: 0;
   }
   .app-layout {
     grid-template-columns: minmax(0, 1fr);
@@ -443,8 +408,7 @@
   .mobile-menu-toggle { display: inline-flex; }
 
   /* 收缩状态在移动端不再适用，强制恢复单列 */
-  .app-layout[data-left-collapsed="true"],
-  .app-layout[data-right-collapsed="true"] {
+  .app-layout[data-left-collapsed="true"] {
     grid-template-columns: minmax(0, 1fr);
   }
 

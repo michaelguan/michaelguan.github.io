@@ -180,19 +180,3 @@
   color: var(--text-secondary);
   margin: 0;
 }
-
-/* --------------------------------------------------------------------------
-   右栏收起态
-   -------------------------------------------------------------------------- */
-.app-layout[data-right-collapsed="true"] .right-rail > * {
-  display: none;
-}
-.app-layout[data-right-collapsed="true"] .right-rail {
-  width: 0;
-  height: 0;
-  margin: 0;
-  padding: 0;
-  border: none;
-  pointer-events: none;
-  overflow: hidden;
-}

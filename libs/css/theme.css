@@ -178,7 +178,6 @@
   --layout-max-width: 1280px;
   --topbar-height: 68px;
   --left-rail-width: 240px;
-  --right-rail-width: 300px;
   --left-rail-min: 64px;
 
   /* ----- Z-index layers ----- */
@@ -363,6 +362,6 @@ ul, ol { margin: 0; padding-left: 1.5em; }
 
 /* 打印 */
 @media print {
-  .topbar, .left-rail, .right-rail, .site-footer, .mobile-menu-toggle { display: none !important; }
+  .topbar, .left-rail, .site-footer, .mobile-menu-toggle { display: none !important; }
   .content-pane { width: 100% !important; }
 }

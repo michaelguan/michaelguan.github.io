@@ -6,8 +6,7 @@
 
 const STORAGE_KEY = 'blog-layout-state';
 const DEFAULT_STATE = {
-  leftCollapsed: false,
-  rightCollapsed: false
+  leftCollapsed: false
 };
 
 // === State ===
@@ -33,26 +32,15 @@ function applyLayoutState() {
   const layout = document.querySelector('.app-layout');
   if (!layout) return;
   layout.dataset.leftCollapsed = String(state.leftCollapsed);
-  layout.dataset.rightCollapsed = String(state.rightCollapsed);
 
   document.querySelectorAll('[data-action="toggle-left-rail"]').forEach(btn => {
     btn.setAttribute('aria-pressed', String(state.leftCollapsed));
     btn.setAttribute('aria-label', state.leftCollapsed ? '展开左栏' : '收起左栏');
   });
-  document.querySelectorAll('[data-action="toggle-right-rail"]').forEach(btn => {
-    btn.setAttribute('aria-pressed', String(state.rightCollapsed));
-    btn.setAttribute('aria-label', state.rightCollapsed ? '展开右栏' : '收起右栏');
-  });
 }
 
 function toggleLeftRail() {
   state.leftCollapsed = !state.leftCollapsed;
-  applyLayoutState();
-  saveState();
-}
-
-function toggleRightRail() {
-  state.rightCollapsed = !state.rightCollapsed;
   applyLayoutState();
   saveState();
 }
@@ -68,7 +56,7 @@ function closeMobileDrawer(side) {
   if (side) {
     document.querySelector(`.${side}-rail`)?.classList.remove('is-open');
   } else {
-    document.querySelectorAll('.left-rail, .right-rail').forEach(el => el.classList.remove('is-open'));
+    document.querySelectorAll('.left-rail').forEach(el => el.classList.remove('is-open'));
   }
   document.querySelector('.backdrop')?.classList.remove('is-active');
   document.body.style.overflow = '';
@@ -82,12 +70,6 @@ function toggleMobileLeft() {
   const rail = document.querySelector('.left-rail');
   if (rail.classList.contains('is-open')) closeMobileDrawer('left');
   else openMobileDrawer('left');
-}
-
-function toggleMobileRight() {
-  const rail = document.querySelector('.right-rail');
-  if (rail.classList.contains('is-open')) closeMobileDrawer('right');
-  else openMobileDrawer('right');
 }
 
 // === Article search (left rail) ===
@@ -193,11 +175,6 @@ function init() {
           if (window.innerWidth <= 768) toggleMobileLeft();
           else toggleLeftRail();
           break;
-        case 'toggle-right-rail':
-          e.preventDefault();
-          if (window.innerWidth <= 768) toggleMobileRight();
-          else toggleRightRail();
-          break;
         case 'close-drawer':
           closeMobileDrawer(target.dataset.side);
           break;
@@ -229,9 +206,7 @@ function init() {
   // 暴露 API
   window.blogLayout = {
     toggleLeftRail,
-    toggleRightRail,
     openMobileLeft: () => openMobileDrawer('left'),
-    openMobileRight: () => openMobileDrawer('right'),
     closeMobileDrawer,
     getState: () => ({ ...state })
   };
