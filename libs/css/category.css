@@ -28,29 +28,6 @@
   overflow: hidden;
 }
 
-/* 分类色块 — 顶部渐变条 */
-.category-page[data-category="tech"] .category-cover::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 6px;
-  background: linear-gradient(90deg, var(--color-indigo-500) 0%, var(--color-indigo-400) 100%);
-}
-.category-page[data-category="game"] .category-cover::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 6px;
-  background: linear-gradient(90deg, var(--color-emerald-500) 0%, var(--color-emerald-400) 100%);
-}
-.category-page[data-category="life"] .category-cover::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 6px;
-  background: linear-gradient(90deg, var(--color-amber-500) 0%, var(--color-amber-400) 100%);
-}
-
 /* 浮色背景 — 更明显的渐变 */
 .category-page[data-category="tech"] .category-cover {
   background:
@@ -101,9 +78,6 @@
   inset: 0;
   background: linear-gradient(to bottom, transparent 0%, var(--surface-base) 100%);
   pointer-events: none;
-}
-.category-page[data-category="home"] .category-cover::before {
-  background: linear-gradient(180deg, var(--color-indigo-400) 0%, var(--color-amber-400) 100%);
 }
 
 .category-eyebrow {
@@ -274,8 +248,6 @@
   border-radius: var(--radius-md);
   transition: background var(--transition-base);
   position: relative;
-  /* 左侧彩色条 */
-  border-left: 3px solid transparent;
 }
 .article-link:hover {
   background: var(--surface-soft);
@@ -284,25 +256,18 @@
   color: var(--accent);
 }
 
-/* 分类彩色条 */
-.article-item[data-category="tech"] .article-link {
-  border-left-color: var(--color-indigo-500);
-}
-.article-item[data-category="game"] .article-link {
-  border-left-color: var(--color-emerald-500);
-}
-.article-item[data-category="life"] .article-link {
-  border-left-color: var(--color-amber-500);
-}
-
 .article-item-meta {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--space-2);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   color: var(--text-subtle);
   margin-bottom: var(--space-2);
+}
+.article-item-meta .article-category-tag {
+  margin-right: var(--space-1);
 }
 .meta-sep { color: var(--border-strong); }
 
