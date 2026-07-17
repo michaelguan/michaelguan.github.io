@@ -28,7 +28,7 @@
   overflow: hidden;
 }
 
-/* 浮色背景 — 更明显的渐变 */
+/* 浮色背景 — 单束干净光晕，去掉叠加雾感 */
 .category-page[data-category="tech"] .category-cover {
   background:
     radial-gradient(60% 60% at 85% 15%, var(--bg-glow-indigo) 0%, transparent 60%),
@@ -36,48 +36,46 @@
 }
 .category-page[data-category="game"] .category-cover {
   background:
-    radial-gradient(60% 60% at 85% 15%, rgba(16, 185, 129, 0.08) 0%, transparent 60%),
+    radial-gradient(60% 60% at 85% 15%, rgba(16, 185, 129, 0.10) 0%, transparent 60%),
     var(--surface-elevated);
 }
 .category-page[data-category="life"] .category-cover {
   background:
-    radial-gradient(60% 60% at 85% 15%, rgba(245, 158, 11, 0.08) 0%, transparent 60%),
+    radial-gradient(60% 60% at 85% 15%, rgba(245, 158, 11, 0.10) 0%, transparent 60%),
     var(--surface-elevated);
 }
 
-/* 大字号装饰文字 */
-.category-page[data-category="tech"] .category-cover {
-  background-image:
-    radial-gradient(60% 60% at 85% 15%, var(--bg-glow-indigo) 0%, transparent 60%),
-    linear-gradient(to top, rgba(99, 102, 241, 0.03) 0%, transparent 40%);
-}
-.category-page[data-category="game"] .category-cover {
-  background-image:
-    radial-gradient(60% 60% at 85% 15%, rgba(16, 185, 129, 0.08) 0%, transparent 60%),
-    linear-gradient(to top, rgba(16, 185, 129, 0.03) 0%, transparent 40%);
-}
-.category-page[data-category="life"] .category-cover {
-  background-image:
-    radial-gradient(60% 60% at 85% 15%, rgba(245, 158, 11, 0.08) 0%, transparent 60%),
-    linear-gradient(to top, rgba(245, 158, 11, 0.03) 0%, transparent 40%);
-}
-
-/* 首页封面 */
+/* 首页封面 — 干净、高对比，去掉雾感 */
 .home-cover {
   padding: var(--space-20) 0 var(--space-14);
   background:
-    radial-gradient(50% 50% at 90% 10%, var(--bg-glow-indigo) 0%, transparent 60%),
-    radial-gradient(40% 40% at 10% 80%, var(--bg-glow-amber) 0%, transparent 50%),
-    var(--surface-elevated);
+    radial-gradient(42% 60% at 88% 8%, var(--bg-glow-indigo) 0%, transparent 70%),
+    var(--accent-faint);
+  border-bottom: 1px solid var(--border-strong);
   position: relative;
   overflow: hidden;
 }
-.home-cover::before {
+.home-cover .category-eyebrow {
+  position: relative;
+  color: var(--accent);
+  font-weight: 600;
+}
+.home-cover .category-eyebrow::after {
   content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, transparent 0%, var(--surface-base) 100%);
-  pointer-events: none;
+  display: block;
+  width: 36px;
+  height: 2px;
+  margin-top: var(--space-3);
+  background: var(--accent);
+  border-radius: var(--radius-full);
+}
+.home-cover .category-title {
+  color: var(--text-primary);
+  font-weight: 800;
+}
+.home-cover .category-deck {
+  color: var(--text-secondary);
+  max-width: 52ch;
 }
 
 .category-eyebrow {
