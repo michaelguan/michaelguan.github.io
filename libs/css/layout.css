@@ -283,8 +283,8 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 2px;
-  background: var(--border-strong);
+  width: 1px;
+  background: var(--border-base);
   border-radius: var(--radius-full);
   transition: background var(--transition-fast), width var(--transition-fast);
 }
@@ -294,10 +294,10 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 4px;
-  height: 44px;
+  width: 3px;
+  height: 36px;
   border-radius: var(--radius-full);
-  background: var(--border-strong);
+  background: var(--border-base);
   transition: background var(--transition-fast), height var(--transition-fast);
 }
 .rail-resize-handle:hover::before,
@@ -310,7 +310,7 @@
 .rail-resize-handle:focus-visible::after,
 .rail-resize-handle.is-dragging::after {
   background: var(--accent);
-  height: 56px;
+  height: 48px;
 }
 .rail-resize-handle:hover,
 .rail-resize-handle:focus-visible,
