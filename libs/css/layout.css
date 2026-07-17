@@ -232,6 +232,7 @@
   margin: 0 auto;
   padding: var(--space-6) var(--space-5);
   align-items: start;
+  position: relative;
 }
 
 /* 收起左栏 */
@@ -261,13 +262,14 @@
   scrollbar-color: var(--border-strong) transparent;
 }
 
-/* 拖拽调整左栏宽度的手柄 */
+/* 拖拽调整左栏宽度的手柄（定位在左栏与内容区的分隔线上） */
 .rail-resize-handle {
   position: absolute;
-  top: 0;
-  right: calc(var(--space-6) / -2 - 3px);
-  width: 6px;
-  height: 100%;
+  top: var(--space-6);
+  bottom: var(--space-6);
+  left: calc(var(--space-5) + var(--left-rail-width) + (var(--space-6) / 2));
+  transform: translateX(-50%);
+  width: 8px;
   cursor: col-resize;
   z-index: var(--z-elevated);
   border-radius: var(--radius-full);
