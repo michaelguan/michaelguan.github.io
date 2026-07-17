@@ -269,12 +269,24 @@
   bottom: var(--space-6);
   left: calc(var(--space-5) + var(--left-rail-width) + (var(--space-6) / 2));
   transform: translateX(-50%);
-  width: 8px;
+  width: 12px;
   cursor: col-resize;
   z-index: var(--z-elevated);
   border-radius: var(--radius-full);
   background: transparent;
   transition: background var(--transition-fast);
+}
+.rail-resize-handle::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background: var(--border-strong);
+  border-radius: var(--radius-full);
+  transition: background var(--transition-fast), width var(--transition-fast);
 }
 .rail-resize-handle::after {
   content: "";
@@ -282,16 +294,23 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 2px;
-  height: 36px;
+  width: 4px;
+  height: 44px;
   border-radius: var(--radius-full);
   background: var(--border-strong);
-  transition: background var(--transition-fast);
+  transition: background var(--transition-fast), height var(--transition-fast);
+}
+.rail-resize-handle:hover::before,
+.rail-resize-handle:focus-visible::before,
+.rail-resize-handle.is-dragging::before {
+  background: var(--accent);
+  width: 3px;
 }
 .rail-resize-handle:hover::after,
 .rail-resize-handle:focus-visible::after,
 .rail-resize-handle.is-dragging::after {
   background: var(--accent);
+  height: 56px;
 }
 .rail-resize-handle:hover,
 .rail-resize-handle:focus-visible,
