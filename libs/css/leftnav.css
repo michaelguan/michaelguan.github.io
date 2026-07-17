@@ -11,6 +11,86 @@
   gap: var(--space-3);
 }
 
+/* --------------------------------------------------------------------------
+   Article search
+   -------------------------------------------------------------------------- */
+.rail-search-section {
+  gap: var(--space-2);
+}
+.rail-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.rail-search-icon {
+  position: absolute;
+  left: 10px;
+  width: 15px;
+  height: 15px;
+  color: var(--text-subtle);
+  pointer-events: none;
+}
+.rail-search-input {
+  width: 100%;
+  padding: 8px 30px 8px 32px;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  background: var(--surface-soft);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+.rail-search-input::placeholder {
+  color: var(--text-subtle);
+}
+.rail-search-input:focus {
+  border-color: var(--accent);
+  background: var(--surface-elevated);
+  box-shadow: 0 0 0 3px var(--accent-faint);
+}
+/* 隐藏原生 search 清除按钮，使用自定义 */
+.rail-search-input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+.rail-search-clear {
+  position: absolute;
+  right: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-subtle);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+.rail-search-clear:hover,
+.rail-search-clear:focus-visible {
+  color: var(--text-primary);
+  background: var(--surface-soft);
+  outline: none;
+}
+.rail-search-clear svg {
+  width: 14px;
+  height: 14px;
+}
+.rail-search-empty {
+  margin: 0;
+  padding: 0 var(--space-3);
+  font-size: var(--text-xs);
+  color: var(--text-subtle);
+}
+
 .left-section-title {
   font-size: var(--text-xs);
   text-transform: uppercase;
@@ -356,6 +436,7 @@
 .app-layout[data-left-collapsed="true"] .nav-item-expand,
 .app-layout[data-left-collapsed="true"] .left-section-title,
 .app-layout[data-left-collapsed="true"] .left-section-divider,
+.app-layout[data-left-collapsed="true"] .rail-search-section,
 .app-layout[data-left-collapsed="true"] .subnav {
   display: none;
 }

@@ -90,13 +90,97 @@ function toggleMobileRight() {
   else openMobileDrawer('right');
 }
 
-function openSearch() {
-  alert('搜索功能开发中');
+// === Article search (left rail) ===
+const CATEGORY_LABELS = { tech: '技术', game: '游戏', life: '生活' };
+
+function initArticleSearch() {
+  const input = document.querySelector('[data-article-search]');
+  if (!input) return;
+  const clearBtn = document.querySelector('[data-search-clear]');
+  const emptyHint = document.querySelector('[data-search-empty]');
+  if (!clearBtn || !emptyHint) return;
+
+  // Build index: each subnav item + its owning category label
+  const navItems = Array.from(document.querySelectorAll('.nav-item[data-category]'));
+  const entries = [];
+  navItems.forEach(nav => {
+    const subnav = nav.nextElementSibling;
+    if (!subnav || !subnav.classList.contains('subnav')) return;
+    const category = nav.dataset.category;
+    const label = CATEGORY_LABELS[category] || '';
+    subnav.querySelectorAll('.subnav-item').forEach(item => {
+      const text = (item.textContent || '').trim().toLowerCase();
+      entries.push({ li: item.closest('li'), subnav, nav, category, label, text });
+    });
+  });
+
+  // Remember each subnav's initial open state to restore on clear
+  const initialOpen = new Map();
+  navItems.forEach(nav => {
+    const subnav = nav.nextElementSibling;
+    if (subnav && subnav.classList.contains('subnav')) {
+      initialOpen.set(subnav, subnav.classList.contains('is-open'));
+    }
+  });
+
+  function apply(query) {
+    const q = query.trim().toLowerCase();
+    let anyVisible = false;
+    const matchedSubnavs = new Set();
+
+    entries.forEach(({ li, subnav, label, text }) => {
+      const hit = q === '' || text.includes(q) || label.toLowerCase().includes(q);
+      li.hidden = !hit;
+      if (hit) {
+        anyVisible = true;
+        matchedSubnavs.add(subnav);
+      }
+    });
+
+    // When searching, auto-expand categories that have matches
+    if (q !== '') {
+      navItems.forEach(nav => {
+        const subnav = nav.nextElementSibling;
+        if (subnav && subnav.classList.contains('subnav')) {
+          const show = matchedSubnavs.has(subnav);
+          subnav.classList.toggle('is-open', show);
+          const expandBtn = nav.querySelector('.nav-item-expand');
+          if (expandBtn) expandBtn.setAttribute('aria-expanded', String(show));
+          nav.classList.toggle('is-expanded', show);
+        }
+      });
+    } else {
+      // Restore initial collapse state
+      navItems.forEach(nav => {
+        const subnav = nav.nextElementSibling;
+        if (subnav && subnav.classList.contains('subnav')) {
+          const open = initialOpen.get(subnav);
+          subnav.classList.toggle('is-open', open);
+          const expandBtn = nav.querySelector('.nav-item-expand');
+          if (expandBtn) expandBtn.setAttribute('aria-expanded', String(open));
+          nav.classList.toggle('is-expanded', open);
+        }
+      });
+    }
+
+    clearBtn.hidden = q === '';
+    emptyHint.hidden = anyVisible || q === '';
+  }
+
+  input.addEventListener('input', () => apply(input.value));
+  clearBtn.addEventListener('click', () => {
+    input.value = '';
+    apply('');
+    input.focus();
+  });
+  // 清除原生 search 提交（避免页面跳转）
+  input.form && input.form.addEventListener('submit', e => e.preventDefault());
 }
 
 // === Init ===
 function init() {
   applyLayoutState();
+  initArticleSearch();
 
   // 事件委托
   document.addEventListener('click', e => {
@@ -113,9 +197,6 @@ function init() {
           e.preventDefault();
           if (window.innerWidth <= 768) toggleMobileRight();
           else toggleRightRail();
-          break;
-        case 'open-search':
-          openSearch();
           break;
         case 'close-drawer':
           closeMobileDrawer(target.dataset.side);
