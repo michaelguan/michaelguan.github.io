@@ -46,22 +46,22 @@
   --color-rose-500: #F43F5E;
   --color-rose-600: #E11D48;
 
-  /* Neutral: 暖中性灰（提亮版） */
+  /* Neutral: 冷调纯中性灰（去黄，提升清晰对比） */
   --color-neutral-0:   #FFFFFF;
-  --color-neutral-25:  #FEFDFA;
-  --color-neutral-50:  #FDFBF8;   /* 页面底 — 更干净的暖白 */
-  --color-neutral-100: #F7F4EF;
-  --color-neutral-150: #F0ECE6;  /* 新：介于 100/200 之间 */
-  --color-neutral-200: #E9E5DC;
-  --color-neutral-300: #D9D4C9;
-  --color-neutral-400: #B8B0A4;
-  --color-neutral-500: #9C9388;
-  --color-neutral-600: #7A7166;  /* 更深的 secondary */
-  --color-neutral-700: #5E564D;
-  --color-neutral-800: #443E36;
-  --color-neutral-900: #2D2822;
-  --color-neutral-950: #1A1614;
-  --color-neutral-975: #0F0D0B;
+  --color-neutral-25:  #FCFCFD;
+  --color-neutral-50:  #F8F9FB;   /* 页面底 — 干净冷白 */
+  --color-neutral-100: #F1F3F6;
+  --color-neutral-150: #E7EAEF;  /* 介于 100/200 之间 */
+  --color-neutral-200: #DCE0E6;
+  --color-neutral-300: #C2C8D0;
+  --color-neutral-400: #9AA2AD;
+  --color-neutral-500: #6E7681;  /* 更深，脱离脏感 */
+  --color-neutral-600: #4B525C;  /* secondary — 高对比 */
+  --color-neutral-700: #343A42;
+  --color-neutral-800: #23272E;
+  --color-neutral-900: #15181D;
+  --color-neutral-950: #0D0F12;
+  --color-neutral-975: #08090B;
 }
 
 /* --------------------------------------------------------------------------
@@ -72,17 +72,17 @@
   --surface-base:      var(--color-neutral-50);   /* 页面底 */
   --surface-elevated:  var(--color-neutral-0);    /* 卡片 */
   --surface-soft:      var(--color-neutral-100);  /* hover/二级 */
-  --surface-strong:    var(--color-neutral-150);  /* 分割 — 提亮 */
+  --surface-strong:    var(--color-neutral-200);  /* 分割 */
 
   /* Text — 加深对比 */
   --text-primary:      var(--color-neutral-900);
-  --text-secondary:    var(--color-neutral-600);  /* 从 500 加深，提升可读性 */
+  --text-secondary:    var(--color-neutral-600);  /* 冷灰，高对比 */
   --text-subtle:       var(--color-neutral-500);
   --text-inverse:      var(--color-neutral-0);
 
   /* Borders — 更清晰 */
-  --border-base:       var(--color-neutral-150);  /* 更清晰边框 */
-  --border-strong:     var(--color-neutral-200);
+  --border-base:       var(--color-neutral-200);
+  --border-strong:     var(--color-neutral-300);
 
   /* Brand */
   --accent:            var(--color-indigo-600);
@@ -202,9 +202,9 @@
     --surface-strong:    var(--color-neutral-700);
 
     --text-primary:      var(--color-neutral-50);
-    --text-secondary:    var(--color-neutral-400);
-    --text-subtle:       var(--color-neutral-500);
-    --text-inverse:      var(--color-neutral-900);
+    --text-secondary:    var(--color-neutral-300);
+    --text-subtle:       var(--color-neutral-400);
+    --text-inverse:      var(--color-neutral-975);
 
     --border-base:       var(--color-neutral-800);
     --border-strong:     var(--color-neutral-700);
@@ -246,8 +246,8 @@
   --surface-soft: var(--color-neutral-100);
   --surface-strong: var(--color-neutral-200);
   --text-primary: var(--color-neutral-900);
-  --text-secondary: var(--color-neutral-500);
-  --text-subtle: var(--color-neutral-400);
+  --text-secondary: var(--color-neutral-600);
+  --text-subtle: var(--color-neutral-500);
   --text-inverse: var(--color-neutral-0);
   --border-base: var(--color-neutral-200);
   --border-strong: var(--color-neutral-300);
@@ -262,9 +262,9 @@
   --surface-soft: var(--color-neutral-800);
   --surface-strong: var(--color-neutral-700);
   --text-primary: var(--color-neutral-50);
-  --text-secondary: var(--color-neutral-400);
-  --text-subtle: var(--color-neutral-500);
-  --text-inverse: var(--color-neutral-900);
+  --text-secondary: var(--color-neutral-300);
+  --text-subtle: var(--color-neutral-400);
+  --text-inverse: var(--color-neutral-975);
   --border-base: var(--color-neutral-800);
   --border-strong: var(--color-neutral-700);
   --accent: var(--color-indigo-400);
