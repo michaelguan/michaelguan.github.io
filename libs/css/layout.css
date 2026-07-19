@@ -154,13 +154,13 @@
 }
 .danmaku-track {
   display: inline-flex;
-  gap: 3rem;
+  gap: 5rem;
   white-space: nowrap;
-  animation: danmaku-scroll 30s linear infinite;
+  animation: danmaku-scroll 36s linear infinite;
   will-change: transform;
 }
 .danmaku-track:nth-child(2) {
-  animation-delay: -15s;
+  animation-delay: -18s;
 }
 .danmaku-item {
   flex-shrink: 0;
