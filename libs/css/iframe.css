@@ -19,6 +19,9 @@
   border: none;
   background: var(--surface-base);
   transition: opacity var(--transition-base);
+  /* 移动端兜底：即使高度测量不准，内容也可滚动 */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .content-frame-container iframe.is-loading { opacity: 0; }
 
