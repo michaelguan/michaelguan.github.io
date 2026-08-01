@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大宋帝王谱 · 宋朝历代皇帝全览（960—1279）</title>
+<style>
+  :root{
+    --paper:#f5f0e6;
+    --paper2:#efe7d8;
+    --ink:#2c2a26;
+    --ink-soft:#5c574e;
+    --qing:#5f8575;      /* 天青 */
+    --qing-deep:#3f5f53;
+    --north:#3a5a78;     /* 北宋 · 靛蓝 */
+    --south:#8a5a34;     /* 南宋 · 赭石 */
+    --gold:#a8862f;
+    --red:#a03a2a;
+    --green:#3e7a4e;
+    --line:#d8cfbc;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Noto Serif SC","Source Han Serif SC","STSong","SimSun",serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.9;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(95,133,117,.06), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(58,90,120,.05), transparent 40%);
+  }
+
+  /* ===== 顶部题字 ===== */
+  header.hero{
+    text-align:center;
+    padding:90px 20px 70px;
+    position:relative;
+  }
+  .hero .seal{
+    display:inline-block;
+    border:2px solid var(--red);
+    color:var(--red);
+    padding:6px 12px;
+    font-size:14px;
+    letter-spacing:4px;
+    border-radius:4px;
+    margin-bottom:26px;
+    transform:rotate(-2deg);
+  }
+  .hero h1{
+    font-size:clamp(44px,7vw,86px);
+    font-weight:700;
+    letter-spacing:.18em;
+    color:var(--ink);
+  }
+  .hero .sub{
+    margin-top:18px;
+    color:var(--ink-soft);
+    font-size:clamp(14px,2vw,18px);
+    letter-spacing:.35em;
+  }
+  .hero .rule{
+    width:120px;height:2px;margin:34px auto 0;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  }
+  .hero .dates{margin-top:20px;color:var(--gold);letter-spacing:.3em;font-size:15px}
+
+  /* ===== 统计条 ===== */
+  .stats{
+    max-width:1000px;margin:0 auto 20px;padding:0 20px;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;
+  }
+  .stat{
+    background:#fffdf7;border:1px solid var(--line);border-radius:10px;
+    padding:18px;text-align:center;
+  }
+  .stat .num{font-size:30px;font-weight:700;color:var(--qing-deep)}
+  .stat .lab{font-size:13px;color:var(--ink-soft);letter-spacing:2px}
+
+  /* ===== 吸顶导航 ===== */
+  nav.toc{
+    position:sticky;top:0;z-index:50;
+    background:rgba(245,240,230,.94);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    overflow-x:auto;white-space:nowrap;
+    padding:10px 16px;
+  }
+  nav.toc .inner{max-width:1100px;margin:0 auto;display:flex;gap:8px;align-items:center}
+  nav.toc a{
+    flex:0 0 auto;
+    font-size:13px;color:var(--ink-soft);text-decoration:none;
+    padding:5px 11px;border-radius:20px;border:1px solid transparent;
+    transition:.2s;
+  }
+  nav.toc a:hover{color:var(--ink);border-color:var(--line);background:#fffdf7}
+  nav.toc a.active{color:#fff;background:var(--qing-deep)}
+  nav.toc .era-tag{flex:0 0 auto;font-size:12px;color:var(--gold);padding:0 6px;letter-spacing:2px}
+
+  /* ===== 时间线 ===== */
+  .timeline{max-width:1050px;margin:0 auto;padding:60px 24px 40px;position:relative}
+  .timeline::before{
+    content:"";position:absolute;top:0;bottom:0;left:50%;width:2px;
+    background:linear-gradient(var(--line),var(--gold),var(--line));
+    transform:translateX(-50%);
+  }
+  .era-marker{
+    position:relative;text-align:center;margin:60px 0 70px;
+  }
+  .era-marker .chip{
+    position:relative;display:inline-block;z-index:2;
+    padding:14px 44px;border-radius:50px;color:#fff;
+    font-size:clamp(20px,3vw,28px);letter-spacing:.4em;font-weight:700;
+    box-shadow:0 6px 20px rgba(0,0,0,.15);
+  }
+  .era-marker.north .chip{background:var(--north)}
+  .era-marker.south .chip{background:var(--south)}
+  .era-marker .range{margin-top:14px;color:var(--ink-soft);letter-spacing:.25em;font-size:14px}
+
+  .item{
+    position:relative;width:50%;padding:0 44px 70px;
+  }
+  .item:nth-child(odd){left:0;text-align:right}
+  .item:nth-child(even){left:50%}
+  /* 时间轴节点 */
+  .item::before{
+    content:"";position:absolute;top:34px;width:16px;height:16px;border-radius:50%;
+    background:var(--paper);border:4px solid var(--gold);z-index:2;
+  }
+  .item:nth-child(odd)::before{right:-8px}
+  .item:nth-child(even)::before{left:-8px}
+  /* 连线小横杠 */
+  .item::after{
+    content:"";position:absolute;top:41px;height:2px;width:30px;background:var(--gold);
+  }
+  .item:nth-child(odd)::after{right:0}
+  .item:nth-child(even)::after{left:0}
+
+  .card{
+    background:#fffdf7;border:1px solid var(--line);border-radius:14px;
+    padding:30px 30px 26px;text-align:left;
+    box-shadow:0 4px 18px rgba(60,50,20,.08);
+    transition:transform .3s, box-shadow .3s;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(60,50,20,.15)}
+
+  .card .top{
+    display:flex;align-items:baseline;justify-content:space-between;
+    flex-wrap:wrap;gap:8px;border-bottom:1px dashed var(--line);padding-bottom:16px;margin-bottom:18px;
+  }
+  .card h2{font-size:26px;font-weight:700;letter-spacing:1px}
+  .card h2 .pname{color:var(--ink-soft);font-size:20px;margin-left:6px}
+  .badge{
+    font-size:12px;color:#fff;padding:4px 12px;border-radius:4px;letter-spacing:2px;
+  }
+  .badge.north{background:var(--north)}
+  .badge.south{background:var(--south)}
+  .reign{
+    color:var(--gold);font-size:15px;letter-spacing:1px;margin-top:6px;font-weight:600;
+  }
+  .reign .nian{color:var(--ink-soft);font-weight:400;font-size:13px;margin-left:8px}
+
+  .sec{margin-top:18px}
+  .sec h3{
+    font-size:14px;letter-spacing:3px;color:var(--qing-deep);margin-bottom:8px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .sec h3::before{content:"";width:6px;height:6px;background:var(--qing);border-radius:50%;display:inline-block}
+  .sec p, .sec li{font-size:15px;color:var(--ink)}
+  .sec ul{list-style:none}
+  .sec ul li{padding-left:18px;position:relative;margin-bottom:5px}
+  .sec ul li::before{content:"·";position:absolute;left:4px;color:var(--gold);font-weight:700}
+
+  .gain-loss{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+  .gl{
+    border-radius:10px;padding:14px 16px;
+  }
+  .gl.gong{background:rgba(62,122,78,.08);border:1px solid rgba(62,122,78,.25)}
+  .gl.guo{background:rgba(160,58,42,.07);border:1px solid rgba(160,58,42,.22)}
+  .gl h4{font-size:14px;letter-spacing:4px;margin-bottom:6px}
+  .gl.gong h4{color:var(--green)}
+  .gl.guo h4{color:var(--red)}
+  .gl p{font-size:13.5px;line-height:1.8}
+
+  .verdict{
+    margin-top:20px;background:var(--paper2);border-left:4px solid var(--gold);
+    padding:16px 18px;border-radius:0 10px 10px 0;
+  }
+  .verdict .t{font-size:13px;letter-spacing:3px;color:var(--gold);margin-bottom:4px;font-weight:700}
+  .verdict p{font-size:14.5px;font-style:italic;color:var(--ink)}
+
+  .bars{margin-top:16px;display:flex;flex-direction:column;gap:8px}
+  .bar-row{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--ink-soft)}
+  .bar-row .name{width:34px;letter-spacing:2px}
+  .bar-track{flex:1;height:8px;background:#e8e0cf;border-radius:6px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--qing),var(--qing-deep))}
+  .bar-row .val{width:20px;text-align:right}
+
+  footer{
+    text-align:center;padding:60px 20px 80px;color:var(--ink-soft);font-size:14px;
+  }
+  footer .big{font-size:22px;letter-spacing:.3em;color:var(--ink);margin-bottom:14px}
+
+  /* 淡入动画 */
+  .fade{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .fade.show{opacity:1;transform:none}
+
+  @media (max-width:768px){
+    .timeline::before{left:18px}
+    .item{width:100%;left:0 !important;text-align:left;padding:0 0 50px 48px}
+    .item::before{left:10px !important;right:auto !important}
+    .item::after{display:none}
+    .gain-loss{grid-template-columns:1fr}
+    .card h2{font-size:22px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="seal">赵宋传世</div>
+  <h1>大宋帝王谱</h1>
+  <div class="sub">历 代 皇 帝 全 览</div>
+  <div class="rule"></div>
+  <div class="dates">公元 960 — 1279 · 凡三百一十九年 · 传一十八帝</div>
+</header>
+
+<div class="stats">
+  <div class="stat"><div class="num">319</div><div class="lab">国祚（年）</div></div>
+  <div class="stat"><div class="num">18</div><div class="lab">皇帝（位）</div></div>
+  <div class="stat"><div class="num">960</div><div class="lab">陈桥建宋</div></div>
+  <div class="stat"><div class="num">1127</div><div class="lab">靖康南渡</div></div>
+  <div class="stat"><div class="num">1279</div><div class="lab">崖山终结</div></div>
+</div>
+
+<nav class="toc" id="toc">
+  <div class="inner">
+    <span class="era-tag">北宋</span>
+    <a href="#taizu">太祖</a><a href="#taizong">太宗</a><a href="#zhenzong">真宗</a>
+    <a href="#renzong">仁宗</a><a href="#yingzong">英宗</a><a href="#shenzong">神宗</a>
+    <a href="#zhezong">哲宗</a><a href="#huizong">徽宗</a><a href="#qinzong">钦宗</a>
+    <span class="era-tag">南宋</span>
+    <a href="#gaozong">高宗</a><a href="#xiaozong">孝宗</a><a href="#guangzong">光宗</a>
+    <a href="#ningzong">宁宗</a><a href="#lizong">理宗</a><a href="#duzong">度宗</a>
+    <a href="#gongdi">恭帝</a><a href="#duanzong">端宗</a><a href="#shaodi">少帝</a>
+  </div>
+</nav>
+
+<main class="timeline">
+
+  <!-- ================= 北宋 ================= -->
+  <div class="era-marker north fade">
+    <div class="chip">北　宋</div>
+    <div class="range">960 — 1127 · 都东京开封府 · 凡九帝一百六十七年</div>
+  </div>
+
+  <!-- 1 太祖 -->
+  <section class="item fade" id="taizu">
+    <div class="card">
+      <div class="top">
+        <div>
+          <h2>宋太祖<span class="pname">赵匡胤</span></h2>
+          <div class="reign">960 — 976 在位<span class="nian">年号：建隆 · 乾德 · 开宝</span></div>
+        </div>
+        <span class="badge north">北宋 · 开国</span>
+      </div>
+
+      <div class="sec">
+        <h3>生平经历</h3>
+        <p>出身将门，后为后周殿前都点检，掌禁军。公元960年，于陈桥驿被部下"黄袍加身"，兵不血刃取代后周，建立宋朝，定都开封。在位十六年，976年暴卒，留下"烛影斧声"千古之谜。</p>
+      </div>
+
+      <div class="sec">
+        <h3>主要事迹</h3>
+        <ul>
+          <li>陈桥兵变、黄袍加身，以最小流血代价改朝换代</li>
+          <li>"杯酒释兵权"，和平解除石守信等禁军大将兵权</li>
+          <li>采"先南后北"方略，先后平荆湖、灭后蜀、南汉、南唐</li>
+          <li>强干弱枝：收精兵、削实权、制钱谷，重建中央集权</li>
+          <li>传立"誓碑"，戒子孙不得杀士大夫及上书言事人</li>
+        </ul>
+      </div>
+
+      <div class="gain-loss">
+        <div class="gl gong"><h4>功</h4><p>终结五代十国五十余年乱世；重建稳定统一的中央政权；以文治国、优待士人，奠定宋代三百年文官政治根基；善待降王、不妄杀戮，开国之君中少有的宽厚。</p></div>
+        <div class="gl guo"><h4>过</h4><p>过度防范武将，"重文轻武"从此成为国策，埋下"积弱"远因；为防割据而养兵防兵，开启冗兵冗费之端；其暴卒使皇位传承蒙上疑云。</p></div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row"><span class="name">文治</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div><span class="val">9</span></div>
+        <div class="bar-row"><span class="name">武功</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><span class="val">8</span></div>
+      </div>
+
+      <div class="verdict"><div class="t">总 评</div><p>五代以来最伟大的政治重组者——他以一场几乎不流血的政变重建秩序，又用一杯酒化解了唐末以来武将拥兵的痼疾。宋朝所有的辉煌与积弱，都能在他身上找到源头。</p></div>
+    </div>
+  </section>
+
+  <!-- 2 太宗 -->
+  <section class="item fade" id="taizong">
+    <div class="card">
+      <div class="top">
+        <div>
+          <h2>宋太宗<span class="pname">赵光义</span></h2>
+          <div class="reign">976 — 997 在位<span class="nian">年号：太平兴国 · 雍熙 · 端拱 · 淳化 · 至道</span></div>
+        </div>
+        <span class="badge north">北宋</span>
+      </div>
+
+      <div class="sec">
+        <h3>生平经历</h3>
+        <p>太祖之弟。太祖暴卒后继位，后世以"金匮之盟"解释其合法性，但"烛影斧声"之说使其得位始终存疑。在位二十一年，997年因早年箭伤复发去世。</p>
+      </div>
+
+      <div class="sec">
+        <h3>主要事迹</h3>
+        <ul>
+          <li>978年迫使吴越钱氏、清源军陈洪进纳土归附</li>
+          <li>979年亲征灭北汉，正式完成中原统一</li>
+          <li>两次大举伐辽：979年高粱河惨败、986年岐沟关再败</li>
+          <li>大规模扩充科举取士，每科录取人数数倍于太祖朝</li>
+          <li>敕修《太平御览》《太平广记》《文苑英华》三大类书</li>
+        </ul>
+      </div>
+
+      <div class="gain-loss">
+        <div class="gl gong"><h4>功</h4><p>完成全国统一，结束割据；科举大扩容，使"士大夫政治"真正成型，寒门士子得以凭文章入仕；文化编纂事业泽被后世。</p></div>
+        <div class="gl guo"><h4>过</h4><p>对辽两战皆惨败，从此转入"守内虚外"，丧失收复燕云的战略主动；得位存疑，侄德昭、弟廷美先后死于非命，手段颇受非议。</p></div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row"><span class="name">文治</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><span class="val">8</span></div>
+        <div class="bar-row"><span class="name">武功</span><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><span class="val">5</span></div>
+      </div>
+
+      <div class="verdict"><div class="t">总 评</div><p>统一之功与败军之过并存的皇帝。他打不下燕云十六州，却真正塑造了宋朝"以文立国"的基因——此后三百年中国的政治气质，多半是太宗定下的。</p></div>
+    </div>
+  </section>
+
+  <!-- 3 真宗 -->
+  <section class="item fade" id="zhenzong">
+    <div class="card">
+      <div class="top">
+        <div>
+          <h2>宋真宗<span class="pname">赵恒</span></h2>
+          <div class="reign">997 — 1022 在位<span class="nian">年号：咸平 · 景德 · 大中祥符 · 天禧 · 乾兴</span></div>
+        </div>
+        <span class="badge north">北宋</span>
+      </div>
+
+      <div class="sec">
+        <h3>生平经历</h3>
+        <p>太宗第三子。前期尚有"咸平之治"的清明，后期沉迷"天书封禅"的闹剧，朝政渐荒。晚年多病，刘皇后开始预政。1022年驾崩。</p>
+      </div>
+
+      <div class="sec">
+        <h3>主要事迹</h3>
+        <ul>
+          <li>1004年辽军大举南下，宰相寇准力排众议，促成御驾亲征澶州</li>
+          <li>1005年订立"澶渊之盟"：宋每年给辽岁币银十万两、绢二十万匹</li>
+          <li>咸平年间政治较清明，经济繁荣，推广占城稻</li>
+          <li>后期大行"天书"降临、东封泰山、西祀汾阴，崇奉道教，耗费巨万</li>
+          <li>晚年刘皇后干政，为日后太后垂帘开启先例</li>
+        </ul>
+      </div>
+
+      <div class="gain-loss">
+        <div class="gl gong"><h4>功</h4><p>澶渊之盟以极小代价换来宋辽一百余年和平，使北宋得以全力发展经济文化；咸平之治奠定北宋盛世基础；推广占城稻，粮食大增。</p></div>
+        <div class="gl guo"><h4>过</h4><p>"天书封禅"是一场自上而下的政治闹剧，劳民伤财、粉饰太平，开了弄虚作假的恶劣风气；用岁币买和平也开了"以财换安"的先例。</p></div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row"><span class="name">文治</span><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><span class="val">6</span></div>
+        <div class="bar-row"><span class="name">武功</span><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><span class="val">5</span></div>
+      </div>
+
+      <div class="verdict"><div class="t">总 评</div><p>一半是明君、一半是昏聩的皇帝。澶渊之盟换来的百年和平是真的，天书封禅闹出的荒唐也是真的——和平的红利与政治的作秀，奇特地共存于同一朝。</p></div>
+    </div>
+  </section>
+
+  <!-- 4 仁宗 -->
+  <section class="item fade" id="renzong">
+    <div class="card">
+      <div class="top">
+        <div>
+          <h2>宋仁宗<span class="pname">赵祯</span></h2>
+          <div class="reign">1022 — 1063 在位<span class="nian">年号：天圣 · 明道 · 景祐 · 宝元 · 康定 · 庆历 · 皇祐 · 至和 · 嘉祐</span></div>
+        </div>
+        <span class="badge north">北宋</span>
+      </div>
+
+      <div class="sec">
+        <h3>生平经历</h3>
+        <p>真宗第六子，13岁即位，刘太后垂帘听政十一年，1033年亲政。在位四十二年，是两宋在位最久的皇帝。一生以"仁"著称，1063年驾崩，"京师罢市巷哭，数日不绝"。</p>
+      </div>
+
+      <div class="sec">
+        <h3>主要事迹</h3>
+        <ul>
+          <li>1040–1042年宋夏战争，三川口、好水川、定川寨三战皆败</li>
+          <li>1044年"庆历和议"，对西夏岁赐换得边境安定</li>
+          <li>1043年任用范仲淹推行"庆历新政"，因阻力过大一年余即罢</li>
+          <li>嘉祐年间名臣辈出：欧阳修、范仲淹、包拯、司马光、王安石、三苏、狄青</li>
+          <li>嘉祐二年科举"龙虎榜"，一榜取中苏轼、苏辙、曾巩、张载、程颢等</li>
+        </ul>
+      </div>
+
+      <div class="gain-loss">
+        <div class="gl gong"><h4>功</h4><p>史上以"仁"闻名的皇帝，为政宽容、虚心纳谏、生活节俭；"仁宗盛治"使经济文化臻于极盛；嘉祐之治名臣如云，是北宋文化人才的巅峰时代。</p></div>
+        <div class="gl guo"><h4>过</h4><p>对西夏三战皆败、增岁币求和，暴露军事积弱；庆历新政半途而废，错失改革良机；冗官、冗兵、冗费"三冗"在其朝积重难返。</p></div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row"><span class="name">文治</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="val">10</span></div>
+        <div class="bar-row"><span class="name">武功</span><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div><span class="val">4</span></div>
+      </div>
+
+      <div class="verdict"><div class="t">总 评</div><p>若论"仁"，千古一帝——"为人君，止于仁"是他的最好注脚。但若论改革的魄力，他又失之优柔。然而恰恰是这份宽容，成全了北宋文化的顶峰。后世称"仁宗皇帝百事不会，只会做官家"。</p></div>
+    </div>
+  </section>
+
+  <!-- 5 英宗 -->
+  <section class="item fade" id="yingzong">
+    <div class="card">
+      <div class="top">
+        <div>
+          <h2>宋英宗<span class="pname">赵曙</span></h2>
+          <div class="reign">1063 — 1067 在位<span class="nian">年号：治平</span></div>
+        </div>
+        <span class="badge north">北宋</span>
+      </div>
+
+      <div class="sec">
+        <h3>生平经历</h3>
+        <p>仁宗无子，立宗室之子赵曙为养子继位。即位之初由曹太后垂帘，因追尊生父礼仪问题引发巨大争议。体弱多病，在位仅四年即驾崩。</p>
+      </div>
+
+      <div class="sec">
+        <h3>主要事迹</h3>
+        <ul>
+          <li>以养子身份继位，与曹太后关系紧张，朝政一度僵持</li>
+          <li>"濮议"之争：朝臣围绕如何称呼其生父濮王，分成两派激烈攻讦</li>
+          <li>命司马光设局编修《资治通鉴》，给予钱粮人员全力支持</li>
+        </ul>
+      </div>
+
+      <div class="gain-loss">
+        <div class="gl gong"><h4>功</h4><p>最有价值的作为是全力支持司马光修《资治通鉴》，成就一部史学巨著；在位期间政局大体平稳，无大的扰民之举。</p></div>
+        <div class="gl guo"><h4>过</h4><p>"濮议"把朝廷分裂为执政与台谏两派，相互攻讦，开了北宋党争激化的恶例；在位太短，于国政积弊无所更张。</p></div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row"><span class="name">文治</span><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><span class="val">5</span></div>
+        <div class="bar-row"><span class="name">武功</span><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><span class="val">3</span></div>
+      </div>
+
+      <div class="verdict"><div class="t">总 评</div><p>一位过渡性的皇帝。一场看似礼仪之争的"濮议"，实则埋下了日后新旧党争的引线；而他最大的历史贡献，是给了司马光一间修史的书房。</p></div>
+    </div>
+  </section>
+
+  <!-- 6 神宗 -->
+  <section class="item fade" id="shenzong">
+    <div class="card">
+      <div class="top">
+        <div>
+          <h2>宋神宗<span class="pname">赵顼</span></h2>
+          <div class="reign">1067 — 1085 在位<span class="nian">年号：熙宁 · 元丰</span></div>
+        </div>
+        <span class="badge north">北宋</span>
+      </div>
+
+      <div class="sec">
+        <h3>生平经历</h3>
+        <p>英宗长子，20岁即位，锐意求治，立志富国强兵、雪"澶渊"之耻。全力支持王安石变法，与守旧大臣激烈冲突。因对夏战争惨败，忧愤成疾，1085年驾崩，年仅38岁。</p>
+      </div>
+
+      <div class="sec">
+        <h3>主要事迹</h3>
+        <ul>
+          <li>1069年起用王安石，推行"熙宁变法"：青苗、免役、市易、保甲、保马、方田均税、农田水利等法</li>
+          <li>改革科举与学校，创太学"三舍法"</li>
+          <li>元丰年间改革官制，史称"元丰改制"</li>
+          <li>用王韶"熙河开边"，收复熙、河等六州，拓地两千余里</li>
+          <li>1082年五路伐夏，永乐城之战惨败，丧师数万</li>
+        </ul>
+      </div>
+
+      <div class="gain-loss">
+        <div class="gl gong"><h4>功</h4><p>有宋一代最有改革雄心的皇帝。变法在一定程度上实现了富国强兵，熙河开边是北宋少有的军事开拓；其志在建功立业、振作朝纲，可敬可佩。</p></div>
+        <div class="gl guo"><h4>过</h4><p>变法执行中多有走样扰民，新旧党争从此白热化、不可收拾；永乐城之败葬送多年经营，几至动摇国本；其急于求成的性格也是变法偏激之因。</p></div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row"><span class="name">文治</span><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><span class="val">7</span></div>
+        <div class="bar-row"><span class="name">武功</span><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><span class="val">6</span></div>
+      </div>
+
+      <div class="verdict"><div class="t">总 评</div><p>一位理想主义的改革君主。成也变法、伤也变法——他与王安石的君臣际会是中国史上最大胆的一次体制实验，其成败得失，至今仍被反复评说。</p></div>
+    </div>
+  </section>
+
+  <!-- 7 哲宗 -->
+  <section class="item fade" id="zhezong">
+    <div class="card">
+      <div class="top">
+        <div>
+          <h2>宋哲宗<span class="pname">赵煦</span></h2>
+          <div class="reign">1085 — 1100 在位<span class="nian">年号：元祐 · 绍圣 · 元符</span></div>
+        </div>
+        <span class="badge north">北宋</span>
+      </div>
+
+      <div class="sec">
+        <h3>生平经历</h3>
+        <p>神宗第六子，9岁即位，祖母高太后摄政九年，尽废新法。1093年亲政后恢复新法，报复旧党。1100年英年早逝，年仅24岁，无子。</p>
+      </div>
+
+      <div class="sec">
+        <h3>主要事迹</h3>
+        <ul>
+          <li>高太后摄政期间行"元祐更化"，起用司马光，尽废王安石新法</li>
+          <li>亲政后改元"绍圣"，意谓继承神宗之政，史称"绍圣绍述"</li>
+          <li>贬逐元祐旧党，苏轼、苏辙等被远谪岭南</li>
+          <li>对西夏转取攻势，平夏城之战大败夏军，取得主动</li>
+        </ul>
+      </div>
+
+      <div class="gain-loss">
+        <div class="gl gong"><h4>功</h4><p>亲政后重振军备，对西夏取得平夏城大捷，是北宋后期少有的军事高光；其试图调和旧党、复行新法，也有振作有为之心。</p></div>
+        <div class="gl guo"><h4>过</h4><p>新旧两党相互报复、循环倾轧，朝政严重撕裂；党籍之祸株连甚广；英年早逝且无子嗣，使皇位落入徽宗之手，间接改写国运。</p></div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row"><span class="name">文治</span><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><span class="val">5</span></div>
+        <div class="bar-row"><span class="name">武功</span><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><span class="val">6</span></div>
+      </div>
+
+      <div class="verdict"><div class="t">总 评</div><p>一生被祖母与党争裹挟的少年天子。亲政短短七年已显露出军事与政治上的锋芒，惜乎天不假年——他若多活二十年，北宋的结局或未可知。</p></div>
+    </div>
+  </section>
+
+  <!-- 8 徽宗 -->
+  <section class="item fade" id="huizong">
+    <div class="card">
+      <div class="top">
+        <div>
+          <h2>宋徽宗<span class="pname">赵佶</span></h2>
+          <div class="reign">1100 — 1126 在位<span class="nian">年号：建中靖国 · 崇宁 · 大观 · 政和 · 重和 · 宣和</span></div>
+        </div>
+        <span class="badge north">北宋 · 亡国</span>
+      </div>
+
+      <div class="sec">
+        <h3>生平经历</h3>
+        <p>神宗第十一子，本与皇位无缘，因哲宗无子而被立。天纵艺术奇才，却是亡国之君。1126年金兵南下，仓皇禅位给钦宗。1127年"靖康之耻"中被掳北上，1135年惨死于五国城。</p>
+      </div>
+
+      <div class="sec">
+        <h3>主要事迹</h3>
+        <ul>
+          <li>自创"瘦金体"，书法独步天下；兴办翰林图画院，亲授画学</li>
+          <li>主持编修《宣和画谱》《宣和书谱》，推动宋代艺术登峰造极</li>
+          <li>崇宁兴学，完善全国学校与科举三级体系</li>
+          <li>宠信蔡京、童贯等"六贼"，大兴"花石纲"、营建艮岳，民怨沸腾</li>
+          <li>1120年方腊起义、宋江起义先后爆发</li>
+          <li>订"海上之盟"联金灭辽，1125年辽亡，金随即灭宋</li>
+        </ul>
+      </div>
+
+      <div class="gain-loss">
+        <div class="gl gong"><h4>功</h4><p>将宋代书画、瓷器、园林艺术推向历史顶峰，瘦金体、汝窑、《千里江山图》的背后都有他的影子；崇宁兴学完善了教育体系。单论艺术贡献，帝王中无出其右。</p></div>
+        <div class="gl guo"><h4>过</h4><p>花石纲、艮岳耗尽国力民力，逼反方腊宋江；六贼乱政、忠良尽黜；联金灭辽是引狼入室的致命战略错误，直接酿成靖康之耻、北宋亡国。</p></div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row"><span class="name">文治</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><span class="val">8</span></div>
+        <div class="bar-row"><span class="name">武功</span><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><span class="val">2</span></div>
+      </div>
+
+      <div class="verdict"><div class="t">总 评</div><p>"诸事皆能，独不能为君耳。"——他是一位一流的艺术家、末流的皇帝。他把一个王朝变成了绝美的艺术品，又亲手把它摔碎。北宋实亡于徽宗。</p></div>
+    </div>
+  </section>
+
+  <!-- 9 钦宗 -->
+  <section class="item fade" id="qinzong">
+    <div class="card">
+      <div class="top">
+        <div>
+          <h2>宋钦宗<span class="pname">赵桓</span></h2>
+          <div class="reign">1126 — 1127 在位<span class="nian">年号：靖康</span></div>
+        </div>
+        <span class="badge north">北宋 · 亡国</span>
+      </div>
+
+      <div class="sec">
+        <h3>生平经历</h3>
+        <p>徽宗长子，金兵压境之际仓促受禅，临危即位。在位仅一年余，即在"靖康之耻"中与父皇一同被金人掳往北方，最终客死异乡。</p>
+      </div>
+
+      <div class="sec">
+        <h3>主要事迹</h3>
+        <ul>
+          <li>即位后一度起用李纲主持东京保卫战，击退金军</li>
+          <li>旋即在主和派包围下罢免李纲，遣散各地勤王援军</li>
+          <li>战和不定、反复摇摆，错失多次自救机会</li>
+          <li>1127年金军攻破汴京，徽、钦二帝及宗室三千余人被掳，史称"靖康之耻"</li>
+        </ul>
+      </div>
+
+      <div class="gain-loss">
+        <div class="gl gong"><h4>功</h4><p>即位之初曾试图振作：贬杀蔡京等"六贼"，起用主战派李纲，一度守住东京，显示过一点挽狂澜的意愿。</p></div>
+        <div class="gl guo"><h4>过</h4><p>优柔寡断、自毁长城——罢李纲、散勤王军、轻信金人，每一次犹豫都把北宋往深渊推进一步；最终在摇摆中坐失社稷。</p></div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row"><span class="name">文治</span><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><span class="val">3</span></div>
+        <div class="bar-row"><span class="name">武功</span><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><span class="val">2</span></div>
+      </div>
+
+      <div class="verdict"><div class="t">总 评</div><p>亡国的黑锅不全该他背——他接手的是一个已被徽宗掏空的烂摊子。但他一次次的犹豫与自毁，确实亲手断送了最后的生机。靖康之耻，千古之痛。</p></div>
+    </div>
+  </section>
+
+  <!-- ================= 南宋 ================= -->
+  <div class="era-marker south fade">
+    <div class="chip">南　宋</div>
+    <div class="range">1127 — 1279 · 都临安府（杭州） · 凡九帝一百五十二年</div>
+  </div>
+
+  <!-- 10 高宗 -->
+  <section class="item fade" id="gaozong">
+    <div class="card">
+      <div class="top">
+        <div>
+          <h2>宋高宗<span class="pname">赵构</span></h2>
+          <div class="reign">1127 — 1162 在位<span class="nian">年号：建炎 · 绍兴</span></div>
+        </div>
+        <span class="badge south">南宋 · 开国</span>
+      </div>
+
+      <div class="sec">
+        <h3>生平经历</h3>
+        <p>徽宗第九子、钦宗之弟。靖康之变时因奉命出使而幸免，于南京应天府（商丘）即位，是为南宋之始。一生辗转南逃，甚至一度避难于海上。1162年禅位孝宗，又做了二十五年太上皇，1187年寿终。</p>
+      </div>
+
+      <div class="sec">
+        <h3>主要事迹</h3>
+        <ul>
+          <li>于国破家亡之际重建赵宋政权，延续国祚一百五十余年</li>
+          <li>金兵追击下一路南逃：扬州—镇江—临安—明州，乃至入海避敌</li>
+          <li>起用韩世忠、岳飞、张俊等将抵抗金兵，稳住江南</li>
+          <li>1141年收夺三大将兵权，以"莫须有"罪名冤杀岳飞</li>
+          <li>同年与金订立"绍兴和议"：称臣、纳贡、划淮河为界</li>
+          <li>在位期间临安经济文化繁荣，奠定南宋偏安格局</li>
+        </ul>
+      </div>
+
+      <div class="gain-loss">
+        <div class="gl gong"><h4>功</h4><p>于绝境中保存赵宋半壁江山，重建政治、经济与文化秩序，使江南得以休养生息、空前繁荣。若无其立国，则华夏文明南移无从谈起。</p></div>
+        <div class="gl guo"><h4>过</h4><p>冤杀岳飞、自断恢复之路，是其一生洗不去的污点；绍兴和议称臣纳贡，屈辱至极；放任秦桧专权十余年，政治黑暗、忠良凋零。</p></div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row"><span class="name">文治</span><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><span class="val">6</span></div>
+        <div class="bar-row"><span class="name">武功</span><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><span class="val">3</span></div>
+      </div>
+
+      <div class="verdict"><div class="t">总 评</div><p>开国与自污并存的复杂皇帝。他保住了南宋的半壁江山，也亲手掐灭了收复中原的最后可能。杀岳飞一事，使他永远跪在历史的耻辱柱旁。</p></div>
+    </div>
+  </section>
+
+  <!-- 11 孝宗 -->
+  <section class="item fade" id="xiaozong">
+    <div class="card">
+      <div class="top">
+        <div>
+          <h2>宋孝宗<span class="pname">赵昚</span></h2>
+          <div class="reign">1162 — 1189 在位<span class="nian">年号：隆兴 · 乾道 · 淳熙</span></div>
+        </div>
+        <span class="badge south">南宋</span>
+      </div>
+
+      <div class="sec">
+        <h3>生平经历</h3>
+        <p>高宗无子，选立太祖七世孙赵昚为养子（南宋皇统由此重回太祖一系）。是南宋最有作为的皇帝，但因太上皇高宗尚在，处处受其掣肘。1189年禅位光宗，1194年去世。</p>
+      </div>
+
+      <div class="sec">
+        <h3>主要事迹</h3>
+        <ul>
+          <li>即位伊始即为岳飞平反昭雪，追复官爵、录用后人</li>
+          <li>1163年发动"隆兴北伐"，初胜后于符离溃败</li>
+          <li>1165年与金订立"隆兴和议"，改君臣为叔侄之国，稍减岁币</li>
+          <li>励精图治，开创"乾淳之治"，为南宋国力的鼎盛期</li>
+          <li>勤于政事、生活节俭，频繁更换宰相以防权臣专擅</li>
+        </ul>
+      </div>
+
+      <div class="gain-loss">
+        <div class="gl gong"><h4>功</h4><p>南宋最有作为的皇帝。平反岳飞、锐意恢复，政治清明、经济繁荣，"乾淳之治"是南宋的黄金时代；其勤政节俭、志在雪耻，在南宋诸帝中首屈一指。</p></div>
+        <div class="gl guo"><h4>过</h4><p>隆兴北伐准备不足、用人失当而致符离之败，恢复之志终成泡影；晚年倦于政事，对继任者光宗教养失当，为日后埋下隐患。</p></div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row"><span class="name">文治</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div><span class="val">9</span></div>
+        <div class="bar-row"><span class="name">武功</span><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><span class="val">5</span></div>
+      </div>
+
+      <div class="verdict"><div class="t">总 评</div><p>南宋唯一的"明君"。若非太上皇高宗在背后掣肘，他的恢复之志或许能有更大作为。即便如此，"乾淳之治"也已是南宋最令人怀念的治世。</p></div>
+    </div>
+  </section>
+
+  <!-- 12 光宗 -->
+  <section class="item fade" id="guangzong">
+    <div class="card">
+      <div class="top">
+        <div>
+          <h2>宋光宗<span class="pname">赵惇</span></h2>
+          <div class="reign">1189 — 1194 在位<span class="nian">年号：绍熙</span></div>
+        </div>
+        <span class="badge south">南宋</span>
+      </div>
+
+      <div class="sec">
+        <h3>生平经历</h3>
+        <p>孝宗第三子。体弱多病且患有精神疾病，又惧内受制于悍妒的李皇后，与太上皇孝宗关系恶劣。1194年被大臣赵汝愚、韩侂胄等拥立其子宁宗，被迫退位，史称"绍熙内禅"。</p>
+      </div>
+
+      <div class="sec">
+        <h3>主要事迹</h3>
+        <ul>
+          <li>即位初期尚有求治之意，但旋即因病怠政</li>
+          <li>李皇后干政，离间其与孝宗的父子关系</li>
+          <li>"过宫"风波：长期不去朝见太上皇，引发朝野哗然</li>
+          <li>绍熙内禅，在毫不知情中被大臣集体"换掉"</li>
+        </ul>
+      </div>
+
+      <div class="gain-loss">
+        <div class="gl gong"><h4>功</h4><p>在位时间很短，前期尚有求治之心，曾减免赋税、留意人才；除此之外几乎无可称述。</p></div>
+        <div class="gl guo"><h4>过</h4><p>精神疾病加之后宫悍妇干政，致使朝政混乱、父子失和；"过宫"不孝之名传遍天下，大损皇室威信；南宋由治转衰，自光宗始。</p></div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row"><span class="name">文治</span><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><span class="val">3</span></div>
+        <div class="bar-row"><span class="name">武功</span><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><span class="val">2</span></div>
+      </div>
+
+      <div class="verdict"><div class="t">总 评</div><p>一个被病魔和悍后双重挟持的皇帝。他本身或许并非昏暴之主，但孱弱的身心使他成为南宋由治转衰的拐点。</p></div>
+    </div>
+  </section>
+
+  <!-- 13 宁宗 -->
+  <section class="item fade" id="ningzong">
+    <div class="card">
+      <div class="top">
+        <div>
+          <h2>宋宁宗<span class="pname">赵扩</span></h2>
+          <div class="reign">1194 — 1224 在位<span class="nian">年号：庆元 · 嘉泰 · 开禧 · 嘉定</span></div>
+        </div>
+        <span class="badge south">南宋</span>
+      </div>
+
+      <div class="sec">
+        <h3>生平经历</h3>
+        <p>光宗次子，由大臣拥立继位。资质平庸，一生先后受制于权臣韩侂胄与史弥远，皇权旁落。在位三十年，1224年驾崩。</p>
+      </div>
+
+      <div class="sec">
+        <h3>主要事迹</h3>
+        <ul>
+          <li>韩侂胄专权，兴"庆元党禁"，将朱熹理学斥为"伪学"加以禁锢</li>
+          <li>1206年发动"开禧北伐"，准备不足而大败</li>
+          <li>1208年史弥远谋杀韩侂胄，函其首级送金求和，订"嘉定和议"</li>
+          <li>此后史弥远专权十七年，朝政日益腐败</li>
+        </ul>
+      </div>
+
+      <div class="gain-loss">
+        <div class="gl gong"><h4>功</h4><p>开禧北伐虽败，恢复之心可悯；其朝后期理学渐解禁，为理宗朝理学官学化埋下伏笔；在位期间社会经济大体维持。</p></div>
+        <div class="gl guo"><h4>过</h4><p>庆元党禁禁锢思想、打击士人；开禧北伐惨败、"函首求和"之辱奇耻无比；皇权长期旁落于权臣，自己形同傀儡。</p></div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row"><span class="name">文治</span><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><span class="val">3</span></div>
+        <div class="bar-row"><span class="name">武功</span><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><span class="val">3</span></div>
+      </div>
+
+      <div class="verdict"><div class="t">总 评</div><p>资质平庸、一生受制于权臣的皇帝。禁锢理学与函首求和，是他留给人世最深的两道耻辱印记。</p></div>
+    </div>
+  </section>
+
+  <!-- 14 理宗 -->
+  <section class="item fade" id="lizong">
+    <div class="card">
+      <div class="top">
+        <div>
+          <h2>宋理宗<span class="pname">赵昀</span></h2>
+          <div class="reign">1224 — 1264 在位<span class="nian">年号：宝庆 · 绍定 · 端平 · 淳祐 · 宝祐 · 开庆 · 景定</span></div>
+        </div>
+        <span class="badge south">南宋</span>
+      </div>
+
+      <div class="sec">
+        <h3>生平经历</h3>
+        <p>宁宗无嗣，权臣史弥远从民间寻来宗室远支赵昀立为皇帝。前十年形同傀儡，1233年史弥远死后亲政，一度振作，晚年却又沉溺享乐、宠信奸佞。在位长达四十一年，1264年驾崩。</p>
+      </div>
+
+      <div class="sec">
+        <h3>主要事迹</h3>
+        <ul>
+          <li>1233年亲政后行"端平更化"，贬黜史弥远党羽、起用贤臣</li>
+          <li>1234年联合蒙古灭金，报了"靖康之耻"的世仇</li>
+          <li>同年"端平入洛"，轻率出兵收复三京，被蒙古军击溃，宋蒙战争由此开启</li>
+          <li>淳祐元年将周敦颐、二程、张载、朱熹从祀孔庙，理学正式成为官学</li>
+          <li>晚年宠信阎贵妃、丁大全、贾似道，朝政大坏</li>
+        </ul>
+      </div>
+
+      <div class="gain-loss">
+        <div class="gl gong"><h4>功</h4><p>将程朱理学正式确立为官学，深刻影响此后七百年中国思想；灭金雪了靖康之耻；端平更化一度中兴气象，起用真德秀、魏了翁等贤臣。</p></div>
+        <div class="gl guo"><h4>过</h4><p>"端平入洛"草率用兵，给了蒙古南侵的口实，开启长达半个世纪的亡国战争；晚年荒怠享乐，使贾似道得以专权乱政，南宋从此走向深渊。</p></div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row"><span class="name">文治</span><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><span class="val">6</span></div>
+        <div class="bar-row"><span class="name">武功</span><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><span class="val">3</span></div>
+      </div>
+
+      <div class="verdict"><div class="t">总 评</div><p>在位四十一年，前明后暗的典型。理学因他而尊为正统，南宋也因他而加速衰亡——他以一人的前半生振作、后半生沉沦，写尽了一个王朝的宿命。</p></div>
+    </div>
+  </section>
+
+  <!-- 15 度宗 -->
+  <section class="item fade" id="duzong">
+    <div class="card">
+      <div class="top">
+        <div>
+          <h2>宋度宗<span class="pname">赵禥</span></h2>
+          <div class="reign">1264 — 1274 在位<span class="nian">年号：咸淳</span></div>
+        </div>
+        <span class="badge south">南宋</span>
+      </div>
+
+      <div class="sec">
+        <h3>生平经历</h3>
+        <p>理宗之侄，因理宗无子而入继。先天不足、智力偏弱，又沉迷酒色，把军政大权全部委托给贾似道，尊其为"师臣"。1274年在蒙古大军压境之际病死，年仅35岁。</p>
+      </div>
+
+      <div class="sec">
+        <h3>主要事迹</h3>
+        <ul>
+          <li>将朝政全权托付贾似道，自己深居宫中享乐</li>
+          <li>1267–1273年"襄樊之战"：襄阳、樊城被蒙古围困六年最终失守</li>
+          <li>襄樊一失，长江防线门户洞开，元军顺江而下势如破竹</li>
+          <li>1274年病死，把一个必亡之局留给了年幼的儿子们</li>
+        </ul>
+      </div>
+
+      <div class="gain-loss">
+        <div class="gl gong"><h4>功</h4><p>几乎无可称述——朝廷在其朝尚能维持运转，已属不易。</p></div>
+        <div class="gl guo"><h4>过</h4><p>沉迷酒色，将军国大事尽付贾似道一人，自己形同傀儡；襄樊失守、长江门户洞开，亡国之祸至此已无可挽回。</p></div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row"><span class="name">文治</span><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><span class="val">2</span></div>
+        <div class="bar-row"><span class="name">武功</span><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><span class="val">2</span></div>
+      </div>
+
+      <div class="verdict"><div class="t">总 评</div><p>大厦将倾之际的傀儡皇帝。南宋之亡，七分在贾似道，三分在其自身——一个连自己都做不了的皇帝，如何撑得起一个垂死的王朝。</p></div>
+    </div>
+  </section>
+
+  <!-- 16 恭帝 -->
+  <section class="item fade" id="gongdi">
+    <div class="card">
+      <div class="top">
+        <div>
+          <h2>宋恭帝<span class="pname">赵㬎</span></h2>
+          <div class="reign">1274 — 1276 在位<span class="nian">年号：德祐</span></div>
+        </div>
+        <span class="badge south">南宋 · 亡国</span>
+      </div>
+
+      <div class="sec">
+        <h3>生平经历</h3>
+        <p>度宗之子，3岁即位，由谢太后垂帘听政。1276年元军兵临临安城下，朝廷奉表投降，以幼主之身承担了亡国。后被押往大都，成年后出家为僧，远走吐蕃，1323年被元朝赐死。</p>
+      </div>
+
+      <div class="sec">
+        <h3>主要事迹</h3>
+        <ul>
+          <li>1275年丁家洲之战，贾似道大军溃败，南宋主力丧失殆尽</li>
+          <li>1276年元军进逼临安，谢太后携幼帝出城投降，南宋朝廷覆灭</li>
+          <li>文天祥等人在南方继续拥立残余政权抵抗</li>
+        </ul>
+      </div>
+
+      <div class="gain-loss">
+        <div class="gl gong"><h4>功</h4><p>无可言者——他只是一个三四岁的孩子，亡国并非其罪。</p></div>
+        <div class="gl guo"><h4>过</h4><p>以不战而降结束了南宋正统朝廷，但这罪责实在不该由一个孩子来背负。</p></div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row"><span class="name">文治</span><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div><span class="val">1</span></div>
+        <div class="bar-row"><span class="name">武功</span><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div><span class="val">1</span></div>
+      </div>
+
+      <div class="verdict"><div class="t">总 评</div><p>史上最年幼的亡国之君之一。他的一生，从龙椅到囚车再到僧衣，是一个时代悲剧的缩影，而非他个人的过错。</p></div>
+    </div>
+  </section>
+
+  <!-- 17 端宗 -->
+  <section class="item fade" id="duanzong">
+    <div class="card">
+      <div class="top">
+        <div>
+          <h2>宋端宗<span class="pname">赵昰</span></h2>
+          <div class="reign">1276 — 1278 在位<span class="nian">年号：景炎</span></div>
+        </div>
+        <span class="badge south">南宋 · 流亡</span>
+      </div>
+
+      <div class="sec">
+        <h3>生平经历</h3>
+        <p>度宗庶长子、恭帝之兄。临安陷落前被护送出逃，在福州被文天祥、陆秀夫、张世杰等拥立为帝，建立海上流亡政府。在元军追击下一路沿海南逃，1278年在碙洲惊悸成疾病死，年仅九岁。</p>
+      </div>
+
+      <div class="sec">
+        <h3>主要事迹</h3>
+        <ul>
+          <li>福州即位，延续宋祚，凝聚南方抗元力量</li>
+          <li>在文天祥、陆秀夫、张世杰等忠臣辅佐下苦苦支撑</li>
+          <li>流亡路线：福州—泉州—潮州—惠州—广州—碙洲，始终漂泊海上</li>
+          <li>以幼弱之躯维系着汉人政权最后的旗帜</li>
+        </ul>
+      </div>
+
+      <div class="gain-loss">
+        <div class="gl gong"><h4>功</h4><p>延续宋祚两年，使文天祥等忠义之士有所依归、继续抗争；他以流亡政权的存在，维系了南宋最后的法统与人心。</p></div>
+        <div class="gl guo"><h4>过</h4><p>幼主流亡、漂泊不定，终究无力回天——但这又岂是一个孩子能改变的。</p></div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row"><span class="name">文治</span><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div><span class="val">1</span></div>
+        <div class="bar-row"><span class="name">武功</span><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div><span class="val">1</span></div>
+      </div>
+
+      <div class="verdict"><div class="t">总 评</div><p>颠簸于惊涛之上的一叶残宋。他的小船承载着文天祥、陆秀夫、张世杰最后的忠心，在亡国的大海上孤独漂流，直至沉没前夜。</p></div>
+    </div>
+  </section>
+
+  <!-- 18 少帝 -->
+  <section class="item fade" id="shaodi">
+    <div class="card">
+      <div class="top">
+        <div>
+          <h2>宋少帝（怀宗）<span class="pname">赵昺</span></h2>
+          <div class="reign">1278 — 1279 在位<span class="nian">年号：祥兴</span></div>
+        </div>
+        <span class="badge south">南宋 · 亡国</span>
+      </div>
+
+      <div class="sec">
+        <h3>生平经历</h3>
+        <p>度宗幼子、端宗之弟，是宋朝最后一位皇帝。端宗病死后在碙洲继位，随后迁往崖山。1279年崖山海战，宋军全军覆没，左丞相陆秀夫背负八岁的小皇帝投海殉国，十万军民随之蹈海。</p>
+      </div>
+
+      <div class="sec">
+        <h3>主要事迹</h3>
+        <ul>
+          <li>碙洲继位，移跸崖山，作最后的抵抗</li>
+          <li>1279年崖山海战，张世杰率水军与元军决战，全军覆没</li>
+          <li>陆秀夫先驱妻儿入海，随后负帝投海，南宋灭亡</li>
+          <li>十万军民相继殉国，海面浮尸蔽海，千古同悲</li>
+        </ul>
+      </div>
+
+      <div class="gain-loss">
+        <div class="gl gong"><h4>功</h4><p>以一场最悲壮的谢幕为南宋画上句点。崖山一跃所彰显的气节，成为后世敬仰的民族精神象征——"崖山之后"的悲歌至今回响。</p></div>
+        <div class="gl guo"><h4>过</h4><p>无。他只是一个八岁的孩子，王朝覆灭的沉重，本不该由他承担。</p></div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row"><span class="name">文治</span><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div><span class="val">1</span></div>
+        <div class="bar-row"><span class="name">武功</span><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div><span class="val">1</span></div>
+      </div>
+
+      <div class="verdict"><div class="t">总 评</div><p>崖山一跃，三百一十九年赵宋王朝就此落幕。他没有做过一天真正的皇帝，却以死殉国的方式，为这个"以文立国"的王朝，唱完了最后一曲悲歌。</p></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="big">崖 山 之 后 · 宋 魂 长 存</div>
+  <p>大宋帝王谱 · 960 — 1279 · 一十八帝 · 三百一十九年</p>
+  <p style="margin-top:8px;font-size:12px;color:#9a9484">本页面内容仅供学习参考，文治武功评分为主观示意，不代表史学定论。</p>
+</footer>
+
+<script>
+  // 滚动淡入
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+  // 导航高亮
+  const links = document.querySelectorAll('nav.toc a[href^="#"]');
+  const map = {};
+  links.forEach(a=>{ const id=a.getAttribute('href').slice(1); const s=document.getElementById(id); if(s) map[id]=a; });
+  const spy = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      const a = map[e.target.id];
+      if(!a) return;
+      if(e.isIntersecting){
+        links.forEach(l=>l.classList.remove('active'));
+        a.classList.add('active');
+      }
+    });
+  },{rootMargin:'-45% 0px -50% 0px'});
+  Object.keys(map).forEach(id=>spy.observe(document.getElementById(id)));
+</script>
+</body>
+</html>

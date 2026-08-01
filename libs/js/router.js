@@ -11,7 +11,8 @@
     home: '/pages/home/index.html',
     tech: '/pages/tech/index.html',
     game: '/pages/game/index.html',
-    life: '/pages/life/index.html'
+    life: '/pages/life/index.html',
+    history: '/pages/history/index.html'
   };
 
   // 空 hash / 未识别 hash → 默认 home
@@ -46,7 +47,7 @@
 
   function setActiveNav(route) {
     if (!isParent) return;
-    const validCategories = ['home', 'tech', 'game', 'life'];
+    const validCategories = ['home', 'tech', 'game', 'life', 'history'];
     if (!validCategories.includes(route)) return;
     navItems.forEach(item => {
       const isActive = item.dataset.category === route;
@@ -55,12 +56,12 @@
     });
     const crumbCurrent = document.querySelector('[data-crumb-current]');
     if (crumbCurrent) {
-      const labels = { home: '首页', tech: '技术', game: '游戏', life: '生活' };
+      const labels = { home: '首页', tech: '技术', game: '游戏', life: '生活', history: '历史' };
       crumbCurrent.textContent = labels[route] || '首页';
     }
     const count = document.querySelector('[data-count]');
     if (count) {
-      const counts = { home: '7 篇文章', tech: '3 篇文章', game: '2 篇文章', life: '2 篇文章' };
+      const counts = { home: '7 篇文章', tech: '3 篇文章', game: '2 篇文章', life: '2 篇文章', history: '1 篇文章' };
       count.textContent = counts[route] || '';
     }
   }
@@ -119,14 +120,12 @@
     try {
       const doc = frame.contentDocument;
       if (!doc || !doc.documentElement) return;
-      const rawHeight = Math.max(
-        doc.documentElement.scrollHeight || 0,
-        doc.body ? doc.body.scrollHeight : 0
+      const height = Math.ceil(
+        Math.max(
+          doc.documentElement.scrollHeight || 0,
+          doc.body ? doc.body.scrollHeight : 0
+        )
       );
-      // 移动端高度测量安全余量（iOS Safari scrollHeight 经常偏低）
-      const isMobile = window.innerWidth <= 768;
-      const safetyMargin = isMobile ? 240 : 80;
-      const height = Math.ceil(rawHeight + safetyMargin);
       if (height > 0) frame.style.height = height + 'px';
     } catch (e) {
       // 跨域或不可读：回退到固定最小高度
@@ -143,11 +142,6 @@
         adjustFrameHeight();
         // 内容渲染后再次测量（字体/图片加载完成后高度会变）
         requestAnimationFrame(adjustFrameHeight);
-        // 移动端：延迟二次校准（iOS Safari 字体/图片加载慢，初始测量易偏低）
-        if (window.innerWidth <= 768) {
-          setTimeout(adjustFrameHeight, 600);
-          setTimeout(adjustFrameHeight, 1500);
-        }
         if (doc.defaultView && 'ResizeObserver' in doc.defaultView) {
           if (resizeObserver) resizeObserver.disconnect();
           resizeObserver = new doc.defaultView.ResizeObserver(() => adjustFrameHeight());

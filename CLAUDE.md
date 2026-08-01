@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is the GitHub Pages site for `michaelguan.github.io`. A **pure static personal blog** built with vanilla HTML/CSS/JS — zero build step, zero dependencies, deployed directly to GitHub Pages.
 
 **Tech Stack:**
-- **Structure:** `index.html` (frame) + `pages/{tech,game,life}/*.html` (content loaded in an iframe)
+- **Structure:** `index.html` (frame) + `pages/{home,tech,game,life}/*.html` (content loaded in an iframe)
 - **Routing:** `libs/js/router.js` (~220 lines) — History API + iframe `src` switching; hash → route
 - **Layout/interaction:** `libs/js/layout.js` (~175 lines) — three-column collapse, mobile drawers, danmaku loop, state persistence
 - **Styling:** CSS Custom Properties (design tokens in `theme.css`) + modular CSS files in `libs/css/`
@@ -40,11 +40,14 @@ The same `router.js` is loaded in **both** `index.html` (parent) and each conten
 - **Parent (`isParent`):** owns the iframe, binds `.nav-item[data-category]` and `[data-frame-link]` clicks, manages `history.pushState` / `popstate` / `hashchange`, sets active nav highlight, breadcrumb label (`[data-crumb-current]`), and article count (`[data-count]`).
 - **Child:** only re-binds `.nav-item[data-category]` so category clicks inside the iframe bubble up to `window.parent.blogRouter.navigateTo(route)`.
 
-`ROUTES` maps a short key to an iframe src path:
+`ROUTES` maps a short key to an iframe src path, with a default for empty/unrecognized hashes:
 
 ```js
-const ROUTES = { tech: '/pages/tech/index.html', game: ..., life: ... };
+const ROUTES = { home: '/pages/home/index.html', tech: ..., game: ..., life: ... };
+const DEFAULT_ROUTE = 'home';
 ```
+
+`home` (`pages/home/index.html`) is the landing page — a "最近更新" feed whose cards cross-link into the other categories via `data-frame-link` (e.g. tech/life articles). It is itself a content page inside the iframe, not part of the shell.
 
 Article links use `<a href="/pages/.../slug.html" data-frame-link target="content-frame">` — `data-frame-link` is the selector the parent binds, and `target="content-frame"` lets the browser load it into the named iframe even without JS. **Never** use `target="_top"`/`_parent` on content links — that breaks the frame.
 
@@ -68,7 +71,7 @@ CSS files are linked via `<link>` in both `index.html` and content pages (HTTP/2
 
 Each page is a standalone HTML document loaded into the iframe and must link its own CSS (`reset`, `theme`, then `category` or `article`) and load `router.js` so its category links can bubble to the parent. See `pages/tech/index.html` as the template for category lists and any `pages/*/<article>.html` for article pages.
 
-Article/category counts shown in the UI (badge counts, breadcrumb "N 篇文章", stats card, recent list) are **hand-maintained** in `index.html` and `router.js` (`counts`/`labels` maps). When you add or remove an article, update:
+Article/category counts shown in the UI (badge counts, breadcrumb "N 篇文章", stats card, recent list) are **hand-maintained** in `index.html` and `router.js` (`counts`/`labels` maps). `home` is included in these maps (labels `首页/技术/游戏/生活`). When you add or remove an article, update:
 - The `<span class="nav-item-badge">N</span>` next to its category in the left rail
 - The `counts` map inside `setActiveNav` in `router.js`
 - The `.subnav` link list under the category in `index.html`
@@ -112,9 +115,31 @@ Both run: `git add . && git commit -m "<msg>" && git push`.
 4. Update badge counts, the `counts` map in `router.js`, and the right-rail recent/stats cards as needed.
 5. Test locally, then `./deploy.sh`.
 
+### Tests
+
+There is no test runner for the shell, but the game's pure logic **does** have a Node test suite:
+
+```bash
+# Contract tests for the 连连看 (Lianliankan) game engine — pure logic, no browser needed
+cd pages/game && node pcb-logic.test.cjs   # uses node:assert; prints "ALL N ASSERTIONS PASSED"
+```
+
+`pcb-logic.js` is written as a dual CommonJS/browser module (exports `canConnect`, `createBoard`, `hasAnyMove`, `findHint`, `shuffleBoard`) so it can be `require`d by the test and `<script>`-loaded by `pcb-lianliankan.html`. Keep that dual-compat export pattern if you edit it.
+
+## Self-Contained Sub-Projects
+
+Two directories under `pages/tech/` are **standalone mini-sites** with their own assets and their own nested `CLAUDE.md` — they deliberately break the top-level rules (they bundle Reveal.js, precompiled Tailwind, and the Phosphor icon font). Treat them as black boxes; read their local `CLAUDE.md` before editing:
+
+- `pages/tech/anthropic-financial-services/` — a 32-slide Reveal.js deck (content is actually an OpenCode intro, in zh-CN). `index.html` is the host shell; `slides/NN.html` are lazy-loaded iframe slides.
+- `pages/tech/opencode-demo/` — same Reveal.js slide-deck pattern.
+
+These are the sanctioned exception to the "no large libraries in `libs/`" rule — don't try to dedupe or refactor their shared CSS across slides.
+
+**Orphan content:** `pages/history/` (e.g. `宋朝历代皇帝.html`) is **not wired into routing** — there is no `history` key in `ROUTES`, no nav item, and nothing links to it. It's currently an unlinked standalone page (uncommitted at time of writing). If you intend to publish it, add the `history` category end-to-end (nav, subnav, `ROUTES`, counts/labels, category index).
+
 ## Conventions for This Repo
 
-- **Zero external JS deps.** `router.js` + `layout.js` are the only JS files. No `node_modules`, no `package.json`, no build scripts.
+- **Zero external JS deps** in the shell. `router.js` + `layout.js` are the only JS the frame loads. No `node_modules`, no `package.json`, no build scripts. (Exception: the `pages/tech/` slide-deck sub-projects bundle their own libs — see above.)
 - **CSS via `<link>`, never `@import`.**
 - **Semantic + accessible HTML.** Skip link, `header[role=banner]`, `nav[role=navigation]`, `main[role=main]`, `footer[role=contentinfo]`, `time[datetime]`, `aria-current="page"` on active nav, `aria-expanded` on collapsible subnav toggles, focus-visible outlines, `prefers-reduced-motion` respected.
 - **Mobile-first responsive.** Breakpoints: ≤1024px (tablet, shrinks rails) and ≤768px (single column + off-canvas drawers, danmaku hidden).

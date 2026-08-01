@@ -169,6 +169,10 @@
   background: var(--accent-warm-soft);
   color: var(--accent-warm);
 }
+.article-category-tag[data-variation="history"] {
+  background: var(--accent-rose-soft);
+  color: var(--accent-rose);
+}
 
 .article-date {
   font-size: var(--text-xs);
