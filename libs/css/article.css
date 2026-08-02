@@ -51,6 +51,14 @@
   background: var(--accent-warm-soft);
   color: var(--accent-warm);
 }
+.article-category-tag[data-variation="history"] {
+  background: var(--accent-rose-soft);
+  color: var(--accent-rose);
+}
+.article-category-tag[data-variation="journey"] {
+  background: var(--accent-warm-soft);
+  color: var(--accent-warm);
+}
 .article-card-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -257,6 +265,48 @@
 .article-back-home-link:hover {
   color: var(--accent-warm);
   text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   Series nav — 同一系列文章的上一篇 / 下一篇（如「死神系列」）
+   -------------------------------------------------------------------------- */
+.series-nav {
+  margin-top: var(--space-10);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-md);
+  background: var(--surface-base);
+}
+.series-nav-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  margin-bottom: var(--space-3);
+}
+.series-nav-links {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+}
+.series-nav-links a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+.series-nav-links a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+.series-nav-links .series-nav-next {
+  margin-left: auto;
+  text-align: right;
 }
 
 /* --------------------------------------------------------------------------

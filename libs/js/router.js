@@ -12,7 +12,8 @@
     tech: '/pages/tech/index.html',
     game: '/pages/game/index.html',
     life: '/pages/life/index.html',
-    history: '/pages/history/index.html'
+    history: '/pages/history/index.html',
+    journey: '/pages/journey/index.html'
   };
 
   // 空 hash / 未识别 hash → 默认 home
@@ -47,7 +48,7 @@
 
   function setActiveNav(route) {
     if (!isParent) return;
-    const validCategories = ['home', 'tech', 'game', 'life', 'history'];
+    const validCategories = ['home', 'tech', 'game', 'life', 'history', 'journey'];
     if (!validCategories.includes(route)) return;
     navItems.forEach(item => {
       const isActive = item.dataset.category === route;
@@ -56,12 +57,12 @@
     });
     const crumbCurrent = document.querySelector('[data-crumb-current]');
     if (crumbCurrent) {
-      const labels = { home: '首页', tech: '技术', game: '游戏', life: '生活', history: '历史' };
+      const labels = { home: '首页', tech: '技术', game: '游戏', life: '生活', history: '历史', journey: '身在世间' };
       crumbCurrent.textContent = labels[route] || '首页';
     }
     const count = document.querySelector('[data-count]');
     if (count) {
-      const counts = { home: '7 篇文章', tech: '3 篇文章', game: '2 篇文章', life: '2 篇文章', history: '1 篇文章' };
+      const counts = { home: '10 篇文章', tech: '3 篇文章', game: '2 篇文章', life: '2 篇文章', history: '1 篇文章', journey: '3 篇文章' };
       count.textContent = counts[route] || '';
     }
   }

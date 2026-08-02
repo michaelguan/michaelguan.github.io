@@ -135,7 +135,10 @@ Two directories under `pages/tech/` are **standalone mini-sites** with their own
 
 These are the sanctioned exception to the "no large libraries in `libs/`" rule — don't try to dedupe or refactor their shared CSS across slides.
 
-**Orphan content:** `pages/history/` (e.g. `宋朝历代皇帝.html`) is **not wired into routing** — there is no `history` key in `ROUTES`, no nav item, and nothing links to it. It's currently an unlinked standalone page (uncommitted at time of writing). If you intend to publish it, add the `history` category end-to-end (nav, subnav, `ROUTES`, counts/labels, category index).
+**Orphan content:** none — all categories are wired into routing. There are currently **six** categories: `home / tech / game / life / history / journey`.
+
+- `history` — 历史钩沉. Long-form historical scrolls (e.g. `宋朝历代皇帝.html`, a full Song-dynasty emperors chart).
+- `journey` — 身在世间. The author's **autobiography** (生平 / 求学 / 跋涉 / 感悟). Unlike the flat card listings of other categories, its index `pages/journey/index.html` is a **vertical timeline** (`libs/css/journey.css`): a rail with era nodes (缘起 → 求学 → 跋涉 → 感悟 → 当下·未完). Each node links to its article(s). To add a memoir entry, add a `<li class="timeline-item">` to the `<ol class="timeline">` (use `is-ongoing` for the open-ended "still writing" node) and create the article under `pages/journey/`. Its `data-variation="journey"` tag uses the indigo accent (defined in both `journey.css` and `article.css`).
 
 ## Conventions for This Repo
 
