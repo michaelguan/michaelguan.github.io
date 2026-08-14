@@ -18,13 +18,14 @@
 
   /* ---- Giscus 配置（GitHub 侧变动时只改这里） ------------------------------
      repoId     : repo 的 GraphQL node_id（REST API 返回的 node_id 字段）
-     category   : Discussions 分类名「博客评论区」，giscus 按名称匹配；
-                  categoryId 可日后从 giscus.app 补齐（缓存刷新后），非必需。 */
+     categoryId : Discussions 分类 ID。该分类原名 General，已重命名为
+                  「博客评论区」（重命名不改变 ID）。建帖按 ID 定位，
+                  不依赖 giscus 的分类名缓存。 */
   var CONFIG = {
     repo: 'michaelguan/michaelguan.github.io',
     repoId: 'MDEwOlJlcG9zaXRvcnkyMzI4NDY3MA==',
     category: '博客评论区',
-    categoryId: '',
+    categoryId: 'DIC_kwDOAWNLvs4DBCMW',
     mapping: 'pathname',
     theme: 'preferred_color_scheme',
     lang: 'zh-CN',
