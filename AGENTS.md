@@ -26,7 +26,7 @@ If you forget the dual-context design you'll either break iframe navigation or d
 
 `ROUTES` and the displayed article counts/badges are **not** derived from the filesystem. When you add or remove an article you must update all of:
 
-1. Create `pages/<cat>/slug.html` (copy an existing article as template — it must link its own CSS: `reset`, `theme`, then `article`).
+1. Create `pages/<cat>/slug.html` (copy an existing article as template — it must link its own CSS: `reset`, `theme`, then `article`, plus `comments`; the template already carries the Giscus comments wiring: `comments.css` link, `<section id="comments">` before `</main>`, and the `comments.js` include — keep all three).
 2. Add the link to the `.subnav` list under its category in `index.html`.
 3. Add the link to the category `index.html` listing + pagination status.
 4. Update the `<span class="nav-item-badge">N</span>` next to the category in `index.html`.
@@ -61,7 +61,7 @@ Both wrappers run `git add . && git commit && git push`. Only commit/push when t
 
 - ❌ No `package.json` / npm / yarn / pnpm / build scripts.
 - ❌ No React/Vue/Svelte or any framework — the framework-free design is intentional.
-- ❌ No large libs in `libs/` (jQuery/ECharts/sql.js were already removed).
+- ❌ No large libs in `libs/` (jQuery/ECharts/sql.js were already removed). **One exception:** article pages load Giscus (`libs/js/comments.js`) for comments — inside the iframe only, never in the shell. Config is the `CONFIG` block at the top of `comments.js`.
 - ❌ No `document.write` / `document.writeln`.
 - ❌ No Jekyll (`_config.yml` / `_posts/` / `.nojekyll`) — plain static tree served as-is.
 - ❌ No hardcoded hex colors in component CSS.

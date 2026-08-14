@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+> A condensed companion, `AGENTS.md`, sits at the repo root. It restates the load-bearing facts (dual-context router, frame-safe linking, multi-file article-add checklist, semantic-token CSS rule) for quick reference. This `CLAUDE.md` is the authoritative, detailed version — keep the two in sync when you change architecture or conventions.
+
 ## Repository Overview
 
 This is the GitHub Pages site for `michaelguan.github.io`. A **pure static personal blog** built with vanilla HTML/CSS/JS — zero build step, zero dependencies, deployed directly to GitHub Pages.
@@ -126,6 +128,21 @@ cd pages/game && node pcb-logic.test.cjs   # uses node:assert; prints "ALL N ASS
 
 `pcb-logic.js` is written as a dual CommonJS/browser module (exports `canConnect`, `createBoard`, `hasAnyMove`, `findHint`, `shuffleBoard`) so it can be `require`d by the test and `<script>`-loaded by `pcb-lianliankan.html`. Keep that dual-compat export pattern if you edit it.
 
+## Comments (Giscus)
+
+Articles have a **Giscus** comment section (GitHub Discussions-backed). It is the one sanctioned exception to the "zero external JS deps" rule — the giscus script loads only inside article pages (the iframe child), never in the shell.
+
+- **Wiring per article page** (already present in all existing articles — copying one as a template carries it over):
+  1. `<link rel="stylesheet" href="/libs/css/comments.css">` in `<head>`
+  2. `<section id="comments" class="comments-section" aria-label="评论区">` just before `</main>`
+  3. `<script src="/libs/js/comments.js" defer></script>` after the `router.js` include
+- **Config lives in `libs/js/comments.js`** (`CONFIG` block at top): repo, `repoId`, discussion `category` (**博客评论区**, matched by name — `categoryId` is optional and can be backfilled from giscus.app later). Mapping is `pathname` — the script runs inside the iframe, so `location.pathname` is the article path and comments group per-article automatically. Theme is `preferred_color_scheme` (matches the site's media-query dark mode; no cross-frame sync needed since there's no manual theme toggle).
+- **Origin whitelist:** `giscus.json` at repo root restricts embedding to `https://michaelguan.github.io` (+ localhost:5173 for dev). If the site ever moves to a custom domain, add it there.
+- **Iframe height:** the parent's `ResizeObserver` (`router.js`) auto-grows the frame when lazy-loaded comments appear — don't bypass it.
+- **Not wired:** game pages, slide-deck sub-projects, and all `index.html` listing pages have no comments section.
+- GitHub-side setup (one-time, manual): enable Discussions on the repo and install the [giscus app](https://github.com/apps/giscus) — both already done.
+
+
 ## Self-Contained Sub-Projects
 
 Two directories under `pages/tech/` are **standalone mini-sites** with their own assets and their own nested `CLAUDE.md` — they deliberately break the top-level rules (they bundle Reveal.js, precompiled Tailwind, and the Phosphor icon font). Treat them as black boxes; read their local `CLAUDE.md` before editing:
@@ -138,11 +155,11 @@ These are the sanctioned exception to the "no large libraries in `libs/`" rule �
 **Orphan content:** none — all categories are wired into routing. There are currently **six** categories: `home / tech / game / life / history / journey`.
 
 - `history` — 历史钩沉. Long-form historical scrolls (e.g. `宋朝历代皇帝.html`, a full Song-dynasty emperors chart).
-- `journey` — 身在世间. The author's **autobiography** (生平 / 求学 / 跋涉 / 感悟). Unlike the flat card listings of other categories, its index `pages/journey/index.html` is a **vertical timeline** (`libs/css/journey.css`): a rail with era nodes (缘起 → 求学 → 跋涉 → 感悟 → 当下·未完). Each node links to its article(s). To add a memoir entry, add a `<li class="timeline-item">` to the `<ol class="timeline">` (use `is-ongoing` for the open-ended "still writing" node) and create the article under `pages/journey/`. Its `data-variation="journey"` tag uses the indigo accent (defined in both `journey.css` and `article.css`).
+- `journey` — 身在世间. The author's **autobiography** (生平 / 求学 / 跋涉 / 感悟). Unlike the flat card listings of other categories, its index `pages/journey/index.html` is a **vertical timeline** (`libs/css/journey.css`): a rail with era nodes (缘起·少年 → 求学·光阴 → 跋涉·而立 → 感悟·观照 → **行旅·山河** → 当下·未完, the last marked `is-ongoing`). Each node links to its article(s). The **行旅·山河** node holds the travelogue series (`trip-*.html` — 湘江夜风·长沙 / 滕阁落霞·南昌 / 陶阳拾瓷·景德镇 / 千岛一漩·千岛湖), which lives here under `journey`, **not** under `life`. To add a memoir entry, add a `<li class="timeline-item">` to the `<ol class="timeline">` (use `is-ongoing` for the open-ended "still writing" node) and create the article under `pages/journey/`; to add a travelogue, append a `<a class="timeline-link" ...>` under the 行旅·山河 node with a `trip-<place>.html` slug. Its `data-variation="journey"` tag uses the indigo accent (defined in both `journey.css` and `article.css`).
 
 ## Conventions for This Repo
 
-- **Zero external JS deps** in the shell. `router.js` + `layout.js` are the only JS the frame loads. No `node_modules`, no `package.json`, no build scripts. (Exception: the `pages/tech/` slide-deck sub-projects bundle their own libs — see above.)
+- **Zero external JS deps** in the shell. `router.js` + `layout.js` are the only JS the frame loads. No `node_modules`, no `package.json`, no build scripts. (Exceptions: the `pages/tech/` slide-deck sub-projects bundle their own libs — see above; article pages load Giscus for comments — see Comments section.)
 - **CSS via `<link>`, never `@import`.**
 - **Semantic + accessible HTML.** Skip link, `header[role=banner]`, `nav[role=navigation]`, `main[role=main]`, `footer[role=contentinfo]`, `time[datetime]`, `aria-current="page"` on active nav, `aria-expanded` on collapsible subnav toggles, focus-visible outlines, `prefers-reduced-motion` respected.
 - **Mobile-first responsive.** Breakpoints: ≤1024px (tablet, shrinks rails) and ≤768px (single column + off-canvas drawers, danmaku hidden).

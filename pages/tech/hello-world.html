@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/libs/css/reset.css">
   <link rel="stylesheet" href="/libs/css/theme.css">
   <link rel="stylesheet" href="/libs/css/article.css">
+  <link rel="stylesheet" href="/libs/css/comments.css">
 </head>
 <body>
   <main role="main" class="article-page">
@@ -113,8 +114,13 @@
         <a href="/" target="_top" class="article-back-home-link">回到首页</a>
       </footer>
     </article>
+    <section id="comments" class="comments-section" aria-label="评论区">
+      <h2 class="comments-title">评论</h2>
+      <noscript><p class="comments-noscript">评论功能需要启用 JavaScript。</p></noscript>
+    </section>
   </main>
 
   <script src="/libs/js/router.js"></script>
+  <script src="/libs/js/comments.js" defer></script>
 </body>
 </html>
