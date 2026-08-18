@@ -3,28 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NVIDIA NIM 对话</title>
+<meta name="theme-color" content="#070d1f">
+<title>神谕 · AI 对话</title>
 <style>
   :root {
-    --bg: #0f1115;
-    --panel: #171a21;
-    --panel-2: #1b1f27;
-    --border: #2a2f3a;
-    --text: #e6e9ef;
-    --muted: #8b93a3;
-    --accent: #76b900; /* NVIDIA 绿 */
-    --accent-dim: #5c9100;
-    --user-bubble: #234d7a;
-    --ai-bubble: #1e222b;
+    --bg: #070d1f;
+    --panel: #0d1530;
+    --panel-2: #131d3d;
+    --border: #1f2c52;
+    --text: #e8eefc;
+    --muted: #8296c4;
+    --accent: #4f8cff;
+    --accent-2: #22d3ee;
+    --accent-grad: linear-gradient(135deg, #4f8cff 0%, #22d3ee 100%);
+    --accent-dim: #2f6bdd;
+    --ai-bubble: #101a38;
     --sidebar-w: 260px;
-    --danger: #d9534f;
+    --danger: #f87171;
   }
   * { box-sizing: border-box; }
   html, body { height: 100%; }
   body {
     margin: 0;
     font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
-    background: var(--bg);
+    background:
+      radial-gradient(1000px 600px at 85% -10%, rgba(79, 140, 255, .16), transparent 60%),
+      radial-gradient(800px 500px at -10% 110%, rgba(34, 211, 238, .10), transparent 60%),
+      var(--bg);
+    background-attachment: fixed;
     color: var(--text);
     display: flex;
     overflow: hidden;
@@ -34,11 +40,12 @@
   #sidebar {
     width: var(--sidebar-w);
     min-width: var(--sidebar-w);
-    background: var(--panel);
+    background: rgba(13, 21, 48, .92);
+    backdrop-filter: blur(8px);
     border-right: 1px solid var(--border);
     display: flex;
     flex-direction: column;
-    transition: margin-left .2s ease;
+    transition: margin-left .2s ease, transform .2s ease;
   }
   #sidebar.hidden { margin-left: calc(var(--sidebar-w) * -1); }
   .side-head {
@@ -46,25 +53,29 @@
     border-bottom: 1px solid var(--border);
   }
   .side-head h1 {
-    font-size: 16px;
+    font-size: 18px;
     margin: 0 0 12px;
-    color: var(--accent);
     display: flex;
     align-items: center;
     gap: 8px;
+    background: var(--accent-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: .06em;
   }
   #new-chat {
     width: 100%;
-    background: var(--accent);
+    background: var(--accent-grad);
     border: none;
-    color: #0b0d10;
+    color: #04122b;
     font-weight: 600;
     padding: 10px;
     border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
   }
-  #new-chat:hover { background: var(--accent-dim); }
+  #new-chat:hover { filter: brightness(1.12); }
   #session-list {
     flex: 1;
     overflow-y: auto;
@@ -82,7 +93,7 @@
     position: relative;
   }
   .session:hover { background: var(--panel-2); }
-  .session.active { background: #24301a; outline: 1px solid var(--accent-dim); }
+  .session.active { background: rgba(79, 140, 255, .14); outline: 1px solid rgba(79, 140, 255, .45); }
   .session .title {
     flex: 1;
     font-size: 13.5px;
@@ -105,7 +116,7 @@
     font-size: 13px;
     line-height: 1;
   }
-  .session .actions button:hover { background: #2c313c; color: var(--text); }
+  .session .actions button:hover { background: #1d2a52; color: var(--text); }
   .session .actions button.del:hover { color: var(--danger); }
   .empty-tip {
     color: var(--muted);
@@ -129,7 +140,8 @@
   }
   header {
     padding: 12px 16px;
-    background: var(--panel);
+    background: rgba(13, 21, 48, .85);
+    backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
@@ -158,23 +170,24 @@
     flex-wrap: wrap;
   }
   select, button {
-    background: #22262f;
+    background: #101a38;
     color: var(--text);
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 8px 12px;
     font-size: 14px;
     cursor: pointer;
+    max-width: 100%;
   }
   select:focus, button:focus { outline: 2px solid var(--accent-dim); }
   button.primary {
-    background: var(--accent);
+    background: var(--accent-grad);
     border: none;
-    color: #0b0d10;
+    color: #04122b;
     font-weight: 600;
   }
-  button.primary:hover { background: var(--accent-dim); }
-  button.primary:disabled { background: #3a3f49; color: var(--muted); cursor: not-allowed; }
+  button.primary:hover { filter: brightness(1.12); }
+  button.primary:disabled { background: #26304b; color: var(--muted); cursor: not-allowed; filter: none; }
   label { font-size: 13px; color: var(--muted); }
 
   #chat {
@@ -196,8 +209,9 @@
   }
   .msg.user {
     align-self: flex-end;
-    background: var(--user-bubble);
+    background: linear-gradient(135deg, #2b63e8, #1a4fc4);
     border-bottom-right-radius: 4px;
+    box-shadow: 0 4px 18px rgba(43, 99, 232, .25);
   }
   .msg.ai {
     align-self: flex-start;
@@ -211,14 +225,15 @@
     margin-bottom: 6px;
     display: block;
   }
+  .msg.user .role { color: rgba(232, 238, 252, .75); }
   .msg.ai .content { min-height: 1.4em; }
-  .cursor { display: inline-block; width: 8px; background: var(--accent); animation: blink 0.8s infinite; }
+  .cursor { display: inline-block; width: 8px; background: var(--accent-2); animation: blink 0.8s infinite; }
   @keyframes blink { 50% { opacity: 0; } }
 
   #error {
     padding: 10px 20px;
-    background: #4a1d1d;
-    color: #ffb3b3;
+    background: #3d1524;
+    color: #ffb3c0;
     font-size: 13px;
     display: none;
     border-top: 1px solid var(--border);
@@ -226,14 +241,15 @@
 
   #input-area {
     padding: 14px 20px;
-    background: var(--panel);
+    background: rgba(13, 21, 48, .85);
+    backdrop-filter: blur(8px);
     border-top: 1px solid var(--border);
     display: flex;
     gap: 10px;
   }
   #input {
     flex: 1;
-    background: #22262f;
+    background: #101a38;
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 12px 14px;
@@ -241,21 +257,69 @@
     font-size: 15px;
     resize: none;
     font-family: inherit;
-    max-height: 140px;
+    line-height: 1.5;
+    max-height: 160px;
   }
   #input:focus { outline: 2px solid var(--accent-dim); }
+  #input::placeholder { color: var(--muted); }
   #send { align-self: flex-end; }
   #statusbar { padding: 0 20px 8px; font-size: 12px; color: var(--muted); }
 
   /* 重命名输入框 */
   .rename-input {
     flex: 1;
-    background: #22262f;
+    background: #101a38;
     border: 1px solid var(--accent-dim);
     color: var(--text);
     border-radius: 5px;
     font-size: 13px;
     padding: 4px 6px;
+  }
+
+  /* 遮罩（移动端抽屉用，桌面端不渲染） */
+  #backdrop { display: none; }
+
+  /* ===== 移动端 ===== */
+  @media (max-width: 768px) {
+    #sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 70;
+      margin-left: 0;
+      transform: translateX(0);
+      box-shadow: 0 0 48px rgba(0, 0, 0, .55);
+    }
+    #sidebar.hidden {
+      margin-left: 0;
+      transform: translateX(-105%);
+    }
+    #backdrop {
+      display: block;
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 7, 18, .6);
+      z-index: 60;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease;
+    }
+    #backdrop.show { opacity: 1; pointer-events: auto; }
+
+    header { padding: 10px 12px; gap: 8px; }
+    .controls { gap: 6px; width: 100%; margin-left: 0; }
+    .controls label { display: none; }
+    .controls select { flex: 1; min-width: 0; }
+    select, button { padding: 8px 10px; font-size: 13px; }
+
+    #chat { padding: 14px 12px; gap: 12px; }
+    .msg { max-width: 92%; font-size: 14.5px; padding: 10px 13px; }
+
+    #input-area { padding: 10px 12px; }
+    #input { font-size: 14.5px; }
+    #statusbar { padding: 0 12px 6px; }
+    .session .actions { display: flex; } /* 触屏没有 hover，常显操作按钮 */
   }
 </style>
 </head>
@@ -264,12 +328,13 @@
 <!-- 侧边栏 -->
 <aside id="sidebar">
   <div class="side-head">
-    <h1>⚡ NVIDIA NIM</h1>
+    <h1>🔮 神谕</h1>
     <button id="new-chat">＋ 新建会话</button>
   </div>
   <div id="session-list"></div>
-  <div class="side-foot">会话保存在本机浏览器</div>
+  <div class="side-foot">Powered by NVIDIA NIM · 会话保存在本机浏览器</div>
 </aside>
+<div id="backdrop"></div>
 
 <!-- 主区域 -->
 <div id="main">
@@ -287,7 +352,7 @@
   <div id="error"></div>
 
   <div id="input-area">
-    <textarea id="input" rows="1" placeholder="输入问题，Enter 发送，Shift+Enter 换行"></textarea>
+    <textarea id="input" rows="3" placeholder="输入问题，Enter 发送，Shift+Enter 换行"></textarea>
     <button id="send" class="primary">发送</button>
   </div>
   <div id="statusbar"></div>
@@ -298,16 +363,20 @@
 // 纯静态部署（GitHub Pages）。NVIDIA NIM 未开放 CORS，浏览器直连会被拦截，
 // 因此经公共代理 corsproxy.io 转发（它会透传 Authorization 头并带回 CORS 头）。
 // 注意：apiKey 会公开在页面源码中，请使用额度可控的 Key，泄露后到 build.nvidia.com 吊销换新。
+const NIM_BASE = "https://integrate.api.nvidia.com/v1";
+const PROXY = "https://corsproxy.io/?url=";
 const CONFIG = {
-  apiUrl: "https://corsproxy.io/?url=" + encodeURIComponent("https://integrate.api.nvidia.com/v1/chat/completions"),
+  apiUrl: PROXY + encodeURIComponent(NIM_BASE + "/chat/completions"),
+  modelsUrl: PROXY + encodeURIComponent(NIM_BASE + "/models"),
   apiKey: "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",
   timeoutSeconds: 300,
   systemPrompt: "你是一个乐于助人的 AI 助手，请用中文简洁准确地回答。",
+  // 常用模型：页面打开立即可用；完整列表随后从 NIM 动态拉取合并
   models: [
-    { id: "z-ai/glm-5.2",                       name: "nvidia-glm-5.2" },
-    { id: "minimaxai/minimax-m3",               name: "nvidia-minimax-m3" },
-    { id: "nvidia/nemotron-3-ultra-550b-a55b",  name: "nvidia-nemotron-3-ultra" },
-    { id: "nvidia/nemotron-3-super-120b-a12b",  name: "nvidia-nemotron-3-super" }
+    { id: "z-ai/glm-5.2",                       name: "glm-5.2" },
+    { id: "minimaxai/minimax-m3",               name: "minimax-m3" },
+    { id: "nvidia/nemotron-3-ultra-550b-a55b",  name: "nemotron-3-ultra" },
+    { id: "nvidia/nemotron-3-super-120b-a12b",  name: "nemotron-3-super" }
   ],
   defaultModel: "z-ai/glm-5.2"
 };
@@ -322,18 +391,63 @@ const modelSel = document.getElementById("model");
 const statusEl = document.getElementById("statusbar");
 const errorEl = document.getElementById("error");
 const sidebarEl = document.getElementById("sidebar");
+const backdropEl = document.getElementById("backdrop");
 const sessionListEl = document.getElementById("session-list");
 const newChatBtn = document.getElementById("new-chat");
 const toggleSideBtn = document.getElementById("toggle-side");
 const chatTitleEl = document.getElementById("chat-title");
 
-// 填模型下拉框
-CONFIG.models.forEach(m => {
-  const opt = document.createElement("option");
-  opt.value = m.id;
-  opt.textContent = m.name;
-  modelSel.appendChild(opt);
-});
+const shortName = id => (id || "").split("/").pop() || id;
+const isMobile = () => window.innerWidth <= 768;
+
+// ===== 模型下拉框（常用 + 动态拉取全部）=====
+function fillModels(allIds) {
+  const keep = currentSession() ? (currentSession().model || CONFIG.defaultModel) : CONFIG.defaultModel;
+  modelSel.innerHTML = "";
+
+  const gCommon = document.createElement("optgroup");
+  gCommon.label = "常用";
+  CONFIG.models.forEach(m => gCommon.appendChild(new Option(m.name, m.id)));
+  modelSel.appendChild(gCommon);
+
+  if (allIds && allIds.length) {
+    const defaults = new Set(CONFIG.models.map(m => m.id));
+    const rest = allIds.filter(id => !defaults.has(id));
+    if (rest.length) {
+      const gAll = document.createElement("optgroup");
+      gAll.label = "全部可用模型（NVIDIA NIM）";
+      rest.forEach(id => gAll.appendChild(new Option(shortName(id), id)));
+      modelSel.appendChild(gAll);
+    }
+  }
+
+  // 会话里保存的模型可能不在列表中（已下线等），兜底补一项
+  if (![...modelSel.options].some(o => o.value === keep)) {
+    modelSel.appendChild(new Option(shortName(keep), keep));
+  }
+  modelSel.value = keep;
+}
+
+async function fetchModels() {
+  try {
+    const resp = await fetch(CONFIG.modelsUrl, {
+      headers: { "Authorization": "Bearer " + CONFIG.apiKey }
+    });
+    if (!resp.ok) throw new Error("HTTP " + resp.status);
+    const json = await resp.json();
+    const ids = (json.data || []).map(m => m.id).sort();
+    if (!ids.length) return;
+    fillModels(ids);
+    statusEl.textContent = "已从 NVIDIA NIM 加载 " + ids.length + " 个可用模型";
+    setTimeout(() => {
+      if (statusEl.textContent.indexOf("已加载") === 0 || statusEl.textContent.indexOf("已从") === 0) {
+        statusEl.textContent = "";
+      }
+    }, 5000);
+  } catch (e) {
+    statusEl.textContent = "模型列表拉取失败，当前仅显示常用模型";
+  }
+}
 
 // ===== 会话数据（持久化到 localStorage）=====
 function loadSessions() {
@@ -378,6 +492,15 @@ let abortController = null;
 
 function currentSession() {
   return state.sessions.find(s => s.id === state.currentId);
+}
+
+// ===== 侧边栏抽屉（移动端）=====
+function setSidebar(open) {
+  sidebarEl.classList.toggle("hidden", !open);
+  backdropEl.classList.toggle("show", open && isMobile());
+}
+function closeMobileSidebar() {
+  if (isMobile()) setSidebar(false);
 }
 
 // ===== 渲染侧边栏 =====
@@ -461,6 +584,7 @@ function switchSession(id) {
   state.currentId = id;
   saveSessions();
   renderAll();
+  closeMobileSidebar();
   inputEl.focus();
 }
 
@@ -471,6 +595,7 @@ function createSession() {
   state.currentId = s.id;
   saveSessions();
   renderAll();
+  closeMobileSidebar();
   inputEl.focus();
 }
 
@@ -506,7 +631,7 @@ function addBubble(role, text, modelName) {
   roleLabel.className = "role";
   roleLabel.textContent = role === "user"
     ? "我"
-    : (modelName || CONFIG.models.find(m => m.id === modelSel.value)?.name || "AI");
+    : (modelName || "AI");
   const content = document.createElement("div");
   content.className = "content";
   if (typeof text === "string") content.textContent = text;
@@ -523,7 +648,7 @@ function showError(msg) {
 }
 function clearError() { errorEl.style.display = "none"; }
 
-// ===== 调用 NVIDIA NIM (OpenAI 兼容接口，流式) =====
+// ===== 调用 NVIDIA NIM (OpenAI 兼容接口，流式，经 corsproxy.io 转发) =====
 async function sendMessage() {
   const text = inputEl.value.trim();
   if (!text || sending) return;
@@ -546,7 +671,7 @@ async function sendMessage() {
   renderHeader();
   saveSessions();
 
-  const modelName = CONFIG.models.find(m => m.id === modelId)?.name || "AI";
+  const modelName = modelSel.options[modelSel.selectedIndex]?.textContent || shortName(modelId);
   const aiContent = addBubble("ai", "", modelName);
   const cursor = document.createElement("span");
   cursor.className = "cursor";
@@ -647,7 +772,8 @@ async function sendMessage() {
 // ===== 事件 =====
 sendBtn.addEventListener("click", sendMessage);
 newChatBtn.addEventListener("click", createSession);
-toggleSideBtn.addEventListener("click", () => sidebarEl.classList.toggle("hidden"));
+toggleSideBtn.addEventListener("click", () => setSidebar(sidebarEl.classList.contains("hidden")));
+backdropEl.addEventListener("click", () => setSidebar(false));
 
 modelSel.addEventListener("change", () => {
   const s = currentSession();
@@ -661,10 +787,10 @@ inputEl.addEventListener("keydown", (e) => {
     sendMessage();
   }
 });
-// 自适应输入框高度
+// 自适应输入框高度（默认 3 行，最高 160px）
 inputEl.addEventListener("input", () => {
   inputEl.style.height = "auto";
-  inputEl.style.height = Math.min(inputEl.scrollHeight, 140) + "px";
+  inputEl.style.height = Math.min(inputEl.scrollHeight, 160) + "px";
 });
 
 clearBtn.addEventListener("click", () => {
@@ -680,7 +806,10 @@ clearBtn.addEventListener("click", () => {
 });
 
 // 初始化
+if (isMobile()) sidebarEl.classList.add("hidden"); // 移动端默认收起抽屉
+fillModels(null);      // 先填常用模型，立即可用
 renderAll();
+fetchModels();         // 后台拉取完整模型列表
 inputEl.focus();
 </script>
 </body>
