@@ -295,10 +295,11 @@
 
 <script>
 // ===== 配置 =====
-// 纯静态部署（GitHub Pages），浏览器直连 NVIDIA NIM 的 OpenAI 兼容接口。
+// 纯静态部署（GitHub Pages）。NVIDIA NIM 未开放 CORS，浏览器直连会被拦截，
+// 因此经公共代理 corsproxy.io 转发（它会透传 Authorization 头并带回 CORS 头）。
 // 注意：apiKey 会公开在页面源码中，请使用额度可控的 Key，泄露后到 build.nvidia.com 吊销换新。
 const CONFIG = {
-  apiUrl: "https://integrate.api.nvidia.com/v1/chat/completions",
+  apiUrl: "https://corsproxy.io/?url=" + encodeURIComponent("https://integrate.api.nvidia.com/v1/chat/completions"),
   apiKey: "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",
   timeoutSeconds: 300,
   systemPrompt: "你是一个乐于助人的 AI 助手，请用中文简洁准确地回答。",
@@ -623,7 +624,7 @@ async function sendMessage() {
       if (full) { s.messages.push({ role: "assistant", content: full, model: modelName }); }
     } else {
       const msg = (err.message === "Failed to fetch")
-        ? "网络请求失败：请检查网络连接（浏览器直连 integrate.api.nvidia.com）"
+        ? "网络请求失败：请检查网络连接（请求经 corsproxy.io 代理转发，代理不可达也会报此错误）"
         : (err.message || String(err));
       showError(msg);
       aiContent.textContent = full || "（请求失败）";
