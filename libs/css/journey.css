@@ -169,6 +169,17 @@
   background: var(--accent-warm-faint);
 }
 
+/* 年代区间 — 跟在 era 标签旁，素净的等宽数字 */
+.timeline-years {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-subtle);
+  margin-left: var(--space-2);
+  margin-bottom: var(--space-3);
+  letter-spacing: 0.04em;
+}
+
 /* --------------------------------------------------------------------------
    动效 — 节点淡入（尊重 prefers-reduced-motion）
    -------------------------------------------------------------------------- */
