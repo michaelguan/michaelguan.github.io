@@ -62,7 +62,7 @@
     }
     const count = document.querySelector('[data-count]');
     if (count) {
-      const counts = { home: '16 篇文章', tech: '4 篇文章', game: '2 篇文章', life: '2 篇文章', history: '1 篇文章', journey: '8 篇文章' };
+      const counts = { home: '16 篇文章', tech: '4 篇文章', game: '2 篇文章', life: '2 篇文章', history: '1 篇文章', journey: '9 篇文章' };
       count.textContent = counts[route] || '';
     }
   }
