@@ -33,7 +33,7 @@ If you forget the dual-context design you'll either break iframe navigation or d
 5. Update the `counts` map in `setActiveNav` (`libs/js/router.js`) — format is `"N 篇文章"`.
 6. Update the right-rail "最近" list and stats card in `index.html` if relevant.
 
-To add a **new category**: also create `pages/<cat>/index.html`, add a `ROUTES` entry, and extend `validCategories` / `labels` / `counts` in `setActiveNav`.
+To add a **new category**: also create `pages/<cat>/index.html`, add a `ROUTES` entry, and extend the `labels` / `counts` maps in `setActiveNav`.
 
 ## CSS: stay on semantic tokens or dark mode silently breaks
 

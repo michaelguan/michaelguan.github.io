@@ -21,3 +21,6 @@ Thumbs.db
 .omo/
 # 本地工具/草稿目录（不进站）
 aichat/
+
+# 照片原图底稿目录（压缩后的 WebP 在 imgs/ 下，原图不进站）
+pages/photos/

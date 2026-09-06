@@ -310,6 +310,34 @@
 }
 
 /* --------------------------------------------------------------------------
+   Article figures (travel essays)
+   -------------------------------------------------------------------------- */
+.article-body figure.article-figure {
+  margin: var(--space-8) 0;
+}
+.article-body .article-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-base);
+  box-shadow: var(--shadow-md, 0 8px 24px rgba(0, 0, 0, 0.08));
+}
+.article-body .article-figure figcaption {
+  margin-top: var(--space-3);
+  font-family: var(--font-serif);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relax);
+  color: var(--text-secondary);
+  text-align: center;
+  font-style: italic;
+}
+.article-body .article-figure.is-portrait img {
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
    Mobile
    -------------------------------------------------------------------------- */
 @media (max-width: 640px) {

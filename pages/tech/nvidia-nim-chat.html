@@ -35,6 +35,7 @@
     display: flex;
     overflow: hidden;
   }
+  button { font-family: inherit; }
 
   /* ===== 侧边栏 ===== */
   #sidebar {
@@ -101,10 +102,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .session .actions {
-    display: none;
-    gap: 2px;
-  }
+  .session .actions { display: none; gap: 2px; }
   .session:hover .actions { display: flex; }
   .session .actions button {
     background: transparent;
@@ -187,9 +185,93 @@
     font-weight: 600;
   }
   button.primary:hover { filter: brightness(1.12); }
-  button.primary:disabled { background: #26304b; color: var(--muted); cursor: not-allowed; filter: none; }
+  button.primary.stop {
+    background: #3d1524;
+    border: 1px solid var(--danger);
+    color: var(--danger);
+  }
+  button.primary.stop:hover { filter: brightness(1.2); }
   label { font-size: 13px; color: var(--muted); }
 
+  /* ===== 可搜索模型下拉 ===== */
+  .combo { position: relative; min-width: 200px; }
+  .combo-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: #101a38;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .combo-btn .combo-caret { color: var(--muted); font-size: 11px; }
+  .combo-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .combo-panel {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    width: 300px;
+    max-width: 86vw;
+    max-height: 340px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .5);
+    display: none;
+    flex-direction: column;
+    z-index: 80;
+    overflow: hidden;
+  }
+  .combo-panel.open { display: flex; }
+  .combo-search { padding: 8px; border-bottom: 1px solid var(--border); }
+  .combo-search input {
+    width: 100%;
+    background: #101a38;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    padding: 7px 10px;
+    font-size: 13px;
+  }
+  .combo-search input:focus { outline: 2px solid var(--accent-dim); }
+  .combo-list { overflow-y: auto; padding: 4px; }
+  .combo-group-label {
+    font-size: 11px;
+    color: var(--muted);
+    padding: 8px 10px 4px;
+    letter-spacing: .05em;
+  }
+  .combo-item {
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 13.5px;
+  }
+  .combo-item .cid { font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .combo-item:hover, .combo-item.active { background: var(--panel-2); }
+  .combo-item.selected { color: var(--accent-2); }
+  .combo-empty { padding: 16px; text-align: center; color: var(--muted); font-size: 13px; }
+
+  /* ===== 对话区 ===== */
+  #chat-wrap {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
   #chat {
     flex: 1;
     overflow-y: auto;
@@ -203,15 +285,16 @@
     padding: 12px 16px;
     border-radius: 14px;
     line-height: 1.6;
-    white-space: pre-wrap;
     word-break: break-word;
     font-size: 15px;
+    position: relative;
   }
   .msg.user {
     align-self: flex-end;
     background: linear-gradient(135deg, #2b63e8, #1a4fc4);
     border-bottom-right-radius: 4px;
     box-shadow: 0 4px 18px rgba(43, 99, 232, .25);
+    white-space: pre-wrap;
   }
   .msg.ai {
     align-self: flex-start;
@@ -229,6 +312,143 @@
   .msg.ai .content { min-height: 1.4em; }
   .cursor { display: inline-block; width: 8px; background: var(--accent-2); animation: blink 0.8s infinite; }
   @keyframes blink { 50% { opacity: 0; } }
+
+  /* 消息操作 */
+  .msg-actions {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    display: none;
+    gap: 2px;
+  }
+  .msg:hover .msg-actions { display: flex; }
+  .msg-actions button {
+    background: rgba(7, 13, 31, .55);
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 3px 6px;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 1;
+  }
+  .msg-actions button:hover { background: #1d2a52; color: var(--text); }
+  .msg-actions button.del:hover { color: var(--danger); }
+
+  /* ===== Markdown 内容排版 ===== */
+  .msg .content p { margin: 0 0 .6em; }
+  .msg .content p:last-child { margin-bottom: 0; }
+  .msg .content h3, .msg .content h4 {
+    margin: .9em 0 .4em;
+    font-size: 1.05em;
+    color: var(--accent-2);
+  }
+  .msg .content ul, .msg .content ol { margin: .4em 0; padding-left: 1.3em; }
+  .msg .content li { margin: .2em 0; }
+  .msg .content code {
+    background: rgba(79, 140, 255, .16);
+    padding: 1px 5px;
+    border-radius: 5px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: .88em;
+  }
+  .msg .content a { color: var(--accent-2); }
+  .msg .content strong { color: #fff; }
+
+  .codeblock {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: .6em 0;
+    background: #0a1128;
+  }
+  .codeblock-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 8px 4px 12px;
+    background: #131d3d;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .code-copy {
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+  }
+  .code-copy:hover { background: #1d2a52; color: var(--text); }
+  .codeblock pre {
+    margin: 0;
+    padding: 12px;
+    overflow-x: auto;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .codeblock pre code { background: none; padding: 0; font-size: inherit; }
+  .tok-kw { color: #7aa2ff; }
+  .tok-str { color: #8ee6b0; }
+  .tok-com { color: #5c6b94; font-style: italic; }
+  .tok-num { color: #f2b56b; }
+  .tok-tag { color: #7aa2ff; }
+
+  /* 回到底部 */
+  #to-bottom {
+    position: absolute;
+    right: 18px;
+    bottom: 16px;
+    display: none;
+    background: rgba(13, 21, 48, .92);
+    border: 1px solid var(--accent-dim);
+    color: var(--accent-2);
+    border-radius: 999px;
+    padding: 7px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .45);
+    z-index: 10;
+  }
+  #to-bottom.show { display: block; }
+  #to-bottom.fresh { background: var(--accent-grad); color: #04122b; border: none; font-weight: 600; }
+
+  /* 空会话欢迎页 */
+  .welcome {
+    margin: auto;
+    text-align: center;
+    max-width: 560px;
+    padding: 20px;
+  }
+  .welcome .logo { font-size: 44px; margin-bottom: 10px; }
+  .welcome h2 {
+    margin: 0 0 8px;
+    font-size: 22px;
+    background: var(--accent-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .welcome p { color: var(--muted); font-size: 14px; margin: 0 0 18px; }
+  .welcome-examples {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .welcome-example {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 13.5px;
+    text-align: left;
+    cursor: pointer;
+    line-height: 1.5;
+  }
+  .welcome-example:hover { border-color: var(--accent-dim); background: rgba(79, 140, 255, .10); }
 
   #error {
     padding: 10px 20px;
@@ -310,16 +530,22 @@
     header { padding: 10px 12px; gap: 8px; }
     .controls { gap: 6px; width: 100%; margin-left: 0; }
     .controls label { display: none; }
-    .controls select { flex: 1; min-width: 0; }
+    .combo { flex: 1; min-width: 0; }
+    .combo-panel { left: 0; right: 0; width: auto; }
+    .combo-item { padding: 10px 12px; }
     select, button { padding: 8px 10px; font-size: 13px; }
 
     #chat { padding: 14px 12px; gap: 12px; }
     .msg { max-width: 92%; font-size: 14.5px; padding: 10px 13px; }
+    .msg-actions { display: flex; } /* 触屏没有 hover，常显操作按钮 */
+    .session .actions { display: flex; }
+
+    #to-bottom { right: 12px; bottom: 12px; }
+    .welcome-examples { grid-template-columns: 1fr; }
 
     #input-area { padding: 10px 12px; }
     #input { font-size: 14.5px; }
     #statusbar { padding: 0 12px 6px; }
-    .session .actions { display: flex; } /* 触屏没有 hover，常显操作按钮 */
   }
 </style>
 </head>
@@ -342,13 +568,27 @@
     <button id="toggle-side" title="收起/展开侧边栏">☰</button>
     <div id="chat-title">新会话</div>
     <div class="controls">
-      <label for="model">模型:</label>
-      <select id="model"></select>
+      <label>模型:</label>
+      <div class="combo" id="model-combo">
+        <button type="button" class="combo-btn" id="combo-btn" aria-haspopup="listbox" aria-expanded="false">
+          <span class="combo-label" id="combo-label">…</span>
+          <span class="combo-caret">▾</span>
+        </button>
+        <div class="combo-panel" id="combo-panel" role="listbox">
+          <div class="combo-search">
+            <input id="combo-filter" type="text" placeholder="搜索模型…" autocomplete="off">
+          </div>
+          <div class="combo-list" id="combo-list"></div>
+        </div>
+      </div>
       <button id="clear" title="清空当前会话">清空</button>
     </div>
   </header>
 
-  <div id="chat"></div>
+  <div id="chat-wrap">
+    <div id="chat"></div>
+    <button id="to-bottom" type="button">↓ 回到底部</button>
+  </div>
   <div id="error"></div>
 
   <div id="input-area">
@@ -378,16 +618,22 @@ const CONFIG = {
     { id: "nvidia/nemotron-3-ultra-550b-a55b",  name: "nemotron-3-ultra" },
     { id: "nvidia/nemotron-3-super-120b-a12b",  name: "nemotron-3-super" }
   ],
-  defaultModel: "z-ai/glm-5.2"
+  defaultModel: "z-ai/glm-5.2",
+  welcomeExamples: [
+    "用大白话解释什么是 Transformer",
+    "用 Python 写一个快速排序，并逐行解释",
+    "帮我把这段工作汇报润色得更专业：本周完成了接口联调",
+    "给我一份杭州两日一夜的旅行攻略"
+  ]
 };
 const STORAGE_KEY = "nim-chat-sessions-v1";
 
 // ===== 元素 =====
 const chatEl = document.getElementById("chat");
+const toBottomBtn = document.getElementById("to-bottom");
 const inputEl = document.getElementById("input");
 const sendBtn = document.getElementById("send");
 const clearBtn = document.getElementById("clear");
-const modelSel = document.getElementById("model");
 const statusEl = document.getElementById("statusbar");
 const errorEl = document.getElementById("error");
 const sidebarEl = document.getElementById("sidebar");
@@ -396,57 +642,111 @@ const sessionListEl = document.getElementById("session-list");
 const newChatBtn = document.getElementById("new-chat");
 const toggleSideBtn = document.getElementById("toggle-side");
 const chatTitleEl = document.getElementById("chat-title");
+const comboEl = document.getElementById("model-combo");
+const comboBtn = document.getElementById("combo-btn");
+const comboLabel = document.getElementById("combo-label");
+const comboPanel = document.getElementById("combo-panel");
+const comboFilter = document.getElementById("combo-filter");
+const comboList = document.getElementById("combo-list");
 
 const shortName = id => (id || "").split("/").pop() || id;
 const isMobile = () => window.innerWidth <= 768;
+const escapeHtml = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-// ===== 模型下拉框（常用 + 动态拉取全部）=====
-function fillModels(allIds) {
-  const keep = currentSession() ? (currentSession().model || CONFIG.defaultModel) : CONFIG.defaultModel;
-  modelSel.innerHTML = "";
+// ===== Markdown 渲染（手写轻量版，输出前已转义，防 XSS）=====
+const HASH_COMMENT_LANGS = new Set(["py", "python", "rb", "ruby", "sh", "bash", "shell", "zsh", "yaml", "yml", "toml", "makefile", "ini"]);
+const SQL_LANGS = new Set(["sql"]);
+const KEYWORDS = "const|let|var|function|return|if|elif|else|for|while|do|class|struct|enum|interface|new|delete|import|export|from|as|default|async|await|try|catch|except|finally|throw|raise|typeof|instanceof|switch|case|break|continue|yield|static|extends|super|this|self|null|None|nil|undefined|true|false|True|False|def|lambda|pass|with|global|nonlocal|print|public|private|protected|void|int|long|float|double|char|bool|boolean|string|package|func|chan|defer|fn|impl|use|mod|pub|mut|match|loop|SELECT|FROM|WHERE|INSERT|UPDATE|DELETE|JOIN|LEFT|RIGHT|INNER|OUTER|GROUP|ORDER|LIMIT|CREATE|TABLE|ALTER|DROP|VALUES|INTO|SET|PRIMARY|KEY";
 
-  const gCommon = document.createElement("optgroup");
-  gCommon.label = "常用";
-  CONFIG.models.forEach(m => gCommon.appendChild(new Option(m.name, m.id)));
-  modelSel.appendChild(gCommon);
-
-  if (allIds && allIds.length) {
-    const defaults = new Set(CONFIG.models.map(m => m.id));
-    const rest = allIds.filter(id => !defaults.has(id));
-    if (rest.length) {
-      const gAll = document.createElement("optgroup");
-      gAll.label = "全部可用模型（NVIDIA NIM）";
-      rest.forEach(id => gAll.appendChild(new Option(shortName(id), id)));
-      modelSel.appendChild(gAll);
-    }
+function highlightCode(escapedCode, lang) {
+  const L = (lang || "").toLowerCase();
+  if (["html", "xml", "vue", "svg", "markup"].includes(L)) {
+    return escapedCode.replace(/(&lt;\/?)([\w-]+)/g, '$1<span class="tok-tag">$2</span>');
   }
-
-  // 会话里保存的模型可能不在列表中（已下线等），兜底补一项
-  if (![...modelSel.options].some(o => o.value === keep)) {
-    modelSel.appendChild(new Option(shortName(keep), keep));
-  }
-  modelSel.value = keep;
+  let commentPat;
+  if (HASH_COMMENT_LANGS.has(L)) commentPat = "#[^\\n]*";
+  else if (SQL_LANGS.has(L)) commentPat = "--[^\\n]*";
+  else commentPat = "\\/\\/[^\\n]*|\\/\\*[\\s\\S]*?\\*\\/";
+  const re = new RegExp(
+    "(" + commentPat + ")" +
+    "|('(?:[^'\\\\\\n]|\\\\.)*'|\"(?:[^\"\\\\\\n]|\\\\.)*\"|`(?:[^`\\\\]|\\\\.)*`)" +
+    "|(\\b\\d+(?:\\.\\d+)?\\b)" +
+    "|(\\b(?:" + KEYWORDS + ")\\b)",
+    "g"
+  );
+  return escapedCode.replace(re, (m, com, str, num, kw) => {
+    if (com) return '<span class="tok-com">' + m + "</span>";
+    if (str) return '<span class="tok-str">' + m + "</span>";
+    if (num) return '<span class="tok-num">' + m + "</span>";
+    return '<span class="tok-kw">' + m + "</span>";
+  });
 }
 
-async function fetchModels() {
-  try {
-    const resp = await fetch(CONFIG.modelsUrl, {
-      headers: { "Authorization": "Bearer " + CONFIG.apiKey }
-    });
-    if (!resp.ok) throw new Error("HTTP " + resp.status);
-    const json = await resp.json();
-    const ids = (json.data || []).map(m => m.id).sort();
-    if (!ids.length) return;
-    fillModels(ids);
-    statusEl.textContent = "已从 NVIDIA NIM 加载 " + ids.length + " 个可用模型";
-    setTimeout(() => {
-      if (statusEl.textContent.indexOf("已加载") === 0 || statusEl.textContent.indexOf("已从") === 0) {
-        statusEl.textContent = "";
-      }
-    }, 5000);
-  } catch (e) {
-    statusEl.textContent = "模型列表拉取失败，当前仅显示常用模型";
+function codeBlockHtml(lang, rawCode) {
+  const label = (lang || "code").toLowerCase();
+  return '<div class="codeblock"><div class="codeblock-head"><span>' + label +
+    '</span><button type="button" class="code-copy">复制</button></div><pre><code>' +
+    highlightCode(escapeHtml(rawCode), lang) + "</code></pre></div>";
+}
+
+function renderMarkdown(src) {
+  // 1. 抽出围栏代码块，占位保护
+  const blocks = [];
+  let text = src.replace(/```(\w*)\n?([\s\S]*?)(?:```|$)/g, (m, lang, code) => {
+    blocks.push(codeBlockHtml(lang, code.replace(/\n$/, "")));
+    return "\n CB" + (blocks.length - 1) + " \n";
+  });
+
+  // 2. 转义剩余文本（仅 & < >，保留引号供行内解析）
+  text = escapeHtml(text);
+
+  // 3. 行内元素
+  text = text.replace(/`([^`\n]+)`/g, "<code>$1</code>");
+  text = text.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  text = text.replace(/(^|[^*\w])\*([^*\n]+)\*/g, "$1<em>$2</em>");
+  text = text.replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g,
+    '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+
+  // 4. 块级：标题 / 列表 / 代码占位 / 段落
+  const lines = text.split("\n");
+  let html = "", para = [], listType = null;
+  const flushPara = () => {
+    if (para.length) { html += "<p>" + para.join("<br>") + "</p>"; para = []; }
+  };
+  const flushList = () => {
+    if (listType) { html += "</" + listType + ">"; listType = null; }
+  };
+  for (const raw of lines) {
+    const line = raw;
+    const cb = line.match(/^\s* CB(\d+) \s*$/);
+    if (cb) { flushPara(); flushList(); html += blocks[+cb[1]]; continue; }
+    const head = line.match(/^(#{1,4})\s+(.*)$/);
+    if (head) {
+      flushPara(); flushList();
+      html += head[1].length <= 2 ? "<h3>" + head[2] + "</h3>" : "<h4>" + head[2] + "</h4>";
+      continue;
+    }
+    const ul = line.match(/^\s*[-*]\s+(.*)$/);
+    if (ul) {
+      flushPara();
+      if (listType !== "ul") { flushList(); html += "<ul>"; listType = "ul"; }
+      html += "<li>" + ul[1] + "</li>";
+      continue;
+    }
+    const ol = line.match(/^\s*\d+\.\s+(.*)$/);
+    if (ol) {
+      flushPara();
+      if (listType !== "ol") { flushList(); html += "<ol>"; listType = "ol"; }
+      html += "<li>" + ol[1] + "</li>";
+      continue;
+    }
+    if (!line.trim()) { flushPara(); flushList(); continue; }
+    flushList();
+    para.push(line);
   }
+  flushPara(); flushList();
+  return html;
 }
 
 // ===== 会话数据（持久化到 localStorage）=====
@@ -461,10 +761,14 @@ function loadSessions() {
   return null;
 }
 function saveSessions() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({
-    sessions: state.sessions,
-    currentId: state.currentId
-  }));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      sessions: state.sessions,
+      currentId: state.currentId
+    }));
+  } catch (e) {
+    showError("本地存储空间不足，较早的会话可能无法保存");
+  }
 }
 
 function newSession() {
@@ -489,9 +793,171 @@ if (!state.sessions.find(s => s.id === state.currentId)) {
 
 let sending = false;
 let abortController = null;
+let allModelIds = null;   // NIM 动态拉取的全量模型
 
 function currentSession() {
   return state.sessions.find(s => s.id === state.currentId);
+}
+
+// ===== 智能滚动 =====
+let userAtBottom = true;
+function nearBottom() {
+  return chatEl.scrollHeight - chatEl.scrollTop - chatEl.clientHeight < 60;
+}
+function updateToBottomBtn(fresh) {
+  toBottomBtn.classList.toggle("show", !userAtBottom);
+  toBottomBtn.classList.toggle("fresh", !!fresh && !userAtBottom);
+  toBottomBtn.textContent = (fresh && !userAtBottom) ? "↓ 有新消息" : "↓ 回到底部";
+}
+function maybeScroll() {
+  if (userAtBottom) chatEl.scrollTop = chatEl.scrollHeight;
+  else updateToBottomBtn(true);
+}
+function scrollToBottom() {
+  userAtBottom = true;
+  chatEl.scrollTop = chatEl.scrollHeight;
+  updateToBottomBtn(false);
+}
+chatEl.addEventListener("scroll", () => {
+  userAtBottom = nearBottom();
+  updateToBottomBtn(false);
+});
+toBottomBtn.addEventListener("click", () => {
+  if (reducedMotion) chatEl.scrollTop = chatEl.scrollHeight;
+  else chatEl.scrollTo({ top: chatEl.scrollHeight, behavior: "smooth" });
+  userAtBottom = true;
+  updateToBottomBtn(false);
+});
+
+// ===== 模型下拉（可搜索 combobox）=====
+function currentModelId() {
+  const s = currentSession();
+  return (s && s.model) || CONFIG.defaultModel;
+}
+function displayName(id) {
+  const m = CONFIG.models.find(m => m.id === id);
+  return m ? m.name : shortName(id);
+}
+function updateComboLabel() {
+  comboLabel.textContent = displayName(currentModelId());
+}
+function modelGroupsAll() {
+  const groups = [{ label: "常用", items: CONFIG.models.map(m => ({ id: m.id, name: m.name })) }];
+  if (allModelIds && allModelIds.length) {
+    const defs = new Set(CONFIG.models.map(m => m.id));
+    const rest = allModelIds.filter(id => !defs.has(id)).map(id => ({ id, name: shortName(id) }));
+    if (rest.length) groups.push({ label: "全部可用模型（NVIDIA NIM）", items: rest });
+  }
+  const cur = currentModelId();
+  if (!groups.some(g => g.items.some(i => i.id === cur))) {
+    groups[0].items.push({ id: cur, name: shortName(cur) }); // 已下线模型兜底
+  }
+  return groups;
+}
+
+let comboFlat = [];   // 当前过滤后的可见项，供键盘导航
+let comboActive = -1;
+
+function renderComboList(filter) {
+  const q = (filter || "").toLowerCase().trim();
+  comboList.innerHTML = "";
+  comboFlat = [];
+  comboActive = -1;
+  const cur = currentModelId();
+  modelGroupsAll().forEach(g => {
+    const items = g.items.filter(i =>
+      !q || i.id.toLowerCase().includes(q) || i.name.toLowerCase().includes(q));
+    if (!items.length) return;
+    const lab = document.createElement("div");
+    lab.className = "combo-group-label";
+    lab.textContent = g.label;
+    comboList.appendChild(lab);
+    items.forEach(i => {
+      const el = document.createElement("div");
+      el.className = "combo-item" + (i.id === cur ? " selected" : "");
+      el.setAttribute("role", "option");
+      const nm = document.createElement("span");
+      nm.textContent = i.name;
+      const cid = document.createElement("span");
+      cid.className = "cid";
+      cid.textContent = i.id;
+      el.appendChild(nm);
+      el.appendChild(cid);
+      el.addEventListener("click", () => selectModel(i.id));
+      comboList.appendChild(el);
+      comboFlat.push({ id: i.id, el });
+    });
+  });
+  if (!comboFlat.length) {
+    const empty = document.createElement("div");
+    empty.className = "combo-empty";
+    empty.textContent = "没有匹配的模型";
+    comboList.appendChild(empty);
+  }
+}
+
+function openCombo() {
+  comboPanel.classList.add("open");
+  comboBtn.setAttribute("aria-expanded", "true");
+  comboFilter.value = "";
+  renderComboList("");
+  setTimeout(() => comboFilter.focus(), 0);
+}
+function closeCombo() {
+  comboPanel.classList.remove("open");
+  comboBtn.setAttribute("aria-expanded", "false");
+}
+function selectModel(id) {
+  const s = currentSession();
+  if (s) { s.model = id; saveSessions(); }
+  updateComboLabel();
+  closeCombo();
+}
+comboBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  comboPanel.classList.contains("open") ? closeCombo() : openCombo();
+});
+comboFilter.addEventListener("input", () => renderComboList(comboFilter.value));
+comboFilter.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+    e.preventDefault();
+    if (!comboFlat.length) return;
+    comboActive = e.key === "ArrowDown"
+      ? (comboActive + 1) % comboFlat.length
+      : (comboActive - 1 + comboFlat.length) % comboFlat.length;
+    comboFlat.forEach((f, i) => f.el.classList.toggle("active", i === comboActive));
+    comboFlat[comboActive].el.scrollIntoView({ block: "nearest" });
+  } else if (e.key === "Enter") {
+    e.preventDefault();
+    const pick = comboFlat[comboActive] || comboFlat[0];
+    if (pick) selectModel(pick.id);
+  } else if (e.key === "Escape") {
+    closeCombo();
+  }
+});
+document.addEventListener("click", (e) => {
+  if (!comboEl.contains(e.target)) closeCombo();
+});
+
+async function fetchModels() {
+  try {
+    const resp = await fetch(CONFIG.modelsUrl, {
+      headers: { "Authorization": "Bearer " + CONFIG.apiKey }
+    });
+    if (!resp.ok) throw new Error("HTTP " + resp.status);
+    const json = await resp.json();
+    const ids = (json.data || []).map(m => m.id).sort();
+    if (!ids.length) return;
+    allModelIds = ids;
+    renderComboList(comboFilter.value);
+    updateComboLabel();
+    statusEl.textContent = "已从 NVIDIA NIM 加载 " + ids.length + " 个可用模型";
+    setTimeout(() => {
+      if (statusEl.textContent.indexOf("已从") === 0) statusEl.textContent = "";
+    }, 5000);
+  } catch (e) {
+    statusEl.textContent = "模型列表拉取失败，当前仅显示常用模型";
+  }
 }
 
 // ===== 侧边栏抽屉（移动端）=====
@@ -603,17 +1069,51 @@ function createSession() {
 function renderHeader() {
   const s = currentSession();
   chatTitleEl.textContent = s.title || "新会话";
-  modelSel.value = s.model || CONFIG.defaultModel;
+  updateComboLabel();
+}
+
+function renderWelcome() {
+  const w = document.createElement("div");
+  w.className = "welcome";
+  const logo = document.createElement("div");
+  logo.className = "logo";
+  logo.textContent = "🔮";
+  const h = document.createElement("h2");
+  h.textContent = "向神谕提问";
+  const p = document.createElement("p");
+  p.textContent = "流式对话 · 多会话 · 上百种模型。点下面任意一条开始，或直接输入：";
+  const grid = document.createElement("div");
+  grid.className = "welcome-examples";
+  CONFIG.welcomeExamples.forEach(q => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "welcome-example";
+    b.dataset.q = q;
+    b.textContent = q;
+    grid.appendChild(b);
+  });
+  w.appendChild(logo);
+  w.appendChild(h);
+  w.appendChild(p);
+  w.appendChild(grid);
+  chatEl.appendChild(w);
 }
 
 function renderChat() {
   chatEl.innerHTML = "";
   const s = currentSession();
-  s.messages.forEach(m => {
-    if (m.role === "system") return;
-    addBubble(m.role, m.content, m.role === "assistant" ? m.model : null);
+  const visible = [];
+  s.messages.forEach((m, idx) => { if (m.role !== "system") visible.push({ m, idx }); });
+  if (!visible.length) {
+    renderWelcome();
+    userAtBottom = true;
+    updateToBottomBtn(false);
+    return;
+  }
+  visible.forEach(({ m, idx }) => {
+    addBubble(m.role, m.content, m.role === "assistant" ? m.model : null, idx, idx === s.messages.length - 1);
   });
-  chatEl.scrollTop = chatEl.scrollHeight;
+  scrollToBottom();
 }
 
 function renderAll() {
@@ -624,22 +1124,93 @@ function renderAll() {
   statusEl.textContent = "";
 }
 
-function addBubble(role, text, modelName) {
+function copyText(text, btn) {
+  const done = () => {
+    if (!btn) return;
+    const old = btn.textContent;
+    btn.textContent = "已复制 ✓";
+    setTimeout(() => { btn.textContent = old; }, 1500);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => {});
+  }
+}
+
+function addBubble(role, text, modelName, msgIndex, isLast) {
   const div = document.createElement("div");
   div.className = "msg " + (role === "user" ? "user" : "ai");
   const roleLabel = document.createElement("span");
   roleLabel.className = "role";
-  roleLabel.textContent = role === "user"
-    ? "我"
-    : (modelName || "AI");
+  roleLabel.textContent = role === "user" ? "我" : (modelName || "AI");
   const content = document.createElement("div");
   content.className = "content";
-  if (typeof text === "string") content.textContent = text;
+  if (typeof text === "string") {
+    if (role === "assistant" && text) content.innerHTML = renderMarkdown(text);
+    else content.textContent = text;
+  }
   div.appendChild(roleLabel);
   div.appendChild(content);
+
+  // 消息操作（流式中的临时气泡不传 msgIndex，无操作按钮）
+  if (msgIndex !== undefined) {
+    const actions = document.createElement("div");
+    actions.className = "msg-actions";
+
+    const copyBtn = document.createElement("button");
+    copyBtn.textContent = "📋";
+    copyBtn.title = "复制";
+    copyBtn.addEventListener("click", (e) => { e.stopPropagation(); copyText(text, copyBtn); });
+    actions.appendChild(copyBtn);
+
+    if (role === "assistant" && isLast) {
+      const regenBtn = document.createElement("button");
+      regenBtn.textContent = "🔄";
+      regenBtn.title = "重新生成";
+      regenBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        regenerate(msgIndex);
+      });
+      actions.appendChild(regenBtn);
+    }
+
+    const delBtn = document.createElement("button");
+    delBtn.textContent = "🗑️";
+    delBtn.title = "删除此条";
+    delBtn.className = "del";
+    delBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      deleteMessage(msgIndex);
+    });
+    actions.appendChild(delBtn);
+
+    div.appendChild(actions);
+  }
+
   chatEl.appendChild(div);
-  chatEl.scrollTop = chatEl.scrollHeight;
+  maybeScroll();
   return content;
+}
+
+function deleteMessage(idx) {
+  if (sending) return;
+  const s = currentSession();
+  if (idx <= 0 || idx >= s.messages.length) return; // 保底不删 system
+  s.messages.splice(idx, 1);
+  s.updatedAt = Date.now();
+  saveSessions();
+  renderChat();
+}
+
+function regenerate(assistantIdx) {
+  if (sending) return;
+  const s = currentSession();
+  // 截断到该 AI 消息之前（保留前面的 user 消息），重发请求
+  s.messages = s.messages.slice(0, assistantIdx);
+  if (!s.messages.length || s.messages[s.messages.length - 1].role !== "user") return;
+  s.updatedAt = Date.now();
+  saveSessions();
+  renderChat();
+  requestReply();
 }
 
 function showError(msg) {
@@ -648,45 +1219,55 @@ function showError(msg) {
 }
 function clearError() { errorEl.style.display = "none"; }
 
-// ===== 调用 NVIDIA NIM (OpenAI 兼容接口，流式，经 corsproxy.io 转发) =====
+// ===== 发送 / 请求 =====
+function setSendingUI(on) {
+  sending = on;
+  sendBtn.textContent = on ? "■ 停止" : "发送";
+  sendBtn.classList.toggle("stop", on);
+}
+
 async function sendMessage() {
   const text = inputEl.value.trim();
   if (!text || sending) return;
   clearError();
 
   const s = currentSession();
-  const modelId = modelSel.value;
-  s.model = modelId;
-
   s.messages.push({ role: "user", content: text });
   // 用第一条用户消息做会话标题
   if (s.title === "新会话") {
     s.title = text.slice(0, 24) + (text.length > 24 ? "…" : "");
   }
   s.updatedAt = Date.now();
-  addBubble("user", text);
   inputEl.value = "";
   inputEl.style.height = "auto";
+  saveSessions();
   renderSidebar();
   renderHeader();
-  saveSessions();
+  renderChat();
 
-  const modelName = modelSel.options[modelSel.selectedIndex]?.textContent || shortName(modelId);
+  await requestReply();
+}
+
+// 假设 s.messages 末尾已是 user 消息，追加 AI 流式回复
+async function requestReply() {
+  const s = currentSession();
+  const modelId = s.model || CONFIG.defaultModel;
+  const modelName = displayName(modelId);
+
   const aiContent = addBubble("ai", "", modelName);
   const cursor = document.createElement("span");
   cursor.className = "cursor";
   cursor.innerHTML = "&nbsp;";
   aiContent.appendChild(cursor);
 
-  sending = true;
-  sendBtn.disabled = true;
-  sendBtn.textContent = "生成中…";
+  setSendingUI(true);
   statusEl.textContent = "正在连接模型…";
 
   abortController = new AbortController();
   const timeout = setTimeout(() => abortController.abort(), CONFIG.timeoutSeconds * 1000);
 
   let full = "";
+  let pushed = false;
   try {
     const resp = await fetch(CONFIG.apiUrl, {
       method: "POST",
@@ -731,9 +1312,9 @@ async function sendMessage() {
           const delta = json.choices?.[0]?.delta?.content;
           if (delta) {
             full += delta;
-            aiContent.textContent = full;
+            aiContent.textContent = full; // 流式期间纯文本，结束后统一 Markdown 渲染
             aiContent.appendChild(cursor);
-            chatEl.scrollTop = chatEl.scrollHeight;
+            maybeScroll();
             statusEl.textContent = "";
           }
         } catch (e) { /* 跳过不完整行 */ }
@@ -741,49 +1322,71 @@ async function sendMessage() {
     }
 
     s.messages.push({ role: "assistant", content: full, model: modelName });
+    pushed = true;
     s.updatedAt = Date.now();
     statusEl.textContent = "";
   } catch (err) {
     if (err.name === "AbortError") {
-      aiContent.textContent = full + "\n\n[已取消/超时]";
-      if (full) { s.messages.push({ role: "assistant", content: full, model: modelName }); }
+      if (full) {
+        s.messages.push({ role: "assistant", content: full + "\n\n[已停止]", model: modelName });
+        pushed = true;
+      } else {
+        aiContent.textContent = "[已停止]";
+      }
     } else {
       const msg = (err.message === "Failed to fetch")
         ? "网络请求失败：请检查网络连接（请求经 corsproxy.io 代理转发，代理不可达也会报此错误）"
         : (err.message || String(err));
       showError(msg);
-      aiContent.textContent = full || "（请求失败）";
-      if (full) { s.messages.push({ role: "assistant", content: full, model: modelName }); }
+      if (full) {
+        s.messages.push({ role: "assistant", content: full, model: modelName });
+        pushed = true;
+      } else {
+        aiContent.textContent = "（请求失败）";
+      }
     }
     statusEl.textContent = "";
   } finally {
     clearTimeout(timeout);
     cursor.remove();
     saveSessions();
+    setSendingUI(false);
+    // 已入栈的消息统一重渲染（Markdown + 操作按钮）；未入栈的保留临时气泡显示错误
+    if (pushed && currentSession() === s) renderChat();
     renderSidebar();
-    sending = false;
-    sendBtn.disabled = false;
-    sendBtn.textContent = "发送";
-    chatEl.scrollTop = chatEl.scrollHeight;
+    maybeScroll();
     inputEl.focus();
   }
 }
 
 // ===== 事件 =====
-sendBtn.addEventListener("click", sendMessage);
+sendBtn.addEventListener("click", () => {
+  if (sending) { if (abortController) abortController.abort(); return; }
+  sendMessage();
+});
 newChatBtn.addEventListener("click", createSession);
 toggleSideBtn.addEventListener("click", () => setSidebar(sidebarEl.classList.contains("hidden")));
 backdropEl.addEventListener("click", () => setSidebar(false));
 
-modelSel.addEventListener("change", () => {
-  const s = currentSession();
-  s.model = modelSel.value;
-  saveSessions();
+// 代码块复制 & 欢迎页示例（事件委托，气泡重建不失效）
+chatEl.addEventListener("click", (e) => {
+  const cp = e.target.closest(".code-copy");
+  if (cp) {
+    const pre = cp.closest(".codeblock").querySelector("pre");
+    copyText(pre.innerText, cp);
+    return;
+  }
+  const ex = e.target.closest(".welcome-example");
+  if (ex) {
+    inputEl.value = ex.dataset.q;
+    sendMessage();
+  }
 });
 
 inputEl.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && !e.shiftKey) {
     e.preventDefault();
+    if (sending) return;
     sendMessage();
   }
 });
@@ -807,7 +1410,8 @@ clearBtn.addEventListener("click", () => {
 
 // 初始化
 if (isMobile()) sidebarEl.classList.add("hidden"); // 移动端默认收起抽屉
-fillModels(null);      // 先填常用模型，立即可用
+updateComboLabel();
+renderComboList("");
 renderAll();
 fetchModels();         // 后台拉取完整模型列表
 inputEl.focus();

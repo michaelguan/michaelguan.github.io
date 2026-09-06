@@ -84,12 +84,14 @@ Article/category counts shown in the UI (badge counts, breadcrumb "N 篇文章",
 - **Category nav (index.html):** `<a href="#tech" class="nav-item" data-category="tech">` — router intercepts; hash drives the iframe src.
 - **Category index → article:** `<a href="/pages/tech/slug.html" data-frame-link target="content-frame">`
 - **External:** `<a href="https://..." target="_blank" rel="noopener noreferrer">`
+- **Standalone tool page:** `<a href="/pages/tech/nvidia-nim-chat.html" target="_blank" rel="noopener noreferrer">` — see the exception below.
 
 ## GitHub Pages Deployment
 
 - **No Jekyll, no build.** The repo contains neither `_config.yml` nor `.nojekyll`; GitHub Pages treats the repo as a plain static file tree and serves files as-is. No Liquid templates, no `_posts/`, no plugins — every page is hand-written HTML.
 - **Deployment is a git push.** No CI/CD — `git push` triggers the Pages rebuild (typically 30–60s). `deploy.sh` / `run.bat` are thin wrappers over `git add . && commit && push`.
 - `imgs/` is empty; add optimized assets (WebP, <200KB) there and reference as `/imgs/filename.jpg`.
+- `aichat/` at the repo root is **gitignored** (`.gitignore`: "本地工具/草稿目录（不进站）") — a local draft/scratch dir. It is not part of the site; don't commit it or treat its contents as live pages.
 
 ## Common Commands
 
@@ -151,6 +153,8 @@ Two directories under `pages/tech/` are **standalone mini-sites** with their own
 - `pages/tech/opencode-demo/` — same Reveal.js slide-deck pattern.
 
 These are the sanctioned exception to the "no large libraries in `libs/`" rule — don't try to dedupe or refactor their shared CSS across slides.
+
+**Standalone tool page (frame-escaping exception):** `pages/tech/nvidia-nim-chat.html` （神谕 · AI 对话台） is a third page type alongside category-index and article — a **fully self-contained app** with its own inline `<style>` and dark theme tokens, linking **none** of the shared `libs/` CSS/JS (not even `router.js`). Because it must fill the viewport rather than render inside the iframe, every link to it uses `target="_blank"` (in `index.html`, `pages/tech/index.html`, `pages/home/index.html`) so it opens as a full page outside the shell. It still counts toward the `tech` article badge/count. Treat the `target="_blank"` here as deliberate — do **not** "fix" it to `data-frame-link target="content-frame"`.
 
 **Orphan content:** none — all categories are wired into routing. There are currently **six** categories: `home / tech / game / life / history / journey`.
 
